@@ -1,0 +1,1046 @@
+[
+ {
+  "id": "E1",
+  "rule": "AI Overviews hanya ditampilkan ketika sistem Google menilai tampilan itu menambah nilai dibanding Search klasik, sehingga sering tidak muncul; jangan menganggap ketiadaan AI Overviews sebagai kesalahan situs.",
+  "quote": "AI Overviews are only shown when our systems determine that it is additive to classic Search, and as such, often don't trigger.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E2",
+  "rule": "AI Overviews dan AI Mode dapat memakai teknik \"query fan-out\", yaitu menjalankan beberapa pencarian terkait di berbagai subtopik dan sumber data untuk menyusun respons.",
+  "quote": "Both AI Overviews and AI Mode may use a \"query fan-out\" technique — issuing multiple related\nsearches across subtopics and data sources — to develop a response.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E3",
+  "rule": "AI Mode dan AI Overviews dapat memakai model dan teknik yang berbeda, sehingga respons dan tautan yang ditampilkan akan bervariasi; jangan mengharapkan hasil yang sama di keduanya.",
+  "quote": "AI Mode and AI Overviews may use different models and techniques, so the set of responses and links they show will vary.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E4",
+  "rule": "Terapkan spam policies Google pada konten untuk fitur AI: Google menegaskan bahwa spam policies juga berlaku untuk respons generative AI di Google Search.",
+  "quote": "Clarified that our spam policies also apply to generative AI responses in Google Search.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E5",
+  "rule": "Pastikan halaman terindeks dan layak tampil di Google Search dengan snippet; itulah syarat agar halaman dapat tampil sebagai supporting link di AI Overviews atau AI Mode.",
+  "quote": "To be eligible to be shown as a supporting link in AI Overviews or AI Mode, a page must be indexed\nand eligible to be shown in Google Search with a snippet, fulfilling the\nSearch technical requirements.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E6",
+  "rule": "Jangan mencari syarat teknis tambahan untuk AI Overviews atau AI Mode: Google menyatakan tidak ada persyaratan teknis tambahan di luar persyaratan teknis Search.",
+  "quote": "Search technical requirements. There are no additional technical requirements.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E7",
+  "rule": "Perlakukan optimasi khusus untuk AI Overviews dan AI Mode sebagai tidak wajib; Google menyatakan fondasi SEO yang ada tetap bermanfaat.",
+  "quote": "While specific optimization isn't required for AI Overviews and AI Mode, all existing SEO fundamentals continue to be worthwhile",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E8",
+  "rule": "Terapkan praktik dasar SEO yang sama untuk fitur AI seperti untuk Google Search secara umum: memenuhi persyaratan teknis Search, mengikuti kebijakan Search, dan membuat konten yang membantu, andal, dan mengutamakan manusia.",
+  "quote": "You can apply the same foundational SEO best practices for\nAI features as you do for Google Search overall: making sure the page meets the\ntechnical requirements for Google Search,\nfollowing Search policies,",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E9",
+  "rule": "Terapkan praktik dasar SEO yang sama untuk fitur AI seperti untuk Google Search secara umum: memenuhi persyaratan teknis Search, mengikuti kebijakan Search, dan membuat konten yang membantu, andal, dan mengutamakan manusia.",
+  "quote": "following Search policies,\nand focusing on the key best practices,\nsuch as creating helpful, reliable, people-first content.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E10",
+  "rule": "Pastikan crawling diizinkan di robots.txt dan oleh CDN atau infrastruktur hosting apa pun.",
+  "quote": "Ensuring that crawling is allowed in robots.txt, and by any CDN or hosting infrastructure",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E11",
+  "rule": "Buat konten mudah ditemukan melalui internal link di dalam situs.",
+  "quote": "Making your content easily findable through internal links",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E12",
+  "rule": "Berikan page experience yang baik bagi pengguna.",
+  "quote": "Providing a great page experience for users",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E13",
+  "rule": "Pastikan konten penting tersedia dalam bentuk teks.",
+  "quote": "Making sure that important content is available in textual form",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E14",
+  "rule": "Dukung konten teks dengan gambar dan video berkualitas tinggi bila sesuai.",
+  "quote": "Supporting your textual content with high-quality images and videos, when applicable",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E15",
+  "rule": "Pastikan structured data cocok dengan teks yang terlihat di halaman.",
+  "quote": "Making sure your structured data matches the visible text on the page",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E16",
+  "rule": "Periksa bahwa informasi Merchant Center dan Business Profile selalu terbaru.",
+  "quote": "Checking that your Merchant Center and Business Profile information is up-to-date",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E17",
+  "rule": "Verifikasi situs di Search Console untuk menemukan dan mendiagnosis potensi masalah teknis dengan cepat.",
+  "quote": "To discover and diagnose potential technical issues quickly, verify your site in Search Console.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E18",
+  "rule": "Jangan mencoba menandai halaman sebagai featured snippet: Google menyatakan itu tidak bisa dilakukan, sistem Google yang menentukan dan mengangkat halaman tersebut.",
+  "quote": "How can I mark my page as a featured snippet?\n\nYou can't. Google systems determine whether a page would make a good featured snippet for a\nuser's search request, and if so, elevates it.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E19",
+  "rule": "Jangan menulis untuk jumlah kata tertentu demi Google; Google menyatakan tidak punya jumlah kata yang disukai.",
+  "quote": "Are you writing to a particular word count because you've heard or read that Google has a preferred word count? (No, we don't.)",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E20",
+  "rule": "Jangan menambah atau menghapus banyak konten hanya supaya situs tampak \"fresh\"; Google menyatakan itu tidak akan membantu peringkat.",
+  "quote": "Are you adding a lot of new content or removing a lot of older content primarily because you believe it will help your search rankings overall by somehow making your site seem \"fresh?\" (No, it won't)",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E21",
+  "rule": "Jangan mengubah tanggal halaman agar tampak segar bila isinya tidak berubah secara substansial; Google memasukkannya ke pertanyaan yang jika dijawab ya menjadi tanda peringatan untuk mengevaluasi ulang cara membuat konten.",
+  "quote": "Are you changing the date of pages to make them seem fresh when the content has not substantially changed?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E22",
+  "rule": "Jangan mengubah tanggal halaman agar tampak segar bila isinya tidak berubah secara substansial; Google memasukkannya ke pertanyaan yang jika dijawab ya menjadi tanda peringatan untuk mengevaluasi ulang cara membuat konten.",
+  "quote": "Answering yes to some or all of the questions below is a warning sign that you should reevaluate how you're creating content",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E23",
+  "rule": "Jangan menganggap llms.txt perlu untuk Google Search: Google menyatakan file itu tidak diperlukan dan tidak berdampak negatif maupun positif pada visibilitas atau ranking; boleh dipertahankan untuk layanan atau sistem lain yang memakainya.",
+  "quote": "while these files aren't needed for Google Search (and won't negatively or positively impact your visibility or rankings)",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E24",
+  "rule": "Jangan menganggap llms.txt perlu untuk Google Search: Google menyatakan file itu tidak diperlukan dan tidak berdampak negatif maupun positif pada visibilitas atau ranking; boleh dipertahankan untuk layanan atau sistem lain yang memakainya.",
+  "quote": "it's fine if you want to maintain these files for other services or systems that use them.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E25",
+  "rule": "Gunakan robots.txt directives untuk Googlebot sebagai kontrol akses crawl situs untuk Search; Google menyatakan AI terintegrasi dalam Search, sehingga itulah kontrol bagi pemilik situs.",
+  "quote": "AI is built into Search and integral to how Search functions, which is why robots.txt directives\nfor Googlebot is the control\nfor site owners to manage access to how their sites are crawled for Search.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E26",
+  "rule": "Untuk membatasi AI training dan grounding di beberapa sistem Google lainnya, baca lebih lanjut tentang Google-Extended.",
+  "quote": "To limit AI training and grounding in some of Google's other systems, read more about Google-Extended.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E27",
+  "rule": "Untuk membatasi informasi dari halaman yang tampil di Search, gunakan kontrol nosnippet, data-nosnippet, max-snippet, atau noindex.",
+  "quote": "To limit the information shown from your pages in Search, use nosnippet, data-nosnippet, max-snippet, or noindex controls.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E28",
+  "rule": "Gunakan nosnippet bila konten tidak boleh dipakai sebagai input langsung untuk AI Overviews dan AI Mode: aturan ini berlaku untuk semua bentuk hasil pencarian (termasuk AI Overviews dan AI Mode) dan mencegah konten dipakai sebagai input langsung keduanya.",
+  "quote": "This applies to all forms of search results (at Google: web search, Google Images, Discover, AI Overviews, AI Mode) and will also prevent the content from being used as a direct input for AI Overviews and AI Mode.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E29",
+  "rule": "Gunakan max-snippet:[angka] untuk membatasi panjang snippet teks; aturan ini juga membatasi seberapa banyak konten yang boleh dipakai sebagai input langsung untuk AI Overviews dan AI Mode.",
+  "quote": "max-snippet: [number]\n\n|\n\nUse a maximum of [number] characters as a textual snippet for this search result. (Note\nthat a URL may appear as multiple search results within a search results page.) This\ndoes not affect image or video previews. This applies to all forms of search results\n(such as Google web search, Google Images, Discover, Assistant, AI Overviews, AI Mode) and\nwill also limit how much of the content may be used as a direct input for AI Overviews and AI Mode.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E30",
+  "rule": "Ingat bahwa batas max-snippet tidak berlaku bila penerbit secara terpisah memberi izin penggunaan konten, misalnya lewat structured data di halaman atau perjanjian lisensi dengan Google.",
+  "quote": "this limit does not apply in cases where a publisher has separately granted permission for use of content. For instance, if the publisher supplies content in the form of in-page structured data or has a license agreement with Google, this setting does not interrupt those more specific permitted uses.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E31",
+  "rule": "Pastikan kontrol pratinjau benar dan terlihat oleh Googlebot; uji dengan URL Inspection tool untuk melihat HTML yang diterima Googlebot saat crawling.",
+  "quote": "Make sure that the preview control is correct and visible to Googlebot. To test if your implementation is correct, use the URL Inspection tool to see the HTML that Googlebot received while crawling the page.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E32",
+  "rule": "Beri waktu bagi Google untuk recrawl dan memproses perubahan kontrol pratinjau; crawling dapat memakan waktu beberapa hari sampai beberapa bulan, dan Anda dapat meminta recrawl.",
+  "quote": "Allow time for Google to recrawl and process the change in preview controls. Remember that crawling can take anywhere from several days to several months, depending on how often our systems determine a page needs to be refreshed.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E33",
+  "rule": "Beri waktu bagi Google untuk recrawl dan memproses perubahan kontrol pratinjau; crawling dapat memakan waktu beberapa hari sampai beberapa bulan, dan Anda dapat meminta recrawl.",
+  "quote": "If you've made changes, you can request that Google recrawl your pages.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E34",
+  "rule": "Jangan memblokir halaman dengan robots.txt jika aturan indexing atau serving harus dipatuhi: bila halaman di-disallow dari crawling, informasi aturan itu tidak ditemukan dan diabaikan.",
+  "quote": "If a page is disallowed from crawling through the robots.txt file, then any information about indexing or serving rules will not be found and will therefore be ignored.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E35",
+  "rule": "Jangan memblokir halaman dengan robots.txt jika aturan indexing atau serving harus dipatuhi: bila halaman di-disallow dari crawling, informasi aturan itu tidak ditemukan dan diabaikan.",
+  "quote": "If indexing or serving rules must be followed, the URLs containing those rules cannot be disallowed from crawling.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E36",
+  "rule": "Baca kinerja AI features di data Search Console yang sama dengan hasil lain: situs yang tampil di AI features (seperti AI Overviews dan AI Mode) termasuk dalam total lalu lintas pencarian di Search Console.",
+  "quote": "sites appearing in AI features (such as AI Overviews and AI Mode) are included in the overall search traffic in Search Console.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E37",
+  "rule": "Cari data tersebut di Performance report, pada search type \"Web\".",
+  "quote": "they're reported on in the Performance report, within the \"Web\" search type.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E38",
+  "rule": "Perlakukan data AI Mode sebagai bagian dari total di Performance report Search Console.",
+  "quote": "Data from AI Mode is now counting towards the totals in the Search Console Performance report.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E39",
+  "rule": "Perlakukan AI Overviews sebagai tercatat di Performance report Search Console; Google menyebut ini klarifikasi metodologi dokumentasi, bukan perubahan laporan.",
+  "quote": "Clarified that AI Overviews are counted and logged in Search Console in the Performance report. This is a documentation clarification on methodology only, and not a change in Search Console reports.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E40",
+  "rule": "Selain Search Console, Anda juga dapat melacak konversi dan waktu di situs dengan alat lain seperti Google Analytics.",
+  "quote": "In addition to Search Console, you could also track conversions and time spent on your site in other tools, such as Google Analytics.",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E41",
+  "rule": "Tuliskan klaim kualitas klik sebagai pengamatan Google, bukan fakta terukur situs: Google menyatakan klik dari halaman hasil dengan AI Overviews lebih berkualitas (pengguna lebih mungkin menghabiskan lebih banyak waktu di situs).",
+  "quote": "We've seen that when people click from search results pages with AI Overviews, these clicks are higher quality (meaning, users are more likely to spend more time on the site).",
+  "source": "g-ai-features"
+ },
+ {
+  "id": "E42",
+  "rule": "FAQ rich result tidak lagi muncul di Google Search mulai 7 Mei 2026.",
+  "quote": "Deprecating the FAQ rich result feature\n\nWhat: Added a deprecation notice to the FAQ rich result documentation.\n\nWhy: This feature will no longer appear in Google Search starting May 7, 2026.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E43",
+  "rule": "Jangan mengejar How-to rich result: dokumentasinya dihapus karena rich result ini tidak lagi tampil di hasil pencarian, baik di desktop maupun seluler.",
+  "quote": "Removed the How-to structured data documentation, as this rich result is no longer shown in search results, on both desktop and mobile devices.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E44",
+  "rule": "Jangan mengejar structured data practice problem: Google menghapus dokumentasinya karena tipe ini tidak lagi tampil di hasil Google Search.",
+  "quote": "What: Removed documentation for the practice problem\nstructured data type.\n\nWhy: The practice problem structured data type is no longer shown in Google Search results.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E45",
+  "rule": "Jangan mengejar course info, estimated salary, learning video, special announcement, dan vehicle listing: Google menghapus dokumentasinya karena tipe-tipe ini tidak lagi tampil di hasil Google Search.",
+  "quote": "Removed documentation for the following structured data types: course info, estimated salary, learning video, special announcement, and vehicle listing.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E46",
+  "rule": "Jangan mengejar course info, estimated salary, learning video, special announcement, dan vehicle listing: Google menghapus dokumentasinya karena tipe-tipe ini tidak lagi tampil di hasil Google Search.",
+  "quote": "These structured data types are no longer shown in Google Search results.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E47",
+  "rule": "Perlakukan structured data Dataset sebagai hanya dipakai oleh Dataset Search dan bukan Google Search; Google menyebut dataset dan practice problem sedang dihentikan dari hasil Google Search.",
+  "quote": "Clarified that Dataset structured data is only used by Dataset Search, and not Google Search.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E48",
+  "rule": "Perlakukan structured data Dataset sebagai hanya dipakai oleh Dataset Search dan bukan Google Search; Google menyebut dataset dan practice problem sedang dihentikan dari hasil Google Search.",
+  "quote": "we are phasing out the practice problem and dataset structured data types from Google Search results.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E49",
+  "rule": "Periksa status ClaimReview dan book actions sebelum mengandalkannya: Google menambahkan banner perubahan pada keduanya (bersama beberapa fitur lain) karena akan menghentikan dukungan beberapa fitur structured data; untuk book actions banner kemudian dicabut karena masih ada fitur di Google Search yang memakai markup itu.",
+  "quote": "Added banners to a few structured data features to indicate upcoming changes: book actions, course info, estimated salary, ClaimReview, learning video, special announcement, and vehicle listing.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E50",
+  "rule": "Periksa status ClaimReview dan book actions sebelum mengandalkannya: Google menambahkan banner perubahan pada keduanya (bersama beberapa fitur lain) karena akan menghentikan dukungan beberapa fitur structured data; untuk book actions banner kemudian dicabut karena masih ada fitur di Google Search yang memakai markup itu.",
+  "quote": "we will be phasing out support for a few structured data features in Search.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E51",
+  "rule": "Periksa status ClaimReview dan book actions sebelum mengandalkannya: Google menambahkan banner perubahan pada keduanya (bersama beberapa fitur lain) karena akan menghentikan dukungan beberapa fitur structured data; untuk book actions banner kemudian dicabut karena masih ada fitur di Google Search yang memakai markup itu.",
+  "quote": "Removed the deprecation banner from Book actions documentation, as there's still a feature using the markup in Google Search.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E52",
+  "rule": "Jangan memakai generative AI untuk menghasilkan banyak halaman tanpa menambah nilai bagi pengguna; Google menyatakan hal itu dapat melanggar spam policy tentang scaled content abuse.",
+  "quote": "using generative AI tools or other similar tools to generate many pages without adding value for users may violate Google's spam policy on scaled content abuse.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E53",
+  "rule": "Utamakan akurasi, kualitas, dan relevansi, terutama saat konten dibuat secara otomatis, termasuk untuk metadata seperti elemen <title>, meta description, structured data, dan teks alternatif gambar.",
+  "quote": "When creating content for the web, focus on accuracy, quality, and relevance, especially when\nautomatically generating the content. This includes metadata like <title> elements,\nmeta description elements,\nstructured data, and\nalternate texts for images,\nwhich can appear in Search results.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E54",
+  "rule": "Pertimbangkan menambahkan informasi tentang cara konten dibuat bila konten dihasilkan otomatis, misalnya latar belakang penggunaan otomatisasi dan image metadata.",
+  "quote": "If you're automatically generating content, consider\nadding information on how your content was created in a way that makes sense for your audience,\nsuch as by providing more background information on how automation was used and adding\nimage metadata.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E55",
+  "rule": "Untuk situs ecommerce, sertakan metadata IPTC DigitalSourceType TrainedAlgorithmicMedia pada gambar buatan AI, sesuai kebijakan Google Merchant Center.",
+  "quote": "For ecommerce sites, Google Merchant Center has policies for AI-generated content.\nIn particular, AI-generated images must contain metadata using the IPTC DigitalSourceType\nTrainedAlgorithmicMedia\nmetadata.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E56",
+  "rule": "Untuk situs ecommerce, tentukan data produk buatan AI seperti atribut title dan description secara terpisah dan beri label sebagai buatan AI.",
+  "quote": "For ecommerce sites, Google Merchant Center has policies for AI-generated content.\nIn particular, AI-generated images must contain metadata using the IPTC DigitalSourceType\nTrainedAlgorithmicMedia\nmetadata. AI-generated product data such as title and description attributes must be specified\nseparately and labeled as AI-generated.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E57",
+  "rule": "Jangan memakai otomatisasi, termasuk AI-generation, dengan tujuan utama memanipulasi peringkat pencarian: Google menyatakan itu pelanggaran spam policies.",
+  "quote": "If you use automation, including AI-generation, to produce content for the primary purpose of manipulating search rankings, that's a violation of our spam policies.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E58",
+  "rule": "Cek dokumentasi Google tentang perbedaan pengalaman Search antarwilayah sebelum menyamakan strategi antarnegara: Google menambahkan dokumentasi tersebut, yang memuat pengalaman Search yang tersedia di negara tertentu seperti aggregator units, supplier units, dan carousels.",
+  "quote": "Added documentation about regional differences in Search experience, which includes information about search experiences available in certain countries, such as aggregator units, supplier units, and carousels.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E59",
+  "rule": "Kenali featured snippet sebagai kotak khusus yang format hasil biasanya dibalik dengan menampilkan snippet deskriptif lebih dulu; ia juga dapat muncul dalam kelompok related questions (\"People Also Ask\").",
+  "quote": "Featured snippets are special boxes where the format of a regular search result is reversed, showing the descriptive snippet first.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E60",
+  "rule": "Kenali featured snippet sebagai kotak khusus yang format hasil biasanya dibalik dengan menampilkan snippet deskriptif lebih dulu; ia juga dapat muncul dalam kelompok related questions (\"People Also Ask\").",
+  "quote": "They can also appear within a related questions group (also known as \"People Also Ask\").",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E61",
+  "rule": "Untuk memblokir semua snippet (termasuk featured snippets dan snippet biasa) pada sebuah halaman, tambahkan aturan nosnippet pada halaman itu.",
+  "quote": "To block all snippets (including featured snippets and regular snippets) from appearing for a given page, add the nosnippet rule to that page.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E62",
+  "rule": "Teks yang ditandai atribut data-nosnippet tidak akan muncul di featured snippets maupun snippet biasa.",
+  "quote": "Text marked by the data-nosnippet HTML attribute won't appear in featured snippets or regular snippets either.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E63",
+  "rule": "Bila nosnippet dan data-nosnippet sama-sama ada di halaman, nosnippet diutamakan dan snippet tidak ditampilkan untuk halaman itu.",
+  "quote": "If both nosnippet and data-nosnippet rules appear in a page, nosnippet takes priority, and snippets won't be shown for the page.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E64",
+  "rule": "Untuk hanya memblokir featured snippets sambil mempertahankan snippet pada hasil biasa, coba atur max-snippet ke panjang yang lebih rendah; featured snippet hanya muncul bila cukup teks dapat ditampilkan untuk membuatnya berguna.",
+  "quote": "If you want to retain snippets in regularly-formatted search results, but you don't want to appear in\nfeatured snippets, experiment with setting the\nmax-snippet rule\nto lower lengths. Featured snippets will only appear if enough text can be shown to generate a\nuseful featured snippet.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E65",
+  "rule": "Pada umumnya, makin pendek pengaturan max-snippet, makin kecil kemungkinan halaman muncul sebagai featured snippet; teruskan menurunkan nilainya bila halaman masih tampil.",
+  "quote": "Keep lowering the value if pages continue to show for featured snippets. In general, the\nshorter your max-snippet rule setting, the less likely the page\nwill appear as a featured snippet.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E66",
+  "rule": "Gunakan nosnippet bila butuh solusi yang dijamin; max-snippet yang rendah tidak menjamin Google berhenti menampilkan featured snippets.",
+  "quote": "Using a low max-snippet setting doesn't guarantee that Google will stop showing featured snippets for your page. If you need a guaranteed solution, use the nosnippet rule.",
+  "source": "g-featured-snippets"
+ },
+ {
+  "id": "E67",
+  "rule": "Perlakukan snippet sebagai dibuat otomatis terutama dari isi halaman; Google kadang memakai meta description bila dinilai memberi deskripsi lebih akurat.",
+  "quote": "Snippets are primarily created from the page content itself. However, Google sometimes uses the meta description HTML element if it might give users a more accurate description of the page than content taken directly from the page.",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E68",
+  "rule": "Buat meta description unik untuk setiap halaman; deskripsi yang identik atau mirip di semua halaman tidak membantu.",
+  "quote": "Identical or similar descriptions on every page of a site aren't helpful when individual pages appear in search results.",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E69",
+  "rule": "Untuk situs besar berbasis database, pembuatan deskripsi secara terprogram dapat tepat dan dianjurkan; deskripsi yang baik mudah dibaca manusia dan beragam.",
+  "quote": "For larger database-driven sites, like product aggregators, hand-written descriptions can be\nimpossible. In the latter case, however, programmatic generation of the descriptions can be\nappropriate and are encouraged. Good descriptions are human-readable and diverse.",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E70",
+  "rule": "Hindari meta description berisi deretan panjang keyword: Google menyatakan deskripsi seperti itu kurang jelas bagi pengguna dan lebih kecil kemungkinannya tampil sebagai snippet.",
+  "quote": "meta descriptions comprised of long strings of keywords don't give users a clear idea of the page's content, and are less likely to be displayed as a snippet.",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E71",
+  "rule": "Pastikan konten langsung terlihat oleh manusia di halaman, tidak tersembunyi di balik bagian yang dapat diperluas atau antarmuka bertab.",
+  "quote": "Make sure content is immediately visible on the page to a human (and not hidden behind an expandable section or tabbed interface, for example).",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E72",
+  "rule": "Hindari memakai JavaScript untuk mengatur posisi scroll pengguna saat halaman dimuat.",
+  "quote": "Avoid using JavaScript to control the user's scroll position on page load",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E73",
+  "rule": "Jika memakai panggilan history API atau mengubah window.location.hash saat halaman dimuat, jangan menghapus hash fragment dari URL karena itu merusak perilaku deep linking.",
+  "quote": "If you make history API\ncalls or window.location.hash\nmodifications on page load, make sure you don't remove the hash fragment from the URL, as this\nbreaks deep linking behavior.",
+  "source": "g-snippet"
+ },
+ {
+  "id": "E74",
+  "rule": "Perhatikan bahwa pengaturan robots meta tag, data-nosnippet, dan X-Robots-Tag hanya dapat dibaca dan diikuti bila crawler diizinkan mengakses halaman yang memuatnya.",
+  "quote": "these settings can be read and followed only if crawlers are allowed to access the pages that include these settings.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E75",
+  "rule": "Gunakan header respons X-Robots-Tag untuk memblokir indexing sumber daya non-HTML seperti file PDF, video, atau gambar.",
+  "quote": "To block indexing of non-HTML resources, such as PDF files, video files, or image files, use the X-Robots-Tag response header instead.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E76",
+  "rule": "Pahami nosnippet sebagai tidak menampilkan snippet teks atau pratinjau video; thumbnail gambar statis (jika ada) mungkin tetap terlihat bila menghasilkan pengalaman pengguna yang lebih baik.",
+  "quote": "Do not show a text snippet or video preview in the search results for this page. A static image thumbnail (if available) may still be visible, when it results in a better user experience.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E77",
+  "rule": "Pakai max-snippet:0 bila ingin tidak ada snippet; nilainya setara nosnippet.",
+  "quote": "0: No snippet is to be shown. Equivalent to nosnippet.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E78",
+  "rule": "Untuk menandai bagian teks halaman HTML agar tidak dipakai sebagai snippet, pasang atribut data-nosnippet pada tingkat elemen HTML, yaitu pada elemen span, div, dan section.",
+  "quote": "You can designate textual parts of an HTML page not to be used as a snippet. This can be done\non an HTML-element level with the data-nosnippet HTML attribute on\nspan, div, and\nsection elements.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E79",
+  "rule": "Perlakukan data-nosnippet sebagai boolean attribute: nilai apa pun yang ditulis diabaikan.",
+  "quote": "The data-nosnippet is considered a boolean attribute. As with all boolean attributes, any value specified is ignored.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E80",
+  "rule": "Jangan menambah atau menghapus atribut data-nosnippet pada node yang sudah ada melalui JavaScript, untuk menghindari ketidakpastian akibat rendering.",
+  "quote": "To avoid uncertainty from rendering, do not add or remove the data-nosnippet attribute of existing nodes through JavaScript.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E81",
+  "rule": "Saat menambahkan elemen DOM lewat JavaScript, sertakan atribut data-nosnippet sejak elemen pertama kali ditambahkan ke DOM halaman bila diperlukan.",
+  "quote": "When adding DOM elements through JavaScript, include the data-nosnippet attribute as necessary when initially adding the element to the page's DOM.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E82",
+  "rule": "Perlakukan batasan robots meta tag sebagai tidak memengaruhi penggunaan structured data, kecuali article.description dan nilai description pada structured data karya kreatif lain.",
+  "quote": "Robots meta tag limitations don't affect the use of that structured data, with the exception of article.description and the description values for structured data specified for other creative works.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E83",
+  "rule": "Untuk mengelola penggunaan structured data, ubah tipe dan nilai structured data itu sendiri dengan menambah atau menghapus informasi; structured data tetap dapat dipakai untuk hasil pencarian meski berada di dalam elemen data-nosnippet.",
+  "quote": "To manage the use of structured data for your web pages, modify the structured data types and values themselves, adding or removing information in order to provide only the data you want to make available.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E84",
+  "rule": "Untuk mengelola penggunaan structured data, ubah tipe dan nilai structured data itu sendiri dengan menambah atau menghapus informasi; structured data tetap dapat dipakai untuk hasil pencarian meski berada di dalam elemen data-nosnippet.",
+  "quote": "structured data remains usable for search results when declared within a data-nosnippet element.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E85",
+  "rule": "Google memperbarui dokumentasi FAQ structured data untuk menyatakan fitur itu hanya ditampilkan untuk situs pemerintah dan kesehatan yang terkenal dan otoritatif.",
+  "quote": "Updated the FAQ structured data documentation to state that the feature is only shown for well-known, authoritative government and health websites.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E86",
+  "rule": "Perlakukan special announcement sebagai fitur yang dihentikan mulai 31 Juli 2025.",
+  "quote": "Deprecating the special announcement feature\n\nWhat: Added a deprecation notice to the special announcements documentation.\n\nWhy: This feature will be deprecated starting July 31, 2025.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E87",
+  "rule": "Perlakukan sitelinks search box sebagai fitur yang tidak lagi tersedia di hasil Google Search.",
+  "quote": "The sitelinks search box feature is no longer available in Google Search results.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E88",
+  "rule": "Jangan memakai nositelinkssearchbox untuk mengontrol sitelink search box: aturan itu tidak lagi dipakai Google Search karena fiturnya tidak ada lagi.",
+  "quote": "The nositelinkssearchbox rule is no longer used by Google Search to control whether the sitelink search box is shown for a given page, as the feature no longer exists.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E89",
+  "rule": "Jangan memakai noarchive untuk mengontrol cached link di Google Search: aturan itu tidak lagi dipakai untuk itu karena fitur cached link sudah tidak ada.",
+  "quote": "The noarchive rule is no longer used by Google Search to control whether a cached link is shown in search results, as the cached link feature no longer exists.",
+  "source": "g-robots-meta"
+ },
+ {
+  "id": "E90",
+  "rule": "Tidak perlu menghapus meta tag noarchive yang sudah ada, karena mesin pencari dan layanan lain mungkin memakainya.",
+  "quote": "You don't need to remove the meta tag, as other search engines and services may be using it.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E91",
+  "rule": "Perlakukan fitur Follow di Google Discover sebagai tidak lagi tampil.",
+  "quote": "The Follow feature is no longer shown in Google Discover.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E92",
+  "rule": "Perlakukan fitur AI while browsing sebagai tidak lagi tersedia.",
+  "quote": "The AI while browsing feature is no longer available.",
+  "source": "g-doc-updates"
+ },
+ {
+  "id": "E93",
+  "rule": "Pakai salah satu dari tiga format yang didukung untuk markup: JSON-LD (direkomendasikan), Microdata, atau RDFa.",
+  "quote": "mark up your site's pages using one of three supported formats: - JSON-LD (recommended) - Microdata - RDFa",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E94",
+  "rule": "Jangan memblokir halaman structured data dari Googlebot dengan robots.txt, noindex, atau metode kontrol akses lain.",
+  "quote": "Don't block your structured data pages to Googlebot using robots.txt, noindex, or any other access control methods.",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E95",
+  "rule": "Jangan menandai konten yang tidak terlihat oleh pembaca halaman.",
+  "quote": "Don't mark up content that is not visible to readers of the page.",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E96",
+  "rule": "Isi semua properti wajib untuk tipe rich result yang dituju; item yang kehilangan properti wajib tidak layak untuk rich result.",
+  "quote": "Items that are missing required properties are not eligible for rich results.",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E97",
+  "rule": "Ingat bahwa manual action structured data membuat halaman kehilangan kelayakan rich result tetapi tidak memengaruhi peringkat di pencarian web Google; periksa di laporan Manual Actions di Search Console.",
+  "quote": "A structured data manual action means that a page loses eligibility\nfor appearance as a rich result; it doesn't affect how the page ranks in Google web search.\nTo check if you have a manual action, open the\nManual Actions report in Search Console.",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E98",
+  "rule": "Pahami E-E-A-T sebagai bukan faktor peringkat spesifik, tetapi memakai campuran faktor yang mengidentifikasi konten dengan E-E-A-T baik berguna.",
+  "quote": "While E-E-A-T itself isn't a specific ranking factor, using a mix of factors that can identify content with good E-E-A-T is useful.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E99",
+  "rule": "Utamakan trust: Google menyatakan trust adalah aspek E-E-A-T yang paling penting.",
+  "quote": "Of these aspects, trust is most important.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E100",
+  "rule": "Tambahkan informasi penulis yang akurat, seperti byline, pada konten yang pembacanya mungkin mengharapkannya.",
+  "quote": "We strongly encourage adding accurate authorship information, such as bylines to content where readers might expect it.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E101",
+  "rule": "Tambahkan pengungkapan penggunaan AI atau otomatisasi bila wajar diharapkan; pengungkapan berguna untuk konten yang membuat orang bertanya \"How was this created?\".",
+  "quote": "Overall, AI or automation disclosures are useful for content where someone might think \"How was this created?\" Consider adding these when it would be reasonably expected.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E102",
+  "rule": "praktik terbaik SEO tetap relevan untuk generative AI search",
+  "quote": "Is SEO still relevant for generative AI search? In short, yes! The best practices for SEO continue to be relevant",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E103",
+  "rule": "fitur generative AI di Google Search berakar pada sistem ranking dan kualitas inti Search",
+  "quote": "our generative AI features on Google Search are rooted in our core Search ranking and quality systems",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E104",
+  "rule": "Retrieval-augmented generation (RAG) (juga disebut grounding) sebagai teknik yang dipakai untuk meningkatkan kualitas, akurasi, dan kesegaran respons AI",
+  "quote": "Retrieval-augmented generation (RAG): A technique (also known as grounding) used to improve the quality, accuracy, and freshness of AI responses",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E105",
+  "rule": "dengan mengandalkan sistem ranking inti Search untuk mengambil halaman web relevan dan terbaru dari indeks Search",
+  "quote": "by relying on our core Search ranking systems to retrieve relevant, up-to-date web pages from our Search index.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E106",
+  "rule": "sistem Google lalu meninjau informasi spesifik dari halaman yang diambil untuk menghasilkan respons yang lebih andal dan membantu",
+  "quote": "Our systems then review the specific information from those retrieved pages to generate a more reliable and helpful response",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E107",
+  "rule": "menampilkan tautan yang menonjol dan dapat diklik ke halaman web relevan yang mendukung informasi dalam respons",
+  "quote": "showing prominent, clickable links to relevant web pages that support the information in the response",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E108",
+  "rule": "query fan-out sebagai sekumpulan query terkait yang dihasilkan model dan dijalankan bersamaan untuk meminta informasi lebih banyak",
+  "quote": "Query fan-out: A set of concurrent, related queries generated by the model to request more information",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E109",
+  "rule": "serta mengambil hasil pencarian relevan tambahan untuk menjawab query pengguna.",
+  "quote": "and fetch additional relevant search results to address the user's query",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E110",
+  "rule": "membuat konten yang dianggap orang unik, menarik, dan berguna kemungkinan akan memengaruhi kehadiran situs di generative AI search dalam jangka panjang",
+  "quote": "Creating content that people find unique, compelling, and useful will likely influence your website's presence in generative AI search in the long run",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E111",
+  "rule": "di generative AI search dalam jangka panjang lebih daripada saran lain mana pun di panduan.",
+  "quote": "in generative AI search in the long run more than any of the other suggestions in this guide",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E112",
+  "rule": "ulasan langsung (first-hand review) memberi perspektif unik berdasarkan pengalaman pribadi, sedangkan ringkasan konten yang sudah ada hanya mengulang informasi yang sudah tersedia di tempat lain",
+  "quote": "a first-hand review provides a unique perspective based on personal experience, whereas a summary of existing content simply restates information already available elsewhere",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E113",
+  "rule": "sistem AI Google melihat berbagai sumber, sehingga memiliki sudut pandang unik yang menonjol dapat membantu",
+  "quote": "Our AI systems take a look at a variety of sources, so it can be helpful to have a unique viewpoint that stands out.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E114",
+  "rule": "jangan sekadar mendaur ulang apa yang sudah dikatakan orang lain di internet atau yang mudah dihasilkan model generative AI",
+  "quote": "Don't just recycle what others on the internet have already said, or could easily be produced by a generative AI model.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E115",
+  "rule": "Pastikan Anda menulis konten non-komoditas yang dianggap pembaca membantu dan andal: konten komoditas sering berbasis pengetahuan umum, yang bisa berasal dari siapa saja, dan biasanya menambah sedikit wawasan unik bagi pembaca",
+  "quote": "Be sure that you're writing non-commodity content that your readers will find helpful and reliable. Commodity content (for example, something like \"7 Tips for First-Time Homebuyers\") is often based on common knowledge, which could originate from anyone, and typically adds little unique insight for readers",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E116",
+  "rule": "sedangkan konten non-komoditas memberi pandangan unik dari ahli atau orang berpengalaman yang melampaui pengetahuan umum",
+  "quote": "In contrast, non-commodity content (such as \"Why We Waived the Inspection & Saved Money: A Look Inside the Sewer Line\") provides unique expert or experienced takes that go beyond common knowledge and the ordinary",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E117",
+  "rule": "Tulis konten untuk audiens manusia dan pastikan konten tertulis baik serta mudah diikuti",
+  "quote": "Write content for your human audience and make sure the content is well written and easy to follow.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E118",
+  "rule": "orang umumnya menyukai halaman web yang tertata dalam paragraf dan bagian, dengan heading yang memberi struktur yang jelas untuk menavigasi konten",
+  "quote": "People generally appreciate it when web pages are organized by paragraphs and sections, along with headings that provide a clear structure to navigate content.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E119",
+  "rule": "Bila masuk akal, cari cara mendukung konten teks dengan gambar dan video relevan berkualitas tinggi di halaman",
+  "quote": "When it makes sense, look for ways to support your textual content with high-quality, relevant images and videos on your pages",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E120",
+  "rule": "fitur generative AI search dapat menampilkan gambar dan video relevan, sehingga ada lebih banyak peluang bagi situs untuk tampil di luar tautan halaman web.",
+  "quote": "our generative AI search features can bring in relevant images and video, which means more opportunities for your website to appear beyond web page links",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E121",
+  "rule": "melakukannya terutama untuk memanipulasi peringkat atau respons generative AI di Google Search melanggar spam policy scaled content abuse milik Google.",
+  "quote": "doing so primarily to manipulate rankings or generative AI responses in Google Search violates Google's scaled content abuse spam policy",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E122",
+  "rule": "Meski mungkin tergoda membuat konten terpisah untuk setiap kemungkinan variasi cara orang mencari (misalnya fan-out queries)",
+  "quote": "While it might be tempting to create separate content for every possible variation of how people might search (for example, by focusing on other queries that people have asked, or fan-out queries)",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E123",
+  "rule": "sistem AI Google telah makin maju dan meningkatkan kemampuan memahami relevansi halaman, bahkan bila tidak ada kecocokan persis antara query dan konten utama halaman.",
+  "quote": "Google's AI systems have advanced even further and improved upon our ability to understand the relevance of pages, even when there is no exact match between the query and the page's primary content",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E124",
+  "rule": "Bila memakai alat generative AI untuk membantu membuat konten, pastikan hasilnya memenuhi standar Search Essentials",
+  "quote": "If you're using generative AI tools to assist in content creation, be sure that your work meets the standards of the Search Essentials",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E125",
+  "rule": "pastikan hasilnya memenuhi standar Search Essentials dan spam policies Google.",
+  "quote": "be sure that your work meets the standards of the Search Essentials and our spam policies.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E126",
+  "rule": "fokus pada apa yang akan dinikmati pengunjung, dianggap membantu, dan membuat mereka puas setelah mengunjungi situs.",
+  "quote": "focus on what your visitors would enjoy, find helpful, and feel satisfied with after visiting your website",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E127",
+  "rule": "Anda dapat menyederhanakan pendekatan dengan berfokus pada satu prinsip inti",
+  "quote": "You can simplify your approach by focusing on one core principle",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E128",
+  "rule": "Agar layak tampil di fitur generative AI di Google Search, halaman harus terindeks dan layak tampil di Google Search dengan snippet",
+  "quote": "To be eligible to be shown in generative AI features on Google Search, a page must be indexed and eligible to be shown in Google Search with a snippet",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E129",
+  "rule": "selain persyaratan teknis Search, situs harus termasuk dalam Search generative AI features di Search Console",
+  "quote": "In addition to the technical requirements for Search, a site must be included in Search generative AI features in Search Console",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E130",
+  "rule": "agar layak ditampilkan di fitur generative AI di Google Search.",
+  "quote": "to be eligible for display in generative AI features on Google Search",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E131",
+  "rule": "pastikan konten dapat di-crawl, karena model generative AI Google Search memakai konten yang dapat diakses publik dan dapat di-crawl untuk mempelajari pola dan memberi respons yang relevan dan grounded.",
+  "quote": "ensure your content is crawlable, as Google Search generative AI models use publicly accessible, crawlable content to learn patterns and provide relevant, grounded responses",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E132",
+  "rule": "Untuk memaksimalkan visibilitas situs di fitur generative AI search, pastikan konten dapat di-crawl",
+  "quote": "To maximize your site's visibility in generative AI search features, ensure your content is crawlable",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E133",
+  "rule": "Untuk HTML semantik, fokus pada keterbacaan bagi manusia dan jangan khawatir soal kode yang sempurna: HTML yang sempurna secara semantik tidak wajib (web pada umumnya bukan HTML valid, dan Google dapat memahaminya)",
+  "quote": "When it comes to semantic HTML, focus on human readability and don't worry about perfect code: While it's not required to have perfectly semantic HTML (the web in general is not valid HTML, and Google can understand it)",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E134",
+  "rule": "umumnya ide yang baik untuk mencoba memakai HTML semantik bila memungkinkan",
+  "quote": "it's generally a good idea to try to use semantic HTML when possible",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E135",
+  "rule": "karena membantu jenis pengguna lain, seperti screen reader, mengurai dan menavigasi halaman web dengan lebih mudah.",
+  "quote": "as it helps other types of users, such as screen readers, parse and navigate your web page more easily",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E136",
+  "rule": "Jika memakai JavaScript, pastikan mengikuti praktik terbaik JavaScript SEO; Google dapat memproses konten dalam JavaScript selama tidak diblokir",
+  "quote": "If you're using JavaScript, be sure to follow JavaScript SEO best practices. Google is able to process content within JavaScript as long as it isn't blocked.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E137",
+  "rule": "tetapi mengerjakan SEO pada situs yang memakai framework JavaScript umumnya lebih kompleks daripada pada jenis situs lain.",
+  "quote": "That said, working on SEO with a website that uses JavaScript frameworks is generally more complex than when working with other kinds of websites",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E138",
+  "rule": "ini mencakup memastikan situs tampil baik di semua perangkat, mengurangi latensi, dan memudahkan orang membedakan konten utama dari elemen lain di halaman.",
+  "quote": "This includes ensuring your site displays well across all devices, reducing latency, and making it easy for people to distinguish your main content from other elements on the page.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E139",
+  "rule": "Berikan page experience yang baik bagi orang yang tiba di situs Anda",
+  "quote": "Provide a good page experience for those who arrive at your site.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E140",
+  "rule": "memiliki konten duplikat dapat menjadi pengalaman pengguna yang buruk dan mesin pencari mungkin membuang sumber daya crawling pada URL yang bahkan tidak Anda pedulikan.",
+  "quote": "Having duplicate content can be a bad user experience and search engines might waste crawling resources on URLs that you don't even care about.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E141",
+  "rule": "Bila ada waktu, coba kurangi konten duplikat",
+  "quote": "Reduce duplicate content: Having duplicate content can be a bad user experience and search engines might waste crawling resources on URLs that you don't even care about. If you have time, try to reduce it.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E142",
+  "rule": "Bila sesuai, respons generative AI dapat memuat daftar produk, informasi produk, dan informasi tentang bisnis lokal",
+  "quote": "Where appropriate, generative AI responses can include product listings, product information, and information about local businesses.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E143",
+  "rule": "memakai produk seperti Merchant Center (misalnya feed Merchant Center) dan Google Business Profiles dapat membantu produk dan layanan Anda terlihat di respons AI maupun hasil Google Search lainnya.",
+  "quote": "Using products like Merchant Center (such as Merchant Center feeds) and Google Business Profiles can help your products and services to be visible in both AI responses and other Google Search results.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E144",
+  "rule": "banyak \"hack\" yang disarankan tidak efektif atau tidak didukung cara kerja Google Search yang sebenarnya.",
+  "quote": "many suggested \"hacks\" aren't effective or supported by how Google Search actually works",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E145",
+  "rule": "Meski istilah seperti Answer Engine Optimization (AEO) atau Generative Engine Optimization (GEO) umum di internet",
+  "quote": "While terms like Answer Engine Optimization (AEO) or Generative Engine Optimization (GEO) are common online",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E146",
+  "rule": "File LLMS.txt dan markup \"khusus\" lainnya: tidak perlu membuat file machine readable baru",
+  "quote": "LLMS.txt files and other \"special\" markup: You don't need to create new machine readable files",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E147",
+  "rule": "tidak perlu membuat file machine readable baru, file AI text, markup, atau Markdown agar tampil di Google Search (termasuk kemampuan generative AI-nya), karena Google Search sendiri tidak memakainya.",
+  "quote": "You don't need to create new\nmachine readable files, AI text files, markup, or Markdown to appear in Google Search (including\nits generative AI capabilities), as Google Search itself doesn't use them.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E148",
+  "rule": "Google mungkin menemukan, meng-crawl, dan mengindeks banyak jenis file selain HTML di sebuah situs",
+  "quote": "Google may discover, crawl, and index many kinds of files in addition to HTML on a website",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E149",
+  "rule": "ini tidak berarti file tersebut diperlakukan secara khusus.",
+  "quote": "this doesn't mean that the file is treated in a special way.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E150",
+  "rule": "Tidak ada keharusan memecah konten menjadi potongan kecil (\"chunking\") agar AI lebih memahaminya",
+  "quote": "\"Chunking\" content: There's no requirement to break your content into tiny pieces for AI to better understand it.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E151",
+  "rule": "namun terkadang halaman yang lebih pendek (atau lebih panjang) dapat berhasil tergantung audiens dan topik",
+  "quote": "However, sometimes shorter (or longer!) pages can work well depending on your audience and subject matter.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E152",
+  "rule": "tidak ada panjang halaman yang ideal, dan pada akhirnya",
+  "quote": "There's no ideal page length, and in the end,",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E153",
+  "rule": "buat halaman untuk audiens, bukan hanya untuk generative AI search.",
+  "quote": "make pages for your audience, not just for generative AI search",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E154",
+  "rule": "Tidak perlu menulis dengan cara khusus hanya untuk generative AI search",
+  "quote": "You don't need to write in a specific way just for generative AI search.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E155",
+  "rule": "sistem AI dapat memahami sinonim dan makna umum dari apa yang dicari seseorang",
+  "quote": "AI systems can understand synonyms and general meanings of what someone is seeking",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E156",
+  "rule": "untuk menghubungkannya dengan konten yang mungkin tidak memakai kata yang persis sama",
+  "quote": "in order to connect them with content that might not use the same precise words",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E157",
+  "rule": "sehingga Anda tidak perlu khawatir kekurangan keyword \"long-tail\" atau belum menangkap setiap variasi cara orang mencari konten seperti milik Anda.",
+  "quote": "This means you don't have to worry that you don't have enough \"long-tail\" keywords or haven't captured every variation of how someone might seek content like yours.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E158",
+  "rule": "Mengejar \"mentions\" yang tidak autentik di web tidak sebermanfaat yang tampak",
+  "quote": "seeking inauthentic \"mentions\" across the web isn't as helpful as it might seem.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E159",
+  "rule": "sistem ranking inti Google berfokus pada konten berkualitas tinggi sementara sistem lain memblokir spam, dan fitur generative AI bergantung pada keduanya.",
+  "quote": "Our core ranking systems focus on high-quality content while other systems block spam; our generative AI features depend on both.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E160",
+  "rule": "Structured data tidak wajib untuk generative AI search, dan tidak ada markup schema.org khusus yang perlu ditambahkan",
+  "quote": "Structured data isn't required for generative AI search, and there's no special schema.org markup you need to add.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E161",
+  "rule": "namun tetap ide yang baik untuk terus memakainya sebagai bagian dari strategi SEO secara keseluruhan",
+  "quote": "However, it's a good idea to continue using it as part of your overall SEO strategy",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E162",
+  "rule": "karena membantu kelayakan rich results di Google Search.",
+  "quote": "as it helps with being eligible for rich results on Google Search",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E163",
+  "rule": "Untuk mengukur kinerja konten di fitur generative AI di Google Search dan Discover, gunakan Generative AI performance report di Search Console",
+  "quote": "To measure how your content is performing in generative AI features on Google Search and Discover, use the Generative AI performance report in Search Console.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E164",
+  "rule": "laporan ini dapat membantu memberi gambaran bagaimana orang menemukan konten Anda melalui fitur generative AI di Google Search.",
+  "quote": "This can help you get an idea of how people are discovering your content through generative AI features on Google Search.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E165",
+  "rule": "Untuk mengukur kinerja konten di fitur generative AI di Google Search, gunakan Generative AI performance report",
+  "quote": "Use the Generative AI performance report to see how your content is performing in generative AI features on Google Search.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E166",
+  "rule": "AI agents adalah sistem otonom yang dapat melakukan tugas atas nama orang, seperti memesan reservasi atau membandingkan spesifikasi produk",
+  "quote": "AI agents are autonomous systems that can perform tasks on behalf of people, such as booking a reservation or comparing product specifications.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E167",
+  "rule": "browser agents mungkin mengakses situs Anda untuk mengumpulkan data yang dibutuhkan untuk menyelesaikan tugas tersebut",
+  "quote": "browser agents may access your website to gather the data they need to complete these tasks",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E168",
+  "rule": "untuk menyelesaikan tugas tersebut, misalnya dengan menganalisis tampilan visual (seperti screenshot), memeriksa struktur DOM, dan menafsirkan accessibility tree.",
+  "quote": "to complete these tasks, such as analyzing visual renderings (like screenshots), inspecting the DOM structure, and interpreting the accessibility tree",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E169",
+  "rule": "Bila ini relevan bagi bisnis Anda dan ada waktu ekstra, lihat agentic experiences yang tersedia dan tinjau panduan agent-friendly website best practices",
+  "quote": "If this is something that's relevant to your business and you have extra time, check out the available agentic experiences and review the guide to agent-friendly website best practices",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E170",
+  "rule": "yang memberi gambaran bagaimana situs umumnya dapat bersiap untuk browser agents saat ini.",
+  "quote": "which gives some insights into how a website can generally prepare for current browser agents.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E171",
+  "rule": "protokol seperti Universal Commerce Protocol (UCP) sedang muncul dan akan memungkinkan Search agents melakukan lebih banyak hal.",
+  "quote": "Protocols like Universal Commerce Protocol (UCP) are emerging that will allow Search agents to do more.",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E172",
+  "rule": "banyak konten berhasil di Google Search (termasuk pengalaman generative AI) tanpa SEO yang kentara sama sekali.",
+  "quote": "plenty of content thrives in Google Search (including generative AI experiences) without any overt SEO at all",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E173",
+  "rule": "Anda tidak perlu menyelesaikan semua isi panduan agar berhasil di Google Search",
+  "quote": "you don't need to accomplish everything in this guide in order to succeed on Google Search",
+  "source": "g-ai-optimization-guide"
+ },
+ {
+  "id": "E174",
+  "rule": "Terus prioritaskan praktik dasar SEO seperti membangun struktur teknis yang jelas dan membuat konten unik yang bernilai; itu fondasi visibilitas di pengalaman generative AI search (dan Google Search secara keseluruhan).",
+  "quote": "Continue prioritizing foundational SEO best practices, such as building a clear technical structure and creating unique, valuable content; these are the foundation for visibility in generative AI search experiences (and Google Search overall).",
+  "source": "g-ai-optimization-guide"
+ }
+]

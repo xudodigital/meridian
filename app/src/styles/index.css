@@ -1,0 +1,33 @@
+/* Meridian styles entry.
+
+   Layer order (lowest to highest priority): theme, base, proto, components, utilities.
+   - theme, base, components, utilities come from Tailwind 4. "base" holds Tailwind's preflight reset.
+   - proto holds the prototype's stylesheet, ported verbatim. It sits above base, so every prototype rule beats
+     preflight, and below utilities, so a Tailwind utility on new markup can still override a prototype class.
+   Inside proto the files keep the prototype's source order where rules of equal specificity overlap
+   (for example .btn.lg and the legend class .lg), so do not reorder these imports. */
+@layer theme, base, proto, components, utilities;
+
+@import "tailwindcss";
+
+@import "./compat.css" layer(proto);
+@import "./tokens.css" layer(proto);
+@import "./base.css" layer(proto);
+@import "./shell.css" layer(proto);
+@import "./components.css" layer(proto);
+@import "./panels.css" layer(proto);
+@import "./views.css" layer(proto);
+@import "./polish.css" layer(proto);
+@import "./responsive.css" layer(proto);
+@import "./revamp.css" layer(proto);
+
+@import "./theme.css";
+
+/* Two prototype class names are also Tailwind utilities: .ring (the progress ring) and .grow (flex:1 spacer).
+   Tailwind must not generate its own rules for them, or they would override the prototype's.
+   Use ring-1, ring-2... and grow-1 or flex-1 in new code instead of the bare names.
+   (Checked by compiling every class name of the prototype through Tailwind: no other name collides.) */
+@source not inline("{grow,ring}");
+
+/* Documentation is not a source of class names. */
+@source not "../../PORTING.md";

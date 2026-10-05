@@ -1,0 +1,52 @@
+/* Build and deploy outside demo mode: the Website section (WebsiteSection.tsx). */
+@layer proto {
+  .web-list{display:flex;flex-direction:column;gap:12px}
+  .web-site{display:flex;flex-direction:column;gap:12px;min-width:0;padding:16px;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface-container-low)}
+  .web-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+  .web-name{flex:1 1 14rem;display:flex;flex-direction:column;gap:2px;min-width:0}
+  .web-name b{font:var(--md-sys-typescale-title-medium);font-weight:700;overflow-wrap:anywhere}
+  .web-builds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;overflow:hidden;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface)}
+  /* One build: phones stack it; from 840px the version, what is in it and the actions sit side by side. */
+  .web-build{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"ver" "what" "pills" "acts" "msg";gap:6px 16px;align-items:center;padding:14px 16px}
+  .web-build+.web-build{border-top:1px solid var(--md-sys-color-outline-variant)}
+  .web-ver{grid-area:ver;align-self:start;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;min-width:0}
+  .web-ver b{font:var(--md-sys-typescale-title-medium);font-weight:800;font-variant-numeric:tabular-nums}
+  .web-ver .note{font:var(--md-sys-typescale-body-small)}
+  .web-what{grid-area:what;min-width:0;overflow-wrap:anywhere}
+  .web-pills{grid-area:pills;display:flex;flex-wrap:wrap;gap:6px}
+  .web-pills:empty{display:none}
+  .web-acts{grid-area:acts;display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-left:-12px}
+  .web-acts:empty{display:none}
+  .web-msg{grid-area:msg;font:var(--md-sys-typescale-body-small);max-width:none}
+  @media (min-width:840px){
+    .web-site{padding:20px}
+    .web-build{grid-template-columns:8rem minmax(0,1fr) auto;grid-template-areas:"ver what acts" "ver pills acts" "msg msg msg"}
+    .web-ver{flex-direction:column;align-items:flex-start}
+    .web-acts{justify-content:flex-end;margin-left:0}
+  }
+  /* The Domain step of a site: four steps in a row (stacked on phones), the server's message, the record to add. */
+  .web-domain{display:flex;flex-direction:column;gap:8px;min-width:0;padding:14px 16px;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface)}
+  .web-dom-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+  .web-dom-head>b{font:var(--md-sys-typescale-title-small);font-weight:700}
+  .web-dom-steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;flex:1 1 20rem;min-width:0}
+  .web-dom-steps li{display:flex;align-items:center;gap:8px;font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant);overflow-wrap:anywhere}
+  .web-dom-dot{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--md-sys-color-surface-container-highest);font:var(--md-sys-typescale-label-medium);font-variant-numeric:tabular-nums}
+  .web-dom-dot .ms{font-size:16px}
+  .web-dom-steps li.done{color:var(--md-sys-color-on-surface)}
+  .web-dom-steps li.done .web-dom-dot{background:var(--md-ext-color-success-container);color:var(--md-ext-color-on-success-container)}
+  .web-dom-steps li.now{color:var(--md-sys-color-on-surface);font-weight:700}
+  .web-dom-steps li.now .web-dom-dot{background:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary)}
+  .web-dom-steps li.bad{color:var(--md-sys-color-error);font-weight:700}
+  .web-dom-steps li.bad .web-dom-dot{background:var(--md-sys-color-error-container);color:var(--md-sys-color-on-error-container)}
+  .web-dom-msg{max-width:none;overflow-wrap:anywhere}
+  .web-dom-msg .btn{margin-left:-12px}
+  .web-dom-rec{width:auto}
+  .web-dom-rec th{text-align:left;white-space:nowrap;font-weight:600}
+  .web-dom-rec code{overflow-wrap:anywhere}
+  .web-dom-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+  .web-dom-foot:empty{display:none}
+  /* Preview, Download ZIP and the live site are links styled as buttons. */
+  a.btn{text-decoration:none}
+  dialog.web-ask{width:min(400px,calc(100vw - 32px))}
+  .q .web-q-what{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+}

@@ -1,0 +1,17 @@
+/* Article review: ticking several waiting articles for "Approve selected", its result, and "Show archived". */
+@layer proto {
+  .rv-pick{display:flex;align-items:center;gap:0;min-width:0;border-radius:var(--md-sys-shape-corner-large-increased)}
+  .rv-pick>.ck{flex:none;margin-left:-8px}
+  .rv-pick>button.art{flex:1;min-width:0}
+  .rv-pick.on>button.art:not(.on){background:var(--md-sys-color-surface-container-high)}
+  .rv-all{display:flex;align-items:center;gap:12px;min-height:40px;padding:0 4px 0 7px;font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant);cursor:pointer}
+  .rv-all input{width:18px;height:18px;margin:0;accent-color:var(--md-sys-color-primary);cursor:pointer}
+  .rv-res{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface-container-low)}
+  .rv-res .checks li{align-items:baseline}
+  .rv-arch{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:40px;font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant);cursor:pointer}
+  /* "Write selected" in a keyword research result (research/KwResultSheet.tsx). */
+  .kw-bulk{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:12px}
+  .kw-bulk .note{margin-right:auto}
+  .kw-res{margin-top:16px}
+  .kw-res li{align-items:baseline}
+}

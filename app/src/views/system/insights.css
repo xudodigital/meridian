@@ -1,0 +1,41 @@
+/* Analytics > Search Console, GA4 and Rank outside demo mode: the day chart, the site picker row, change marks. */
+@layer proto {
+  .daychart{margin:0;padding:20px;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface-container-low);min-width:0}
+  .daychart figcaption{font:var(--md-sys-typescale-title-medium);font-weight:700;margin-bottom:16px}
+  .dc-body{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:180px auto;column-gap:10px;row-gap:8px}
+  .dc-y{display:flex;flex-direction:column;justify-content:space-between;min-width:2.5ch;font:var(--md-sys-typescale-label-small);color:var(--md-sys-color-on-surface-variant);font-variant-numeric:tabular-nums}
+  .dc-y span{display:block;height:0;line-height:0;text-align:right;white-space:nowrap}
+  .dc-plot{position:relative;min-width:0;border-radius:4px;cursor:crosshair;touch-action:pan-y}
+  .dc-plot:focus-visible{outline:2px solid var(--md-sys-color-primary);outline-offset:6px}
+  .dc-plot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .dc-grid{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--md-sys-color-outline-variant)}
+  .dc-grid.base{border-top:1px solid var(--md-sys-color-outline)}
+  .dc-area{fill:var(--md-sys-color-primary);opacity:.12}
+  .dc-line{fill:none;stroke:var(--md-sys-color-primary);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+  .dc-cross{position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--md-sys-color-outline);pointer-events:none}
+  .dc-dot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--md-sys-color-primary);box-shadow:0 0 0 2px var(--md-sys-color-surface-container-low);pointer-events:none}
+  .dc-tip{position:absolute;top:0;transform:translate(10px,0);display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:var(--md-sys-shape-corner-medium);background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);font:var(--md-sys-typescale-body-small);white-space:nowrap;pointer-events:none;z-index:1}
+  .dc-tip.left{transform:translate(calc(-100% - 10px),0)}
+  .dc-tip b{font:var(--md-sys-typescale-label-large);font-weight:700;font-variant-numeric:tabular-nums}
+  .dc-x{grid-column:2;position:relative;height:1.2em;font:var(--md-sys-typescale-label-small);color:var(--md-sys-color-on-surface-variant)}
+  .dc-x span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+  .dc-x span.first{transform:none}
+  .dc-x span.last{transform:translateX(-100%)}
+
+  .ins-pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+  .ins-two{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+  .ins-two h3,.ins-h3{font:var(--md-sys-typescale-title-medium);font-weight:700;margin:0 0 8px}
+  @media (min-width:1200px){ .ins-two{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .ins-url{overflow-wrap:anywhere}
+  .ins-states{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+  .ins-states b{color:var(--md-sys-color-on-surface)}
+
+  /* A position change: an arrow and a number, so it never rests on colour alone. */
+  .chg{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .chg .ms{font-size:18px}
+  .chg.up .ms{color:var(--md-ext-color-success)}
+  .chg.down .ms{color:var(--md-sys-color-error)}
+  .chg.flat,.chg.none{color:var(--md-sys-color-on-surface-variant)}
+  .hc.na{background:transparent;border:1px dashed var(--md-sys-color-outline-variant);color:var(--md-sys-color-on-surface-variant);font-weight:400}
+  .tln .rank-effect{font:var(--md-sys-typescale-label-medium)}
+}

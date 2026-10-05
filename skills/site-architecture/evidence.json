@@ -1,0 +1,722 @@
+[
+ {
+  "id": "E1",
+  "rule": "Rancang menu dan tautan antarhalaman dengan sadar, karena struktur navigasi (menu dan tautan silang) dapat memengaruhi pemahaman Google atas struktur situs.",
+  "quote": "navigation structures on your site (such as menus and cross page links) can impact Google's understanding of your site structure.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E2",
+  "rule": "Susun situs baru atau yang didesain ulang secara logis agar mesin pencari dan pengguna memahami hubungan antarhalaman.",
+  "quote": "When you're setting up or redoing your site, it can be good to organize it in a logical way because it can help search engines and users understand how your pages relate to the rest of your site.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E3",
+  "rule": "Jangan membongkar situs yang sudah berjalan secara mendadak hanya demi struktur; mesin pencari kemungkinan besar tetap memahami halaman apa adanya.",
+  "quote": "Don't drop everything and start reorganizing your site right now though: while these suggestions can be helpful long term (especially if you're working on a larger website), search engines will likely understand your pages as they are right now, regardless of how your site is organized.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E4",
+  "rule": "Kelompokkan halaman bertopik serupa ke dalam direktori (folder); ini dapat membantu Google mempelajari seberapa sering URL di tiap direktori berubah.",
+  "quote": "using directories (or folders) to group similar topics can help Google learn how often the URLs in individual directories change.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E5",
+  "rule": "Jangan mengandalkan pola URL untuk menyampaikan struktur situs: Google umumnya tidak melihat struktur URL untuk menentukan struktur situs, melainkan menganalisis tautan antarhalaman.",
+  "quote": "Google generally doesn't look at the structure of URLs to work out the structure of a site. Instead, it analyzes the linkages between pages to gain insights about the relative importance of different pages on a site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E6",
+  "rule": "Tautkan dari menu ke halaman kategori, dari kategori ke subkategori, lalu dari subkategori ke semua halaman produk.",
+  "quote": "add links from menus to category pages, from category pages to sub-category pages, and finally from sub-category pages to all product pages.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E7",
+  "rule": "Tautkan ke semua produk yang ingin diindeks; hal ini sangat dianjurkan.",
+  "quote": "It's strongly recommended to link to all products that you wish indexed.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E8",
+  "rule": "Jika halaman kategori tidak menautkan langsung ke semua produk, Googlebot mungkin tidak menemukan semua produk hanya lewat perayapan.",
+  "quote": "If category pages don't include direct links to all products in a category, Googlebot might not find all of your products by crawling alone.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E9",
+  "rule": "Jangan mengandalkan kotak pencarian internal untuk penemuan halaman, karena Googlebot umumnya tidak mencoba mengirim pencarian ke kotak pencarian saat merayapi.",
+  "quote": "Googlebot generally doesn't try to submit searches into a search box as part of crawling a site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E10",
+  "rule": "Jika tidak mungkin menautkan ke semua halaman, gunakan sitemap atau feed Google Merchant Center.",
+  "quote": "If it's not possible to link to all pages, use a sitemap or a Google Merchant Center feed.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E11",
+  "rule": "Tambahkan structured data karena dapat membantu Google memahami tujuan tiap jenis halaman dan memperkuat struktur situs.",
+  "quote": "add structured data, since this can help Google understand the purpose of the different pages on your site to reinforce this structure.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E12",
+  "rule": "Sebagai aturan umum, semakin banyak tautan internal ke sebuah halaman, semakin tinggi kepentingan relatifnya dibanding halaman lain di situs.",
+  "quote": "As a general rule, the more links a page has to it within a site, the higher the relative importance of the page to other pages on your site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E13",
+  "rule": "Pertimbangkan menautkan produk terlaris dari beranda atau dari konten lain di situs seperti postingan blog atau newsletter.",
+  "quote": "if you have a best selling product, consider linking to it from the home page or in other content, such as blog posts or newsletters on your site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E14",
+  "rule": "Pastikan setiap halaman yang penting punya tautan dari setidaknya satu halaman lain di situs.",
+  "quote": "Every page you care about should have a link from at least one other page on your site.",
+  "source": "g-links"
+ },
+ {
+  "id": "E15",
+  "rule": "Untuk pemisahan topik, pilih subdirektori atau subdomain sesuai kebutuhan bisnis; subdirektori bisa lebih mudah dikelola, tetapi kadang subdomain lebih masuk akal tergantung topik atau industri situs.",
+  "quote": "From a business point of view, do whatever makes sense for your business. For example, it might be easier to manage the site if it's segmented by subdirectories, but other times it might make sense to partition topics into subdomains, depending on your site's topic or industry.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E16",
+  "rule": "Perlakukan tiap hostname sebagai situs terpisah dengan crawl budget terpisah (misalnya www.example.com dan code.example.com).",
+  "quote": "In this context, Google's crawling infrastructure defines a site as a unique hostname. For example, https://www.example.com/ and https://code.example.com/ are treated as separate sites and have separate crawl budgets.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E17",
+  "rule": "Jika halaman memuat informasi berbeda menurut lokasi fisik pengguna, pastikan Anda puas dengan informasi yang dilihat Google dari lokasi crawler-nya, yang umumnya AS.",
+  "quote": "If your pages have different information depending on the user's physical location, make sure you're satisfied with the information that Google sees from its crawler's location, which is generally the US.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E18",
+  "rule": "Buat tautan sebagai elemen <a> dengan atribut href, karena umumnya hanya format itu yang dapat dirayapi Google.",
+  "quote": "Generally, Google can only crawl your link if it's an <a> HTML element (also known as anchor element) with an href attribute.",
+  "source": "g-links"
+ },
+ {
+  "id": "E19",
+  "rule": "Jangan memakai format tautan lain, karena sebagian besar tautan non-<a href> tidak akan di-parse dan diekstrak oleh crawler Google.",
+  "quote": "Most links in other formats won't be parsed and extracted by Google's crawlers.",
+  "source": "g-links"
+ },
+ {
+  "id": "E20",
+  "rule": "Jangan memakai JavaScript event pada elemen DOM HTML lain untuk navigasi.",
+  "quote": "Don't use JavaScript events on other HTML DOM elements for navigation.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E21",
+  "rule": "Untuk gambar yang menjadi tautan, Google memakai atribut alt pada img sebagai anchor text, jadi isi alt yang deskriptif.",
+  "quote": "For images as links, Google uses the alt attribute of the img element as anchor text, so be sure to add descriptive alt text to your images",
+  "source": "g-links"
+ },
+ {
+  "id": "E22",
+  "rule": "Tulis anchor text yang deskriptif, cukup ringkas, dan relevan dengan halaman tempat tautan berada serta halaman tujuan.",
+  "quote": "Good anchor text is descriptive, reasonably concise, and relevant to the page that it's on and to the page it links to.",
+  "source": "g-links"
+ },
+ {
+  "id": "E23",
+  "rule": "Perhatikan anchor text tautan internal karena dapat membantu orang dan Google memahami situs dan menemukan halaman lain di dalamnya.",
+  "quote": "paying more attention to the anchor text used for internal links can help both people and Google make sense of your site more easily and find other pages on your site.",
+  "source": "g-links"
+ },
+ {
+  "id": "E24",
+  "rule": "Gunakan nofollow pada tautan keluar hanya jika tidak mempercayai sumbernya, bukan untuk setiap tautan keluar.",
+  "quote": "Use nofollow only when you don't trust the source, and not for every external link on your site.",
+  "source": "g-links"
+ },
+ {
+  "id": "E25",
+  "rule": "Tambahkan ugc atau nofollow pada tautan yang dimasukkan pengguna (misalnya forum atau Q&A).",
+  "quote": "If users can insert links on your site (for example, you have a forum section or Q&A site), add ugc or nofollow to these links too.",
+  "source": "g-links"
+ },
+ {
+  "id": "E26",
+  "rule": "Buat struktur situs yang logis dan mudah dinavigasi, dan tautkan halaman penting dari halaman lain yang relevan.",
+  "quote": "Create a logical site structure that is easy for users to navigate, and make sure you link to your important pages from other relevant pages.",
+  "source": "g-sitelinks"
+ },
+ {
+  "id": "E27",
+  "rule": "Jika URL tidak memenuhi kriteria struktur yang dapat dirayapi, Google kemungkinan besar merayapi situs secara tidak efisien.",
+  "quote": "If your URLs don't meet the following criteria, Google Search will likely crawl your site inefficiently",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E28",
+  "rule": "Jangan memakai fragmen URL untuk mengubah konten halaman, karena Google umumnya tidak mendukung fragmen URL.",
+  "quote": "Don't use fragments to change the content of a page, as Google Search generally doesn't support URL fragments.",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E29",
+  "rule": "Pakai tanda sama dengan (=) untuk memisahkan pasangan kunci-nilai dan ampersand (&) untuk menambah parameter.",
+  "quote": "use the following common encoding: an equal sign (=) to separate key-value pairs and add additional parameters with an ampersand (&).",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E30",
+  "rule": "Gunakan kata yang dapat dibaca, bukan ID angka panjang, di URL bila memungkinkan.",
+  "quote": "When possible, use readable words rather than long ID numbers in your URLs.",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E31",
+  "rule": "Gunakan kata dalam bahasa audiens (dan transliterasi bila perlu) di URL.",
+  "quote": "Use words in your audience's language in the URL (and, if applicable, transliterated words).",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E32",
+  "rule": "Pisahkan kata dengan tanda hubung (-), bukan garis bawah (_).",
+  "quote": "we recommend using hyphens (-) instead of underscores (_) to separate words in your URLs",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E33",
+  "rule": "Kurangi parameter URL seperti mungkin, dengan memangkas parameter yang tidak mengubah konten.",
+  "quote": "Whenever possible, shorten URLs by trimming unnecessary parameters (meaning, parameters that don't change the content).",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E34",
+  "rule": "Ingat bahwa penanganan URL oleh Google peka huruf besar-kecil; jika server memperlakukan keduanya sama, ubah semua teks URL ke huruf yang sama.",
+  "quote": "Google Search's URL handling is case sensitive (for example, Google treats both /APPLE and /apple as distinct URLs with their own content). If upper and lower case text in a URL is treated the same by your web server, convert all text to the same case",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E35",
+  "rule": "Pada situs multi-regional, pertimbangkan struktur URL yang memudahkan geotargeting.",
+  "quote": "If your site is multi-regional, consider using a URL structure that makes it easy to geotarget your site.",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E36",
+  "rule": "Dua bentuk yang dicontohkan sebagai rekomendasi untuk situs per negara: domain khusus negara (https://example.de) atau subdirektori khusus negara dengan gTLD (https://example.com/de/).",
+  "quote": "Recommended (using a country-specific domain): https://example.de Recommended (using a country-specific subdirectory with gTLD): https://example.com/de/",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E37",
+  "rule": "TLD khusus negara hanya berarti bila menarget pengguna negara tertentu, dan itu pun biasanya sinyal berdampak rendah.",
+  "quote": "the TLD (the domain name ending like \".com\" or \".guru\") only matters if you're targeting a specific country's users, and even then it's usually a low impact signal.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E38",
+  "rule": "Hindari URL yang terlalu kompleks, terutama dengan banyak parameter, karena dapat membuat jumlah URL yang tinggi dan tidak perlu untuk konten identik atau mirip.",
+  "quote": "Overly complex URLs, especially those containing multiple parameters, can cause problems for crawlers by creating unnecessarily high numbers of URLs that point to identical or similar content on your site.",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E39",
+  "rule": "Pertimbangkan memblokir URL dinamis (hasil pencarian, kalender, fungsi pengurutan dan penyaringan) dengan robots.txt.",
+  "quote": "Consider using a robots.txt file to block Googlebot's access to problematic URLs. Typically, consider blocking dynamic URLs, such as URLs that generate search results, or URLs that can create infinite spaces, such as calendars, and ordering and filtering functions.",
+  "source": "g-url-structure"
+ },
+ {
+  "id": "E40",
+  "rule": "Gunakan breadcrumb untuk menunjukkan posisi halaman dalam hierarki situs.",
+  "quote": "A breadcrumb trail on a page indicates the page's position in the site hierarchy",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E41",
+  "rule": "Buat breadcrumb yang mewakili jalur pengguna yang umum menuju halaman, bukan sekadar mencerminkan struktur URL.",
+  "quote": "We recommend providing breadcrumbs that represent a typical user path to a page, instead of mirroring the URL structure.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E42",
+  "rule": "Tidak wajib menyertakan ListItem untuk level teratas (domain atau host) maupun untuk halaman itu sendiri.",
+  "quote": "It is not required to include a breadcrumb ListItem for the top level path (your site's domain or host name), nor for the page itself.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E43",
+  "rule": "Definisikan BreadcrumbList yang memuat minimal dua ListItem.",
+  "quote": "define a BreadcrumbList that contains at least two ListItems.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E44",
+  "rule": "Pada ListItem terakhir, item tidak wajib; jika tidak ada, Google memakai URL halaman yang memuatnya.",
+  "quote": "If the breadcrumb is the last item in the breadcrumb trail, item is not required. If item isn't included for the last item, Google uses the URL of the containing page.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E45",
+  "rule": "Tambahkan structured data WebSite di beranda untuk menyatakan preferensi nama situs.",
+  "quote": "To indicate your site name preference, add WebSite structured data to your home page.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E46",
+  "rule": "Pasang WebSite structured data di beranda situs (root domain atau subdomain), bukan di halaman lain.",
+  "quote": "The WebSite structured data must be on the home page of the site. By home page, we mean the domain or subdomain level root URI.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E47",
+  "rule": "Hanya satu nama per situs yang didukung, dan situs didefinisikan oleh domain atau subdomain; nama situs tingkat subdirektori tidak didukung.",
+  "quote": "Currently, Google Search only supports one site name per site, where a site is defined by the domain or subdomain. Google Search does not support site names at the subdirectory level.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E48",
+  "rule": "Isi properti wajib url dengan beranda kanonis dari domain atau subdomain situs.",
+  "quote": "| Required properties | name | Text The name of the website. Make sure the name meets the guidelines for choosing your site name. | url | URL The URL of the home page of the site. Set this to the canonical home page of your site's domain or subdomain.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E49",
+  "rule": "Isi properti wajib name dengan nama situs yang memenuhi pedoman pemilihan nama situs.",
+  "quote": "| Required properties | name | Text The name of the website. Make sure the name meets the guidelines for choosing your site name.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E50",
+  "rule": "Pakai alternateName (opsional) bila ada singkatan atau nama yang lebih pendek untuk situs.",
+  "quote": "If you want to provide an alternate version of your site name (for example, an acronym or shorter name), you can do this by adding the alternateName property. This is optional.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E51",
+  "rule": "Hindari nama generik, karena kecil kemungkinan dipilih sebagai nama situs kecuali merek yang sangat dikenal.",
+  "quote": "A generic name like \"Best Dentists In Iowa\" is unlikely to be selected by our system as a site name, unless that's an extremely well-recognized brand name.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E52",
+  "rule": "Pastikan beranda dapat dirayapi Google; bila diblokir, nama situs mungkin tidak dapat dibuat.",
+  "quote": "If we don't have access to the content on your home page because it is blocked, we may not be able to generate a site name.",
+  "source": "g-site-names"
+ },
+ {
+  "id": "E53",
+  "rule": "Pahami bahwa menyatakan preferensi kanonis adalah petunjuk (hint), bukan aturan; Google bisa memilih halaman lain sebagai kanonis.",
+  "quote": "indicating a canonical preference is a hint, not a rule.",
+  "source": "g-canonical-what"
+ },
+ {
+  "id": "E54",
+  "rule": "Redirect adalah sinyal kuat bahwa target redirect harus menjadi kanonis.",
+  "quote": "Redirects: A strong signal that the target of the redirect should become canonical.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E55",
+  "rule": "Anotasi rel=\"canonical\" adalah sinyal kuat bahwa URL yang ditentukan harus menjadi kanonis.",
+  "quote": "rel=\"canonical\" link annotations: A strong signal that the specified URL should become canonical.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E56",
+  "rule": "Pencantuman di sitemap hanya sinyal lemah yang membantu URL di dalamnya menjadi kanonis.",
+  "quote": "Sitemap inclusion: A weak signal that helps the URLs that are included in a sitemap become canonical.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E57",
+  "rule": "Penetapan URL kanonis tidak wajib; situs kemungkinan besar tetap baik tanpa preferensi kanonis.",
+  "quote": "none of them are required; your site will likely do just fine without specifying a canonical preference.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E58",
+  "rule": "Jangan memakai robots.txt untuk kanonikalisasi; Google masih dapat mengindeks URL yang diblokir robots.txt tanpa kontennya.",
+  "quote": "Don't use the robots.txt file for canonicalization purposes. Google may still index URLs that are disallowed in robots.txt without their content.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E59",
+  "rule": "Jangan menetapkan URL kanonis berbeda untuk halaman yang sama lewat teknik yang berbeda (misalnya sitemap vs rel=\"canonical\").",
+  "quote": "Don't specify different URLs as canonical for the same page using different canonicalization techniques (for example, don't specify one URL in a sitemap, but a different URL for that same page using rel=\"canonical\").",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E60",
+  "rule": "Sertakan rel=\"canonical\" pada halaman kanonis itu sendiri (self-referential canonical).",
+  "quote": "Do include a rel=\"canonical\" link on the canonical page itself (also known as a self-referential canonical).",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E61",
+  "rule": "Jangan memakai noindex untuk mencegah pemilihan kanonis dalam satu situs, karena memblokir halaman sepenuhnya dari Search; anotasi rel=\"canonical\" adalah solusi yang diutamakan.",
+  "quote": "We don't recommend using noindex to prevent selection of a canonical page within a single site, because it will completely block the page from Search. rel=\"canonical\" link annotations are the preferred solution.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E62",
+  "rule": "Bila memakai hreflang, tentukan halaman kanonis dalam bahasa yang sama, atau bahasa pengganti terbaik jika tidak ada.",
+  "quote": "make sure to specify a canonical page in the same language, or the best possible substitute language if a canonical page doesn't exist for the same language.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E63",
+  "rule": "Saat menaut di dalam situs, tautkan ke URL kanonis, bukan URL duplikat.",
+  "quote": "When linking within your site, link to the canonical URL rather than a duplicate URL.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E64",
+  "rule": "Pada client-side rendering, tetapkan URL kanonis di HTML sumber dan pastikan JavaScript tidak mengubah elemen canonical.",
+  "quote": "The best way to do this is to specify the canonical URL in the HTML source code and make sure that JavaScript doesn't change the canonical link element.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E65",
+  "rule": "Untuk rel=\"canonical\" pilih salah satu: elemen link di HTML atau HTTP header; memakai keduanya sekaligus lebih rentan salah.",
+  "quote": "We recommend that you choose one of these and go with that; while supported, using both methods at the same time is more error prone",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E66",
+  "rule": "Pasang elemen <link> dengan rel=\"canonical\" di <head> halaman duplikat, menunjuk ke halaman kanonis.",
+  "quote": "Add a <link> element with the attribute rel=\"canonical\" to the <head> section of duplicate pages, pointing to the canonical page.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E67",
+  "rule": "Gunakan URL absolut, bukan relatif, pada elemen rel=\"canonical\".",
+  "quote": "Use absolute paths rather than relative paths with the rel=\"canonical\" link element.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E68",
+  "rule": "Jika dapat mengubah konfigurasi server, header HTTP respons link dengan atribut target rel=\"canonical\" dapat dipakai sebagai ganti elemen HTML untuk menunjukkan URL kanonis dokumen, termasuk dokumen non-HTML seperti PDF.",
+  "quote": "If you can change the configuration of your server, you can use a link HTTP response header with a rel=\"canonical\" target attribute as defined by RFC5988 rather than an HTML element to indicate the canonical URL for a document supported by Search, including non-HTML documents such as PDF files.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E69",
+  "rule": "Metode HTTP header rel=\"canonical\" hanya didukung untuk hasil web search.",
+  "quote": "If you can change the configuration of your server, you can use a link HTTP response header with a rel=\"canonical\" target attribute as defined by RFC5988 rather than an HTML element to indicate the canonical URL for a document supported by Search, including non-HTML documents such as PDF files. Google supports this method for web search results only.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E70",
+  "rule": "Jangan berharap anotasi rel=\"canonical\" dengan atribut hreflang, lang, media, atau type dipakai untuk kanonikalisasi; gunakan anotasi alternate yang tepat.",
+  "quote": "rel=\"canonical\" annotations that suggest alternate versions of a page are ignored; specifically, rel=\"canonical\" annotations with hreflang, lang, media, and type attributes are not used for canonicalization. Instead, use the appropriate link annotations to specify alternate versions of a page; for example, link rel=\"alternate\" hreflang for language and country annotations.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E71",
+  "rule": "Pilih satu URL kanonis untuk tiap halaman dan kirimkan di sitemap; semua halaman yang tercantum di sitemap disarankan sebagai kanonis, dan Google yang memutuskan halaman mana (jika ada) yang duplikat berdasarkan kemiripan konten.",
+  "quote": "Pick a canonical URL for each of your pages and submit them in a sitemap. All pages listed in a sitemap are suggested as canonicals; Google will decide which pages (if any) are duplicates, based on similarity of content.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E72",
+  "rule": "Gunakan redirect untuk menyingkirkan halaman duplikat yang sudah ada.",
+  "quote": "Use redirects Use this method when you want to get rid of existing duplicate pages.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E73",
+  "rule": "Bila halaman bisa dicapai lewat beberapa URL, pilih satu URL kanonis dan redirect lainnya ke sana.",
+  "quote": "Pick one of those URLs as your canonical URL, and use redirects to send traffic from the other URLs to your preferred URL.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E74",
+  "rule": "Google cenderung memilih HTTPS ketimbang HTTP sebagai kanonis, kecuali ada masalah atau sinyal yang bertentangan.",
+  "quote": "Google prefers HTTPS pages over equivalent HTTP pages as canonical, except when there are issues or conflicting signals",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E75",
+  "rule": "Hindari sertifikat TLS/SSL buruk dan redirect HTTPS ke HTTP karena membuat Google sangat memilih HTTP.",
+  "quote": "Avoid bad TLS/SSL certificates and HTTPS-to-HTTP redirects because they cause Google to prefer HTTP very strongly.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E76",
+  "rule": "Jangan memasukkan versi HTTP halaman di sitemap atau anotasi hreflang sebagai ganti versi HTTPS.",
+  "quote": "Don't include the HTTP version of your pages in your sitemap or hreflang annotations rather than the HTTPS version.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E77",
+  "rule": "Untuk kanonikalisasi Google lebih menyukai URL yang menjadi bagian dari cluster hreflang.",
+  "quote": "for canonicalization purposes Google prefers URLs that are part of hreflang clusters.",
+  "source": "g-canonical"
+ },
+ {
+  "id": "E78",
+  "rule": "Untuk varian regional dengan bahasa yang sama, gunakan kanonikalisasi sekaligus hreflang.",
+  "quote": "For regional variants in the same language (for example, a piece of content for the USA and the UK that's accessible at different URLs but in the same language), use both canonicalization and hreflang to help Google better understand which regional URL to show in search results.",
+  "source": "g-canonical-what"
+ },
+ {
+  "id": "E79",
+  "rule": "Jika halaman terhubung dengan baik, Google biasanya dapat menemukan sebagian besar situs.",
+  "quote": "If your site's pages are properly linked, Google can usually discover most of your site.",
+  "source": "g-sitemaps-overview"
+ },
+ {
+  "id": "E80",
+  "rule": "Anda mungkin memerlukan sitemap jika situs besar: umumnya pada situs besar lebih sulit memastikan setiap halaman ditautkan setidaknya oleh satu halaman lain.",
+  "quote": "You might need a sitemap if: - Your site is large. Generally, on large sites it's more difficult to make sure that every page is linked by at least one other page on the site.",
+  "source": "g-sitemaps-overview"
+ },
+ {
+  "id": "E81",
+  "rule": "Batasi satu sitemap pada 50MB (tidak terkompresi) atau 50.000 URL, dan pecah menjadi beberapa sitemap jika lebih besar.",
+  "quote": "All formats limit a single sitemap to 50MB (uncompressed) or 50,000 URLs. If you have a larger file or more URLs, you must break your sitemap into multiple sitemaps.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E82",
+  "rule": "Letakkan sitemap di root situs; kecuali dikirim lewat Search Console, sitemap hanya memengaruhi turunan dari direktori induknya.",
+  "quote": "unless you submit your sitemap through Search Console, a sitemap affects only descendants of the parent directory. Therefore, a sitemap posted at the site root can affect all files on the site, which is where we recommend posting your sitemaps.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E83",
+  "rule": "Masukkan URL yang ingin tampil di hasil pencarian Google.",
+  "quote": "Include the URLs in your sitemap that you want to see in Google's search results.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E84",
+  "rule": "Bila konten sama bisa diakses lewat beberapa URL, masukkan URL pilihan saja ke sitemap.",
+  "quote": "If you have the same content accessible under different URLs, choose the URL you prefer and include that in the sitemap instead of all URLs that lead to the same content.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E85",
+  "rule": "Jangan mengandalkan <priority> dan <changefreq>; Google mengabaikannya.",
+  "quote": "Google ignores <priority> and <changefreq> values.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E86",
+  "rule": "Isi <lastmod> dengan akurat; Google memakainya bila konsisten dan dapat diverifikasi akurat.",
+  "quote": "Google uses the <lastmod> value if it's consistently and verifiably (for example by comparing to the last modification of the page) accurate.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E87",
+  "rule": "Pada sitemap teks, jangan letakkan apa pun selain URL di file.",
+  "quote": "Don't put anything other than URLs in the sitemap file.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E88",
+  "rule": "Untuk sitemap dengan lebih dari beberapa lusin URL, cara terbaik adalah membuat perangkat lunak situs yang menghasilkannya.",
+  "quote": "For sitemaps with more than a few dozen URLs, you will need to generate the sitemap. There are various tools that can generate a sitemap. However, the best way is to have your website software generate it for you.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E89",
+  "rule": "Pahami bahwa mengirim sitemap hanyalah petunjuk (hint) dan tidak menjamin Google mengunduh atau memakainya untuk perayapan.",
+  "quote": "submitting a sitemap is merely a hint: it doesn't guarantee that Google will download the sitemap or use the sitemap for crawling URLs on the site.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E90",
+  "rule": "Kirim sitemap lewat Sitemaps report di Search Console agar terlihat kapan Googlebot mengaksesnya dan error pemrosesan yang mungkin ada.",
+  "quote": "Submit a sitemap in Search Console using the Sitemaps report. This will allow you to see when Googlebot accessed the sitemap and also potential processing errors.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E91",
+  "rule": "Cantumkan lokasi sitemap di robots.txt dengan baris Sitemap: (boleh lebih dari satu).",
+  "quote": "Insert the following line anywhere in your robots.txt file, specifying the path to your sitemap. We will find it the next time we crawl your robots.txt file: Sitemap: https://example.com/my_sitemap.xml You can specify multiple sitemap lines, and there's no limit to the number of sitemaps you can include in your robots.txt file.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E92",
+  "rule": "Untuk beberapa situs yang diverifikasi, Anda dapat membuat satu atau lebih sitemap berisi URL semua situs dan menyimpannya di satu lokasi.",
+  "quote": "If you have multiple websites, you can simplify the submission process by creating one or more sitemaps that include URLs for all your verified sites, and saving the sitemaps to a single location.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E93",
+  "rule": "Pada lintas-kirim lewat robots.txt, isi tiap sitemap hanya dengan URL dari situs tersebut.",
+  "quote": "For each individual sitemap file, make sure you include only URLs from that particular site.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E94",
+  "rule": "Pada lintas-kirim lewat robots.txt, pastikan robots.txt tiap situs merujuk ke sitemap situs itu sendiri.",
+  "quote": "For each individual site, make sure that the robots.txt file references the sitemap for that individual site.",
+  "source": "g-sitemaps-build"
+ },
+ {
+  "id": "E95",
+  "rule": "Waspadai navigasi berfacet berbasis parameter URL karena dapat menghasilkan ruang URL tak terbatas.",
+  "quote": "its most common implementation, which is based on URL parameters, can generate infinite URL spaces",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E96",
+  "rule": "Bila URL facet tidak perlu berpotensi diindeks, cegah perayapannya.",
+  "quote": "If you don't need the faceted navigation URLs potentially indexed, prevent crawling of these URLs.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E97",
+  "rule": "Bila URL facet perlu berpotensi diindeks, pastikan URL tersebut mengikuti praktik terbaik URL facet.",
+  "quote": "If you need the faceted navigation URLs potentially indexed, ensure that the URLs follow our best practices",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E98",
+  "rule": "Gunakan robots.txt untuk melarang perayapan URL facet; izinkan hanya halaman item individual dan satu halaman daftar khusus tanpa filter.",
+  "quote": "Use robots.txt to disallow crawling of faceted navigation URLs. Oftentimes there's no good reason to allow crawling of filtered items, as it consumes server resources for no or negligible benefit; instead, allow crawling of just the individual items' pages along with a dedicated listing page that shows all products without filters applied.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E99",
+  "rule": "Filter berbasis fragmen URL tidak berdampak pada perayapan (positif maupun negatif).",
+  "quote": "If your filtering mechanism is based on URL fragments, it will have no impact on crawling (positive or negative).",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E100",
+  "rule": "Bila memakai rel=\"nofollow\" pada tautan ke hasil filter, setiap anchor ke URL tertentu harus memilikinya agar efektif.",
+  "quote": "every anchor pointing to a specific URL must have the rel=\"nofollow\" attribute in order for it to be effective.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E101",
+  "rule": "Gunakan pemisah parameter standar '&' untuk URL facet yang perlu diindeks, karena koma, titik koma, dan kurung sulit dideteksi crawler sebagai pemisah.",
+  "quote": "Use the industry standard URL parameter separator '&'. Characters like comma (,), semicolon (;), and brackets ([ and ]) are hard for crawlers to detect as parameter separators",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E102",
+  "rule": "Bila filter ditaruh di path URL, jaga urutan logis filter selalu sama dan pastikan tidak ada filter duplikat.",
+  "quote": "ensure that the logical order of the filters always stays the same and that no duplicate filters can exist.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E103",
+  "rule": "Kembalikan status HTTP 404 bila kombinasi filter tidak menghasilkan apa pun.",
+  "quote": "Return an HTTP 404 status code when a filter combination doesn't return results.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E104",
+  "rule": "Kembalikan 404 juga untuk filter duplikat, kombinasi filter yang tidak masuk akal, dan URL paginasi yang tidak ada.",
+  "quote": "This should also be the case if the URL contains duplicate filters or otherwise nonsensical filter combinations, and nonexistent pagination URLs.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E105",
+  "rule": "Jangan mengalihkan kombinasi filter kosong ke halaman error umum; sajikan 404 di URL tempat ditemukan.",
+  "quote": "if a filter combination has no results, don't redirect to a common \"not found\" error page. Instead, serve a \"not found\" error with the 404 HTTP status code under the URL where it was encountered.",
+  "source": "g-faceted"
+ },
+ {
+  "id": "E106",
+  "rule": "Pagination berarti pengguna memakai tautan seperti \"next\", \"previous\", dan nomor halaman untuk berpindah antarhalaman yang menampilkan satu halaman hasil sekali waktu.",
+  "quote": "Pagination: Where a user can use links such as \"next\", \"previous\", and page numbers to navigate between pages that display one page of results at a time.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E107",
+  "rule": "Pahami bahwa crawler Google tidak \"mengklik\" tombol dan umumnya tidak memicu fungsi JavaScript yang butuh aksi pengguna.",
+  "quote": "Google's crawlers don't \"click\" buttons and generally don't trigger JavaScript functions that require user actions to update the current page contents.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E108",
+  "rule": "Bila memakai JavaScript, pertimbangkan sitemap atau feed Google Merchant Center agar Google menemukan semua produk.",
+  "quote": "consider using a sitemap file or a Google Merchant Center feed to help Google find all of the products on your site.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E109",
+  "rule": "Tautkan tiap halaman ke halaman berikutnya dengan <a href>; ini dapat membantu Googlebot menemukan halaman lanjutan.",
+  "quote": "include links from each page to the following page using <a href> tags. This can help Googlebot (the Google web crawler) find subsequent pages.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E110",
+  "rule": "Beri tiap halaman URL unik, misalnya dengan parameter ?page=n, karena URL dalam urutan paginasi diperlakukan sebagai halaman terpisah.",
+  "quote": "Give each page a unique URL. For example, include a ?page=n query parameter, as URLs in a paginated sequence are treated as separate pages by Google.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E111",
+  "rule": "Jangan menjadikan halaman pertama sebagai kanonis untuk seluruh urutan; beri tiap halaman URL kanonisnya sendiri.",
+  "quote": "Don't use the first page of a paginated sequence as the canonical page. Instead, give each page its own canonical URL.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E112",
+  "rule": "Jangan memakai fragmen URL (teks setelah #) untuk nomor halaman, karena Googlebot mungkin tidak mengikuti tautan yang hanya beda di fragmen.",
+  "quote": "Don't use URL fragment identifiers (the text after a # in a URL) for page numbers in a collection. Google ignores fragment identifiers. If Googlebot sees a URL to the next page that only differs by the text after the #, it may not follow the link, thinking it has already retrieved the page.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E113",
+  "rule": "Cegah pengindeksan variasi daftar yang sama (filter atau urutan lain) dengan meta robots noindex atau pola URL di robots.txt.",
+  "quote": "To avoid indexing variations of the same list of results, block unwanted URLs from being indexed with the noindex robots meta tag or discourage crawling of particular URL patterns with a robots.txt file.",
+  "source": "g-pagination"
+ },
+ {
+  "id": "E114",
+  "rule": "Jika situs tidak punya banyak halaman yang berubah cepat, atau halaman tampak dirayapi pada hari yang sama saat diterbitkan, panduan crawl budget tidak perlu dibaca; khusus untuk Google Search, menjaga sitemap tetap terkini dan memeriksa laporan Page Indexing secara berkala sudah memadai.",
+  "quote": "If your site doesn't have a large number of pages that change rapidly, or if your pages seem to be crawled the same day that they are published, you don't need to read this guide. For Google Search specifically, keeping your sitemap up to date and checking the Page Indexing report regularly is adequate.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E115",
+  "rule": "Panduan crawl budget adalah panduan lanjutan yang ditujukan terutama untuk jenis situs berikut, salah satunya situs besar (1 juta+ halaman unik) dengan konten yang berubah cukup sering (seminggu sekali).",
+  "quote": "this is an advanced guide intended primarily for the following types of sites: - Large sites (1 million+ unique pages) with content that changes moderately often (once a week)",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E116",
+  "rule": "Tanpa panduan dari Anda, Google mencoba merayapi semua atau sebagian besar URL yang diketahuinya; faktor inventaris ini yang paling dapat Anda kendalikan.",
+  "quote": "Without guidance from you, Google tries to crawl all or most of the URLs that it knows about on your site. If many of these URLs are duplicates, or you don't want them crawled for some other reason (removed, unimportant, and so on), this wastes a lot of Google crawling time on your site. This is the factor that you can positively control the most.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E117",
+  "rule": "Konsolidasikan konten duplikat agar perayapan fokus pada konten unik, bukan URL unik.",
+  "quote": "Eliminate duplicate content to focus crawling on unique content rather than unique URLs.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E118",
+  "rule": "Jika tidak bisa dikonsolidasikan, blokir halaman tidak penting dengan robots.txt, misalnya infinite scroll yang menduplikasi informasi atau versi urutan berbeda dari halaman yang sama.",
+  "quote": "Examples include infinite scrolling pages that duplicate information on linked pages, or differently sorted versions of the same page. If you can't consolidate them as described in the first bullet, block these unimportant pages using robots.txt.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E119",
+  "rule": "Kembalikan 404 atau 410 untuk halaman yang dihapus permanen.",
+  "quote": "Return a 404 or 410 status code for permanently removed pages.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E120",
+  "rule": "Hilangkan soft 404 karena tetap dirayapi dan memboroskan budget.",
+  "quote": "soft 404 pages will continue to be crawled, and waste your budget.",
+  "source": "g-crawl-budget"
+ }
+]

@@ -1,0 +1,140 @@
+/* Ported verbatim from web/index.html (design tokens: colour roles, type scale, shape, elevation, motion, agent hues). */
+/* Material 3 Expressive. Layout: control room — drawer rail, a gradient hero with big numbers, soft large-radius cards.
+   Scheme: material-color-utilities SchemeVibrant from source #3d5afe; success, warning and cyan are harmonized custom colors. */
+:root{
+  --md-sys-color-primary:#1842ff;--md-sys-color-on-primary:#ffffff;--md-sys-color-primary-container:#dee0ff;--md-sys-color-on-primary-container:#002ccd;
+  --md-sys-color-secondary:#605a7d;--md-sys-color-on-secondary:#ffffff;--md-sys-color-secondary-container:#e6deff;--md-sys-color-on-secondary-container:#484264;
+  --md-sys-color-tertiary:#6c5485;--md-sys-color-on-tertiary:#ffffff;--md-sys-color-tertiary-container:#efdbff;--md-sys-color-on-tertiary-container:#533d6b;
+  --md-sys-color-error:#ba1a1a;--md-sys-color-on-error:#ffffff;--md-sys-color-error-container:#ffdad6;--md-sys-color-on-error-container:#93000a;
+  --md-sys-color-surface:#fbf8ff;--md-sys-color-surface-container-lowest:#ffffff;--md-sys-color-surface-container-low:#f4f2ff;--md-sys-color-surface-container:#eeecfb;--md-sys-color-surface-container-high:#e8e7f5;--md-sys-color-surface-container-highest:#e2e1ef;
+  --md-sys-color-on-surface:#1a1b25;--md-sys-color-on-surface-variant:#444654;--md-sys-color-outline:#757685;--md-sys-color-outline-variant:#c5c5d6;
+  --md-sys-color-inverse-surface:#2f303a;--md-sys-color-inverse-on-surface:#f1effe;--md-sys-color-inverse-primary:#bbc3ff;--md-sys-color-scrim:#000000;
+  --md-ext-color-success:#006c53;--md-ext-color-success-container:#6fface;--md-ext-color-on-success-container:#002117;
+  --md-ext-color-warning:#934b00;--md-ext-color-warning-container:#ffdcc5;--md-ext-color-on-warning-container:#301400;
+  --md-ext-color-cyan:#006877;--md-ext-color-cyan-container:#a2eeff;--md-ext-color-on-cyan-container:#001f25;
+  --hero-a:#1842ff;--hero-b:#6c3df4;--hero-ink:#ffffff;--hero-tile:rgb(255 255 255 / 0.16);
+  /* Graph panel keeps one dark look in both themes */
+  --graph-bg:#0c0e17;--graph-a:#2fd9f4;--graph-b:#bbc3ff;--graph-c:#d7bbf3;--graph-warn:#ffb782;--graph-ok:#4eddb3;--graph-line:#8f8f9f;--graph-text:#e2e1ef;
+
+  --md-ref-typeface-brand:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --md-ref-typeface-plain:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --font-data:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --md-sys-typescale-display-small:700 1.875rem/2.25rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-medium:700 1.5rem/1.875rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-small:700 1.25rem/1.75rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-title-large:700 1.125rem/1.625rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-title-medium:600 1rem/1.5rem var(--md-ref-typeface-plain);
+  --md-sys-typescale-title-small:600 0.875rem/1.25rem var(--md-ref-typeface-plain);
+  --md-sys-typescale-body-large:400 1rem/1.5rem var(--md-ref-typeface-plain);
+  --md-sys-typescale-body-medium:400 0.9375rem/1.375rem var(--md-ref-typeface-plain);
+  --md-sys-typescale-body-small:400 0.8125rem/1.125rem var(--md-ref-typeface-plain);
+  --md-sys-typescale-label-large:600 0.875rem/1.25rem var(--md-ref-typeface-plain);
+  --md-sys-typescale-label-medium:600 0.75rem/1rem var(--md-ref-typeface-plain);
+
+  --md-sys-shape-corner-extra-small:4px;--md-sys-shape-corner-small:8px;--md-sys-shape-corner-medium:12px;--md-sys-shape-corner-large:16px;--md-sys-shape-corner-large-increased:20px;--md-sys-shape-corner-extra-large:28px;--md-sys-shape-corner-extra-large-increased:32px;--md-sys-shape-corner-full:9999px;
+  --md-sys-elevation-level1:0 1px 2px 0 rgb(0 0 0 / 0.3),0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level2:0 1px 2px 0 rgb(0 0 0 / 0.3),0 2px 6px 2px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level3:0 1px 3px 0 rgb(0 0 0 / 0.3),0 4px 8px 3px rgb(0 0 0 / 0.15);
+  --md-sys-state-hover-opacity:0.08;--md-sys-state-focus-opacity:0.1;--md-sys-state-pressed-opacity:0.1;
+  --md-sys-motion-expressive-fast-spatial:350ms cubic-bezier(0.42,1.67,0.21,0.9);
+  --md-sys-motion-expressive-default-spatial:500ms cubic-bezier(0.38,1.21,0.22,1);
+  --md-sys-motion-standard-default-spatial:500ms cubic-bezier(0.27,1.06,0.18,1);
+  --md-sys-motion-standard-fast-effects:150ms cubic-bezier(0.31,0.94,0.34,1);
+  --md-sys-motion-standard-default-effects:200ms cubic-bezier(0.34,0.8,0.34,1);
+  --md-sys-motion-easing-emphasized-decelerate:cubic-bezier(0.05,0.7,0.1,1);
+  --md-sys-motion-duration-medium4:400ms;--md-sys-motion-duration-extra-long4:1000ms;--md-sys-motion-duration-pulse:2000ms;
+  /* Decorative character loops, separate from the brief transitions of controls. */
+  --md-ext-motion-duration-avatar-rest:calc(var(--md-sys-motion-duration-pulse) * 4);
+  --md-ext-motion-duration-avatar-wave:calc(var(--md-sys-motion-duration-pulse) * 2);
+  --md-ext-motion-easing-character:cubic-bezier(.45,0,.55,1);--md-ext-motion-easing-orbit:linear;
+  --scrim:color-mix(in srgb,var(--md-sys-color-scrim) 32%,transparent);
+  --md-layout-margin:16px;
+  /* Widest a view gets (B10): tables and cards stop stretching on wide monitors. */
+  --view-max:1440px;
+  /* Filled buttons: the primary role in light; in dark a saturated blue with white text, because the dark primary
+     role is a pale lavender that reads as disabled on a button. */
+  --btn-filled:var(--md-sys-color-primary);--btn-on-filled:var(--md-sys-color-on-primary);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --md-sys-color-primary:#bbc3ff;--md-sys-color-on-primary:#001d93;--md-sys-color-primary-container:#002ccd;--md-sys-color-on-primary-container:#dee0ff;
+    --md-sys-color-secondary:#cac1ea;--md-sys-color-on-secondary:#322c4c;--md-sys-color-secondary-container:#484264;--md-sys-color-on-secondary-container:#e6deff;
+    --md-sys-color-tertiary:#d7bbf3;--md-sys-color-on-tertiary:#3c2653;--md-sys-color-tertiary-container:#533d6b;--md-sys-color-on-tertiary-container:#efdbff;
+    --md-sys-color-error:#ffb4ab;--md-sys-color-on-error:#690005;--md-sys-color-error-container:#93000a;--md-sys-color-on-error-container:#ffdad6;
+    --md-sys-color-surface:#11131c;--md-sys-color-surface-container-lowest:#0c0e17;--md-sys-color-surface-container-low:#1a1b25;--md-sys-color-surface-container:#1e1f29;--md-sys-color-surface-container-high:#282934;--md-sys-color-surface-container-highest:#33343f;
+    --md-sys-color-on-surface:#e2e1ef;--md-sys-color-on-surface-variant:#c5c5d6;--md-sys-color-outline:#8f8f9f;--md-sys-color-outline-variant:#444654;
+    --md-sys-color-inverse-surface:#e2e1ef;--md-sys-color-inverse-on-surface:#2f303a;--md-sys-color-inverse-primary:#1842ff;
+    --md-ext-color-success:#4eddb3;--md-ext-color-success-container:#00513e;--md-ext-color-on-success-container:#6fface;
+    --md-ext-color-warning:#ffb782;--md-ext-color-warning-container:#703800;--md-ext-color-on-warning-container:#ffdcc5;
+    --md-ext-color-cyan:#2fd9f4;--md-ext-color-cyan-container:#004e5a;--md-ext-color-on-cyan-container:#a2eeff;
+    --hero-a:#002ccd;--hero-b:#5a2bd6;--hero-tile:rgb(255 255 255 / 0.12);
+    --btn-filled:#3d5afe;--btn-on-filled:#ffffff;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --md-sys-color-primary:#bbc3ff;--md-sys-color-on-primary:#001d93;--md-sys-color-primary-container:#002ccd;--md-sys-color-on-primary-container:#dee0ff;
+  --md-sys-color-secondary:#cac1ea;--md-sys-color-on-secondary:#322c4c;--md-sys-color-secondary-container:#484264;--md-sys-color-on-secondary-container:#e6deff;
+  --md-sys-color-tertiary:#d7bbf3;--md-sys-color-on-tertiary:#3c2653;--md-sys-color-tertiary-container:#533d6b;--md-sys-color-on-tertiary-container:#efdbff;
+  --md-sys-color-error:#ffb4ab;--md-sys-color-on-error:#690005;--md-sys-color-error-container:#93000a;--md-sys-color-on-error-container:#ffdad6;
+  --md-sys-color-surface:#11131c;--md-sys-color-surface-container-lowest:#0c0e17;--md-sys-color-surface-container-low:#1a1b25;--md-sys-color-surface-container:#1e1f29;--md-sys-color-surface-container-high:#282934;--md-sys-color-surface-container-highest:#33343f;
+  --md-sys-color-on-surface:#e2e1ef;--md-sys-color-on-surface-variant:#c5c5d6;--md-sys-color-outline:#8f8f9f;--md-sys-color-outline-variant:#444654;
+  --md-sys-color-inverse-surface:#e2e1ef;--md-sys-color-inverse-on-surface:#2f303a;--md-sys-color-inverse-primary:#1842ff;
+  --md-ext-color-success:#4eddb3;--md-ext-color-success-container:#00513e;--md-ext-color-on-success-container:#6fface;
+  --md-ext-color-warning:#ffb782;--md-ext-color-warning-container:#703800;--md-ext-color-on-warning-container:#ffdcc5;
+  --md-ext-color-cyan:#2fd9f4;--md-ext-color-cyan-container:#004e5a;--md-ext-color-on-cyan-container:#a2eeff;
+  --hero-a:#002ccd;--hero-b:#5a2bd6;--hero-tile:rgb(255 255 255 / 0.12);
+    --btn-filled:#3d5afe;--btn-on-filled:#ffffff;
+}
+@media (min-width:600px){:root{--md-layout-margin:24px;
+  --md-sys-typescale-display-small:700 2.25rem/2.75rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-medium:700 1.75rem/2.25rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-small:700 1.5rem/2rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-title-large:700 1.25rem/1.75rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-body-medium:400 0.875rem/1.25rem var(--md-ref-typeface-plain)}}
+@media (min-width:1200px){:root{--md-layout-margin:32px;
+  --md-sys-typescale-display-small:700 2.5rem/3rem var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-small:700 1.625rem/2.125rem var(--md-ref-typeface-brand)}}
+
+/* Agent hues: ten harmonized custom colors, one per agent card */
+.h0{--ac:#0051e0;--aon:#ffffff;--acc:#dbe1ff;--aonc:#00174d}
+.h1{--ac:#6d3bd7;--aon:#ffffff;--acc:#e9ddff;--aonc:#23005c}
+.h2{--ac:#b4136d;--aon:#ffffff;--acc:#ffd9e4;--aonc:#3e0022}
+.h3{--ac:#b12d0c;--aon:#ffffff;--acc:#ffdad2;--aonc:#3d0700}
+.h4{--ac:#855300;--aon:#ffffff;--acc:#ffddb8;--aonc:#2a1700}
+.h5{--ac:#416900;--aon:#ffffff;--acc:#acf847;--aonc:#102000}
+.h6{--ac:#006c49;--aon:#ffffff;--acc:#6ffbbe;--aonc:#002113}
+.h7{--ac:#006b5f;--aon:#ffffff;--acc:#71f8e4;--aonc:#00201c}
+.h8{--ac:#00687a;--aon:#ffffff;--acc:#acedff;--aonc:#001f26}
+.h9{--ac:#494bd6;--aon:#ffffff;--acc:#e1e0ff;--aonc:#07006c}
+.h10{--ac:#9a25ae;--aon:#ffffff;--acc:#ffd6fe;--aonc:#35003f}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .h0{--ac:#b5c4ff;--aon:#00297a;--acc:#003cac;--aonc:#dbe1ff}
+  :root:not([data-theme="light"]) .h1{--ac:#d0bcff;--aon:#3c0091;--acc:#5516be;--aonc:#e9ddff}
+  :root:not([data-theme="light"]) .h2{--ac:#ffb0cd;--aon:#640039;--acc:#8c0053;--aonc:#ffd9e4}
+  :root:not([data-theme="light"]) .h3{--ac:#ffb4a3;--aon:#621000;--acc:#8b1b00;--aonc:#ffdad2}
+  :root:not([data-theme="light"]) .h4{--ac:#ffb95f;--aon:#472a00;--acc:#653e00;--aonc:#ffddb8}
+  :root:not([data-theme="light"]) .h5{--ac:#91db2a;--aon:#1f3700;--acc:#304f00;--aonc:#acf847}
+  :root:not([data-theme="light"]) .h6{--ac:#4edea3;--aon:#003824;--acc:#005236;--aonc:#6ffbbe}
+  :root:not([data-theme="light"]) .h7{--ac:#4fdbc8;--aon:#003731;--acc:#005048;--aonc:#71f8e4}
+  :root:not([data-theme="light"]) .h8{--ac:#4cd7f6;--aon:#003640;--acc:#004e5c;--aonc:#acedff}
+  :root:not([data-theme="light"]) .h9{--ac:#c0c1ff;--aon:#1000a9;--acc:#2f2ebe;--aonc:#e1e0ff}
+  :root:not([data-theme="light"]) .h10{--ac:#f9abff;--aon:#570066;--acc:#7b008f;--aonc:#ffd6fe}
+}
+:root[data-theme="dark"] .h0{--ac:#b5c4ff;--aon:#00297a;--acc:#003cac;--aonc:#dbe1ff}
+:root[data-theme="dark"] .h1{--ac:#d0bcff;--aon:#3c0091;--acc:#5516be;--aonc:#e9ddff}
+:root[data-theme="dark"] .h2{--ac:#ffb0cd;--aon:#640039;--acc:#8c0053;--aonc:#ffd9e4}
+:root[data-theme="dark"] .h3{--ac:#ffb4a3;--aon:#621000;--acc:#8b1b00;--aonc:#ffdad2}
+:root[data-theme="dark"] .h4{--ac:#ffb95f;--aon:#472a00;--acc:#653e00;--aonc:#ffddb8}
+:root[data-theme="dark"] .h5{--ac:#91db2a;--aon:#1f3700;--acc:#304f00;--aonc:#acf847}
+:root[data-theme="dark"] .h6{--ac:#4edea3;--aon:#003824;--acc:#005236;--aonc:#6ffbbe}
+:root[data-theme="dark"] .h7{--ac:#4fdbc8;--aon:#003731;--acc:#005048;--aonc:#71f8e4}
+:root[data-theme="dark"] .h8{--ac:#4cd7f6;--aon:#003640;--acc:#004e5c;--aonc:#acedff}
+:root[data-theme="dark"] .h9{--ac:#c0c1ff;--aon:#1000a9;--acc:#2f2ebe;--aonc:#e1e0ff}
+:root[data-theme="dark"] .h10{--ac:#f9abff;--aon:#570066;--acc:#7b008f;--aonc:#ffd6fe}
+/* The lime, mint and teal containers are the loudest: a working card takes less of them. */
+.h5,.h6,.h7{--tint:20%}
+
+/* A light theme chosen in the app on a dark-mode system: native controls (checkboxes, scrollbars) must be light too. */
+:root[data-theme="light"]{color-scheme:light}

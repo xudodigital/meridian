@@ -1,0 +1,1022 @@
+[
+  {
+    "id": "E1",
+    "rule": "Halaman hanya diindeks Google jika publik dan tidak memblokir Googlebot; halaman yang butuh login tidak akan di-crawl.",
+    "quote": "Google only indexes pages on the web that are accessible to the public and which don't block our crawler, Googlebot, from crawling them.",
+    "source": "g-technical"
+  },
+  {
+    "id": "E2",
+    "rule": "Halaman hanya diindeks Google jika publik dan tidak memblokir Googlebot; halaman yang butuh login tidak akan di-crawl.",
+    "quote": "If a page is made private, such as requiring a log-in to view it, Googlebot will not crawl it.",
+    "source": "g-technical"
+  },
+  {
+    "id": "E3",
+    "rule": "Pastikan halaman berfungsi: Google hanya mengindeks halaman yang disajikan dengan status HTTP 200 (success); halaman error klien dan server tidak diindeks. Cek status HTTP sebuah halaman dengan URL Inspection tool.",
+    "quote": "Google only indexes pages that are served with an HTTP 200 (success) status code. Client and server error pages aren't indexed.",
+    "source": "g-technical"
+  },
+  {
+    "id": "E4",
+    "rule": "Pastikan halaman berfungsi: Google hanya mengindeks halaman yang disajikan dengan status HTTP 200 (success); halaman error klien dan server tidak diindeks. Cek status HTTP sebuah halaman dengan URL Inspection tool.",
+    "quote": "You can check the HTTP status code for a given page with the URL Inspection tool.",
+    "source": "g-technical"
+  },
+  {
+    "id": "E5",
+    "rule": "Halaman yang diblokir robots.txt kecil kemungkinan tampil di hasil Google Search.",
+    "quote": "Pages that are blocked by robots.txt are unlikely to show in Google Search results.",
+    "source": "g-technical"
+  },
+  {
+    "id": "E6",
+    "rule": "Untuk mencari halaman yang tidak dapat diakses Google tetapi ingin ditampilkan, gunakan Page Indexing report dan Crawl Stats report di Search Console; keduanya dapat memuat informasi yang berbeda.",
+    "quote": "To see a list of pages that are inaccessible to Google (but that you would like to see in Search results), use both the Page Indexing report and Crawl Stats report in Search Console. Each report may contain different information about your URLs",
+    "source": "g-technical"
+  },
+  {
+    "id": "E7",
+    "rule": "Memenuhi semua persyaratan dan praktik terbaik tidak berarti Google pasti meng-crawl, mengindeks, atau menyajikan kontennya.",
+    "quote": "just because a page meets all of these requirements and best practices, doesn't mean that Google will crawl, index, or serve its content.",
+    "source": "g-essentials"
+  },
+  {
+    "id": "E8",
+    "rule": "Letakkan kata yang dipakai orang untuk mencari konten di lokasi menonjol seperti title dan heading utama, serta di alt text dan link text.",
+    "quote": "Use words that people would use to look for your content, and place those words in prominent locations on the page, such as the title and main heading of a page, and other descriptive locations such as alt text and link text.",
+    "source": "g-essentials"
+  },
+  {
+    "id": "E9",
+    "rule": "Pastikan setiap halaman memiliki title di elemen <title>.",
+    "quote": "Make sure every page on your site has a title specified in the <title> element.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E10",
+    "rule": "Tulis teks <title> yang deskriptif dan ringkas; hindari penanda samar seperti \"Home\" atau \"Profile\".",
+    "quote": "Write descriptive and concise text for your <title> elements. Avoid vague descriptors like \"Home\" for your home page, or \"Profile\" for a specific person's profile.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E11",
+    "rule": "Tidak ada batas panjang untuk elemen <title>, tetapi title link dipotong di hasil Google Search sesuai kebutuhan, biasanya menyesuaikan lebar perangkat.",
+    "quote": "While there's no limit on how long a <title> element can be, the title link is truncated in Google Search results as needed, typically to fit the device width.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E12",
+    "rule": "Hindari keyword stuffing di <title>; teks seperti itu dapat membuat hasil tampak spammy bagi Google dan pengguna.",
+    "quote": "this kind of keyword stuffing can make your results look spammy to Google and to users.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E13",
+    "rule": "Beri <title> yang berbeda dan menjelaskan isi untuk setiap halaman; hindari teks berulang atau boilerplate.",
+    "quote": "Avoid repeated or boilerplate text in <title> elements. It's important to have distinct text that describes the content of the page in the <title> element for each page on your site.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E14",
+    "rule": "Pertimbangkan mencantumkan nama situs saja di awal atau akhir <title>, dipisahkan dengan pembatas seperti tanda hubung, titik dua, atau pipa.",
+    "quote": "consider including just your site name at the beginning or end of each <title> element, separated from the rest of the text with a delimiter such as a hyphen, colon, or pipe",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E15",
+    "rule": "Buat jelas teks mana judul utama halaman; judul utama sebaiknya menonjol dibanding teks lain, misalnya dengan font lebih besar atau diletakkan di elemen <h1> pertama yang terlihat.",
+    "quote": "Consider ensuring that your main title is distinctive from other text on a page and stands out as being the most prominent on the page (for example, using a larger font, putting the title text in the first visible <h1> element on the page, etc).",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E16",
+    "rule": "Gunakan bahasa dan sistem penulisan (script) yang sama dengan konten utama halaman pada <title>; jika tidak cocok, Google dapat memilih teks lain sebagai title link.",
+    "quote": "Google tries to show a title link that matches the primary language and writing system of a page.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E17",
+    "rule": "Gunakan bahasa dan sistem penulisan (script) yang sama dengan konten utama halaman pada <title>; jika tidak cocok, Google dapat memilih teks lain sebagai title link.",
+    "quote": "If Google determines that a <title> element does not match the writing system or language of the page's primary content, we may choose a different text as the title link.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E18",
+    "rule": "Waspadai pemblokiran crawl: robots.txt dapat menghentikan crawl tetapi belum tentu mencegah indeks, dan tanpa akses ke konten Google mengandalkan konten off-page seperti anchor text dari situs lain untuk title link.",
+    "quote": "Using the robots.txt protocol on your site can stop Google from crawling your pages, but it may not always prevent them from being indexed.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E19",
+    "rule": "Waspadai pemblokiran crawl: robots.txt dapat menghentikan crawl tetapi belum tentu mencegah indeks, dan tanpa akses ke konten Google mengandalkan konten off-page seperti anchor text dari situs lain untuk title link.",
+    "quote": "If we don't have access to the content on your page, we will rely on off-page content to generate the title link, such as anchor text from other sites.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E20",
+    "rule": "Ketahui sumber otomatis title link Google, termasuk elemen <title>, judul visual utama, elemen heading seperti <h1>, meta tag og:title, anchor text, teks tautan yang menunjuk ke halaman, dan structured data WebSite.",
+    "quote": "Google Search uses the following sources to automatically determine title links: - Content in <title> elements - Main visual title shown on the page - Heading elements, such as <h1> elements - Content in og:title meta tags",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E21",
+    "rule": "Ketahui sumber otomatis title link Google, termasuk elemen <title>, judul visual utama, elemen heading seperti <h1>, meta tag og:title, anchor text, teks tautan yang menunjuk ke halaman, dan structured data WebSite.",
+    "quote": "Anchor text on the page - Text within links that point to the page - WebSite structured data",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E22",
+    "rule": "Perubahan pada sumber title link baru terlihat setelah Google melakukan recrawl dan memproses ulang halaman, yang dapat memakan beberapa hari hingga beberapa minggu.",
+    "quote": "Google has to recrawl and reprocess the page to notice updates to these sources, which may take a few days to a few weeks.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E23",
+    "rule": "Periksa <title> yang tidak akurat: Google dapat mengubah title link jika menilai <title> tidak mencerminkan isi halaman.",
+    "quote": "Google Search might modify the title link to better help users if it determines that the page title doesn't reflect the page content.",
+    "source": "g-title-link"
+  },
+  {
+    "id": "E24",
+    "rule": "Snippet terutama dibuat dari konten halaman, dan Google kadang memakai meta description jika dinilai lebih akurat menggambarkan halaman.",
+    "quote": "Snippets are primarily created from the page content itself. However, Google sometimes uses the meta description HTML element if it might give users a more accurate description of the page than content taken directly from the page.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E25",
+    "rule": "Tidak ada batas panjang meta description, tetapi snippet dipotong di hasil Google Search sesuai kebutuhan, biasanya menyesuaikan lebar perangkat.",
+    "quote": "There's no limit on how long a meta description can be, but the snippet is truncated in Google Search results as needed, typically to fit the device width.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E26",
+    "rule": "Buat deskripsi unik untuk tiap halaman; deskripsi yang identik atau mirip di setiap halaman tidak membantu.",
+    "quote": "Identical or similar descriptions on every page of a site aren't helpful when individual pages appear in search results.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E27",
+    "rule": "Pakai deskripsi tingkat situs untuk beranda atau halaman agregasi, dan deskripsi tingkat halaman di tempat lain.",
+    "quote": "Use site-level descriptions on the main home page or other aggregation pages, and use page-level descriptions everywhere else.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E28",
+    "rule": "Untuk situs besar berbasis database, pembuatan deskripsi secara terprogram dapat sesuai dan dianjurkan; deskripsi yang baik mudah dibaca manusia dan beragam.",
+    "quote": "For larger database-driven sites, like product aggregators, hand-written descriptions can be impossible. In the latter case, however, programmatic generation of the descriptions can be appropriate and are encouraged. Good descriptions are human-readable and diverse.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E29",
+    "rule": "Hindari meta description berupa deretan panjang kata kunci; deskripsi seperti itu kurang jelas bagi pengguna dan lebih kecil kemungkinannya ditampilkan sebagai snippet.",
+    "quote": "meta descriptions comprised of long strings of keywords don't give users a clear idea of the page's content, and are less likely to be displayed as a snippet.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E30",
+    "rule": "Untuk mencegah snippet gunakan meta tag nosnippet, untuk membatasi panjang gunakan max-snippet:[number], dan untuk menyembunyikan bagian halaman dari snippet gunakan atribut data-nosnippet.",
+    "quote": "To prevent Google from displaying a snippet for your page in search results, use the nosnippet meta tag. To specify the maximum length for your snippets, use the max-snippet:[number] meta tag. You can also prevent certain parts of the page from being shown in a snippet by using the data-nosnippet attribute.",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E31",
+    "rule": "Untuk peluang tampilnya tautan \"Read more\", pastikan konten langsung terlihat oleh manusia dan tidak tersembunyi di balik bagian yang dapat diperluas atau antarmuka bertab.",
+    "quote": "To increase the likelihood that \"read more\" deep links appear for your site in Google Search, follow these best practices: - Make sure content is immediately visible on the page to a human (and not hidden behind an expandable section or tabbed interface, for example).",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E32",
+    "rule": "Untuk tautan \"Read more\", hindari memakai JavaScript untuk mengatur posisi scroll pengguna saat halaman dimuat.",
+    "quote": "To increase the likelihood that \"read more\" deep links appear for your site in Google Search, follow these best practices: - Make sure content is immediately visible on the page to a human (and not hidden behind an expandable section or tabbed interface, for example). - Avoid using JavaScript to control the user's scroll position on page load (for example, don't force the user's scroll position to the top of the page).",
+    "source": "g-snippet"
+  },
+  {
+    "id": "E33",
+    "rule": "Pengaturan robots meta dan X-Robots-Tag hanya dapat dibaca dan diikuti jika crawler diizinkan mengakses halaman yang memuatnya.",
+    "quote": "these settings can be read and followed only if crawlers are allowed to access the pages that include these settings.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E34",
+    "rule": "Jika halaman di-disallow lewat robots.txt, informasi aturan indexing atau serving tidak akan ditemukan sehingga diabaikan; URL yang aturannya harus diikuti tidak boleh di-disallow.",
+    "quote": "If a page is disallowed from crawling through the robots.txt file, then any information about indexing or serving rules will not be found and will therefore be ignored. If indexing or serving rules must be followed, the URLs containing those rules cannot be disallowed from crawling.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E35",
+    "rule": "Letakkan robots meta tag di bagian <head> halaman.",
+    "quote": "Place the robots meta tag in the <head> section of a given page",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E36",
+    "rule": "name=\"robots\" berlaku untuk semua crawler; Google hanya mendukung dua token user agent lain di meta tag, yaitu googlebot (semua hasil teks) dan googlebot-news (hasil berita), dan nilai lain diabaikan.",
+    "quote": "The value of the name attribute (robots) specifies that the rule applies to all crawlers.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E37",
+    "rule": "name=\"robots\" berlaku untuk semua crawler; Google hanya mendukung dua token user agent lain di meta tag, yaitu googlebot (semua hasil teks) dan googlebot-news (hasil berita), dan nilai lain diabaikan.",
+    "quote": "Google supports two user agent tokens in the robots meta tag; other values are ignored: - googlebot: for all text results. - googlebot-news: for news results.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E38",
+    "rule": "Untuk memblokir pengindeksan sumber daya non-HTML seperti PDF, video, atau gambar, gunakan header respons X-Robots-Tag; aturan apa pun yang dapat dipakai di robots meta tag juga dapat ditetapkan sebagai X-Robots-Tag.",
+    "quote": "To block indexing of non-HTML resources, such as PDF files, video files, or image files, use the X-Robots-Tag response header instead.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E39",
+    "rule": "Untuk memblokir pengindeksan sumber daya non-HTML seperti PDF, video, atau gambar, gunakan header respons X-Robots-Tag; aturan apa pun yang dapat dipakai di robots meta tag juga dapat ditetapkan sebagai X-Robots-Tag.",
+    "quote": "Any rule that can be used in a robots meta tag can also be specified as an X-Robots-Tag.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E40",
+    "rule": "noindex dapat diterapkan sebagai tag <meta> atau header respons HTTP dengan efek yang sama; pilih yang paling praktis dan sesuai jenis konten.",
+    "quote": "There are two ways to implement noindex: as a <meta> tag and as an HTTP response header. They have the same effect; choose the method that is more convenient for your site and appropriate for the content type.",
+    "source": "g-noindex"
+  },
+  {
+    "id": "E41",
+    "rule": "Jangan menaruh aturan noindex di robots.txt; Google tidak mendukungnya.",
+    "quote": "Specifying the noindex rule in the robots.txt file is not supported by Google.",
+    "source": "g-noindex"
+  },
+  {
+    "id": "E42",
+    "rule": "Setelah Googlebot meng-crawl halaman dan mengekstrak tag atau header noindex, Google menghapus halaman itu sepenuhnya dari hasil Google Search, terlepas dari ada tidaknya tautan dari situs lain.",
+    "quote": "When Googlebot crawls that page and extracts the tag or header, Google will drop that page entirely from Google Search results, regardless of whether other sites link to it.",
+    "source": "g-noindex"
+  },
+  {
+    "id": "E43",
+    "rule": "Aturan none setara dengan noindex, nofollow.",
+    "quote": "### none | Equivalent to noindex, nofollow.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E44",
+    "rule": "Aturan nosnippet: tidak menampilkan snippet teks atau pratinjau video, tetapi thumbnail gambar statis (jika ada) mungkin tetap terlihat bila menghasilkan pengalaman pengguna lebih baik; aturan ini juga mencegah konten dipakai sebagai input langsung untuk AI Overviews dan AI Mode.",
+    "quote": "Do not show a text snippet or video preview in the search results for this page. A static image thumbnail (if available) may still be visible, when it results in a better user experience.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E45",
+    "rule": "Aturan nosnippet: tidak menampilkan snippet teks atau pratinjau video, tetapi thumbnail gambar statis (jika ada) mungkin tetap terlihat bila menghasilkan pengalaman pengguna lebih baik; aturan ini juga mencegah konten dipakai sebagai input langsung untuk AI Overviews dan AI Mode.",
+    "quote": "will also prevent the content from being used as a direct input for AI Overviews and AI Mode.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E46",
+    "rule": "indexifembedded mengizinkan Google mengindeks konten halaman yang disematkan lewat iframe atau tag HTML serupa meski ada aturan noindex, dan hanya berefek jika disertai noindex.",
+    "quote": "Google is allowed to index the content of a page if it's embedded in another page through iframes or similar HTML tags, in spite of a noindex rule.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E47",
+    "rule": "indexifembedded mengizinkan Google mengindeks konten halaman yang disematkan lewat iframe atau tag HTML serupa meski ada aturan noindex, dan hanya berefek jika disertai noindex.",
+    "quote": "indexifembedded only has an effect if it's accompanied by noindex.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E48",
+    "rule": "max-snippet:[number] membatasi snippet teks hingga [number] karakter dan diabaikan jika tidak ada [number] yang dapat di-parse; tanpa aturan ini Google menentukan panjang snippet.",
+    "quote": "Use a maximum of [number] characters as a textual snippet for this search result.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E49",
+    "rule": "max-snippet:[number] membatasi snippet teks hingga [number] karakter dan diabaikan jika tidak ada [number] yang dapat di-parse; tanpa aturan ini Google menentukan panjang snippet.",
+    "quote": "This rule is ignored if no parseable [number] is specified. If you don't specify this rule, Google will choose the length of the snippet.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E50",
+    "rule": "max-image-preview mengatur ukuran pratinjau gambar (none: tidak ada pratinjau; standard: pratinjau default mungkin ditampilkan); tanpa aturan ini Google dapat menampilkan pratinjau gambar berukuran default.",
+    "quote": "none: No image preview is to be shown. - standard: A default image preview may be shown.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E51",
+    "rule": "max-image-preview mengatur ukuran pratinjau gambar (none: tidak ada pratinjau; standard: pratinjau default mungkin ditampilkan); tanpa aturan ini Google dapat menampilkan pratinjau gambar berukuran default.",
+    "quote": "If you don't specify the max-image-preview rule, Google may show an image preview of the default size.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E52",
+    "rule": "unavailable_after: [date/time] menghentikan tampil halaman di hasil pencarian setelah tanggal/waktu tersebut, dan aturan diabaikan jika tanggal/waktu tidak valid.",
+    "quote": "Do not show this page in search results after the specified date/time.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E53",
+    "rule": "unavailable_after: [date/time] menghentikan tampil halaman di hasil pencarian setelah tanggal/waktu tersebut, dan aturan diabaikan jika tanggal/waktu tidak valid.",
+    "quote": "The rule is ignored if no valid date/time is specified.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E54",
+    "rule": "Aturan noarchive tidak lagi dipakai Google Search karena fitur cached link sudah tidak ada.",
+    "quote": "The noarchive rule is no longer used by Google Search to control whether a cached link is shown in search results, as the cached link feature no longer exists.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E55",
+    "rule": "Beberapa aturan dapat digabung dengan koma dalam satu tag atau dengan beberapa meta tag.",
+    "quote": "You can create a multi-rule instruction by combining robots meta tag rules with commas or by using multiple meta tags.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E56",
+    "rule": "Jika beberapa crawler ditentukan dengan aturan berbeda, mesin pencari memakai jumlah aturan negatifnya; contoh: nofollow untuk robots ditambah noindex untuk googlebot ditafsirkan sebagai noindex, nofollow oleh Googlebot.",
+    "quote": "For situations where multiple crawlers are specified along with different rules, the search engine will use the sum of the negative rules.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E57",
+    "rule": "Jika beberapa crawler ditentukan dengan aturan berbeda, mesin pencari memakai jumlah aturan negatifnya; contoh: nofollow untuk robots ditambah noindex untuk googlebot ditafsirkan sebagai noindex, nofollow oleh Googlebot.",
+    "quote": "The page containing these meta tags will be interpreted as having a noindex, nofollow rule when crawled by Googlebot.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E58",
+    "rule": "Atribut data-nosnippet diterapkan pada elemen span, div, dan section; ia atribut boolean sehingga nilai apa pun diabaikan.",
+    "quote": "This can be done on an HTML-element level with the data-nosnippet HTML attribute on span, div, and section elements.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E59",
+    "rule": "Atribut data-nosnippet diterapkan pada elemen span, div, dan section; ia atribut boolean sehingga nilai apa pun diabaikan.",
+    "quote": "As with all boolean attributes, any value specified is ignored.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E60",
+    "rule": "Jangan menambah atau menghapus atribut data-nosnippet pada node yang sudah ada lewat JavaScript; untuk elemen DOM yang ditambahkan lewat JavaScript, sertakan atribut itu saat elemen pertama kali ditambahkan.",
+    "quote": "To avoid uncertainty from rendering, do not add or remove the data-nosnippet attribute of existing nodes through JavaScript. When adding DOM elements through JavaScript, include the data-nosnippet attribute as necessary when initially adding the element to the page's DOM.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E61",
+    "rule": "Batasan robots meta tag tidak memengaruhi penggunaan structured data, kecuali article.description dan nilai description untuk creative work lain; untuk menentukan panjang maksimum pratinjau berdasarkan nilai description tersebut, gunakan aturan max-snippet.",
+    "quote": "Robots meta tag limitations don't affect the use of that structured data, with the exception of article.description and the description values for structured data specified for other creative works. To specify the maximum length of a preview based on these description values, use the max-snippet rule.",
+    "source": "g-robots-meta"
+  },
+  {
+    "id": "E62",
+    "rule": "robots.txt terutama dipakai untuk mengelola lalu lintas crawler dan bukan mekanisme untuk menjauhkan halaman web dari Google.",
+    "quote": "This is used mainly to avoid overloading your site with requests; it is not a mechanism for keeping a web page out of Google.",
+    "source": "g-robots-intro"
+  },
+  {
+    "id": "E63",
+    "rule": "Halaman yang diblokir robots.txt dapat tetap muncul di hasil pencarian sebagai URL tanpa deskripsi.",
+    "quote": "If your web page is blocked with a robots.txt file, its URL can still appear in search results, but the search result won't have a description.",
+    "source": "g-robots-intro"
+  },
+  {
+    "id": "E64",
+    "rule": "Jangan blokir sumber daya (script, style, gambar) lewat robots.txt jika ketiadaannya membuat halaman lebih sulit dipahami crawler Google.",
+    "quote": "However, if the absence of these resources make the page harder for Google's crawler to understand the page, don't block them",
+    "source": "g-robots-intro"
+  },
+  {
+    "id": "E65",
+    "rule": "Jika noindex masih belum berefek, kemungkinan Google belum meng-crawl ulang halaman karena Google harus meng-crawl halaman untuk melihat tag <meta> dan header HTTP.",
+    "quote": "We have to crawl your page in order to see <meta> tags and HTTP headers. If a page is still appearing in results, it's probably because we haven't crawled the page since you added the noindex rule.",
+    "source": "g-noindex"
+  },
+  {
+    "id": "E66",
+    "rule": "Uji implementasi noindex dengan URL Inspection tool untuk melihat HTML yang diterima Googlebot, dan pantau halaman dengan noindex lewat Page Indexing report di Search Console.",
+    "quote": "To test if your noindex implementation is correct, use the URL Inspection tool to see the HTML that Googlebot received while crawling the page.",
+    "source": "g-noindex"
+  },
+  {
+    "id": "E67",
+    "rule": "Uji implementasi noindex dengan URL Inspection tool untuk melihat HTML yang diterima Googlebot, dan pantau halaman dengan noindex lewat Page Indexing report di Search Console.",
+    "quote": "You can also use the Page Indexing report in Search Console to monitor the pages on your site from which Googlebot extracted a noindex rule.",
+    "source": "g-noindex"
+  },
+  {
+    "id": "E68",
+    "rule": "Core ranking systems Google berusaha memberi ganjaran pada konten dengan page experience yang baik; jangan hanya fokus pada satu atau dua aspek.",
+    "quote": "Google's core ranking systems look to reward content that provides a good page experience. Site owners seeking to be successful with our systems shouldn't focus on only one or two aspects of page experience.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E69",
+    "rule": "Tidak ada satu \"page experience signal\" tunggal; core ranking systems melihat beragam sinyal yang selaras dengan page experience secara keseluruhan.",
+    "quote": "There is no single signal. Our core ranking systems look at a variety of signals that align with overall page experience.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E70",
+    "rule": "Swa-penilaian: jawaban ya untuk pertanyaan page experience berarti kemungkinan besar sudah di jalur yang benar; pertanyaannya tidak mencakup semua aspek.",
+    "quote": "Answering yes to the following questions means you're probably on track in providing a good page experience:",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E71",
+    "rule": "Swa-penilaian: jawaban ya untuk pertanyaan page experience berarti kemungkinan besar sudah di jalur yang benar; pertanyaannya tidak mencakup semua aspek.",
+    "quote": "These questions don't encompass all page experience aspects to consider.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E72",
+    "rule": "Periksa enam pertanyaan swa-penilaian page experience: Core Web Vitals yang baik, halaman disajikan secara aman, konten tampil baik di perangkat seluler, tidak ada iklan berlebihan yang mengganggu konten utama, tidak ada interstitial yang mengganggu, dan konten utama mudah dibedakan dari konten lain.",
+    "quote": "Do your pages have good Core Web Vitals?",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E73",
+    "rule": "Periksa enam pertanyaan swa-penilaian page experience: Core Web Vitals yang baik, halaman disajikan secara aman, konten tampil baik di perangkat seluler, tidak ada iklan berlebihan yang mengganggu konten utama, tidak ada interstitial yang mengganggu, dan konten utama mudah dibedakan dari konten lain.",
+    "quote": "Are your pages served in a secure fashion?",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E74",
+    "rule": "Periksa enam pertanyaan swa-penilaian page experience: Core Web Vitals yang baik, halaman disajikan secara aman, konten tampil baik di perangkat seluler, tidak ada iklan berlebihan yang mengganggu konten utama, tidak ada interstitial yang mengganggu, dan konten utama mudah dibedakan dari konten lain.",
+    "quote": "Does your content display well on mobile devices?",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E75",
+    "rule": "Periksa enam pertanyaan swa-penilaian page experience: Core Web Vitals yang baik, halaman disajikan secara aman, konten tampil baik di perangkat seluler, tidak ada iklan berlebihan yang mengganggu konten utama, tidak ada interstitial yang mengganggu, dan konten utama mudah dibedakan dari konten lain.",
+    "quote": "Does your content avoid using an excessive amount of ads that distract from or interfere with the main content?",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E76",
+    "rule": "Periksa enam pertanyaan swa-penilaian page experience: Core Web Vitals yang baik, halaman disajikan secara aman, konten tampil baik di perangkat seluler, tidak ada iklan berlebihan yang mengganggu konten utama, tidak ada interstitial yang mengganggu, dan konten utama mudah dibedakan dari konten lain.",
+    "quote": "Do your pages avoid using intrusive interstitials?",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E77",
+    "rule": "Periksa enam pertanyaan swa-penilaian page experience: Core Web Vitals yang baik, halaman disajikan secara aman, konten tampil baik di perangkat seluler, tidak ada iklan berlebihan yang mengganggu konten utama, tidak ada interstitial yang mengganggu, dan konten utama mudah dibedakan dari konten lain.",
+    "quote": "Is your page designed so visitors can easily distinguish the main content from other content on your page?",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E78",
+    "rule": "Core Web Vitals dipakai oleh ranking systems, dan Google menyarankan pemilik situs mencapai Core Web Vitals yang baik.",
+    "quote": "Core Web Vitals are used by our ranking systems.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E79",
+    "rule": "Core Web Vitals dipakai oleh ranking systems, dan Google menyarankan pemilik situs mencapai Core Web Vitals yang baik.",
+    "quote": "We recommend site owners achieve good Core Web Vitals for success with Search and to ensure a great user experience generally.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E80",
+    "rule": "Skor baik di laporan Core Web Vitals Search Console atau alat pihak ketiga tidak menjamin halaman berada di peringkat teratas; mengejar skor sempurna hanya demi SEO mungkin bukan penggunaan waktu terbaik.",
+    "quote": "getting good results in reports like Search Console's Core Web Vitals report or third-party tools doesn't guarantee that your pages will rank at the top of Google Search results",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E81",
+    "rule": "Skor baik di laporan Core Web Vitals Search Console atau alat pihak ketiga tidak menjamin halaman berada di peringkat teratas; mengejar skor sempurna hanya demi SEO mungkin bukan penggunaan waktu terbaik.",
+    "quote": "trying to get a perfect score just for SEO reasons may not be the best use of your time.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E82",
+    "rule": "Di luar Core Web Vitals, aspek page experience lain tidak secara langsung membantu peringkat, tetapi dapat membuat situs lebih memuaskan digunakan.",
+    "quote": "Beyond Core Web Vitals, other page experience aspects don't directly help your website rank higher in search results. However, they can make your website more satisfying to use, which is generally aligned with what our ranking systems seek to reward.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E83",
+    "rule": "Core Web Vitals adalah kumpulan metrik pengalaman pengguna nyata untuk performa pemuatan, interaktivitas, dan stabilitas visual halaman.",
+    "quote": "Core Web Vitals is a set of metrics that measure real-world user experience for loading performance, interactivity, and visual stability of the page.",
+    "source": "g-core-web-vitals"
+  },
+  {
+    "id": "E84",
+    "rule": "Target LCP (Largest Contentful Paint, performa pemuatan): terjadi dalam 2.5 detik pertama sejak halaman mulai dimuat.",
+    "quote": "strive to have LCP occur within the first 2.5 seconds of the page starting to load.",
+    "source": "g-core-web-vitals"
+  },
+  {
+    "id": "E85",
+    "rule": "Target INP (Interaction To Next Paint, responsivitas): kurang dari 200 milidetik.",
+    "quote": "strive to have an INP of less than 200 milliseconds.",
+    "source": "g-core-web-vitals"
+  },
+  {
+    "id": "E86",
+    "rule": "Target CLS (Cumulative Layout Shift, stabilitas visual): skor kurang dari 0.1.",
+    "quote": "strive to have a CLS score of less than 0.1.",
+    "source": "g-core-web-vitals"
+  },
+  {
+    "id": "E87",
+    "rule": "Pantau halaman lewat Core Web Vitals report di Search Console.",
+    "quote": "Check the Core Web Vitals report in Search Console. This shows how your pages perform.",
+    "source": "g-core-web-vitals"
+  },
+  {
+    "id": "E88",
+    "rule": "Cek HTTPS lewat HTTPS report Search Console untuk melihat apakah halaman HTTPS aman disajikan dan apa yang perlu diperbaiki.",
+    "quote": "Search Console's HTTPS report: Check if you're serving secure HTTPS pages and what to fix, if you're not.",
+    "source": "g-page-experience"
+  },
+  {
+    "id": "E89",
+    "rule": "Jangan buat halaman kosong hanya untuk menampung structured data, dan jangan menambahkan structured data tentang informasi yang tidak terlihat oleh pengguna, meskipun informasi itu akurat.",
+    "quote": "Don't create blank or empty pages just to hold structured data, and don't add structured data about information that is not visible to the user, even if the information is accurate.",
+    "source": "g-sd-intro"
+  },
+  {
+    "id": "E90",
+    "rule": "Sertakan semua properti wajib agar objek memenuhi syarat tampil dengan tampilan yang ditingkatkan; item yang tidak memiliki properti wajib tidak memenuhi syarat untuk rich result.",
+    "quote": "You must include all the required properties for an object to be eligible for appearance in Google Search with enhanced display.",
+    "source": "g-sd-intro"
+  },
+  {
+    "id": "E91",
+    "rule": "Sertakan semua properti wajib agar objek memenuhi syarat tampil dengan tampilan yang ditingkatkan; item yang tidak memiliki properti wajib tidak memenuhi syarat untuk rich result.",
+    "quote": "Items that are missing required properties are not eligible for rich results.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E92",
+    "rule": "Lebih penting memberi lebih sedikit properti rekomendasi yang lengkap dan akurat daripada semua properti dengan data yang kurang lengkap, salah format, atau tidak akurat.",
+    "quote": "it is more important to supply fewer but complete and accurate recommended properties rather than trying to provide every possible recommended property with less complete, badly-formed, or inaccurate data.",
+    "source": "g-sd-intro"
+  },
+  {
+    "id": "E93",
+    "rule": "Periksa structured data dengan Rich Results Test saat pengembangan dan dengan laporan Rich result status setelah deployment, karena halaman dapat rusak akibat masalah templating atau penyajian.",
+    "quote": "Be sure to check your structured data using the Rich Results Test during development, and the Rich result status reports after deployment, to monitor the validity of your pages, which might break after deployment due to templating or serving issues.",
+    "source": "g-sd-intro"
+  },
+  {
+    "id": "E94",
+    "rule": "Gunakan salah satu dari tiga format yang didukung (JSON-LD direkomendasikan, Microdata, RDFa); ketiganya sama baiknya bagi Google selama markup valid dan diterapkan sesuai dokumentasi fitur, dan Google menyarankan format yang paling mudah diterapkan dan dirawat, yang dalam kebanyakan kasus adalah JSON-LD.",
+    "quote": "using one of three supported formats: - JSON-LD (recommended) - Microdata - RDFa",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E95",
+    "rule": "Gunakan salah satu dari tiga format yang didukung (JSON-LD direkomendasikan, Microdata, RDFa); ketiganya sama baiknya bagi Google selama markup valid dan diterapkan sesuai dokumentasi fitur, dan Google menyarankan format yang paling mudah diterapkan dan dirawat, yang dalam kebanyakan kasus adalah JSON-LD.",
+    "quote": "all 3 formats are equally fine for Google, as long as the markup is valid and properly implemented per the feature's documentation.",
+    "source": "g-sd-intro"
+  },
+  {
+    "id": "E96",
+    "rule": "Gunakan salah satu dari tiga format yang didukung (JSON-LD direkomendasikan, Microdata, RDFa); ketiganya sama baiknya bagi Google selama markup valid dan diterapkan sesuai dokumentasi fitur, dan Google menyarankan format yang paling mudah diterapkan dan dirawat, yang dalam kebanyakan kasus adalah JSON-LD.",
+    "quote": "we recommend using a format that's easiest for you to implement and maintain (in most cases, that's JSON-LD)",
+    "source": "g-sd-intro"
+  },
+  {
+    "id": "E97",
+    "rule": "Masalah structured data dapat berujung manual action yang membuat halaman kehilangan kelayakan rich result, tanpa memengaruhi peringkat di pencarian web Google.",
+    "quote": "A structured data manual action means that a page loses eligibility for appearance as a rich result; it doesn't affect how the page ranks in Google web search.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E98",
+    "rule": "Jangan blokir halaman ber-structured data dari Googlebot dengan robots.txt, noindex, atau kontrol akses lain.",
+    "quote": "Don't block your structured data pages to Googlebot using robots.txt, noindex, or any other access control methods.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E99",
+    "rule": "Berikan informasi terkini; rich result tidak ditampilkan untuk konten sensitif waktu yang sudah tidak relevan.",
+    "quote": "Provide up-to-date information. We won't show a rich result for time-sensitive content that is no longer relevant.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E100",
+    "rule": "Jangan menandai konten tidak relevan atau menyesatkan, seperti ulasan palsu atau konten yang tidak terkait fokus halaman.",
+    "quote": "Don't mark up irrelevant or misleading content, such as fake reviews or content unrelated to the focus of a page.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E101",
+    "rule": "Structured data harus menjadi representasi yang benar dari konten halaman.",
+    "quote": "Your structured data must be a true representation of the page content.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E102",
+    "rule": "Taruh structured data pada halaman yang dijelaskannya, kecuali dokumentasi menyatakan lain; untuk halaman duplikat, Google menyarankan structured data yang sama di semua duplikat, bukan hanya di halaman kanonis.",
+    "quote": "Put the structured data on the page that it describes, unless specified otherwise by the documentation.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E103",
+    "rule": "Taruh structured data pada halaman yang dijelaskannya, kecuali dokumentasi menyatakan lain; untuk halaman duplikat, Google menyarankan structured data yang sama di semua duplikat, bukan hanya di halaman kanonis.",
+    "quote": "If you have duplicate pages for the same content, we recommend placing the same structured data on all page duplicates, not just on the canonical page.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E104",
+    "rule": "Semua URL gambar di structured data harus dapat di-crawl dan diindeks.",
+    "quote": "All image URLs specified in structured data must be crawlable and indexable.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E105",
+    "rule": "Sertakan tipe structured data utama yang mencerminkan fokus utama halaman; jika hanya ada Video, Google tidak cukup tahu untuk menampilkan halaman sebagai rich result resep.",
+    "quote": "include the main type of structured data that reflects the main focus of the page.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E106",
+    "rule": "Sertakan tipe structured data utama yang mencerminkan fokus utama halaman; jika hanya ada Video, Google tidak cukup tahu untuk menampilkan halaman sebagai rich result resep.",
+    "quote": "If the page only contained Video structured data, Google Search wouldn't know enough about the page to also display it as a recipe rich result.",
+    "source": "g-sd-policies"
+  },
+  {
+    "id": "E107",
+    "rule": "JavaScript dapat dipakai untuk membuat JSON-LD yang dibutuhkan dan menyuntikkannya ke halaman; uji implementasinya.",
+    "quote": "you can use JavaScript to generate the required JSON-LD and inject it into the page. Make sure to test your implementation to avoid issues.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E108",
+    "rule": "Pada situs dengan versi seluler, pastikan versi seluler dan desktop memiliki structured data yang sama, dan URL di structured data pada versi seluler diperbarui ke URL seluler.",
+    "quote": "Make sure that your mobile and desktop sites have the same structured data.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E109",
+    "rule": "Pada situs dengan versi seluler, pastikan versi seluler dan desktop memiliki structured data yang sama, dan URL di structured data pada versi seluler diperbarui ke URL seluler.",
+    "quote": "Make sure that URLs in the structured data on the mobile versions are updated to the mobile URLs.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E110",
+    "rule": "Fitur rich result FAQ tidak lagi tampil di Google Search sejak 7 Mei 2026.",
+    "quote": "This feature will no longer appear in Google Search starting May 7, 2026.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E111",
+    "rule": "Fitur rich result FAQ tidak lagi tampil di Google Search sejak 7 Mei 2026.",
+    "quote": "The FAQ rich result feature is no longer shown in Google Search results, as announced in the changelog entry in May 2026.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E112",
+    "rule": "Rich result How-to tidak lagi tampil di hasil pencarian, baik desktop maupun seluler.",
+    "quote": "Removed the How-to structured data documentation, as this rich result is no longer shown in search results, on both desktop and mobile devices.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E113",
+    "rule": "Tipe structured data course info, estimated salary, learning video, special announcement, vehicle listing, dan practice problem tidak lagi tampil di Google Search.",
+    "quote": "Removed documentation for the following structured data types: course info, estimated salary, learning video, special announcement, and vehicle listing.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E114",
+    "rule": "Tipe structured data course info, estimated salary, learning video, special announcement, vehicle listing, dan practice problem tidak lagi tampil di Google Search.",
+    "quote": "These structured data types are no longer shown in Google Search results.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E115",
+    "rule": "Tipe structured data course info, estimated salary, learning video, special announcement, vehicle listing, dan practice problem tidak lagi tampil di Google Search.",
+    "quote": "The practice problem structured data type is no longer shown in Google Search results.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E116",
+    "rule": "Structured data Dataset hanya dipakai oleh Dataset Search, bukan Google Search.",
+    "quote": "Clarified that Dataset structured data is only used by Dataset Search, and not Google Search.",
+    "source": "g-doc-updates"
+  },
+  {
+    "id": "E117",
+    "rule": "Google memakai versi seluler konten situs, yang di-crawl dengan smartphone agent, untuk indexing dan ranking (mobile-first indexing).",
+    "quote": "Google uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking. This is called mobile-first indexing.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E118",
+    "rule": "Gunakan robots meta tag yang sama di situs seluler dan desktop; robots meta tag berbeda di situs seluler (terutama noindex atau nofollow) dapat membuat Google gagal meng-crawl dan mengindeks halaman.",
+    "quote": "If you use a different robots meta tag on the mobile site (especially the noindex or nofollow tags), Google may fail to crawl and index your page when your site is enabled for mobile-first indexing.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E119",
+    "rule": "Jangan lazy-load konten utama saat interaksi pengguna; Google tidak memuat konten yang memerlukan interaksi seperti swipe, klik, atau mengetik.",
+    "quote": "Don't lazy-load primary content upon user interaction. Google won't load content that requires user interactions (for example, swiping, clicking, or typing) to load.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E120",
+    "rule": "Jangan blokir URL sumber daya seluler dengan aturan disallow jika ingin Google meng-crawlnya.",
+    "quote": "If you want Google to crawl your URLs, make sure that you're not blocking the URL with the disallow rule.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E121",
+    "rule": "Pastikan situs seluler memuat konten yang sama dengan desktop (indeks situs berasal dari situs seluler) dan memakai heading yang sama jelas dan bermakna seperti di desktop.",
+    "quote": "Make sure that your mobile site contains the same content as your desktop site.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E122",
+    "rule": "Pastikan situs seluler memuat konten yang sama dengan desktop (indeks situs berasal dari situs seluler) dan memakai heading yang sama jelas dan bermakna seperti di desktop.",
+    "quote": "just make sure that the content is equivalent to the desktop site, since indexing on your site comes from the mobile site.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E123",
+    "rule": "Pastikan situs seluler memuat konten yang sama dengan desktop (indeks situs berasal dari situs seluler) dan memakai heading yang sama jelas dan bermakna seperti di desktop.",
+    "quote": "Use the same clear and meaningful headings on the mobile site as you do on the desktop site.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E124",
+    "rule": "Pastikan title dan meta description setara di kedua versi situs.",
+    "quote": "Make sure that the title element and the meta description are equivalent across both versions of your site.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E125",
+    "rule": "Pakai alt text gambar yang sama di situs seluler seperti di desktop.",
+    "quote": "Make sure that the mobile site has the same alt text for images as the desktop site.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E126",
+    "rule": "Gunakan URL canonical dan alternate dengan benar pada situs URL terpisah: URL desktop selalu menjadi canonical dan versi seluler menjadi alternate.",
+    "quote": "The desktop URL is always the canonical, and the mobile version is the alternate of that URL.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E127",
+    "rule": "Pada URL terpisah, pastikan status halaman error sama di desktop dan seluler; halaman normal di desktop yang menjadi halaman error di seluler akan hilang dari indeks.",
+    "quote": "If a page on your desktop site serves normal contents and your mobile site's version of that page serves an error page, this page will be missing from the index.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E128",
+    "rule": "Pada URL terpisah, jika URL desktop berbeda dialihkan ke satu URL seluler yang sama (misalnya beranda), semua halaman itu akan hilang dari indeks setelah domain diaktifkan untuk mobile-first indexing.",
+    "quote": "If different URLs redirect to the same URL (for example, to the home page on mobile devices) after your domain is enabled for mobile-first indexing, all these pages will be missing from the index.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E129",
+    "rule": "Link hreflang pada URL terpisah harus menunjuk ke URL seluler untuk URL seluler dan ke URL desktop untuk URL desktop.",
+    "quote": "Your mobile URLs' hreflang must point to mobile URLs, and similarly desktop URL hreflang must point to desktop URLs.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E130",
+    "rule": "Pada kebanyakan kasus, pakai aturan robots.txt yang sama untuk versi seluler dan desktop.",
+    "quote": "In most cases, use the same robots.txt rules for both mobile and desktop versions of your site.",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E131",
+    "rule": "Gunakan URL Inspection tool untuk memeriksa bahwa konten terlihat di halaman yang dirender (cara Google melihat halaman).",
+    "quote": "Use the URL Inspection tool to check that the content is visible on the rendered page (the rendered page is how Google sees your page).",
+    "source": "g-mobile-first"
+  },
+  {
+    "id": "E132",
+    "rule": "Google Search tidak merender JavaScript dari berkas yang diblokir atau pada halaman yang diblokir.",
+    "quote": "Google Search won't render JavaScript from blocked files or on blocked pages.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E133",
+    "rule": "Googlebot mengantre semua halaman berstatus HTTP 200 untuk dirender, kecuali robots meta tag atau header memberi tahu Google untuk tidak mengindeks halaman.",
+    "quote": "Googlebot queues all pages with a 200 HTTP status code for rendering, unless a robots meta tag or header tells Google not to index the page.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E134",
+    "rule": "Server-side rendering atau pre-rendering tetap ide yang bagus karena membuat situs lebih cepat bagi pengguna dan crawler, dan tidak semua bot dapat menjalankan JavaScript.",
+    "quote": "server-side or pre-rendering is still a great idea because it makes your website faster for users and crawlers, and not all bots can run JavaScript.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E135",
+    "rule": "<title> dan meta description dapat diatur atau diubah dengan JavaScript.",
+    "quote": "You can use JavaScript to set or change the meta description as well as the <title> element.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E136",
+    "rule": "Cara terbaik menetapkan URL canonical adalah lewat HTML; jika harus memakai JavaScript, selalu tetapkan nilai yang sama dengan HTML asli dan jangan mengubahnya menjadi URL lain.",
+    "quote": "The best way to set the canonical URL is to use HTML, but if you have to use JavaScript, make sure that you always set the canonical URL to the same value as the original HTML.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E137",
+    "rule": "Gunakan kode status HTTP yang bermakna, misalnya 404 untuk halaman tidak ditemukan dan 401 untuk halaman di balik login.",
+    "quote": "To tell Googlebot if a page can't be crawled or indexed, use a meaningful status code, like a 404 for a page that could not be found or a 401 code for pages behind a login.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E138",
+    "rule": "Pada single-page app dengan client-side rendering, hindari soft 404 dengan JavaScript redirect ke URL yang dijawab server dengan status 404.",
+    "quote": "In client-side rendered single-page apps, routing is often implemented as client-side routing. In this case, using meaningful HTTP status codes can be impossible or impractical. To avoid soft 404 errors when using client-side rendering and routing, use one of the following strategies: - Use a JavaScript redirect to a URL for which the server responds with a 404 HTTP status code (for example /not-found).",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E139",
+    "rule": "Alternatif menghindari soft 404 pada single-page app: tambahkan <meta name=\"robots\" content=\"noindex\"> ke halaman error menggunakan JavaScript.",
+    "quote": "In client-side rendered single-page apps, routing is often implemented as client-side routing. In this case, using meaningful HTTP status codes can be impossible or impractical. To avoid soft 404 errors when using client-side rendering and routing, use one of the following strategies: - Use a JavaScript redirect to a URL for which the server responds with a 404 HTTP status code (for example /not-found). - Add a <meta name=\"robots\" content=\"noindex\"> to error pages using JavaScript.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E140",
+    "rule": "Google hanya dapat menemukan tautan berupa elemen HTML <a> dengan atribut href.",
+    "quote": "Google can only discover your links if they are <a> HTML elements with an href attribute.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E141",
+    "rule": "Pada single-page app dengan client-side routing, pakai History API dan jangan memakai fragment untuk memuat konten halaman berbeda.",
+    "quote": "For single-page applications with client-side routing, use the History API to implement routing between different views of your web app. To ensure that Googlebot can parse and extract your URLs, don't use fragments to load different page content.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E142",
+    "rule": "Googlebot melakukan caching agresif dan WRS dapat mengabaikan header caching sehingga dapat memakai JavaScript atau CSS usang; content fingerprinting pada nama berkas menghindari masalah ini.",
+    "quote": "Googlebot caches aggressively in order to reduce network requests and resource usage. WRS may ignore caching headers. This may lead WRS to use outdated JavaScript or CSS resources.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E143",
+    "rule": "Googlebot melakukan caching agresif dan WRS dapat mengabaikan header caching sehingga dapat memakai JavaScript atau CSS usang; content fingerprinting pada nama berkas menghindari masalah ini.",
+    "quote": "Content fingerprinting avoids this problem by making a fingerprint of the content part of the filename",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E144",
+    "rule": "Untuk web components, Google hanya melihat konten yang terlihat di HTML hasil render; periksa dengan Rich Results Test atau URL Inspection Tool. Konten yang tidak terlihat di HTML hasil render tidak dapat diindeks Google.",
+    "quote": "This means Google can only see content that's visible in the rendered HTML. To make sure that Google can still see your content after it's rendered, use the Rich Results Test or the URL Inspection Tool and look at the rendered HTML.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E145",
+    "rule": "Untuk web components, Google hanya melihat konten yang terlihat di HTML hasil render; periksa dengan Rich Results Test atau URL Inspection Tool. Konten yang tidak terlihat di HTML hasil render tidak dapat diindeks Google.",
+    "quote": "If the content isn't visible in the rendered HTML, Google won't be able to index it.",
+    "source": "g-js-seo"
+  },
+  {
+    "id": "E146",
+    "rule": "Jika server merespons dengan 2xx, konten yang diterima dapat dipertimbangkan untuk diindeks.",
+    "quote": "If the server responded with a 2xx status code, the content received in the response may be considered for indexing.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E147",
+    "rule": "Status 2xx dengan konten yang menyiratkan error (halaman kosong atau pesan error) ditampilkan Search Console sebagai soft 404.",
+    "quote": "If the content suggests an error for Google Search, an empty page or an error message, Search Console will show a soft 404 error.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E148",
+    "rule": "Secara default crawler Google mengikuti hingga 10 hop redirect; Googlebot umumnya mengikuti 10 hop untuk konten web umum, sedangkan Google Inspection Tools tidak mengikuti redirect.",
+    "quote": "By default, Google's crawlers follow up to 10 redirect hops.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E149",
+    "rule": "Secara default crawler Google mengikuti hingga 10 hop redirect; Googlebot umumnya mengikuti 10 hop untuk konten web umum, sedangkan Google Inspection Tools tidak mengikuti redirect.",
+    "quote": "Googlebot generally follows 10 redirect hops when crawling for general web content, but Google Inspection Tools doesn't follow redirects.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E150",
+    "rule": "Konten dari URL yang mengalihkan diabaikan, dan konten URL tujuan akhir yang diproses.",
+    "quote": "Any content Google receives from the redirecting URL is ignored, and the final target URL's content is processed instead.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E151",
+    "rule": "Status 301: Google mengikuti redirect dan memakainya sebagai sinyal kuat bahwa target redirect harus diproses.",
+    "quote": "Google follows the redirect, and Google systems use the redirect as a strong signal that the redirect target should be processed.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E152",
+    "rule": "Status 302: secara default crawler mengikuti redirect dan memakainya sebagai sinyal lemah bahwa target redirect harus diproses.",
+    "quote": "By default, Google's crawlers follow the redirect, and Google systems use the redirect as a weak signal that the redirect target should be processed.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E153",
+    "rule": "Status 307 setara dengan 302, dan status 308 setara dengan 301.",
+    "quote": "307 (temporary redirect) | Equivalent to 302.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E154",
+    "rule": "Status 307 setara dengan 302, dan status 308 setara dengan 301.",
+    "quote": "308 (moved permanently) | Equivalent to 301.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E155",
+    "rule": "Google tidak memakai konten dari URL berstatus 4xx; Google Search tidak mengindeks URL berstatus 4xx dan URL yang sudah terindeks lalu berstatus 4xx dihapus dari indeks.",
+    "quote": "Google doesn't use the content from URLs that return 4xx status codes. If a URL was previously used but is now returning 4xx status code, Google systems will stop using the URL over time. In the case of Google Search, Google doesn't index URLs that return a 4xx status code, and URLs that are already indexed and return a 4xx status code are removed from the index.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E156",
+    "rule": "Status 429 diperlakukan sebagai sinyal server kelebihan beban dan dianggap sebagai server error.",
+    "quote": "Google's crawlers treat the 429 status code as a signal that the server is overloaded, and it's considered a server error.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E157",
+    "rule": "Error 5xx dan 429 membuat crawler Google memperlambat crawl sementara; URL yang sudah terindeks dipertahankan tetapi akhirnya dihapus, dan URL yang terus-menerus mengembalikan server error dihapus dari indeks oleh pipeline indexing.",
+    "quote": "5xx and 429 server errors prompt Google's crawlers to temporarily slow down with crawling. For Google Search, already indexed URLs are preserved in the index, but eventually dropped.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E158",
+    "rule": "Error 5xx dan 429 membuat crawler Google memperlambat crawl sementara; URL yang sudah terindeks dipertahankan tetapi akhirnya dihapus, dan URL yang terus-menerus mengembalikan server error dihapus dari indeks oleh pipeline indexing.",
+    "quote": "Google's indexing pipeline removes from the index URLs that persistently return a server error.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E159",
+    "rule": "Setelah server kembali merespons 2xx, Google meningkatkan crawl rate situs secara bertahap.",
+    "quote": "Once the server starts responding with a 2xx status code, Google gradually increases the crawl rate for the site.",
+    "source": "g-http-errors"
+  },
+  {
+    "id": "E160",
+    "rule": "Redirect permanen menampilkan target redirect baru di hasil pencarian, sedangkan redirect sementara menampilkan halaman sumber.",
+    "quote": "Permanent redirects: Show the new redirect target in search results. - Temporary redirects: Show the source page in search results.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E161",
+    "rule": "Untuk mengubah URL halaman sebagaimana tampil di hasil pencarian, Google menyarankan redirect permanen sisi server (server-side) sedapat mungkin; status 301 dan 308 berarti halaman pindah permanen.",
+    "quote": "If you need to change the URL of a page as it is shown in search engine results, we recommend that you use a permanent server-side redirect whenever possible.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E162",
+    "rule": "Untuk mengubah URL halaman sebagaimana tampil di hasil pencarian, Google menyarankan redirect permanen sisi server (server-side) sedapat mungkin; status 301 dan 308 berarti halaman pindah permanen.",
+    "quote": "The 301 and 308 status codes mean that a page has permanently moved to a new location.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E163",
+    "rule": "Metode redirect diurutkan menurut kemungkinan Google menafsirkannya dengan benar; redirect sisi server memiliki peluang tertinggi.",
+    "quote": "ordered by how likely Google is able to interpret correctly (for example, a server side redirect has the highest chance of being interpreted correctly by Google)",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E164",
+    "rule": "Redirect permanen dipakai pipeline indexing sebagai sinyal bahwa target redirect harus menjadi canonical.",
+    "quote": "Googlebot follows the redirect, and the indexing pipeline uses the redirect as a signal that the redirect target should be canonical.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E165",
+    "rule": "Redirect sementara tidak dipakai sebagai sinyal canonical, tetapi halaman target mungkin tetap diindeks jika ada sinyal kanonikalisasi lain.",
+    "quote": "Googlebot follows the redirect, but the indexing pipeline doesn't use the redirect as a signal that the redirect target should be canonical. The target page might still be indexed if other canonicalization signals are present.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E166",
+    "rule": "Jika halaman dapat diakses lewat beberapa URL, pilih satu URL preferred (canonical) dan alihkan lalu lintas dari URL lain ke URL tersebut.",
+    "quote": "it's a good idea to pick one of those URLs as your preferred (canonical) destination, and use redirects to send traffic from the other URLs to your preferred URL.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E167",
+    "rule": "Jika redirect sisi server tidak memungkinkan pada platform, meta refresh dapat menjadi alternatif.",
+    "quote": "If server-side redirects aren't possible to implement on your platform, meta refresh redirects may be a viable alternative.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E168",
+    "rule": "Google menafsirkan instant meta refresh sebagai redirect permanen dan delayed meta refresh sebagai redirect sementara.",
+    "quote": "Google Search interprets instant meta refresh redirects as permanent redirects.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E169",
+    "rule": "Google menafsirkan instant meta refresh sebagai redirect permanen dan delayed meta refresh sebagai redirect sementara.",
+    "quote": "Google Search interprets delayed meta refresh redirects as temporary redirects.",
+    "source": "g-redirects"
+  },
+  {
+    "id": "E170",
+    "rule": "Setelah pindah domain, URL lama kemungkinan besar masih sesekali muncul meski URL baru sudah terindeks; ini normal.",
+    "quote": "it's very likely that Google will continue to occasionally show the old URLs in the results, even though the new URLs are already indexed. This is normal",
+    "source": "g-redirects"
+  }
+]

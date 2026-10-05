@@ -1,0 +1,86 @@
+/* Design tokens exposed to Tailwind 4. `inline` makes each utility reference the Material variable directly,
+   so utilities follow the light/dark theme exactly like the ported classes do.
+   Tailwind's default palette, radii, fonts, shadows and breakpoints are cleared: only Meridian tokens exist.
+
+   Examples: bg-surface-container-low text-on-surface-variant rounded-xl font-sans shadow-2 md:grid-cols-2
+   Breakpoints: sm 600px, md 840px, lg 1200px, xl 1400px (the prototype's four). */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 840px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1400px;
+}
+@theme inline {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-primary: var(--md-sys-color-primary);
+  --color-on-primary: var(--md-sys-color-on-primary);
+  --color-primary-container: var(--md-sys-color-primary-container);
+  --color-on-primary-container: var(--md-sys-color-on-primary-container);
+  --color-secondary: var(--md-sys-color-secondary);
+  --color-on-secondary: var(--md-sys-color-on-secondary);
+  --color-secondary-container: var(--md-sys-color-secondary-container);
+  --color-on-secondary-container: var(--md-sys-color-on-secondary-container);
+  --color-tertiary: var(--md-sys-color-tertiary);
+  --color-on-tertiary: var(--md-sys-color-on-tertiary);
+  --color-tertiary-container: var(--md-sys-color-tertiary-container);
+  --color-on-tertiary-container: var(--md-sys-color-on-tertiary-container);
+  --color-error: var(--md-sys-color-error);
+  --color-on-error: var(--md-sys-color-on-error);
+  --color-error-container: var(--md-sys-color-error-container);
+  --color-on-error-container: var(--md-sys-color-on-error-container);
+  --color-surface: var(--md-sys-color-surface);
+  --color-surface-container-lowest: var(--md-sys-color-surface-container-lowest);
+  --color-surface-container-low: var(--md-sys-color-surface-container-low);
+  --color-surface-container: var(--md-sys-color-surface-container);
+  --color-surface-container-high: var(--md-sys-color-surface-container-high);
+  --color-surface-container-highest: var(--md-sys-color-surface-container-highest);
+  --color-on-surface: var(--md-sys-color-on-surface);
+  --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+  --color-outline: var(--md-sys-color-outline);
+  --color-outline-variant: var(--md-sys-color-outline-variant);
+  --color-inverse-surface: var(--md-sys-color-inverse-surface);
+  --color-inverse-on-surface: var(--md-sys-color-inverse-on-surface);
+  --color-inverse-primary: var(--md-sys-color-inverse-primary);
+  --color-scrim: var(--md-sys-color-scrim);
+  --color-success: var(--md-ext-color-success);
+  --color-success-container: var(--md-ext-color-success-container);
+  --color-on-success-container: var(--md-ext-color-on-success-container);
+  --color-warning: var(--md-ext-color-warning);
+  --color-warning-container: var(--md-ext-color-warning-container);
+  --color-on-warning-container: var(--md-ext-color-on-warning-container);
+  --color-cyan: var(--md-ext-color-cyan);
+  --color-cyan-container: var(--md-ext-color-cyan-container);
+  --color-on-cyan-container: var(--md-ext-color-on-cyan-container);
+  --color-hero-a: var(--hero-a);
+  --color-hero-b: var(--hero-b);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-tile: var(--hero-tile);
+  /* Agent hue: resolves inside an element that carries one of the classes h0..h10. */
+  --color-agent: var(--ac);
+  --color-on-agent: var(--aon);
+  --color-agent-container: var(--acc);
+  --color-on-agent-container: var(--aonc);
+
+  --radius-*: initial;
+  --radius-xs: var(--md-sys-shape-corner-extra-small);
+  --radius-sm: var(--md-sys-shape-corner-small);
+  --radius-md: var(--md-sys-shape-corner-medium);
+  --radius-lg: var(--md-sys-shape-corner-large);
+  --radius-xl: var(--md-sys-shape-corner-large-increased);
+  --radius-2xl: var(--md-sys-shape-corner-extra-large);
+  --radius-3xl: var(--md-sys-shape-corner-extra-large-increased);
+  --radius-full: var(--md-sys-shape-corner-full);
+
+  --font-*: initial;
+  --font-sans: var(--md-ref-typeface-plain);
+  --font-brand: var(--md-ref-typeface-brand);
+  --font-numeric: var(--font-data);
+
+  --shadow-*: initial;
+  --shadow-1: var(--md-sys-elevation-level1);
+  --shadow-2: var(--md-sys-elevation-level2);
+  --shadow-3: var(--md-sys-elevation-level3);
+}

@@ -1,0 +1,644 @@
+[
+ {
+  "id": "E1",
+  "rule": "Setiap gambar harus punya teks alternatif yang menggambarkan informasi atau fungsi yang diwakilinya.",
+  "quote": "Images must have text alternatives that describe the information or function represented by them.",
+  "source": "w3c-images-tutorial"
+ },
+ {
+  "id": "E2",
+  "rule": "Penulis menentukan teks alternatif berdasarkan penggunaan, konteks, dan isi gambar.",
+  "quote": "The text alternative needs to be determined by the author, depending on the usage, context, and content of an image.",
+  "source": "w3c-images-tutorial"
+ },
+ {
+  "id": "E3",
+  "rule": "Sediakan atribut alt untuk setiap gambar. Teks alt harus merangkum maksud gambar secara memadai, dan gambar yang murni dekoratif memakai alt kosong.",
+  "quote": "For every image, provide an alt attribute. For alt attributes that contain alt text, use alt text that adequately summarizes the intent of each image. If the image is purely decorative, use empty alt text.",
+  "source": "gstyle-accessibility"
+ },
+ {
+  "id": "E4",
+  "rule": "Jangan menyajikan informasi baru hanya di dalam gambar; selalu sediakan penjelasan teks yang setara bersama gambar tersebut.",
+  "quote": "Don't present new information in images. Always provide an equivalent text explanation with the image.",
+  "source": "gstyle-accessibility"
+ },
+ {
+  "id": "E5",
+  "rule": "Alt text adalah atribut terpenting untuk memberi metadata pada gambar, dan juga meningkatkan aksesibilitas bagi pengguna pembaca layar atau koneksi berbandwidth rendah.",
+  "quote": "The most important attribute when it comes to providing more metadata for an image is the alt text (text that describes an image), which also improves accessibility for people who can't see images on web pages, including users who use screen readers or have low-bandwidth connections.",
+  "source": "g-images"
+ },
+ {
+  "id": "E6",
+  "rule": "Google memakai alt text bersama algoritma computer vision dan isi halaman untuk memahami pokok bahasan gambar.",
+  "quote": "Google uses alt text along with computer vision algorithms and the contents of the page to understand the subject matter of the image.",
+  "source": "g-images"
+ },
+ {
+  "id": "E7",
+  "rule": "Untuk memutuskan informasi atau fungsi apa (jika ada) yang dimiliki sebuah gambar, bayangkan Anda membacakan halaman itu lewat telepon kepada orang yang perlu memahaminya.",
+  "quote": "Imagine that you’re reading the web page aloud over the phone to someone who needs to understand the page. This should help you decide what (if any) information or function the images have.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E8",
+  "rule": "Gambar yang tampak tidak punya nilai informasi dan bukan tautan atau tombol kemungkinan besar aman diperlakukan sebagai dekoratif.",
+  "quote": "If they appear to have no informative value and aren’t links or buttons, it’s probably safe to treat them as decorative.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E9",
+  "rule": "Jika gambar berisi teks dan teks yang sama juga ada sebagai teks asli di dekatnya, pakai atribut alt kosong.",
+  "quote": "Does the image contain text? - Yes: - … and the text is also present as real text nearby. Use an empty alt attribute.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E10",
+  "rule": "Jika gambar berisi teks yang hanya ditampilkan untuk efek visual, pakai atribut alt kosong.",
+  "quote": "the text is only shown for visual effects. Use an empty alt attribute.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E11",
+  "rule": "Jika teks pada gambar punya fungsi tertentu (misalnya ikon), pakai alt untuk menyampaikan fungsi gambar itu.",
+  "quote": "the text has a specific function, for example is an icon. Use the alt attribute to communicate the function of the image.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E12",
+  "rule": "Jika teks pada gambar tidak ada di tempat lain, pakai alt untuk memuat teks gambar tersebut.",
+  "quote": "the text in the image is not present otherwise. Use the alt attribute to include the text of the image.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E13",
+  "rule": "Jika gambar dipakai dalam tautan atau tombol dan sulit atau mustahil memahami fungsi tautan/tombol tanpa gambar itu, pakai alt untuk menyampaikan tujuan tautan atau aksi yang dilakukan.",
+  "quote": "Is the image used in a link or a button, and would it be hard or impossible to understand what the link or the button does, if the image wasn’t there?",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E14",
+  "rule": "Jika gambar dipakai dalam tautan atau tombol dan sulit atau mustahil memahami fungsi tautan/tombol tanpa gambar itu, pakai alt untuk menyampaikan tujuan tautan atau aksi yang dilakukan.",
+  "quote": "Use the alt attribute to communicate the destination of the link or action taken.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E15",
+  "rule": "Jika gambar memberi makna pada halaman dan berupa grafis sederhana atau foto, tulis deskripsi singkat yang menyampaikan makna itu di atribut alt.",
+  "quote": "it’s a simple graphic or photograph. Use a brief description of the image in a way that conveys that meaning in the alt attribute.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E16",
+  "rule": "Jika gambar berupa grafik atau informasi kompleks, sertakan informasi yang dimuat gambar itu di tempat lain pada halaman.",
+  "quote": "it’s a graph or complex piece of information. Include the information contained in the image elsewhere on the page.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E17",
+  "rule": "Jika gambar menampilkan isi yang redundan dengan teks asli di dekatnya, pakai atribut alt kosong.",
+  "quote": "it shows content that is redundant to real text nearby. Use an empty alt attribute.",
+  "source": "w3c-images-decision"
+ },
+ {
+  "id": "E18",
+  "rule": "Teks alternatif gambar informatif harus menyampaikan makna atau isi yang tampil secara visual, yang biasanya bukan deskripsi harfiah gambar.",
+  "quote": "The text alternative should convey the meaning or content that is displayed visually, which typically isn’t a literal description of the image.",
+  "source": "w3c-images-informative"
+ },
+ {
+  "id": "E19",
+  "rule": "Deskripsi harfiah yang rinci mungkin diperlukan, tetapi hanya jika isi gambar adalah seluruh atau sebagian dari informasi yang disampaikan.",
+  "quote": "In some situations a detailed literal description may be needed, but only when the content of the image is all or part of the conveyed information.",
+  "source": "w3c-images-informative"
+ },
+ {
+  "id": "E20",
+  "rule": "Taruh informasi terpenting di awal teks alternatif.",
+  "quote": "Aim to put the most important information at the beginning.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E21",
+  "rule": "Teks alt harus berupa deskripsi sesingkat mungkin tentang tujuan gambar.",
+  "quote": "The alt text should be the most concise description possible of the image’s purpose.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E22",
+  "rule": "Jika diperlukan lebih dari satu frasa atau kalimat pendek, gunakan salah satu metode deskripsi panjang untuk gambar kompleks, bukan memperpanjang alt.",
+  "quote": "If anything more than a short phrase or sentence is needed, it would be better to use one of the long description methods discussed in complex images.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E23",
+  "rule": "Biasanya tidak perlu menulis kata seperti \"image\", \"icon\", atau \"picture\" di dalam alt.",
+  "quote": "Usually, there’s no need to include words like “image”, “icon”, or “picture” in the alt text.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E24",
+  "rule": "Isi alt dengan informasi yang berguna dan kaya, memakai kata kunci secara wajar, dan sesuai konteks isi halaman.",
+  "quote": "When writing alt text, focus on creating useful, information-rich content that uses keywords appropriately and is in context of the content of the page.",
+  "source": "g-images"
+ },
+ {
+  "id": "E25",
+  "rule": "Jangan menjejalkan kata kunci ke dalam atribut alt (keyword stuffing); itu menghasilkan pengalaman pengguna yang buruk dan dapat membuat situs dianggap spam.",
+  "quote": "Avoid filling alt attributes with keywords (also known as keyword stuffing) as it results in a negative user experience and may cause your site to be seen as spam.",
+  "source": "g-images"
+ },
+ {
+  "id": "E26",
+  "rule": "Teks dalam gambar: jika gambar bukan logo, hindari teks di dalam gambar; jika tetap dipakai, teks alternatif harus memuat kata-kata yang sama dengan yang ada di gambar.",
+  "quote": "If the image is not a logo, avoid text in images. However, if images of text are used, the text alternative should contain the same words as in the image.",
+  "source": "w3c-images-tutorial"
+ },
+ {
+  "id": "E27",
+  "rule": "Gambar dekoratif tidak menambah informasi pada isi halaman, misalnya karena informasinya sudah diberikan lewat teks di dekatnya atau gambar hanya mempercantik tampilan.",
+  "quote": "Decorative images don’t add information to the content of a page.",
+  "source": "w3c-images-decorative"
+ },
+ {
+  "id": "E28",
+  "rule": "Gambar dekoratif tidak menambah informasi pada isi halaman, misalnya karena informasinya sudah diberikan lewat teks di dekatnya atau gambar hanya mempercantik tampilan.",
+  "quote": "the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.",
+  "source": "w3c-images-decorative"
+ },
+ {
+  "id": "E29",
+  "rule": "Beri gambar dekoratif teks alternatif kosong (alt=\"\") agar diabaikan oleh teknologi bantu seperti pembaca layar.",
+  "quote": "a null (empty) alt text should be provided (alt=\"\") so that they can be ignored by assistive technologies, such as screen readers.",
+  "source": "w3c-images-decorative"
+ },
+ {
+  "id": "E30",
+  "rule": "Jangan menghilangkan atribut alt pada gambar dekoratif, karena jika tidak ada, sebagian pembaca layar akan membacakan nama berkas gambar.",
+  "quote": "Leaving out the alt attribute is also not an option because when it is not provided, some screen readers will announce the file name of the image instead.",
+  "source": "w3c-images-decorative"
+ },
+ {
+  "id": "E31",
+  "rule": "Pada alt kosong, pastikan tidak ada karakter spasi di antara tanda kutip; jika ada spasi, gambar mungkin tidak tersembunyi dengan efektif dari teknologi bantu.",
+  "quote": "If you use a null (empty) text alternative (alt=\"\") to hide decorative images, make sure that there is no space character in between the quotes. If a space character is present, the image may not be effectively hidden from assistive technologies.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E32",
+  "rule": "Menganggap gambar dekoratif atau informatif adalah penilaian yang hanya dapat dibuat penulis, berdasarkan alasan gambar itu dimasukkan ke halaman.",
+  "quote": "Whether to treat an image as decorative or informative is a judgment that only the author can make, based on the reason for including the image on the page.",
+  "source": "w3c-images-decorative"
+ },
+ {
+  "id": "E33",
+  "rule": "W3C: bila memungkinkan, gambar dekoratif sebaiknya disajikan lewat CSS background, bukan elemen <img>.",
+  "quote": "Where possible, decorative images should be provided using CSS background images instead.",
+  "source": "w3c-images-decorative"
+ },
+ {
+  "id": "E34",
+  "rule": "Google tidak mengindeks gambar CSS.",
+  "quote": "such as the <picture> element). Google doesn't index CSS images.",
+  "source": "g-images"
+ },
+ {
+  "id": "E35",
+  "rule": "Teks alternatif gambar fungsional harus menyampaikan aksi yang akan dijalankan (tujuan gambar), bukan deskripsi gambarnya.",
+  "quote": "The text alternative for the image should convey the action that will be initiated (the purpose of the image), rather than a description of the image.",
+  "source": "w3c-images-functional"
+ },
+ {
+  "id": "E36",
+  "rule": "Alt yang hilang atau kosong pada gambar fungsional menimbulkan masalah besar bagi pengguna pembaca layar, karena gambar fungsional esensial bagi fungsi konten.",
+  "quote": "Missing or empty alt values create significant problems for screen reader users because functional images are essential to the functionality of the content.",
+  "source": "w3c-images-functional"
+ },
+ {
+  "id": "E37",
+  "rule": "Contoh W3C: logo W3C yang melengkapi teks dalam tautan ke beranda W3C dan tidak mewakili fungsi atau informasi lain selain yang sudah ada pada teks tautan diberi nilai alt kosong (alt=\"\") untuk menghindari redundansi dan pengulangan.",
+  "quote": "In this example, the W3C logo is used to supplement text within a link that leads to the W3C home page. The image does not represent different functionality or convey other information than that already provided in the link text, so a null (empty) value is applied, (alt=\"\"), to avoid redundancy and repetition.",
+  "source": "w3c-images-functional"
+ },
+ {
+  "id": "E38",
+  "rule": "Saat membuat konten web secara otomatis, fokus pada akurasi, kualitas, dan relevansi, termasuk metadata seperti teks alternatif gambar yang dapat muncul di hasil Search.",
+  "quote": "When creating content for the web, focus on accuracy, quality, and relevance, especially when automatically generating the content. This includes metadata like <title> elements, meta description elements, structured data, and alternate texts for images, which can appear in Search results.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E39",
+  "rule": "Jika membuat konten secara otomatis, pertimbangkan menambahkan informasi cara konten dibuat, misalnya latar belakang penggunaan otomasi dan metadata gambar, dengan cara yang masuk akal bagi audiens.",
+  "quote": "If you're automatically generating content, consider adding information on how your content was created in a way that makes sense for your audience, such as by providing more background information on how automation was used and adding image metadata.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E40",
+  "rule": "Untuk situs ecommerce, kebijakan Google Merchant Center mewajibkan gambar buatan AI memuat metadata IPTC DigitalSourceType TrainedAlgorithmicMedia.",
+  "quote": "For ecommerce sites, Google Merchant Center has policies for AI-generated content. In particular, AI-generated images must contain metadata using the IPTC DigitalSourceType TrainedAlgorithmicMedia metadata.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E41",
+  "rule": "Memakai alat AI generatif untuk membuat banyak halaman tanpa menambah nilai bagi pengguna dapat melanggar kebijakan spam Google tentang scaled content abuse.",
+  "quote": "using generative AI tools or other similar tools to generate many pages without adding value for users may violate Google's spam policy on scaled content abuse.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E42",
+  "rule": "Gambar kompleks memuat informasi substansial, lebih dari yang bisa disampaikan dalam satu frasa atau kalimat pendek.",
+  "quote": "Complex images contain substantial information – more than can be conveyed in a short phrase or sentence.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E43",
+  "rule": "Gambar kompleks biasanya mencakup grafik dan bagan, termasuk flow chart dan bagan organisasi.",
+  "quote": "Complex images contain substantial information – more than can be conveyed in a short phrase or sentence. These are typically: - graphs and charts, including flow charts and organizational charts;",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E44",
+  "rule": "Gambar kompleks memerlukan teks alternatif dua bagian: deskripsi singkat untuk mengidentifikasi gambar dan, bila sesuai, menunjukkan lokasi deskripsi panjang.",
+  "quote": "In these cases, a two-part text alternative is required. The first part is the short description to identify the image and, where appropriate, indicate the location of the long description.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E45",
+  "rule": "Bagian kedua adalah deskripsi panjang, yaitu representasi tekstual dari informasi esensial yang disampaikan gambar.",
+  "quote": "The second part is the long description – a textual representation of the essential information conveyed by the image.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E46",
+  "rule": "Deskripsi panjang memuat informasi rinci, termasuk skala, nilai, hubungan, dan tren yang direpresentasikan secara visual.",
+  "quote": "The long description provides detailed information, including scales, values, relationships and trends that are represented visually.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E47",
+  "rule": "Jika komposisi gambar penting, masukkan ke deskripsi panjang; misalnya urutan warna dan tinggi relatif kolom pada bagan batang mungkin relevan selain nilai dan tren.",
+  "quote": "There are situations where the composition of an image is important and needs to be provided in the long description. For example, the sequence of colors used and the relative heights of the columns in a bar chart may be relevant information about the structure of the chart, in addition to the actual values and trends that it depicts.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E48",
+  "rule": "Jadikan deskripsi panjang tersedia untuk semua orang, misalnya dengan menampilkannya sebagai bagian dari konten utama.",
+  "quote": "Make long descriptions available to everyone to reach a wider audience with your content. For example, show the description as part of the main content.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E49",
+  "rule": "Rujuk dan ringkas gambar yang lebih kompleks dari teks yang menyertainya.",
+  "quote": "It is also good practice to refer to and summarize more complex images from the accompanying text.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E50",
+  "rule": "Tautan teks ke deskripsi panjang didukung semua peramban dan teknologi bantu, dan deskripsi panjangnya tersedia bagi semua orang, termasuk mesin pencari dan program lain; kekurangannya, tautan tidak terkait secara semantik dengan gambar.",
+  "quote": "All web browsers and assistive technologies support this approach. The long descriptions are available to everyone, including search engines and other programs. However, the link is not associated with the image in a semantic way.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E51",
+  "rule": "Elemen HTML5 <figure> dan <figcaption> dapat dipakai untuk mengelompokkan gambar dan tautan secara semantik; role=\"group\" pada figure menjaga kompatibilitas dengan peramban yang tidak mendukung semantik bawaan <figure>.",
+  "quote": "The HTML5 <figure> and <figcaption> elements can be used to group image and link semantically. Adding role=\"group\" to the figure maintains backward compatibility with web browsers that don’t support the native semantics of the <figure> element.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E52",
+  "rule": "Jika deskripsi panjang ada di halaman yang sama, lokasinya dapat dijelaskan lewat atribut alt gambar, dan informasi lokasi harus jelas dan akurat.",
+  "quote": "When a long description is provided on the same web page as an image, its location can be described using the alt attribute of the image. The location information needs to be clear and accurate to help users locate the content.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E53",
+  "rule": "Atribut aria-describedby dapat menautkan gambar ke deskripsi yang ada di mana saja pada halaman yang sama; nilainya adalah id elemen yang memuat deskripsi panjang.",
+  "quote": "The WAI-ARIA aria-describedby attribute can be used to link to a description of the image that is provided anywhere on the same web page. The value of the attribute is the id of the element that provides the long description.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E54",
+  "rule": "Elemen yang dirujuk aria-describedby diperlakukan sebagai satu paragraf teks yang berkelanjutan, sehingga pendekatan ini hanya cocok untuk deskripsi panjang berupa teks saja tanpa struktur.",
+  "quote": "The element referenced by aria-describedby is treated as one continuous paragraph of text.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E55",
+  "rule": "Elemen yang dirujuk aria-describedby diperlakukan sebagai satu paragraf teks yang berkelanjutan, sehingga pendekatan ini hanya cocok untuk deskripsi panjang berupa teks saja tanpa struktur.",
+  "quote": "this approach only works for long descriptions that are text-only, without needing structural information as was needed in the previous example.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E56",
+  "rule": "SVG dapat dirujuk di atribut src elemen <img> seperti format gambar lain (PNG, JPEG, GIF); dalam hal ini contoh-contoh tutorial W3C berlaku juga untuk SVG.",
+  "quote": "SVG graphics can be referenced in the src attribute of an <img> element like other image formats (PNG, JPEG, GIF). In this case, the examples of this tutorial can be used with SVG as well.",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E57",
+  "rule": "Karena SVG berupa tag seperti HTML, kodenya dapat dipakai langsung di HTML5; berikan teks alternatif di elemen <title> dalam SVG dan rujuk title itu dari atribut aria-labelledby pada elemen <svg> untuk meningkatkan dukungan aksesibilitas.",
+  "quote": "As SVG images consist of tags like HTML, their code can also be used in HTML5 directly. In this case you can provide a text alternative in a <title> element within the SVG image. To improve accessibility support, that title should be referenced from an aria-labelledby attribute of the <svg> element",
+  "source": "w3c-images-tips"
+ },
+ {
+  "id": "E58",
+  "rule": "Google Search mendukung gambar pada atribut src elemen img dalam format BMP, GIF, JPEG, PNG, WebP, SVG, dan AVIF.",
+  "quote": "Google Search supports images referenced in the src attribute of img in the following file formats: BMP, GIF, JPEG, PNG, WebP, SVG, and AVIF.",
+  "source": "g-images"
+ },
+ {
+  "id": "E59",
+  "rule": "Pedoman gaya Google: pakai SVG sebagai ganti PNG jika tersedia, karena SVG tetap tajam saat gambar diperbesar.",
+  "quote": "Use SVG instead of PNG if available. SVGs stay sharp when you zoom in on the image.",
+  "source": "gstyle-accessibility"
+ },
+ {
+  "id": "E60",
+  "rule": "Persyaratan teknis agar konten muncul di hasil pencarian Google berlaku juga untuk gambar.",
+  "quote": "The technical requirements for getting your content in Google's search results applies to images too.",
+  "source": "g-images"
+ },
+ {
+  "id": "E61",
+  "rule": "Gunakan elemen HTML <img> standar untuk menyematkan gambar karena membantu crawler menemukan dan memproses gambar.",
+  "quote": "Using standard HTML image elements helps crawlers find and process images.",
+  "source": "g-images"
+ },
+ {
+  "id": "E62",
+  "rule": "Google dapat menemukan gambar di atribut src elemen <img>, bahkan saat berada di dalam elemen lain seperti <picture>.",
+  "quote": "Google can find images in src attribute of <img> element (even when it's a child of other elements, such as the <picture> element).",
+  "source": "g-images"
+ },
+ {
+  "id": "E63",
+  "rule": "Kirim image sitemap untuk memberi tahu Google URL gambar yang mungkin belum ditemukan.",
+  "quote": "You can provide the URL of images we might not have otherwise discovered by submitting an image sitemap.",
+  "source": "g-images"
+ },
+ {
+  "id": "E64",
+  "rule": "Pada image sitemap, elemen <image:loc> dapat berisi URL dari domain lain sehingga CDN dapat dipakai untuk menghosting gambar.",
+  "quote": "Unlike regular sitemaps, you can include URLs from other domains in the <image:loc> elements of the image sitemaps. This lets you use CDNs (content delivery networks) to host images.",
+  "source": "g-images"
+ },
+ {
+  "id": "E65",
+  "rule": "Halaman web memakai elemen <picture> atau atribut srcset pada img untuk gambar responsif, tetapi beberapa peramban dan crawler tidak memahami atribut tersebut; selalu tentukan URL cadangan dengan atribut src.",
+  "quote": "Web pages use the <picture> element or the srcset attribute of an img element to specify responsive images. However, some browsers and crawlers don't understand these attributes. We recommend that you always specify a fallback URL using the src attribute.",
+  "source": "g-images"
+ },
+ {
+  "id": "E66",
+  "rule": "Saat memakai elemen <picture>, sediakan elemen img sebagai cadangan dengan atribut src.",
+  "quote": "make sure that you provide an img element as a fallback with a src attribute when using the picture element",
+  "source": "g-images"
+ },
+ {
+  "id": "E67",
+  "rule": "Anda dapat memengaruhi gambar yang dipilih Google dengan memberikan gambar pilihan lewat salah satu sumber metadata.",
+  "quote": "You can influence which image gets selected by providing your preferred image through one of the following metadata sources:",
+  "source": "g-images"
+ },
+ {
+  "id": "E68",
+  "rule": "Saat memilih gambar pilihan untuk markup schema.org atau meta tag og:image, pilih gambar yang relevan dan representatif untuk halaman.",
+  "quote": "Choose an image that's relevant and representative of the page.",
+  "source": "g-images"
+ },
+ {
+  "id": "E69",
+  "rule": "Hindari gambar generik (misalnya logo situs) atau gambar bertulisan pada markup schema.org atau meta tag og:image.",
+  "quote": "Avoid using a generic image (for example, your site logo) or an image with text in the schema.org markup or og:image meta tag.",
+  "source": "g-images"
+ },
+ {
+  "id": "E70",
+  "rule": "Saat memilih gambar pilihan itu, hindari gambar dengan rasio aspek ekstrem (terlalu sempit atau terlalu lebar), dan gunakan resolusi tinggi jika memungkinkan.",
+  "quote": "Avoid using an image with an extreme aspect ratio (such as images that are too narrow or overly wide). - Use a high resolution, if possible.",
+  "source": "g-images"
+ },
+ {
+  "id": "E71",
+  "rule": "Jika memakai structured data, Google dapat menampilkan gambar di rich result tertentu, termasuk badge yang menonjol di Google Images.",
+  "quote": "If you include structured data, Google can display your images in certain rich results, including a prominent badge in Google Images",
+  "source": "g-images"
+ },
+ {
+  "id": "E72",
+  "rule": "Ikuti pedoman umum structured data dan pedoman jenis spesifiknya; jika tidak, structured data mungkin tidak memenuhi syarat untuk tampil sebagai rich result di Google Images.",
+  "quote": "Follow the general structured data guidelines as well as any guidelines specific to your structured data type; otherwise your structured data might be ineligible for rich result display in Google Images.",
+  "source": "g-images"
+ },
+ {
+  "id": "E73",
+  "rule": "Saat gambar ditetapkan sebagai properti structured data, gambar itu harus relevan dengan halamannya.",
+  "quote": "When specifying an image as a structured data property, make sure that the image is relevant to the page that it's on.",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E74",
+  "rule": "Semua URL gambar di structured data harus dapat di-crawl dan diindeks; jika tidak, Google Search tidak dapat menemukan dan menampilkannya.",
+  "quote": "All image URLs specified in structured data must be crawlable and indexable. Otherwise, Google Search can't find and display them on the search results page.",
+  "source": "g-sd-policies"
+ },
+ {
+  "id": "E75",
+  "rule": "Sebisa mungkin, letakkan gambar di dekat teks yang relevan dan pada halaman yang relevan dengan pokok bahasan gambar.",
+  "quote": "Wherever possible, make sure images are placed near relevant text and on pages that are relevant to the image subject matter.",
+  "source": "g-images"
+ },
+ {
+  "id": "E76",
+  "rule": "Nama berkas dapat memberi Google petunjuk yang sangat ringan tentang pokok bahasan gambar; bila memungkinkan pakai nama berkas yang pendek tetapi deskriptif.",
+  "quote": "the filename can give Google very light clues about the subject matter of the image. When possible, use filenames that are short, but descriptive.",
+  "source": "g-images"
+ },
+ {
+  "id": "E77",
+  "rule": "Contoh Google: my-new-black-kitten.jpg lebih baik daripada IMG00023.JPG; hindari nama generik seperti image1.jpg, pic.gif, atau 1.jpg bila memungkinkan.",
+  "quote": "my-new-black-kitten.jpg is better than IMG00023.JPG. Avoid using generic filenames like image1.jpg, pic.gif, 1.jpg when possible.",
+  "source": "g-images"
+ },
+ {
+  "id": "E78",
+  "rule": "Jika gambar dilokalkan, terjemahkan juga nama berkasnya, dengan memperhatikan pedoman URL encoding bila memakai karakter non-latin atau khusus.",
+  "quote": "If you localize your images, remember to also translate the filenames, keeping in mind the URL encoding guidelines if you're using non-latin or special characters.",
+  "source": "g-images"
+ },
+ {
+  "id": "E79",
+  "rule": "Jika satu gambar dirujuk di banyak halaman, rujuk dengan URL yang sama secara konsisten agar Google dapat menyimpan dan memakai ulang gambar tanpa memintanya berkali-kali.",
+  "quote": "If an image is referenced on multiple pages within a larger website, consider the site's overall crawl budget. In particular, consistently reference the image with the same URL, so that Google can cache and reuse the image without needing to request it multiple times.",
+  "source": "g-images"
+ },
+ {
+  "id": "E80",
+  "rule": "Tambahkan tag <link> di header beranda dengan sintaks <link rel=\"icon\" href=\"/path/to/favicon.ico\">.",
+  "quote": "Add a <link> tag to the header of your home page with the following syntax: <link rel=\"icon\" href=\"/path/to/favicon.ico\">",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E81",
+  "rule": "Google Search hanya mendukung satu favicon per situs, dan situs didefinisikan berdasarkan hostname.",
+  "quote": "Google Search only supports one favicon per site, where a site is defined by the hostname.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E82",
+  "rule": "Favicon harus persegi (rasio 1:1) dengan ukuran minimal 8x8px; Google merekomendasikan favicon lebih besar dari 48x48px.",
+  "quote": "Your favicon must be a square (1:1 aspect ratio) that's at least 8x8px. While the minimum size requirement is 8x8px, we recommend using a favicon that's larger than 48x48px so that it looks good on various surfaces.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E83",
+  "rule": "Format berkas favicon yang didukung Google Search: BMP, GIF, ICO, PNG, JPEG, PPM, dan TIFF.",
+  "quote": "Google Search supports the following favicon file formats: BMP, GIF, ICO, PNG, JPEG, PPM, and TIFF.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E84",
+  "rule": "URL favicon harus stabil; jangan sering mengubah URL-nya.",
+  "quote": "The favicon URL must be stable (don't change the URL frequently).",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E85",
+  "rule": "Googlebot-Image harus dapat meng-crawl berkas favicon dan Googlebot harus dapat meng-crawl beranda; keduanya tidak boleh diblokir.",
+  "quote": "Googlebot-Image must be able to crawl the favicon file and Googlebot must be able to crawl the home page; they cannot be blocked for crawling.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E86",
+  "rule": "Gambar sering menjadi penyumbang terbesar ukuran halaman, yang dapat membuat halaman lambat dan mahal dimuat.",
+  "quote": "images are often the largest contributor to overall page size, which can make pages slow and expensive to load.",
+  "source": "g-images"
+ },
+ {
+  "id": "E87",
+  "rule": "Terapkan teknik optimasi gambar dan gambar responsif terbaru untuk pengalaman yang cepat dan berkualitas tinggi.",
+  "quote": "Make sure to apply the latest image optimization and responsive image techniques to provide a high quality and fast user experience.",
+  "source": "g-images"
+ },
+ {
+  "id": "E88",
+  "rule": "LCP mengukur waktu dari pengguna memulai pemuatan halaman sampai gambar atau blok teks terbesar dirender di viewport.",
+  "quote": "Specifically, LCP measures the time from when the user initiates loading the page until the largest image or text block is rendered within the viewport.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E89",
+  "rule": "Sumber daya LCP dapat ditemukan lewat HTML awal jika elemen LCP adalah <img> dan atribut src atau srcset-nya ada di markup HTML awal.",
+  "quote": "For example, in the following cases, the browser can discover the LCP resource by scanning the HTML document response: - The LCP element is an <img> element, and its src or srcset attributes are present in the initial HTML markup.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E90",
+  "rule": "Sumber daya LCP tidak dapat ditemukan dari HTML awal jika elemen LCP adalah <img> yang ditambahkan ke halaman secara dinamis memakai JavaScript.",
+  "quote": "Here are some examples where the LCP resource cannot be discovered from scanning the HTML document response: - The LCP element is an <img> that is dynamically added to the page using JavaScript.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E91",
+  "rule": "Sumber daya LCP tidak dapat ditemukan dari HTML awal jika di-lazy-load oleh pustaka JavaScript yang menyembunyikan atribut src atau srcset (sering sebagai data-src atau data-srcset).",
+  "quote": "Here are some examples where the LCP resource cannot be discovered from scanning the HTML document response: - The LCP element is an <img> that is dynamically added to the page using JavaScript. - The LCP element is lazily loaded with a JavaScript library that hides its src or srcset attributes (often as data-src or data-srcset).",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E92",
+  "rule": "Jika sumber daya LCP hanya dirujuk dari berkas CSS atau JavaScript eksternal, preload dengan fetch priority tinggi.",
+  "quote": "In cases where the resource is only referenced from an external CSS or JavaScript file, the LCP resource should be preloaded with a high fetch priority",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E93",
+  "rule": "Menetapkan loading=\"lazy\" pada elemen <img> dapat menunda gambar LCP.",
+  "quote": "For example, you can delay your LCP image using HTML if you set loading=\"lazy\" on your <img> element.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E94",
+  "rule": "Gambar tidak dimuat dengan prioritas tertinggi secara awal oleh peramban karena bukan sumber daya yang memblokir render.",
+  "quote": "Even without lazy loading, images are not initially loaded with the highest priority by browsers as they are not render-blocking resources.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E95",
+  "rule": "Sebaiknya tetapkan fetchpriority=\"high\" pada <img> yang kemungkinan menjadi elemen LCP, tetapi menetapkan prioritas tinggi pada lebih dari satu atau dua gambar membuat pengaturan prioritas tidak membantu menurunkan LCP.",
+  "quote": "It's a good idea to set fetchpriority=\"high\" on an <img> element if you think it's likely to be your page's LCP element. However, setting a high priority on more than one or two images makes priority setting unhelpful in reducing LCP.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E96",
+  "rule": "Prioritas gambar yang ada di awal respons dokumen tetapi tidak terlihat karena styling (misalnya slide carousel yang tidak terlihat saat awal) dapat diturunkan.",
+  "quote": "You can also lower the priority of images that might be early in the document response but aren't visible due to styling, such as images in carousel slides that aren't visible at startup: <img fetchpriority=\"low\" src=\"/path/to/carousel-slide-3.webp\">",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E97",
+  "rule": "Setelah mengubah prioritas sumber daya, selalu periksa prioritasnya di DevTools dan uji perubahan dengan alat lab dan lapangan.",
+  "quote": "Always check resource priority in DevTools and test changes with lab and field tools.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E98",
+  "rule": "Sumber daya LCP halaman (jika ada) berupa gambar atau web font; web.dev merujuk panduan untuk mengurangi ukurannya: sajikan ukuran gambar optimal, pakai format gambar modern, dan kompres gambar.",
+  "quote": "The LCP resource of a page (if it has one) will either be an image or a web font. The following guides go into great detail about how to reduce the size of both: - Serve the optimal image size - Use modern image formats - Compress images",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E99",
+  "rule": "CDN gambar sangat membantu karena mengurangi jarak tempuh sumber daya dan umumnya juga mengurangi ukuran sumber daya dengan menerapkan otomatis rekomendasi pengurangan ukuran.",
+  "quote": "Image CDNs in particular are especially helpful because they not only reduce the distance the resource has to travel, but they also generally reduce the size of the resource—automatically implementing all of the size-reduction recommendations from earlier for you.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E100",
+  "rule": "Gambar tanpa dimensi adalah salah satu penyebab paling umum CLS yang buruk.",
+  "quote": "The most common causes of a poor CLS are: - Images without dimensions.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E101",
+  "rule": "Selalu sertakan atribut width dan height pada elemen gambar dan video; alternatifnya, sediakan ruang yang dibutuhkan dengan CSS aspect-ratio atau yang serupa.",
+  "quote": "Always include width and height size attributes on your images and video elements. Alternatively, reserve the required space with CSS aspect-ratio or similar.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E102",
+  "rule": "Dengan atribut width dan height pada elemen gambar, semua peramban akan menambahkan rasio aspek bawaan berdasarkan atribut tersebut.",
+  "quote": "All browsers will then add a default aspect ratio based on the element's existing width and height attributes.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E103",
+  "rule": "Untuk gambar responsif dengan srcset, setiap gambar harus memakai rasio aspek yang sama agar atribut width dan height pada <img> dapat ditetapkan.",
+  "quote": "When working with responsive images, srcset defines the images you allow the browser to select between and what size each image is. To ensure <img> width and height attributes can be set, each image should use the same aspect ratio.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E104",
+  "rule": "Tautan teks diletakkan di sebelah gambar dan merujuk ke halaman terpisah atau bagian halaman yang sama yang memuat deskripsi panjang; teks tautan harus memperjelas tujuan dan mengaitkannya dengan gambar.",
+  "quote": "This approach provides a text link next to the image that refers to a separate web page or a section of the same web page that contains the long description. The link text needs to clarify the destination, and associate it with the image.",
+  "source": "w3c-images-complex"
+ },
+ {
+  "id": "E105",
+  "rule": "Sumber metadata gambar pilihan: properti schema.org primaryImageOfPage (URL atau ImageObject); properti image (URL atau ImageObject) yang dilekatkan ke entitas utama lewat mainEntity atau mainEntityOfPage; atau meta tag og:image.",
+  "quote": "Specify the schema.org primaryImageOfPage property with a URL or ImageObject.",
+  "source": "g-images"
+ },
+ {
+  "id": "E106",
+  "rule": "Sumber metadata gambar pilihan: properti schema.org primaryImageOfPage (URL atau ImageObject); properti image (URL atau ImageObject) yang dilekatkan ke entitas utama lewat mainEntity atau mainEntityOfPage; atau meta tag og:image.",
+  "quote": "Or specify an image URL or ImageObject property and attach it to the main entity (using the schema.org mainEntity or mainEntityOfPage properties):",
+  "source": "g-images"
+ },
+ {
+  "id": "E107",
+  "rule": "Sumber metadata gambar pilihan: properti schema.org primaryImageOfPage (URL atau ImageObject); properti image (URL atau ImageObject) yang dilekatkan ke entitas utama lewat mainEntity atau mainEntityOfPage; atau meta tag og:image.",
+  "quote": "Specify the og:image meta tag. <meta property=\"og:image\" content=\"https://example.com/images/cat.png\">",
+  "source": "g-images"
+ }
+]

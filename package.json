@@ -1,0 +1,14 @@
+{
+  "name": "meridian",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Control room for AI agents that run SEO websites, one per country.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/main.ts",
+    "test:server": "node scripts/test-server.mjs"
+  }
+}

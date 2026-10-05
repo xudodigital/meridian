@@ -1,0 +1,277 @@
+/* Material Design 3 - lapisan token untuk web.
+   Asal nilai:
+   [situs]   = terbaca langsung dari m3.material.io saat perayapan.
+   [ingatan] = nilai baku M3 yang tidak tampil sebagai teks di situs (tabel token interaktif);
+               cocokkan dengan halaman spesifikasi bila ketepatan penting.
+   Warna di bawah adalah skema baseline M3 [ingatan] dan hanya cadangan:
+   ganti dengan skema yang dihasilkan dari warna sumber situs. */
+
+:root {
+  /* ---------- Warna: terang ---------- */
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #eaddff;
+  --md-sys-color-on-primary-container: #4f378b;
+  --md-sys-color-secondary: #625b71;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #e8def8;
+  --md-sys-color-on-secondary-container: #4a4458;
+  --md-sys-color-tertiary: #7d5260;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #ffd8e4;
+  --md-sys-color-on-tertiary-container: #633b48;
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #f9dedc;
+  --md-sys-color-on-error-container: #8c1d18;
+  --md-sys-color-surface: #fef7ff;
+  --md-sys-color-surface-dim: #ded8e1;
+  --md-sys-color-surface-bright: #fef7ff;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f7f2fa;
+  --md-sys-color-surface-container: #f3edf7;
+  --md-sys-color-surface-container-high: #ece6f0;
+  --md-sys-color-surface-container-highest: #e6e0e9;
+  --md-sys-color-on-surface: #1d1b20;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-outline: #79747e;
+  --md-sys-color-outline-variant: #cac4d0;
+  --md-sys-color-inverse-surface: #322f35;
+  --md-sys-color-inverse-on-surface: #f5eff7;
+  --md-sys-color-inverse-primary: #d0bcff;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-shadow: #000000;
+
+  /* ---------- Typeface ---------- */
+  --md-ref-typeface-brand: "Roboto", system-ui, sans-serif;  /* display, headline, title-large */
+  --md-ref-typeface-plain: "Roboto", system-ui, sans-serif;  /* title M/S, body, label */
+  /* Pengali line-height per bahasa [situs]: 1 (Latin, Kiril, Yunani, Ibrani),
+     1.07 (Vietnam, Thai, Bangla, Hindi, Arab, CJK, kebanyakan lainnya),
+     1.3 (Burma, Telugu), 2 (Nastaliq/Urdu). */
+  --md-lang-height: 1;
+
+  /* ---------- Skala tipografi: ukuran / line-height / tracking / berat.
+     Dicocokkan 1 Oktober 2026 dengan token resmi material-web v0.192 (_md-sys-typescale.scss): semua 15 gaya sama. ---------- */
+  --md-sys-typescale-display-large:   400 3.5625rem/calc(4rem * var(--md-lang-height)) var(--md-ref-typeface-brand);    /* 57/64, -0.25 */
+  --md-sys-typescale-display-medium:  400 2.8125rem/calc(3.25rem * var(--md-lang-height)) var(--md-ref-typeface-brand); /* 45/52 */
+  --md-sys-typescale-display-small:   400 2.25rem/calc(2.75rem * var(--md-lang-height)) var(--md-ref-typeface-brand);   /* 36/44 */
+  --md-sys-typescale-headline-large:  400 2rem/calc(2.5rem * var(--md-lang-height)) var(--md-ref-typeface-brand);       /* 32/40 */
+  --md-sys-typescale-headline-medium: 400 1.75rem/calc(2.25rem * var(--md-lang-height)) var(--md-ref-typeface-brand);   /* 28/36 */
+  --md-sys-typescale-headline-small:  400 1.5rem/calc(2rem * var(--md-lang-height)) var(--md-ref-typeface-brand);       /* 24/32 */
+  --md-sys-typescale-title-large:     400 1.375rem/calc(1.75rem * var(--md-lang-height)) var(--md-ref-typeface-brand);  /* 22/28 */
+  --md-sys-typescale-title-medium:    500 1rem/calc(1.5rem * var(--md-lang-height)) var(--md-ref-typeface-plain);       /* 16/24, +0.15 */
+  --md-sys-typescale-title-small:     500 0.875rem/calc(1.25rem * var(--md-lang-height)) var(--md-ref-typeface-plain);  /* 14/20, +0.1 */
+  --md-sys-typescale-body-large:      400 1rem/calc(1.5rem * var(--md-lang-height)) var(--md-ref-typeface-plain);       /* 16/24, +0.5 */
+  --md-sys-typescale-body-medium:     400 0.875rem/calc(1.25rem * var(--md-lang-height)) var(--md-ref-typeface-plain);  /* 14/20, +0.25 */
+  --md-sys-typescale-body-small:      400 0.75rem/calc(1rem * var(--md-lang-height)) var(--md-ref-typeface-plain);      /* 12/16, +0.4 */
+  --md-sys-typescale-label-large:     500 0.875rem/calc(1.25rem * var(--md-lang-height)) var(--md-ref-typeface-plain);  /* 14/20, +0.1 */
+  --md-sys-typescale-label-medium:    500 0.75rem/calc(1rem * var(--md-lang-height)) var(--md-ref-typeface-plain);      /* 12/16, +0.5 */
+  --md-sys-typescale-label-small:     500 0.6875rem/calc(1rem * var(--md-lang-height)) var(--md-ref-typeface-plain);    /* 11/16, +0.5 */
+  /* Tracking (letter-spacing = px / 16 dalam rem) */
+  --md-sys-typescale-display-large-tracking: -0.015625rem;
+  --md-sys-typescale-title-medium-tracking: 0.009375rem;
+  --md-sys-typescale-title-small-tracking: 0.00625rem;
+  --md-sys-typescale-body-large-tracking: 0.03125rem;
+  --md-sys-typescale-body-medium-tracking: 0.015625rem;
+  --md-sys-typescale-body-small-tracking: 0.025rem;
+  --md-sys-typescale-label-large-tracking: 0.00625rem;
+  --md-sys-typescale-label-medium-tracking: 0.03125rem;
+  --md-sys-typescale-label-small-tracking: 0.03125rem;
+  /* Gaya emphasized (M3 Expressive): skala sama, berat lebih tinggi.
+     Pakai untuk state terpilih, aksi utama, dan headline. Berat persisnya [ingatan]. */
+  --md-sys-typescale-emphasized-weight-regular: 500; /* pengganti 400 */
+  --md-sys-typescale-emphasized-weight-medium: 700;  /* pengganti 500 */
+
+  /* ---------- Bentuk [situs] ---------- */
+  --md-sys-shape-corner-none: 0;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-large-increased: 20px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-extra-large-increased: 32px;
+  --md-sys-shape-corner-extra-extra-large: 48px;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* ---------- Elevasi: tinggi [situs] 0/1/3/6/8/12dp; nilai bayangan [ingatan] ---------- */
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level2: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 2px 6px 2px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level3: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 4px 8px 3px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level4: 0 2px 3px 0 rgb(0 0 0 / 0.3), 0 6px 10px 4px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level5: 0 4px 4px 0 rgb(0 0 0 / 0.3), 0 8px 12px 6px rgb(0 0 0 / 0.15);
+  --md-sys-scrim-opacity: 0.32;
+
+  /* ---------- State [situs] ---------- */
+  /* Catatan: m3.material.io menampilkan focus 10% dan pressed 10%; token lama material-web v0.192 memakai 12% untuk keduanya.
+     Skill ini mengikuti situs. */
+  --md-sys-state-hover-opacity: 0.08;
+  --md-sys-state-focus-opacity: 0.1;
+  --md-sys-state-pressed-opacity: 0.1;
+  --md-sys-state-dragged-opacity: 0.16;
+  --md-sys-state-disabled-content-opacity: 0.38;
+  --md-sys-state-disabled-container-opacity: 0.12; /* cocok dengan token filled-button material-web v0.192 */
+
+  /* ---------- Motion: pengganti spring untuk web [situs] ---------- */
+  /* spatial = posisi, ukuran, bentuk. effects = warna, opasitas. */
+  --md-sys-motion-expressive-fast-spatial: 350ms cubic-bezier(0.42, 1.67, 0.21, 0.9);
+  --md-sys-motion-expressive-default-spatial: 500ms cubic-bezier(0.38, 1.21, 0.22, 1);
+  --md-sys-motion-expressive-slow-spatial: 650ms cubic-bezier(0.39, 1.29, 0.35, 0.98);
+  --md-sys-motion-expressive-fast-effects: 150ms cubic-bezier(0.31, 0.94, 0.34, 1);
+  --md-sys-motion-expressive-default-effects: 200ms cubic-bezier(0.34, 0.8, 0.34, 1);
+  --md-sys-motion-expressive-slow-effects: 300ms cubic-bezier(0.34, 0.88, 0.34, 1);
+  --md-sys-motion-standard-fast-spatial: 350ms cubic-bezier(0.27, 1.06, 0.18, 1);
+  --md-sys-motion-standard-default-spatial: 500ms cubic-bezier(0.27, 1.06, 0.18, 1);
+  --md-sys-motion-standard-slow-spatial: 750ms cubic-bezier(0.27, 1.06, 0.18, 1);
+  --md-sys-motion-standard-fast-effects: 150ms cubic-bezier(0.31, 0.94, 0.34, 1);
+  --md-sys-motion-standard-default-effects: 200ms cubic-bezier(0.34, 0.8, 0.34, 1);
+  --md-sys-motion-standard-slow-effects: 300ms cubic-bezier(0.34, 0.88, 0.34, 1);
+  /* Easing dan durasi lama: masih dipakai untuk transisi halaman [situs] */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  /* "emphasized" tidak punya padanan CSS; pakai standard sebagai gantinya. */
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-medium3: 350ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+  --md-sys-motion-duration-long3: 550ms;
+  --md-sys-motion-duration-long4: 600ms;
+
+  /* ---------- Spasi: skala 8px, space100 = 8px [situs]; nama token mengikuti pola pengali ---------- */
+  --md-sys-space-25: 2px;
+  --md-sys-space-50: 4px;
+  --md-sys-space-75: 6px;
+  --md-sys-space-100: 8px;
+  --md-sys-space-150: 12px;
+  --md-sys-space-200: 16px;
+  --md-sys-space-300: 24px;
+  --md-sys-space-400: 32px;
+  --md-sys-space-500: 40px;
+  --md-sys-space-600: 48px;
+  --md-sys-space-800: 64px;
+
+  /* Margin halaman per breakpoint [ingatan]: 16px compact, 24px medium ke atas */
+  --md-layout-margin: 16px;
+}
+
+/* ---------- Warna: gelap ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-primary: #381e72;
+    --md-sys-color-primary-container: #4f378b;
+    --md-sys-color-on-primary-container: #eaddff;
+    --md-sys-color-secondary: #ccc2dc;
+    --md-sys-color-on-secondary: #332d41;
+    --md-sys-color-secondary-container: #4a4458;
+    --md-sys-color-on-secondary-container: #e8def8;
+    --md-sys-color-tertiary: #efb8c8;
+    --md-sys-color-on-tertiary: #492532;
+    --md-sys-color-tertiary-container: #633b48;
+    --md-sys-color-on-tertiary-container: #ffd8e4;
+    --md-sys-color-error: #f2b8b5;
+    --md-sys-color-on-error: #601410;
+    --md-sys-color-error-container: #8c1d18;
+    --md-sys-color-on-error-container: #f9dedc;
+    --md-sys-color-surface: #141218;
+    --md-sys-color-surface-dim: #141218;
+    --md-sys-color-surface-bright: #3b383e;
+    --md-sys-color-surface-container-lowest: #0f0d13;
+    --md-sys-color-surface-container-low: #1d1b20;
+    --md-sys-color-surface-container: #211f26;
+    --md-sys-color-surface-container-high: #2b2930;
+    --md-sys-color-surface-container-highest: #36343b;
+    --md-sys-color-on-surface: #e6e0e9;
+    --md-sys-color-on-surface-variant: #cac4d0;
+    --md-sys-color-outline: #938f99;
+    --md-sys-color-outline-variant: #49454f;
+    --md-sys-color-inverse-surface: #e6e0e9;
+    --md-sys-color-inverse-on-surface: #322f35;
+    --md-sys-color-inverse-primary: #6750a4;
+  }
+}
+/* Ulangi blok gelap di atas untuk :root[data-theme="dark"] bila situs punya tombol tema. */
+
+@media (min-width: 600px) { :root { --md-layout-margin: 24px; } }
+
+/* ---------- Dasar ---------- */
+body {
+  margin: 0;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font: var(--md-sys-typescale-body-large);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+}
+a { color: var(--md-sys-color-primary); text-decoration: underline; }
+:focus-visible { outline: 3px solid var(--md-sys-color-secondary); outline-offset: 2px; }
+
+/* ---------- Pola state layer: pakai pada elemen interaktif mana pun ---------- */
+.md-state { position: relative; isolation: isolate; }
+.md-state::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
+  background: currentColor; opacity: 0;
+  transition: opacity var(--md-sys-motion-standard-fast-effects);
+}
+@media (hover: hover) { .md-state:hover::before { opacity: var(--md-sys-state-hover-opacity); } }
+.md-state:focus-visible::before { opacity: var(--md-sys-state-focus-opacity); }
+.md-state:active::before { opacity: var(--md-sys-state-pressed-opacity); }
+
+/* ---------- Contoh: tombol ukuran small (bawaan) ---------- */
+.md-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px; border: 0; cursor: pointer; white-space: nowrap;
+  border-radius: var(--md-sys-shape-corner-full);
+  font: var(--md-sys-typescale-label-large);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  transition: border-radius var(--md-sys-motion-expressive-fast-spatial),
+              box-shadow var(--md-sys-motion-standard-fast-effects);
+}
+.md-button { position: relative; }
+.md-button::after { content: ""; position: absolute; inset: 50% 0 auto; height: 48px; transform: translateY(-50%); } /* target 48px */
+.md-button:active { border-radius: var(--md-sys-shape-corner-small); } /* shape morph saat ditekan */
+.md-button--filled   { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+.md-button--tonal    { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.md-button--elevated { background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-primary); box-shadow: var(--md-sys-elevation-level1); }
+.md-button--outlined { background: transparent; color: var(--md-sys-color-on-surface-variant); outline: 1px solid var(--md-sys-color-outline-variant); outline-offset: -1px; }
+.md-button--text     { background: transparent; color: var(--md-sys-color-primary); padding: 0 12px; }
+.md-button:disabled {
+  background: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  box-shadow: none; cursor: default;
+}
+
+/* ---------- Contoh: icon button. Visual 40px, target 48px lewat ::after ---------- */
+.md-icon-button {
+  position: relative; display: inline-grid; place-items: center;
+  width: 40px; height: 40px; padding: 0; border: 0; cursor: pointer;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: transparent; color: var(--md-sys-color-on-surface-variant);
+}
+.md-icon-button::after { content: ""; position: absolute; inset: -4px; } /* 40 + 4 + 4 = target 48px */
+
+/* ---------- Contoh: dialog modal. Scrim 32%, masuk lebih lama daripada keluar ---------- */
+dialog.md-dialog {
+  border: 0; padding: 24px; max-width: min(560px, calc(100vw - 48px));
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface);
+}
+dialog.md-dialog::backdrop { background: color-mix(in srgb, var(--md-sys-color-scrim) 32%, transparent); }
+dialog.md-dialog[open] { animation: md-dialog-in var(--md-sys-motion-expressive-default-spatial); }            /* 500ms */
+dialog.md-dialog.closing { animation: md-dialog-out var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard-accelerate) forwards; } /* 200ms */
+@keyframes md-dialog-in  { from { opacity: 0; transform: scale(0.9); } }
+@keyframes md-dialog-out { to   { opacity: 0; transform: scale(0.95); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

@@ -1,0 +1,1214 @@
+[
+ {
+  "id": "E1",
+  "rule": "Ambil data kinerja Google Search lewat Search Console API (`searchAnalytics.query`), dengan `siteUrl` berupa URL properti persis seperti didefinisikan di Search Console: `http://www.example.com/` untuk properti URL-prefix atau `sc-domain:example.com` untuk properti Domain.",
+  "quote": "The URL of the property as defined in Search Console. Examples: http://www.example.com/ (for a URL-prefix property) or sc-domain:example.com (for a Domain property)",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E2",
+  "rule": "Ambil data GA4 lewat Google Analytics Data API v1; API ini tidak kompatibel dengan properti Universal Analytics lama.",
+  "quote": "The Data API programmatically accesses Google Analytics report data but is not compatible with legacy Universal Analytics properties.",
+  "source": "ga4-data-api"
+ },
+ {
+  "id": "E3",
+  "rule": "Setiap permintaan `runReport` GA4 wajib menyebut satu ID properti Google Analytics, dan respons hanya berisi data dari properti itu; jadi tarik data satu properti per permintaan.",
+  "quote": "Every runReport request requires you to specify a Google Analytics property ID.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E4",
+  "rule": "Setiap permintaan `runReport` GA4 wajib menyebut satu ID properti Google Analytics, dan respons hanya berisi data dari properti itu; jadi tarik data satu properti per permintaan.",
+  "quote": "The response from this request includes only data from the Analytics property you specify as the GA_PROPERTY_ID.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E5",
+  "rule": "Google menyebut pengiriman query otomatis ke Google, termasuk scraping hasil untuk tujuan rank-checking, sebagai machine-generated traffic.",
+  "quote": "Machine-generated traffic (also called automated traffic) refers to the practice of sending automated queries to Google. This includes scraping results for rank-checking purposes or other types of automated access to Google Search conducted without express permission.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E6",
+  "rule": "Kegiatan machine-generated traffic melanggar kebijakan spam Google dan Google Terms of Service.",
+  "quote": "Machine-generated traffic (also called automated traffic) refers to the practice of sending automated queries to Google. This includes scraping results for rank-checking purposes or other types of automated access to Google Search conducted without express permission. Machine-generated traffic consumes resources and interferes with our ability to best serve users. Such activities violate our spam policies and the Google Terms of Service.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E7",
+  "rule": "Kirim permintaan dengan metode `POST` ke `https://www.googleapis.com/webmasters/v3/sites/siteUrl/searchAnalytics/query`.",
+  "quote": "POST https://www.googleapis.com/webmasters/v3/sites/siteUrl/searchAnalytics/query",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E8",
+  "rule": "Otorisasi permintaan dengan minimal salah satu scope: `https://www.googleapis.com/auth/webmasters.readonly` atau `https://www.googleapis.com/auth/webmasters`.",
+  "quote": "This request requires authorization with at least one of the following scopes (read more about authentication and authorization). | Scope | https://www.googleapis.com/auth/webmasters.readonly | https://www.googleapis.com/auth/webmasters",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E9",
+  "rule": "Selalu isi `startDate` dan `endDate` (wajib) dengan format YYYY-MM-DD dalam waktu PT (UTC - 7:00/8:00); keduanya termasuk dalam rentang.",
+  "quote": "[Required] Start date of the requested date range, in YYYY-MM-DD format, in PT time (UTC - 7:00/8:00). Must be less than or equal to the end date. This value is included in the range. | | endDate | string | [Required] End date of the requested date range, in YYYY-MM-DD format, in PT time (UTC - 7:00/8:00). Must be greater than or equal to the start date. This value is included in the range.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E10",
+  "rule": "Rentang tanggal minimal satu hari; `startDate` harus kurang dari atau sama dengan `endDate`.",
+  "quote": "You must define a date range of one or more days.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E11",
+  "rule": "Rentang tanggal minimal satu hari; `startDate` harus kurang dari atau sama dengan `endDate`.",
+  "quote": "Must be less than or equal to the end date.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E12",
+  "rule": "Isi `dimensions` untuk mengelompokkan hasil; hasil dikelompokkan sesuai urutan dimensi yang diberikan, dan jika `dimensions` kosong semua nilai digabung menjadi satu baris.",
+  "quote": "Results are grouped in the order that you supply these dimensions.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E13",
+  "rule": "Isi `dimensions` untuk mengelompokkan hasil; hasil dikelompokkan sesuai urutan dimensi yang diberikan, dan jika `dimensions` kosong semua nilai digabung menjadi satu baris.",
+  "quote": "If no dimensions are specified, all values will be combined into a single row.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E14",
+  "rule": "Jangan mengelompokkan berdasarkan dimensi yang sama dua kali.",
+  "quote": "There is no limit to the number of dimensions that you can group by, but you cannot group by the same dimension twice.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E15",
+  "rule": "Dimensi `date` dan `hour` dapat dipakai sebagai dimensi pengelompokan selain dimensi filter.",
+  "quote": "You can use any dimension name in dimensionFilterGroups[].filters[].dimension as well as \"date\" and \"hour\".",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E16",
+  "rule": "Baca tiap baris respons dari `keys` (nilai dimensi sesuai urutan permintaan), `clicks`, `impressions`, `ctr`, dan `position`.",
+  "quote": "A list of the dimension values for that row, grouped according to the dimensions in the request, in the order specified in the request.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E17",
+  "rule": "Baca tiap baris respons dari `keys` (nilai dimensi sesuai urutan permintaan), `clicks`, `impressions`, `ctr`, dan `position`.",
+  "quote": "Click Through Rate (CTR) for the row. Values range from 0 to 1.0, inclusive.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E18",
+  "rule": "Position adalah peringkat relatif tautan Anda di Google: 1 berarti posisi teratas, 2 posisi berikutnya, dan seterusnya.",
+  "quote": "(average) Position: A relative ranking of the position of your link on Google, where 1 is the topmost position, 2 is the next position, and so on.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E19",
+  "rule": "Filter negara memakai kode 3 huruf ISO 3166-1 alpha-3 (bukan kode 2 huruf).",
+  "quote": "Filter against the specified country, as specified by 3-letter country code (ISO 3166-1 alpha-3).",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E20",
+  "rule": "Dimensi filter yang diterima adalah `country`, `device`, `page`, `query`, dan `searchAppearance`; filter boleh memakai dimensi yang tidak dipakai untuk pengelompokan.",
+  "quote": "The dimension that this filter applies to. You can filter by any dimension listed here, even if you are not grouping by that dimension. Acceptable values are: - \"country\": Filter against the specified country, as specified by 3-letter country code (ISO 3166-1 alpha-3). - \"device\": Filter results against the specified device type. Supported values: - DESKTOP - MOBILE - TABLET - \"page\": Filter against the specified URI string. - \"query\": Filter against the specified query string. - \"searchAppearance\": Filter against a specific search result feature.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E21",
+  "rule": "Nilai filter `device` yang didukung adalah DESKTOP, MOBILE, dan TABLET.",
+  "quote": "Filter results against the specified device type. Supported values: - DESKTOP - MOBILE - TABLET",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E22",
+  "rule": "Operator `equals` adalah default dan peka huruf besar-kecil untuk dimensi `page` dan `query`.",
+  "quote": "\"equals\": [Default] Your expression must exactly equal the row value (case-sensitive for page and query dimensions).",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E23",
+  "rule": "Operator `includingRegex` dan `excludingRegex` memakai sintaks regular expression RE2.",
+  "quote": "\"includingRegex\": An RE2 syntax regular expression that must be matched. - \"excludingRegex\": An RE2 syntax regular expression that must not be matched.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E24",
+  "rule": "Semua `dimensionFilterGroups` harus cocok agar sebuah baris dikembalikan.",
+  "quote": "All filter groups must match in order for a row to be returned in the response.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E25",
+  "rule": "Dalam satu grup filter, `groupType` yang didukung hanya `and`; opsi \"or\" belum didukung.",
+  "quote": "Whether all filters in this group must return true (\"and\"), or one or more must return true (not yet supported).",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E26",
+  "rule": "Tanpa `type`, API memakai `web` (tab gabungan \"All\" di Google Search), yang tidak mencakup hasil Discover maupun Google News; tarik `type` lain (`discover`, `googleNews`, `news`, `image`, `video`) lewat permintaan terpisah.",
+  "quote": "[Default] Filter results to the combined (\"All\") tab in Google Search. Does not include Discover or Google News results.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E27",
+  "rule": "Tanpa `type`, API memakai `web` (tab gabungan \"All\" di Google Search), yang tidak mencakup hasil Discover maupun Google News; tarik `type` lain (`discover`, `googleNews`, `news`, `image`, `video`) lewat permintaan terpisah.",
+  "quote": "Enumerate over each type value as desired in a separate query.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E28",
+  "rule": "Gunakan `type`, bukan `searchType` (parameter itu sudah deprecated).",
+  "quote": "searchType | string | Deprecated, use type instead",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E29",
+  "rule": "Lacak peringkat dari metrik `position` hasil `searchAnalytics.query`, yang merupakan rata-rata posisi seluruh impresi, bukan posisi tunggal.",
+  "quote": "In Search Console, the metric is shown as average position, which averages the position value for all impressions (because the position of the link will be different each time it is seen).",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E30",
+  "rule": "Posisi yang dihitung adalah posisi teratas yang diduduki tautan ke properti atau halaman Anda, dirata-rata di semua query tempat properti muncul.",
+  "quote": "The position value shown in the Performance report is the topmost position occupied by a link to your property or page in search results, averaged across all queries in which your property appeared.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E31",
+  "rule": "Posisi hanya tercatat jika tautan mendapat impresi; baris tanpa impresi tidak punya posisi.",
+  "quote": "A link must get an impression for its position to be recorded.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E32",
+  "rule": "Posisi hanya dihitung untuk hasil Google Search dan tidak dicatat untuk hasil Discover.",
+  "quote": "Position is calculated only for Google Search Results.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E33",
+  "rule": "Posisi hanya dihitung untuk hasil Google Search dan tidak dicatat untuk hasil Discover.",
+  "quote": "Position: Position is not recorded for Discover results.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E34",
+  "rule": "Jangan menyamakan posisi rata-rata dengan hasil pencarian manual; posisi untuk satu pencarian tertentu dapat berbeda dari rata-rata karena riwayat pencarian, lokasi, dan variabel lain.",
+  "quote": "For your specific search your position might be different than the average because of many variables, such as your search history, location, and so on.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E35",
+  "rule": "Perlakukan `position` sebagai metrik kompleks yang dapat menyesatkan; satu angka posisi bisa berarti hal berbeda pada situasi berbeda, jadi jangan membuat asumsi sederhana.",
+  "quote": "The position value is a complex metric that can be misleading if you don't understand the subtleties.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E36",
+  "rule": "Perlakukan `position` sebagai metrik kompleks yang dapat menyesatkan; satu angka posisi bisa berarti hal berbeda pada situasi berbeda, jadi jangan membuat asumsi sederhana.",
+  "quote": "As you can see, a position number can mean different things in different situations, and so you should not make simple assumptions.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E37",
+  "rule": "Pantau perubahan posisi dari waktu ke waktu, terutama perubahan mendadak, di samping posisi absolut.",
+  "quote": "We recommend that you monitor change in position over time, particularly sudden position changes, as well as absolute position.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E38",
+  "rule": "Pada umumnya, jangan terlalu berfokus pada posisi absolut; impresi dan klik pada akhirnya adalah ukuran keberhasilan situs.",
+  "quote": "In general, you shouldn't focus too much on your absolute position. Impressions and clicks are ultimately the measure of success for your site.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E39",
+  "rule": "Data Search Analytics dicatat terpisah per jenis pencarian (search type) dan tidak digabung lintas jenis.",
+  "quote": "Search Analytics records data for each search type separately; it does not combine the data across search types.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E40",
+  "rule": "Clicks adalah berapa kali seseorang mengklik tautan dari Google ke situs Anda.",
+  "quote": "Clicks: How often someone clicked a link from Google to your site.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E41",
+  "rule": "Impressions adalah berapa kali seseorang melihat (atau mungkin melihat) tautan ke situs Anda di Search, Discover, atau News.",
+  "quote": "An impression means that a user has seen (or potentially seen) a link to your site in Search, Discover, or News.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E42",
+  "rule": "CTR dihitung sebagai klik dibagi impresi.",
+  "quote": "Click-through rate: The calculation of (clicks ÷ impressions).",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E43",
+  "rule": "Menggulir menjauh lalu kembali, atau berpindah halaman lalu kembali, dalam satu query atau sesi tidak dihitung sebagai impresi berganda.",
+  "quote": "Scrolling away and back, or paging away and back, during a single query or session does not count as multiple impressions.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E44",
+  "rule": "Klik, impresi, dan posisi untuk semua variasi sebuah halaman diatribusikan ke URL kanonis yang dipilih Google (meskipun dalam beberapa kasus data bisa diatribusikan ke URL aktual, bukan URL kanonis); jadi meskipun ada URL terpisah untuk versi mobile dan desktop, semua data klik diatribusikan ke URL yang sama di laporan Performance.",
+  "quote": "Click, impression, and position data for all variations of a page are assigned to the canonical URL that Google selects for each page (although in some cases data might be assigned to the actual URL, rather than the canonical URL). This means that even if you have separate URLs for the mobile and desktop version of a page, all click data will be assigned to the same URL in the Performance report.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E45",
+  "rule": "Redirect setelah pengguna mendarat dari Google tidak mengubah URL yang menerima impresi atau klik.",
+  "quote": "If your website redirects the user to another page after they've landed from Google, that has no effect on the URL assigned the impression or click.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E46",
+  "rule": "Jalankan satu query per hari untuk data satu hari; query harian untuk satu hari data tidak seharusnya melebihi kuota harian.",
+  "quote": "We recommend running a query each day for one day's worth of data using one of the query styles described below.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E47",
+  "rule": "Jalankan satu query per hari untuk data satu hari; query harian untuk satu hari data tidak seharusnya melebihi kuota harian.",
+  "quote": "Running a daily query for one day of data should not exceed your daily quota.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E48",
+  "rule": "Isi `rowLimit` antara 1 sampai 25,000 (default 1,000).",
+  "quote": "[Optional; Valid range is 1–25,000; Default is 1,000] The maximum number of rows to return.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E49",
+  "rule": "Untuk paginasi, ulangi query yang sama dengan menaikkan `startRow` sebesar 25,000 sampai respons berisi 0 baris.",
+  "quote": "Page through results by re-running the same query, increasing the startRow value by 25,000 in the request until you reach the last page (a response with 0 rows).",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E50",
+  "rule": "Metode Search Analytics hanya membuka maksimum 50K baris data per hari per jenis pencarian (diurutkan menurut klik), di luar kuota pemakaian API.",
+  "quote": "In addition to API usage quota, the Search Analytics method exposes a maximum of 50K rows of data per day per search type (web, image, and so on--sorted by clicks).",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E51",
+  "rule": "API tidak menjamin mengembalikan semua baris data, melainkan baris teratas.",
+  "quote": "The API is bounded by internal limitations of Search Console and does not guarantee to return all data rows but rather top ones.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E52",
+  "rule": "Hasil diurutkan menurut klik menurun; jika dikelompokkan menurut `date`, hasil diurutkan menurut tanggal naik (terlama dulu). Baris dengan klik sama berurutan acak.",
+  "quote": "Results are sorted by click count, in descending order, unless you group by date, in which case results are sorted by date, in ascending order (oldest first, newest last). If there is a tie between two rows, the sort order is arbitrary.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E53",
+  "rule": "Data biasanya tersedia setelah 2-3 hari; ketahui data terbaru dengan query sederhana dikelompokkan menurut tanggal untuk 10 hari terakhir.",
+  "quote": "Data is typically available after 2-3 days; you can learn what is the most recently available data by running a simple query grouped by date for the past 10 days.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E54",
+  "rule": "Jika `date` menjadi dimensi, hari tanpa data dihilangkan dari hasil; untuk mengetahui hari mana yang punya data, kirim query tanpa filter yang dikelompokkan menurut tanggal.",
+  "quote": "When date is one of the dimensions, any days without data are omitted from the result list.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E55",
+  "rule": "Jika `date` menjadi dimensi, hari tanpa data dihilangkan dari hasil; untuk mengetahui hari mana yang punya data, kirim query tanpa filter yang dikelompokkan menurut tanggal.",
+  "quote": "To learn which days have data, issue a query without filters grouped by date, for the date range of interest.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E56",
+  "rule": "Tanpa `dataState` (atau dengan `final`), data yang dikembalikan hanya data final; `all` menyertakan data segar.",
+  "quote": "If \"final\" (case-insensitive) or if this parameter is omitted, the returned data will include only finalized data.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E57",
+  "rule": "Tanpa `dataState` (atau dengan `final`), data yang dikembalikan hanya data final; `all` menyertakan data segar.",
+  "quote": "If \"all\" (case-insensitive), data will include fresh data.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E58",
+  "rule": "`hourly_all` memberi rincian per jam dan dipakai saat mengelompokkan menurut dimensi `HOUR`; data per jam mencakup data parsial.",
+  "quote": "If \"hourly_all\" (case-insensitive), data will include hourly breakdown. This will indicate that hourly data includes partial data and should be used when grouping by the HOUR API dimension.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E59",
+  "rule": "Saat meminta data terbaru (`all` atau `hourly_all`), sebagian baris dapat tidak lengkap karena data masih dikumpulkan.",
+  "quote": "some of the rows returned may represent data that is incomplete, which means that the data is still being collected and processed.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E60",
+  "rule": "Gunakan `first_incomplete_date` di `metadata` untuk menandai awal data yang belum lengkap; kolom ini hanya terisi jika `dataState` adalah `all`, data dikelompokkan menurut tanggal, dan rentang berisi titik data tidak lengkap.",
+  "quote": "This field is populated only when the request's dataState is all and data is grouped by date, and the requested date range contains incomplete data points.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E61",
+  "rule": "Nilai setelah `first_incomplete_date` mungkin masih berubah secara berarti.",
+  "quote": "All values after the first_incomplete_date may still change noticeably.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E62",
+  "rule": "Semua tanggal dan waktu dalam objek `metadata` memakai zona waktu America/Los_Angeles.",
+  "quote": "All dates and times provided in this object are in the America/Los_Angeles time zone.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E63",
+  "rule": "Jika memfilter atau mengelompokkan menurut `page`, pilih `aggregationType` `auto`; Anda tidak dapat agregasi menurut properti.",
+  "quote": "If you filter or group by page, choose auto; otherwise you can aggregate either by property or by page",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E64",
+  "rule": "Jika memfilter atau mengelompokkan menurut `page`, pilih `aggregationType` `auto`; Anda tidak dapat agregasi menurut properti.",
+  "quote": "If you group or filter by page, you cannot aggregate by property.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E65",
+  "rule": "Impresi, klik, posisi, dan CTR dihitung secara berbeda saat mengelompokkan menurut halaman dibanding menurut properti.",
+  "quote": "Impressions, clicks, position, and click-through-rate are are calculated differently when grouping results by page rather than by property.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E66",
+  "rule": "Untuk angka yang akurat, hilangkan dimensi `page` dan `query`.",
+  "quote": "For accurate counts, you must omit the page and query dimensions, like this:",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E67",
+  "rule": "Meminta dimensi `page` dan/atau `query` dapat membuat sebagian data hilang karena sistem membuang data agar hasil dihitung dalam waktu dan sumber daya yang wajar.",
+  "quote": "When you group by page and/or query, our system may drop some data in order to be able to calculate results in a reasonable time using a reasonable amount of computing resources.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E68",
+  "rule": "Data `searchAppearance` tidak tersedia bersama dimensi lain: query pertama memakai `searchAppearance` sebagai satu-satunya dimensi untuk daftar tipe.",
+  "quote": "Search appearance is not available as a column along with any other dimensions.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E69",
+  "rule": "Data `searchAppearance` tidak tersedia bersama dimensi lain: query pertama memakai `searchAppearance` sebagai satu-satunya dimensi untuk daftar tipe.",
+  "quote": "Specify searchAppearance as the only dimension, which will group all data by search appearance type with no other dimensions.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E70",
+  "rule": "Query kedua memfilter satu tipe `searchAppearance` dan boleh menambah dimensi; jalankan sekali per tipe yang ingin dilihat.",
+  "quote": "Optionally run a second query, filtering by one of the search appearance types listed in step 1, adding any desired dimensions to the query (page, country, query, etc). To retrieve data about multiple search appearance types, you must run the second step once per search appearance type listed step 1.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E71",
+  "rule": "Grafik pada laporan Performance diagregasi menurut properti: dua hasil dari situs yang sama untuk satu query dihitung sebagai satu impresi pada total grafik.",
+  "quote": "Data on the chart is aggregated by property. For example, if two results from the same site appear for one query, they count as a single impression in the chart total.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E72",
+  "rule": "Tabel dikelompokkan menurut dimensi: Queries, Countries, Devices, atau Dates diagregasi menurut properti; Pages atau Search appearance diagregasi menurut halaman.",
+  "quote": "Data grouped by Queries, Countries, Devices, or Dates is aggregated by property. Data grouped by Pages or Search appearance is aggregated by page.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E73",
+  "rule": "Total grafik dapat berbeda dari total tabel, biasanya karena perbedaan agregasi (properti vs halaman).",
+  "quote": "The chart totals can sometimes differ from the table totals. This is usually due to differences in aggregation (property vs. page).",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E74",
+  "rule": "Pada beberapa konfigurasi laporan, nilai posisi dapat tampil sebagai tanda strip (-); itu berarti tidak ada posisi tercatat karena pengguna tidak pernah melihat properti Anda untuk query itu.",
+  "quote": "In some report configurations you might see a dash (-) for the position value. This means that there is no recorded position because the user never saw your property for that query.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E75",
+  "rule": "Pastikan juga memeriksa halaman Search Console Data Anomalies untuk melihat apakah ada yang berlaku untuk situs Anda; penurunan bisa terkait perubahan pemrosesan data atau kesalahan logging.",
+  "quote": "Also make sure to check the Search Console Data Anomalies page to see if there is anything applicable to your site. The drop might be related to a change in the data processing or a logging error.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E76",
+  "rule": "Bagian-bagian dokumentasi mencakup penyebab utama yang perlu diselidiki saat menganalisis penurunan traffic.",
+  "quote": "The following sections cover the main causes you should investigate when analyzing a traffic drop.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E77",
+  "rule": "Lihat pola pada grafik utama laporan Performance; jika impresi dan klik sama-sama turun, periksa daftar penyebab paling umum.",
+  "quote": "If both impressions and clicks dropped, check the list of the most common reasons that could have caused it.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E78",
+  "rule": "Jika impresi tetap tetapi klik turun, judul halaman dan snippet mungkin kurang baik, atau situs lain mungkin punya rich result yang lebih menarik.",
+  "quote": "If your impressions remain the same but your clicks drop, you might not be generating the best page title and snippet that you could, and so users don't understand the content of your page, or perhaps other sites had a more appealing rich result.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E79",
+  "rule": "Ubah rentang tanggal ke 16 bulan untuk melihat penurunan dalam konteks dan memastikan itu bukan penurunan tahunan akibat perayaan atau tren.",
+  "quote": "Choose the Date filter on top of the chart and select Last 16 months. This will help you analyze the traffic drop in context and make sure it's not a drop that happens every year due to a festivity or a trend.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E80",
+  "rule": "Untuk melampaui 16 bulan, tarik data dengan Search Analytics API atau bulk data exports dan simpan di sistem sendiri.",
+  "quote": "If you'd like to extend the 16 months, you could use the Search Analytics API or bulk data exports to pull data and store it in your systems.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E81",
+  "rule": "Bandingkan periode penurunan dengan periode serupa (periode sebelumnya atau tahun ke tahun), lalu periksa semua tab untuk melihat apakah perubahan hanya terjadi pada query, URL, negara, perangkat, atau search appearance tertentu.",
+  "quote": "Choose the Date filter on top of the chart, select the Compare tab, and then Compare last 3 months to previous period or Compare last 3 months year over year. This will help you review what exactly changed. Make sure to click all tabs to find out if the change happened only for specific queries, URLs, countries, devices, or search appearances",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E82",
+  "rule": "Analisis jenis pencarian secara terpisah untuk mengetahui apakah penurunan terjadi di web Search, Google Images, tab Video, atau News.",
+  "quote": "This will help you understand whether the drop you've seen happened in web Search, Google Images, or the Video or News tab.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E83",
+  "rule": "Cari pola pada halaman terdampak: apakah penurunan terjadi di seluruh situs, sekelompok halaman, atau satu halaman penting saja.",
+  "quote": "one important factor is finding out if the drop happened across the whole site, a group of pages, or even just one very important page in your site.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E84",
+  "rule": "Jika masalah di seluruh situs, periksa laporan Page indexing; jika hanya sekelompok halaman, gunakan URL Inspection tool pada beberapa halaman.",
+  "quote": "If it's a site-wide issue, check the Page indexing report.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E85",
+  "rule": "Jika masalah di seluruh situs, periksa laporan Page indexing; jika hanya sekelompok halaman, gunakan URL Inspection tool pada beberapa halaman.",
+  "quote": "If the drop only affects a group of pages, use the URL inspection tool to investigate a few pages.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E86",
+  "rule": "Cek halaman daftar ranking updates Google untuk melihat apakah ada pembaruan yang relevan dengan situs.",
+  "quote": "We post about notable improvements to our systems on our list of ranking updates page; check it to see if there's anything that's applicable to your site.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E87",
+  "rule": "Jika dicurigai karena update algoritma, mungkin tidak ada yang salah secara mendasar pada konten.",
+  "quote": "it's important to understand that there might not be anything fundamentally wrong with your content.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E88",
+  "rule": "Tinjau halaman teratas di Search Console dan nilai peringkatnya: penurunan posisi kecil (misalnya 2 ke 4) atau besar (misalnya 4 ke 29).",
+  "quote": "To determine whether you need to make a change, review your top pages in Search Console and assess how they were ranking: - Small drop in position? For example, dropping from position 2 to 4. - Large drop in position? For example, dropping from position 4 to 29.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E89",
+  "rule": "Pada penurunan posisi kecil, traffic dapat turun terasa tanpa perubahan besar pada impresi, dan fluktuasi kecil dapat terjadi kapan saja termasuk naik kembali tanpa tindakan.",
+  "quote": "In Search Console, you might see a noticeable drop in traffic without a big change in impressions.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E90",
+  "rule": "Pada penurunan posisi kecil, traffic dapat turun terasa tanpa perubahan besar pada impresi, dan fluktuasi kecil dapat terjadi kapan saja termasuk naik kembali tanpa tindakan.",
+  "quote": "Small fluctuations in position can happen at any time (including moving back up in position, without you needing to do anything).",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E91",
+  "rule": "Hindari perubahan radikal jika halaman sudah berkinerja baik.",
+  "quote": "we recommend avoiding making radical changes if your page is already performing well.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E92",
+  "rule": "Penurunan posisi besar berarti jatuh dari hasil teratas untuk banyak istilah (misalnya dari 10 besar ke posisi 29).",
+  "quote": "A large drop in position is when you see a notable drop out of the top results for a wide range of terms (for example, dropping from the top 10 results to position 29).",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E93",
+  "rule": "Untuk penurunan posisi besar, nilai ulang seluruh situs (bukan hanya halaman individual) agar helpful, reliable, dan people-first.",
+  "quote": "self-assess your whole website overall (not just individual pages) to make sure it's helpful, reliable and people-first.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E94",
+  "rule": "Perubahan pada situs dapat memerlukan waktu: sebagian berdampak dalam beberapa hari, sebagian bisa berbulan-bulan.",
+  "quote": "some changes can take effect in a few days, while others could take several months.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E95",
+  "rule": "Secara umum, tunggu beberapa minggu sebelum menganalisis ulang di Search Console untuk melihat dampak perbaikan terhadap posisi.",
+  "quote": "In general, you'll likely want to wait a few weeks to analyze your site in Search Console again to see if your efforts had a beneficial effect on ranking position.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E96",
+  "rule": "Jika melihat penurunan posisi yang dramatis dan menetap, nilai konten untuk memastikan helpful dan reliable.",
+  "quote": "if you do see a dramatic, persistent drop in position, try self-assessing your content to gauge if it's helpful and reliable.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E97",
+  "rule": "Masalah teknis dapat berupa seluruh situs (situs mati) atau per halaman (misalnya tag noindex yang salah tempat); yang per halaman bergantung pada crawl Google sehingga penurunan traffic lebih lambat.",
+  "quote": "Note that the issues can be site-wide (for example, your website is down) or page-wide (for example, a misplaced noindex tag, which would depend on Google crawling the page, meaning there would be a slower drop in traffic).",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E98",
+  "rule": "Periksa laporan Crawl stats dan Page indexing untuk melihat lonjakan masalah yang sesuai.",
+  "quote": "Check the Crawl stats report and Page indexing report to find if there's a corresponding spike in issues detected",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E99",
+  "rule": "Periksa laporan Security Issues untuk melihat apakah Google mendeteksi ancaman keamanan; peringatan Google kepada pengguna dapat menurunkan traffic Search.",
+  "quote": "Check the Security Issues report to find if Google detected a security threat on your website.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E100",
+  "rule": "Periksa laporan Security Issues untuk melihat apakah Google mendeteksi ancaman keamanan; peringatan Google kepada pengguna dapat menurunkan traffic Search.",
+  "quote": "Google may alert users before they reach your site with warnings or interstitial pages, which may decrease Search traffic.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E101",
+  "rule": "Periksa laporan Manual Actions untuk melihat apakah ada tindakan manual terhadap situs.",
+  "quote": "Also, check the Manual Actions report on Search Console to see if any have been issued to your website.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E102",
+  "rule": "Untuk musiman, filter satu query teratas pada laporan Performance lalu periksa di Google Trends apakah penurunan hanya terjadi pada situs Anda atau di seluruh web.",
+  "quote": "Find queries that saw a drop in clicks and impressions using the Performance report by applying a filter to include only a query at a time (choose the queries that receive the most traffic); then, check them on Google Trends to understand if the drop was only for your website or throughout the web.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E103",
+  "rule": "Jika URL halaman berubah, fluktuasi peringkat dapat terjadi saat Google merayapi dan mengindeks ulang; situs ukuran menengah umumnya butuh beberapa minggu, situs lebih besar bisa lebih lama.",
+  "quote": "If you change the URLs of existing pages on your site, you may experience ranking fluctuations while Google recrawls and reindexes your site. As a general rule, a medium-sized website can take a few weeks for Google to notice the change; larger sites can take longer.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E104",
+  "rule": "Jika ada query penting yang tidak muncul di traffic Anda, periksa apakah ada konten tentang topik itu dan pastikan dirayapi dan diindeks.",
+  "quote": "If there are queries missing from your traffic, check if you have content on that subject and make sure it's being crawled and indexed.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E105",
+  "rule": "Laporan Page indexing tidak dipakai untuk memeriksa status indeks halaman tertentu; pakai URL Inspection tool.",
+  "quote": "This report isn't used to investigate the index status of specific pages. To find the index status of a specific page, use the URL Inspection tool.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E106",
+  "rule": "Tujuannya mengindeks versi kanonis dari setiap halaman penting; halaman duplikat atau alternatif tidak seharusnya diindeks.",
+  "quote": "Your goal is to get the canonical version of every important page indexed. Duplicate or alternate pages shouldn't be indexed.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E107",
+  "rule": "Not indexed tidak selalu buruk; periksa alasan yang diberikan untuk setiap URL.",
+  "quote": "Remember that Not indexed is not necessarily bad. Examine the reason given for not indexing a given URL.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E108",
+  "rule": "Penurunan total halaman terindeks tanpa kenaikan error mungkin berarti akses diblokir lewat robots.txt, noindex, atau login; cari lonjakan URL non-indeks yang sesuai.",
+  "quote": "If you see a drop in total indexed pages without a corresponding increase in errors, you might be blocking access to your existing pages via robots.txt, 'noindex' or a required login.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E109",
+  "rule": "Penurunan total halaman terindeks tanpa kenaikan error mungkin berarti akses diblokir lewat robots.txt, noindex, atau login; cari lonjakan URL non-indeks yang sesuai.",
+  "quote": "Look for a spike in non-indexed URLs that corresponds to your drop in indexed pages.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E110",
+  "rule": "Lonjakan error dapat disebabkan perubahan template yang memasukkan error baru, atau sitemap berisi URL yang diblokir robots.txt, noindex, atau login.",
+  "quote": "Error spikes might be caused by a change in your template that introduces a new error, or you might have submitted a sitemap that includes URLs that are blocked for crawling by robots.txt, noindex, or a login requirement.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E111",
+  "rule": "Untuk server error, periksa host status verdict di laporan Crawl Stats.",
+  "quote": "Check the host status verdict for your site in the Crawl Stats report to see if Google is reporting site availability issues that you can confirm and fix.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E112",
+  "rule": "Daftar URL contoh di laporan dibatasi 1,000 item dan tidak dijamin menampilkan semua URL pada suatu status.",
+  "quote": "Note that the list of example URLs in the report is limited to 1,000 items, and isn't guaranteed to show all URLs in a given status, even when less than 1,000 items.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E113",
+  "rule": "Pada umumnya hanya masalah dengan Source \"Website\" yang dapat Anda perbaiki.",
+  "quote": "In general, you can fix only issues where the source is listed as \"Website\".",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E114",
+  "rule": "Jika ingin menelusuri lebih jauh, Anda dapat menggunakan Google Trends untuk memahami apakah penurunan merupakan tren yang lebih luas atau hanya terjadi pada situs Anda.",
+  "quote": "If you want to go the extra mile, you can use Google Trends to understand whether the drop is a wider trend or if it's just happening for your site.",
+  "source": "g-traffic-drops"
+ },
+ {
+  "id": "E115",
+  "rule": "Gunakan `runReport` sebagai metode yang direkomendasikan untuk query laporan sederhana.",
+  "quote": "runReport This method returns a customized report of your Google Analytics event data and is the preferred method for simple report queries.",
+  "source": "ga4-data-api"
+ },
+ {
+  "id": "E116",
+  "rule": "Gunakan `batchRunReports` untuk membuat beberapa laporan dalam satu panggilan API.",
+  "quote": "This is a batch version of the runReport method which lets you generate multiple reports using a single API call.",
+  "source": "ga4-data-api"
+ },
+ {
+  "id": "E117",
+  "rule": "Gunakan `getMetadata` untuk menjelajahi dimensi dan metrik; responsnya juga memuat dimensi dan metrik kustom properti tersebut.",
+  "quote": "This method returns metadata for dimensions and metrics available in reporting methods.",
+  "source": "ga4-data-api"
+ },
+ {
+  "id": "E118",
+  "rule": "Gunakan `getMetadata` untuk menjelajahi dimensi dan metrik; responsnya juga memuat dimensi dan metrik kustom properti tersebut.",
+  "quote": "The response of this method also includes the Custom dimensions and metrics available for the specified Google Analytics property.",
+  "source": "ga4-data-api"
+ },
+ {
+  "id": "E119",
+  "rule": "Kirim `POST` ke `https://analyticsdata.googleapis.com/v1beta/properties/GA_PROPERTY_ID:runReport`.",
+  "quote": "POST https://analyticsdata.googleapis.com/v1beta/properties/GA_PROPERTY_ID:runReport",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E120",
+  "rule": "Mulailah dengan `dateRanges`, minimal satu `dimensions`, dan minimal satu `metrics`; minimal satu metrik wajib ada.",
+  "quote": "We recommend starting with the following parameters: - A valid entry in the dateRanges field. - At least one valid entry in the dimensions field. - At least one valid entry in the metrics field.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E121",
+  "rule": "Mulailah dengan `dateRanges`, minimal satu `dimensions`, dan minimal satu `metrics`; minimal satu metrik wajib ada.",
+  "quote": "You must specify at least one metric in your runReport requests.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E122",
+  "rule": "Rentang tanggal dapat ditulis relatif, misalnya `\"startDate\": \"7daysAgo\", \"endDate\": \"yesterday\"`.",
+  "quote": "\"startDate\": \"7daysAgo\", \"endDate\": \"yesterday\"",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E123",
+  "rule": "Satu permintaan dapat memuat beberapa `dateRanges` (misalnya untuk membandingkan dua periode).",
+  "quote": "One report request can retrieve data for multiple dateRanges.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E124",
+  "rule": "Dimensi bersifat opsional pada `runReport` dan maksimal sembilan per permintaan.",
+  "quote": "Dimensions are optional for runReport requests, and you can use up to nine dimensions per request.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E125",
+  "rule": "Filter dimensi lewat `FilterExpression` pada bidang `dimensionFilter`.",
+  "quote": "To filter dimensions, specify a FilterExpression in the dimensionFilter field.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E126",
+  "rule": "Secara default laporan hanya berisi 10,000 baris pertama; tambahkan `\"limit\": 250000` untuk sampai 250,000 baris.",
+  "quote": "By default, the report contains only the first 10,000 rows of event data. To view up to 250,000 rows in the report, you can include \"limit\": 250000 in the RunReportRequest.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E127",
+  "rule": "Untuk laporan lebih dari 250,000 baris, kirim serangkaian permintaan dan lakukan paginasi.",
+  "quote": "For reports with more than 250,000 rows, you have to send a series of requests and page through the results.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E128",
+  "rule": "Dimensi `date` berformat YYYYMMDD.",
+  "quote": "The date of the event, formatted as YYYYMMDD.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E129",
+  "rule": "Dimensi `country` adalah negara asal aktivitas pengguna.",
+  "quote": "The country from which the user activity originated.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E130",
+  "rule": "Dimensi `landingPage` adalah path halaman pada pageview pertama dalam sesi.",
+  "quote": "The page path associated with the first pageview in a session.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E131",
+  "rule": "Dimensi `pagePath` adalah bagian URL antara hostname dan query string.",
+  "quote": "The portion of the URL between the hostname and query string for web pages visited",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E132",
+  "rule": "Dimensi `sessionSource` dan `sessionMedium` adalah source dan medium yang memulai sesi; `sessionSourceMedium` menggabungkan keduanya.",
+  "quote": "The source that initiated a session on your website or app.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E133",
+  "rule": "Dimensi `sessionSource` dan `sessionMedium` adalah source dan medium yang memulai sesi; `sessionSourceMedium` menggabungkan keduanya.",
+  "quote": "The combined values of the dimensions sessionSource and sessionMedium.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E134",
+  "rule": "Dimensi `sessionDefaultChannelGroup` didasarkan terutama pada source dan medium, dengan nilai antara lain Direct, Organic Search, Paid Social, Organic Social, Email, Affiliates, Referral, Paid Search, Video, dan Display.",
+  "quote": "The session's default channel group is based primarily on source and medium. An enumeration which includes Direct, Organic Search, Paid Social, Organic Social, Email, Affiliates, Referral, Paid Search, Video, and Display.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E135",
+  "rule": "Metrik `sessions` menghitung sesi yang dimulai di situs atau aplikasi (event `session_start`).",
+  "quote": "The number of sessions that began on your site or app (event triggered: session_start).",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E136",
+  "rule": "Metrik `activeUsers` adalah jumlah pengguna unik yang mengunjungi situs atau aplikasi; `totalUsers` adalah pengguna unik yang mencatat minimal satu event.",
+  "quote": "The number of distinct users who visited your site or app.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E137",
+  "rule": "Metrik `activeUsers` adalah jumlah pengguna unik yang mengunjungi situs atau aplikasi; `totalUsers` adalah pengguna unik yang mencatat minimal satu event.",
+  "quote": "The number of distinct users who have logged at least one event, regardless of whether the site or app was in use when that event was logged.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E138",
+  "rule": "Sesi terlibat (`engagedSessions`) adalah sesi yang berlangsung lebih dari 10 detik, atau punya key event, atau punya 2 atau lebih screen view.",
+  "quote": "The number of sessions that lasted longer than 10 seconds, or had a key event, or had 2 or more screen views.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E139",
+  "rule": "`engagementRate` dikembalikan sebagai pecahan (0.7239 berarti 72.39%), bukan persen.",
+  "quote": "This metric is returned as a fraction; for example, 0.7239 means 72.39% of sessions were engaged sessions.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E140",
+  "rule": "`bounceRate` adalah persentase sesi yang tidak terlibat, dikembalikan sebagai pecahan.",
+  "quote": "The percentage of sessions that were not engaged ((Sessions Minus Engaged sessions) divided by Sessions). This metric is returned as a fraction; for example, 0.2761 means 27.61% of sessions were bounces.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E141",
+  "rule": "`screenPageViews` menghitung tampilan layar atau halaman, termasuk tampilan berulang pada satu halaman.",
+  "quote": "Repeated views of a single page or screen are counted.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E142",
+  "rule": "`keyEvents` adalah jumlah key event; menandai event sebagai key event hanya memengaruhi laporan sejak waktu pembuatan dan tidak mengubah data historis.",
+  "quote": "Marking an event as a key event affects reports from time of creation. It doesn't change historic data.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E143",
+  "rule": "Metrik `organicGoogleSearchClicks` dan `organicGoogleSearchImpressions` berasal dari Search Console dan membutuhkan tautan Search Console yang aktif.",
+  "quote": "The number of organic Google Search clicks reported from Search Console. This metric requires an active Search Console link.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E144",
+  "rule": "Metrik `organicGoogleSearchClicks` dan `organicGoogleSearchImpressions` berasal dari Search Console dan membutuhkan tautan Search Console yang aktif.",
+  "quote": "The number of organic Google Search impressions reported from Search Console. This metric requires an active Search Console link.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E145",
+  "rule": "`organicGoogleSearchAveragePosition` dari Search Console juga membutuhkan tautan Search Console yang aktif.",
+  "quote": "The average ranking of your website URLs for the query reported from Search Console.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E146",
+  "rule": "`organicGoogleSearchAveragePosition` dari Search Console juga membutuhkan tautan Search Console yang aktif.",
+  "quote": "This metric requires an active Search Console link.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E147",
+  "rule": "Semua permintaan memerlukan project Google Cloud dan tunduk pada kuota; kuota terpakai baik dengan OAuth 2.0 maupun hanya API key.",
+  "quote": "All requests to the Google Analytics Data API v1 require a Google Cloud project and are subject to the quotas outlined on this page.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E148",
+  "rule": "Semua permintaan memerlukan project Google Cloud dan tunduk pada kuota; kuota terpakai baik dengan OAuth 2.0 maupun hanya API key.",
+  "quote": "All API calls made using credentials or an API key from your project will count against your project's and the Google Analytics property's applicable quotas.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E149",
+  "rule": "Metode Core (`runReport`, `runPivotReport`, `batchRunReports`, `batchRunPivotReports`, `runAccessReport`, `getMetadata`, `checkCompatibility`, `createAudienceExports`) membebani kuota Core; `runRealtimeReport` membebani kuota Realtime.",
+  "quote": "API requests to Core methods charge Core quotas. API requests to Realtime methods charge Realtime quotas. API requests to Funnel methods charge Funnel quotas. API requests to Chat methods charge Chat quotas. Each request consumes only one kind of quota. | Quota category | API methods | Core | runReport, runPivotReport, batchRunReports, batchRunPivotReports, runAccessReport, getMetadata, checkCompatibility, createAudienceExports | Realtime | runRealtimeReport",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E150",
+  "rule": "Batas Core properti Standard: 200,000 token per properti per hari dan 40,000 token per properti per jam.",
+  "quote": "Core Tokens Per Property Per Day | 200,000 | 2,000,000",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E151",
+  "rule": "Batas Core properti Standard: 200,000 token per properti per hari dan 40,000 token per properti per jam.",
+  "quote": "Core Tokens Per Property Per Hour | 40,000 | 400,000",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E152",
+  "rule": "Batas Core properti Standard: 14,000 token per project per properti per jam.",
+  "quote": "Core Tokens Per Project Per Property Per Hour | 14,000 | 140,000",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E153",
+  "rule": "Batas Core properti Standard: 10 permintaan bersamaan (concurrent) per properti.",
+  "quote": "Core Concurrent Requests Per Property | 10 | 50",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E154",
+  "rule": "Kurangi concurrency dengan menunggu permintaan sebelumnya selesai sebelum mengirim yang berikutnya.",
+  "quote": "To reduce your request concurrency, wait for previous requests to complete before sending additional requests.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E155",
+  "rule": "Batas Core properti Standard: 10 server error per project per properti per jam; server error adalah kode 500 dan 503.",
+  "quote": "Core Server Errors Per Project Per Property Per Hour | 10 | 50",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E156",
+  "rule": "Batas Core properti Standard: 10 server error per project per properti per jam; server error adalah kode 500 dan 503.",
+  "quote": "Server Errors are 500 and 503 codes. Server Errors quotas are only charged when a request results in a server error.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E157",
+  "rule": "Jika kuota Server Errors habis untuk pasangan project dan properti, semua permintaan dari project itu ke properti tersebut diblokir.",
+  "quote": "When the Server Errors quotas are exhausted for a project and property pair, all requests to the property from the project are blocked.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E158",
+  "rule": "Sebagian besar permintaan membebani 10 token atau kurang; biaya token bergantung pada kompleksitas permintaan.",
+  "quote": "The number of tokens charged depends on the request's complexity. While most requests will charge 10 or fewer tokens",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E159",
+  "rule": "Biaya token dapat naik karena jumlah baris yang besar, rentang tanggal yang panjang, dan volume event properti yang tinggi (properti dengan event lebih banyak dapat memakai lebih banyak token untuk query yang sama).",
+  "quote": "Number of rows: Requesting a larger number of rows.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E160",
+  "rule": "Biaya token dapat naik karena jumlah baris yang besar, rentang tanggal yang panjang, dan volume event properti yang tinggi (properti dengan event lebih banyak dapat memakai lebih banyak token untuk query yang sama).",
+  "quote": "Date range length: Querying over longer date periods.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E161",
+  "rule": "Biaya token dapat naik karena jumlah baris yang besar, rentang tanggal yang panjang, dan volume event properti yang tinggi (properti dengan event lebih banyak dapat memakai lebih banyak token untuk query yang sama).",
+  "quote": "Property event volume: Queries on properties with a higher volume of events may consume more tokens than the same query on a property with less data.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E162",
+  "rule": "Dimensi berkardinalitas tinggi seperti `pagePath` dapat menaikkan biaya token secara signifikan.",
+  "quote": "Data cardinality: Dimensions with high cardinality (many unique values, such as pagePath, custom dimensions) can significantly increase token cost.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E163",
+  "rule": "Sertakan `\"returnPropertyQuota\": true` di body permintaan untuk mengetahui biaya token; respons memuat objek `PropertyQuota` dengan token terpakai dan sisa kuota.",
+  "quote": "The most effective way to determine the token cost for your specific API calls is to include the parameter \"returnPropertyQuota\": true in the request body.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E164",
+  "rule": "Sertakan `\"returnPropertyQuota\": true` di body permintaan untuk mengetahui biaya token; respons memuat objek `PropertyQuota` dengan token terpakai dan sisa kuota.",
+  "quote": "The API response will then include the PropertyQuota object, which details the tokens consumed by that specific request and the remaining quota balances.",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E165",
+  "rule": "`rowLimit` bernilai 1 sampai 25,000 (default 1,000); nilai di atas 25,000 tidak valid.",
+  "quote": "[Optional; Valid range is 1–25,000; Default is 1,000] The maximum number of rows to return.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E166",
+  "rule": "Untuk lebih banyak baris, ulangi query yang sama dengan menaikkan `startRow` sebesar 25,000 sampai respons berisi 0 baris.",
+  "quote": "Page through results by re-running the same query, increasing the startRow value by 25,000 in the request until you reach the last page (a response with 0 rows).",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E167",
+  "rule": "Jangan menjanjikan \"semua query\": metode ini hanya membuka maksimum 50K baris per hari per jenis pencarian, dan API tidak menjamin mengembalikan semua baris, hanya baris teratas.",
+  "quote": "In addition to API usage quota, the Search Analytics method exposes a maximum of 50K rows of data per day per search type (web, image, and so on--sorted by clicks).",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E168",
+  "rule": "Jangan menjanjikan \"semua query\": metode ini hanya membuka maksimum 50K baris per hari per jenis pencarian, dan API tidak menjamin mengembalikan semua baris, hanya baris teratas.",
+  "quote": "The API is bounded by internal limitations of Search Console and does not guarantee to return all data rows but rather top ones.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E169",
+  "rule": "Kondisi \"A atau B\" tidak bisa dibuat dengan dua filter: dalam satu grup hanya `and` yang didukung (\"or\" belum didukung), dan semua grup filter harus cocok.",
+  "quote": "Whether all filters in this group must return true (\"and\"), or one or more must return true (not yet supported).",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E170",
+  "rule": "Kondisi \"A atau B\" tidak bisa dibuat dengan dua filter: dalam satu grup hanya `and` yang didukung (\"or\" belum didukung), dan semua grup filter harus cocok.",
+  "quote": "All filter groups must match in order for a row to be returned in the response.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E171",
+  "rule": "Untuk \"A atau B\" pada satu dimensi, pakai satu filter `includingRegex`; ekspresinya memakai sintaks RE2, dan di RE2 `x|y` berarti x atau y (misalnya `/blog/|/guide/`).",
+  "quote": "\"includingRegex\": An RE2 syntax regular expression that must be matched. - \"excludingRegex\": An RE2 syntax regular expression that must not be matched.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E172",
+  "rule": "Untuk \"A atau B\" pada satu dimensi, pakai satu filter `includingRegex`; ekspresinya memakai sintaks RE2, dan di RE2 `x|y` berarti x atau y (misalnya `/blog/|/guide/`).",
+  "quote": "<tr><td><code>x|y</code></td><td><code>x</code> or <code>y</code> (prefer <code>x</code>)</td></tr>",
+  "source": "g-re2-syntax"
+ },
+ {
+  "id": "E173",
+  "rule": "Pembagian mobile dan desktop memakai dimensi atau filter `device` (nilai DESKTOP, MOBILE, TABLET), bukan pemisahan URL m. dan www., karena data semua variasi halaman diatribusikan ke URL kanonis yang dipilih Google (meskipun dalam beberapa kasus data dapat diatribusikan ke URL sebenarnya, bukan URL kanonis).",
+  "quote": "The dimension that this filter applies to. You can filter by any dimension listed here, even if you are not grouping by that dimension. Acceptable values are: - \"country\": Filter against the specified country, as specified by 3-letter country code (ISO 3166-1 alpha-3). - \"device\": Filter results against the specified device type. Supported values: - DESKTOP - MOBILE - TABLET - \"page\": Filter against the specified URI string. - \"query\": Filter against the specified query string. - \"searchAppearance\": Filter against a specific search result feature.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E174",
+  "rule": "Pembagian mobile dan desktop memakai dimensi atau filter `device` (nilai DESKTOP, MOBILE, TABLET), bukan pemisahan URL m. dan www., karena data semua variasi halaman diatribusikan ke URL kanonis yang dipilih Google (meskipun dalam beberapa kasus data dapat diatribusikan ke URL sebenarnya, bukan URL kanonis).",
+  "quote": "Filter results against the specified device type. Supported values: - DESKTOP - MOBILE - TABLET",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E175",
+  "rule": "Pembagian mobile dan desktop memakai dimensi atau filter `device` (nilai DESKTOP, MOBILE, TABLET), bukan pemisahan URL m. dan www., karena data semua variasi halaman diatribusikan ke URL kanonis yang dipilih Google (meskipun dalam beberapa kasus data dapat diatribusikan ke URL sebenarnya, bukan URL kanonis).",
+  "quote": "Click, impression, and position data for all variations of a page are assigned to the canonical URL that Google selects for each page (although in some cases data might be assigned to the actual URL, rather than the canonical URL). This means that even if you have separate URLs for the mobile and desktop version of a page, all click data will be assigned to the same URL in the Performance report.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E176",
+  "rule": "Untuk total yang akurat, hilangkan dimensi `page` dan `query` (misalnya tanpa dimensi atau hanya `date`); data yang dikelompokkan per halaman dihitung berbeda dari data per properti.",
+  "quote": "For accurate counts, you must omit the page and query dimensions, like this:",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E177",
+  "rule": "Untuk total yang akurat, hilangkan dimensi `page` dan `query` (misalnya tanpa dimensi atau hanya `date`); data yang dikelompokkan per halaman dihitung berbeda dari data per properti.",
+  "quote": "Impressions, clicks, position, and click-through-rate are are calculated differently when grouping results by page rather than by property.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E178",
+  "rule": "Bila mengelompokkan atau memfilter menurut `page`, pakai `aggregationType` `auto`; agregasi menurut properti tidak bisa.",
+  "quote": "If you filter or group by page, choose auto; otherwise you can aggregate either by property or by page",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E179",
+  "rule": "Bila mengelompokkan atau memfilter menurut `page`, pakai `aggregationType` `auto`; agregasi menurut properti tidak bisa.",
+  "quote": "If you group or filter by page, you cannot aggregate by property.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E180",
+  "rule": "Filter `country` memakai kode 3 huruf ISO 3166-1 alpha-3.",
+  "quote": "Filter against the specified country, as specified by 3-letter country code (ISO 3166-1 alpha-3).",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E181",
+  "rule": "Tanpa `type`, data hanya `web` (tidak termasuk Discover dan Google News); jenis lain ditarik lewat query terpisah.",
+  "quote": "[Default] Filter results to the combined (\"All\") tab in Google Search. Does not include Discover or Google News results.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E182",
+  "rule": "Tanpa `type`, data hanya `web` (tidak termasuk Discover dan Google News); jenis lain ditarik lewat query terpisah.",
+  "quote": "Enumerate over each type value as desired in a separate query.",
+  "source": "gsc-api-howto"
+ },
+ {
+  "id": "E183",
+  "rule": "Tanpa `dataState` hanya data final yang dikembalikan; `all` menyertakan data segar.",
+  "quote": "If \"final\" (case-insensitive) or if this parameter is omitted, the returned data will include only finalized data.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E184",
+  "rule": "Tanpa `dataState` hanya data final yang dikembalikan; `all` menyertakan data segar.",
+  "quote": "If \"all\" (case-insensitive), data will include fresh data.",
+  "source": "gsc-api-query"
+ },
+ {
+  "id": "E185",
+  "rule": "Peringkat diambil dari `position` (rata-rata posisi seluruh impresi), bukan dari query otomatis atau scraping hasil Google, yang merupakan machine-generated traffic.",
+  "quote": "In Search Console, the metric is shown as average position, which averages the position value for all impressions (because the position of the link will be different each time it is seen).",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E186",
+  "rule": "Peringkat diambil dari `position` (rata-rata posisi seluruh impresi), bukan dari query otomatis atau scraping hasil Google, yang merupakan machine-generated traffic.",
+  "quote": "Machine-generated traffic (also called automated traffic) refers to the practice of sending automated queries to Google. This includes scraping results for rank-checking purposes or other types of automated access to Google Search conducted without express permission.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E187",
+  "rule": "Total grafik laporan Performance diagregasi menurut properti, sedangkan data per halaman diagregasi menurut halaman; perbedaan agregasi ini biasanya penyebab total grafik berbeda dari total tabel.",
+  "quote": "Data on the chart is aggregated by property. For example, if two results from the same site appear for one query, they count as a single impression in the chart total.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E188",
+  "rule": "Total grafik laporan Performance diagregasi menurut properti, sedangkan data per halaman diagregasi menurut halaman; perbedaan agregasi ini biasanya penyebab total grafik berbeda dari total tabel.",
+  "quote": "Data grouped by Queries, Countries, Devices, or Dates is aggregated by property. Data grouped by Pages or Search appearance is aggregated by page.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E189",
+  "rule": "Total grafik laporan Performance diagregasi menurut properti, sedangkan data per halaman diagregasi menurut halaman; perbedaan agregasi ini biasanya penyebab total grafik berbeda dari total tabel.",
+  "quote": "The chart totals can sometimes differ from the table totals. This is usually due to differences in aggregation (property vs. page).",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E190",
+  "rule": "Pakai URL Inspection tool untuk setiap URL; laporan Page indexing tidak dipakai untuk memeriksa status indeks halaman tertentu.",
+  "quote": "This report isn't used to investigate the index status of specific pages. To find the index status of a specific page, use the URL Inspection tool.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E191",
+  "rule": "Daftar contoh URL di laporan Page indexing dibatasi 1,000 item dan tidak dijamin menampilkan semua URL pada suatu status, jadi URL yang tidak tercantum belum tentu terindeks.",
+  "quote": "Note that the list of example URLs in the report is limited to 1,000 items, and isn't guaranteed to show all URLs in a given status, even when less than 1,000 items.",
+  "source": "gsc-page-indexing"
+ },
+ {
+  "id": "E192",
+  "rule": "Setiap permintaan `runReport` menyebut satu ID properti Google Analytics; respons hanya berisi data dari properti itu.",
+  "quote": "Every runReport request requires you to specify a Google Analytics property ID.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E193",
+  "rule": "Permintaan `runReport` memuat paling banyak sembilan dimensi dan minimal satu metrik.",
+  "quote": "Dimensions are optional for runReport requests, and you can use up to nine dimensions per request.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E194",
+  "rule": "Permintaan `runReport` memuat paling banyak sembilan dimensi dan minimal satu metrik.",
+  "quote": "You must specify at least one metric in your runReport requests.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E195",
+  "rule": "Laporan `runReport` secara default hanya berisi 10,000 baris pertama; sertakan `\"limit\": 250000` di RunReportRequest untuk sampai 250,000 baris, dan di atas itu paginasi lewat serangkaian permintaan.",
+  "quote": "By default, the report contains only the first 10,000 rows of event data. To view up to 250,000 rows in the report, you can include \"limit\": 250000 in the RunReportRequest.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E196",
+  "rule": "Laporan `runReport` secara default hanya berisi 10,000 baris pertama; sertakan `\"limit\": 250000` di RunReportRequest untuk sampai 250,000 baris, dan di atas itu paginasi lewat serangkaian permintaan.",
+  "quote": "For reports with more than 250,000 rows, you have to send a series of requests and page through the results.",
+  "source": "ga4-api-basics"
+ },
+ {
+  "id": "E197",
+  "rule": "`engagementRate` dan `bounceRate` dikembalikan sebagai pecahan (0.2761 berarti 27.61%), jadi kalikan 100 sebelum ditampilkan sebagai persen.",
+  "quote": "This metric is returned as a fraction; for example, 0.7239 means 72.39% of sessions were engaged sessions.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E198",
+  "rule": "`engagementRate` dan `bounceRate` dikembalikan sebagai pecahan (0.2761 berarti 27.61%), jadi kalikan 100 sebelum ditampilkan sebagai persen.",
+  "quote": "The percentage of sessions that were not engaged ((Sessions Minus Engaged sessions) divided by Sessions). This metric is returned as a fraction; for example, 0.2761 means 27.61% of sessions were bounces.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E199",
+  "rule": "Metrik `organicGoogleSearchClicks` dan `organicGoogleSearchImpressions` membutuhkan tautan Search Console yang aktif.",
+  "quote": "The number of organic Google Search clicks reported from Search Console. This metric requires an active Search Console link.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E200",
+  "rule": "Metrik `organicGoogleSearchClicks` dan `organicGoogleSearchImpressions` membutuhkan tautan Search Console yang aktif.",
+  "quote": "The number of organic Google Search impressions reported from Search Console. This metric requires an active Search Console link.",
+  "source": "ga4-api-schema"
+ },
+ {
+  "id": "E201",
+  "rule": "Properti Standard dibatasi 10 permintaan Core bersamaan per properti; kurangi konkurensi dengan menunggu permintaan sebelumnya selesai.",
+  "quote": "Core Concurrent Requests Per Property | 10 | 50",
+  "source": "ga4-quotas"
+ },
+ {
+  "id": "E202",
+  "rule": "Properti Standard dibatasi 10 permintaan Core bersamaan per properti; kurangi konkurensi dengan menunggu permintaan sebelumnya selesai.",
+  "quote": "To reduce your request concurrency, wait for previous requests to complete before sending additional requests.",
+  "source": "ga4-quotas"
+ }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "Meridian",
+  "short_name": "Meridian",
+  "description": "Control room for the AI agents that run your SEO sites, one per country, with human approval before anything publishes.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fbf8ff",
+  "theme_color": "#1842ff",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

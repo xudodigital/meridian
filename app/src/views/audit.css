@@ -1,0 +1,15 @@
+/* Audit log (Audit.tsx): the filter row, the line under it with the count and the export, and "Load more". */
+@layer proto {
+  .aud-filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px;align-items:end}
+  /* A date field looks like the text fields beside it (components.css styles those by type). */
+  .aud-filters input[type=date]{min-height:52px;min-width:0;width:100%;padding:0 16px;margin:0;
+    border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-large);
+    background:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
+    font:var(--md-sys-typescale-body-large);transition:border-color var(--md-sys-motion-standard-fast-effects),box-shadow var(--md-sys-motion-standard-fast-effects)}
+  .aud-filters input[type=date]:focus{outline:none;border-color:var(--md-sys-color-primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--md-sys-color-primary) 24%,transparent)}
+  @media (hover:hover){.aud-filters input[type=date]:hover{border-color:var(--md-sys-color-outline)}}
+  .aud-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 8px}
+  .aud-bar .note{margin-right:auto;max-width:none}
+  .aud-bar a.btn{text-decoration:none}
+  .aud-more{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:12px}
+}

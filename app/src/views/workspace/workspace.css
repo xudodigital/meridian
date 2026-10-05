@@ -1,0 +1,61 @@
+/* Workspace, real work (outside demo mode): the server's current step after an agent's task, and the short moment after
+   a server job ends, "done" (a green check that pops in) or "failed" (the red mark), before the agent rests. */
+
+/* The step after the task, quieter than the task itself */
+.task .step{opacity:0.78}
+
+/* Cards: a check badge on the avatar and a full, green bar */
+.desk .donemark{position:absolute;right:-6px;bottom:-6px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;
+  background:var(--md-ext-color-success);color:var(--md-sys-color-surface);box-shadow:0 0 0 2px var(--md-sys-color-surface);animation:ws-pop var(--md-sys-motion-expressive-default-spatial) both}
+.desk .donemark .ms{font-size:16px;font-weight:700}
+.desk[data-st="done"] .ava::after{content:"";position:absolute;inset:-4px;border-radius:inherit;border:2px solid var(--md-ext-color-success);animation:ws-glow 1200ms ease-out 2 both}
+.desk[data-st="done"] .bar i{background:var(--md-ext-color-success)}
+
+/* Status stays visible in the bubble and in the shared avatar. */
+.stn[data-st="done"] .bubble{background:var(--md-ext-color-success-container);color:var(--md-ext-color-on-success-container);border-color:transparent}
+.stn[data-st="failed"] .bubble{background:var(--md-sys-color-error-container);color:var(--md-sys-color-on-error-container);border-color:transparent}
+
+@keyframes ws-pop{0%{opacity:0;transform:scale(0.4)}70%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes ws-glow{0%{opacity:0.9;transform:scale(0.95)}100%{opacity:0;transform:scale(1.25)}}
+
+@media (prefers-reduced-motion: reduce){
+  .desk .donemark,.desk[data-st="done"] .ava::after,.stn[data-st="done"] .okmark,.stn[data-st="done"] .headg{animation:none}
+}
+
+.office-availability{flex:none;margin:0;padding:12px 16px;background:var(--md-sys-color-surface-container-low);color:var(--md-sys-color-on-surface-variant);font:var(--md-sys-typescale-body-small);overflow-wrap:anywhere}
+
+/* ---------- The office on a big screen ----------
+   On the Office page (.office.big) and in full screen, seats grow with the viewport: --seat-w sets the seat width
+   (the rooms follow it, Office.tsx) and --stn-fs the text in and around a station. Up to 1920 x 1080 the seats are
+   min(7vw, 15vh) + 40px; above that everything grows in step with the screen (9vw, or 16vh on a wide, short one) and
+   has no upper limit, so a 4K wall display at 100% scale is filled like a 1080p one, not just its top half. */
+:is(.office.big,.office:fullscreen){
+  --seat-w:max(112px,min(7vw,15vh) + 40px,min(9vw,16vh));
+  --stn-fs:max(0.8125rem,calc(var(--seat-w) * 0.088));
+}
+:is(.office.big,.office:fullscreen) .wall{flex:none;min-height:56px;gap:max(12px,1.5vw);padding-inline:max(16px,2vw)}
+:is(.office.big,.office:fullscreen) .wall .clock{font-size:var(--stn-fs);line-height:1.4}
+:is(.office.big,.office:fullscreen) .wall .clock .ms{font-size:1.25em}
+:is(.office.big,.office:fullscreen) .floor{flex:1 0 auto;align-content:flex-start;gap:max(12px,1.2vw);padding:max(12px,1.2vw);background-size:max(48px,4vw) max(48px,4vw)}
+:is(.office.big,.office:fullscreen) .room{gap:max(8px,0.8vw);padding:max(12px,1vw)}
+:is(.office.big,.office:fullscreen) .room h3{font-size:calc(var(--stn-fs) * 1.05);line-height:1.35}
+:is(.office.big,.office:fullscreen) .room h3 .ms{font-size:1.3em}
+:is(.office.big,.office:fullscreen) .room h3 small{font-size:0.86em;line-height:inherit}
+:is(.office.big,.office:fullscreen) .room .cnt{min-width:1.8em;padding:0.15em 0.6em}
+:is(.office.big,.office:fullscreen) .room .none{font-size:var(--stn-fs);line-height:1.4}
+:is(.office.big,.office:fullscreen) .seats{grid-template-columns:repeat(auto-fill,minmax(var(--seat-w),1fr));gap:max(16px,1.4vw) max(4px,0.5vw)}
+:is(.office.big,.office:fullscreen) .stn svg{max-width:var(--seat-w)}
+:is(.office.big,.office:fullscreen) .bubble{font-size:var(--stn-fs);line-height:1.3;min-height:calc(2lh + 14px);padding:0.45em 0.8em;border-radius:1em}
+:is(.office.big,.office:fullscreen) .plate b{font-size:calc(var(--stn-fs) * 1.12);line-height:1.3}
+:is(.office.big,.office:fullscreen) .plate .pill{font-size:calc(var(--stn-fs) * 0.9);line-height:1.3;min-height:calc(var(--stn-fs) * 1.9);padding-inline:0.8em}
+:is(.office.big,.office:fullscreen) .where{max-width:100%;min-height:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:calc(var(--stn-fs) * 0.92);line-height:1.35}
+
+/* The Workspace's office in full screen, in place: the whole screen, square corners, scrolls when it must */
+.office:fullscreen{display:flex;flex-direction:column;overflow:auto;border-radius:0;background:var(--md-sys-color-surface-container-low);color:var(--md-sys-color-on-surface)}
+.office:fullscreen::backdrop{background:var(--md-sys-color-surface-container-low,#11131c)}
+.office-exit{position:fixed;z-index:2;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));box-shadow:var(--md-sys-elevation-level2)}
+/* A failed save, at the bottom of the office in full screen; a message from the snackbar shows above it. */
+.office:fullscreen>.office-alert{order:1;position:sticky;bottom:0;z-index:1;margin:0;border-radius:0;padding-inline:max(16px,2vw)}
+.office:fullscreen:has(>.office-alert)>.snack{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+.ws-office-acts{gap:0}
+.ws-office-acts a.btn{text-decoration:none}

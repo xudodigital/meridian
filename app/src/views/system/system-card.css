@@ -1,0 +1,26 @@
+/* Settings > System (SystemCard.tsx): a strip of small facts about the server, then backups. */
+@layer proto {
+  .sys-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:8px;margin:0}
+  .sys-fact{display:flex;flex-direction:column;gap:2px;min-width:0;padding:12px 16px;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface-container-low)}
+  .sys-fact dt{font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant)}
+  .sys-fact dd{margin:0;min-width:0;display:flex;flex-direction:column;gap:2px}
+  .sys-fact b{font:var(--md-sys-typescale-title-medium);font-weight:700;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .sys-fact small{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);overflow-wrap:anywhere}
+  .sys-fact .pill{align-self:flex-start;margin:1px 0}
+  .sys-storage{font:var(--md-sys-typescale-body-small);max-width:none}
+  .sys-backup{display:flex;flex-direction:column;gap:12px;min-width:0;padding:16px;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface-container-low)}
+  .sys-backup-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+  .sys-backup-title{flex:1 1 14rem;display:flex;flex-direction:column;gap:2px;min-width:0}
+  .sys-backup-title b{font:var(--md-sys-typescale-title-medium);font-weight:700}
+  .sys-backup-title span{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+  .sys-msg{font:var(--md-sys-typescale-body-medium);max-width:none}
+  .sys-msg.bad{color:var(--md-sys-color-error)}
+  .sys-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;overflow:hidden;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface)}
+  .sys-list li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:4px 16px;padding:6px 8px 6px 16px;font-variant-numeric:tabular-nums}
+  .sys-list li+li{border-top:1px solid var(--md-sys-color-outline-variant)}
+  .sys-list .sys-size{color:var(--md-sys-color-on-surface-variant);font:var(--md-sys-typescale-body-small)}
+  .sys-none{padding:12px 16px;border-radius:var(--md-sys-shape-corner-large);border:1px dashed var(--md-sys-color-outline-variant);color:var(--md-sys-color-on-surface-variant);font:var(--md-sys-typescale-body-medium)}
+  .sys-backup .note{font:var(--md-sys-typescale-body-small);max-width:none}
+  .sys a.btn{text-decoration:none}
+  @media (min-width:840px){ .sys-backup{padding:20px} }
+}

@@ -1,0 +1,56 @@
+/* Ported verbatim from web/index.html (scaffold: app grid, side navigation, top bar, icon button, view and section primitives). */
+/* Scaffold */
+.app{display:grid;grid-template-columns:minmax(0,1fr);height:100%}
+.side{position:fixed;inset:0 auto 0 0;width:min(304px,calc(100vw - 56px));z-index:10;overflow-y:auto;padding:12px;padding-top:calc(12px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:4px;
+  background:var(--md-sys-color-surface-container-low);border-radius:0 var(--md-sys-shape-corner-extra-large) var(--md-sys-shape-corner-extra-large) 0;box-shadow:var(--md-sys-elevation-level1);
+  transform:translateX(-105%);transition:transform var(--md-sys-motion-standard-default-spatial);visibility:hidden}
+.side.open{transform:none;visibility:visible}
+.backdrop{position:fixed;inset:0;background:var(--scrim);z-index:9}
+.brand{padding:12px 12px 16px;display:flex;align-items:center;gap:12px}
+.logo{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--hero-a),var(--hero-b));color:var(--hero-ink)}
+.brand b{display:block;font:var(--md-sys-typescale-title-medium);font-weight:800}
+.brand div span{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+.navgroup{display:flex;flex-direction:column;gap:2px}
+.navgroup h2{font:var(--md-sys-typescale-label-medium);font-size:0.8125rem;color:var(--md-sys-color-on-surface-variant);padding:16px 16px 8px}
+.navgroup button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:48px;padding:0 20px 0 16px;border-radius:var(--md-sys-shape-corner-full);
+  font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant);position:relative;isolation:isolate;transition:color var(--md-sys-motion-standard-fast-effects)}
+.navgroup button::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;background:currentColor;opacity:0;transition:opacity var(--md-sys-motion-standard-fast-effects)}
+@media (hover:hover){.navgroup button:hover::before{opacity:var(--md-sys-state-hover-opacity)}}
+.navgroup button:active::before{opacity:var(--md-sys-state-pressed-opacity)}
+/* Keyboard focus: all:unset above drops the outline base.css gives :focus-visible, so restore it. The ring sits
+   inside the box (the list scrolls), and turns on-primary on the active item, whose fill is primary. */
+.navgroup button:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-3px}
+.navgroup button[aria-current="page"]:focus-visible{outline-color:var(--md-sys-color-on-primary)}
+.navgroup button[aria-current="page"]{background:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary)}
+.navgroup button[aria-current="page"] .ms{font-variation-settings:"FILL" 1}
+.navgroup .count{margin-left:auto;font:var(--md-sys-typescale-label-medium);min-width:22px;height:22px;padding:0 6px;display:grid;place-items:center;border-radius:var(--md-sys-shape-corner-full);background:var(--md-sys-color-error);color:var(--md-sys-color-on-error)}
+
+main{overflow-y:auto;min-width:0;display:flex;flex-direction:column}
+.top{flex:none;position:sticky;top:0;z-index:5;min-height:72px;padding:12px var(--md-layout-margin);padding-left:calc(var(--md-layout-margin) - 8px);display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;
+  background:var(--md-sys-color-surface);transition:background-color var(--md-sys-motion-standard-default-effects)}
+.top.scrolled{background:var(--md-sys-color-surface-container)}
+.top h1{font:var(--md-sys-typescale-headline-small);margin-right:auto;padding-left:4px}
+.ib{all:unset;box-sizing:border-box;cursor:pointer;width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:var(--md-sys-shape-corner-full);color:var(--md-sys-color-on-surface-variant);position:relative;isolation:isolate}
+.ib::before{content:"";position:absolute;inset:4px;border-radius:inherit;z-index:-1;background:currentColor;opacity:0;transition:opacity var(--md-sys-motion-standard-fast-effects)}
+@media (hover:hover){.ib:hover::before{opacity:var(--md-sys-state-hover-opacity)}}
+.ib:active::before{opacity:var(--md-sys-state-pressed-opacity)}
+/* Keyboard focus (all:unset drops the base.css outline): a ring 2px outside the 40px fill (::before inset 4px), inside
+   the 48px box, so no scrolling or overflow:hidden parent cuts it. Same geometry as .od-tick-pp in office-display.css. */
+.ib:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-2px}
+.ib.tonal::before{opacity:1;background:var(--md-sys-color-secondary-container)}
+.ib.tonal{color:var(--md-sys-color-on-secondary-container)}
+.ib.err{color:var(--md-sys-color-error)}
+.sitepick{width:280px;max-width:100%;min-width:0}
+.view{flex:none;width:100%;max-width:var(--view-max);margin-inline:auto;padding-inline:var(--md-layout-margin);padding-block:8px 64px;display:flex;flex-direction:column;gap:32px}
+.view[data-anim]>*{animation:rise var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-emphasized-decelerate) both}
+.view[data-anim]>*:nth-child(2){animation-delay:60ms}
+.view[data-anim]>*:nth-child(3){animation-delay:120ms}
+.view[data-anim]>*:nth-child(n+4){animation-delay:180ms}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+.lede{font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface-variant);max-width:none}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sh{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.sh h2,section>h2{font:var(--md-sys-typescale-title-large);margin-right:auto}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.note{color:var(--md-sys-color-on-surface-variant);max-width:none}
+.grow{flex:1}

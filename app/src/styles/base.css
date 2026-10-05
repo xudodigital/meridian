@@ -1,0 +1,12 @@
+/* Ported verbatim from web/index.html (base element rules). */
+[hidden]{display:none!important}
+.nw{white-space:nowrap}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--md-sys-color-surface);color:var(--md-sys-color-on-surface);font:var(--md-sys-typescale-body-medium)}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:wrap;overflow-wrap:break-word}
+:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
+.ms{font-family:"Material Symbols Rounded";font-size:24px;line-height:1;font-style:normal;font-weight:500;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;font-variation-settings:"FILL" 0;flex:none;width:1em;height:1em;overflow:hidden}
+.ms.fill{font-variation-settings:"FILL" 1}

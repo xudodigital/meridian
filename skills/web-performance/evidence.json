@@ -1,0 +1,1484 @@
+[
+ {
+  "id": "E1",
+  "rule": "Core Web Vitals saat ini terdiri dari tiga metrik yang mewakili tiga aspek pengalaman pengguna: loading (LCP), interactivity (INP), dan visual stability (CLS).",
+  "quote": "The current set focuses on three aspects of the user experience—loading, interactivity, and visual stability—and includes the following metrics (and their respective thresholds):\n\n- Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.\n\n- Interaction to Next Paint (INP): measures interactivity. To provide a good user experience, pages should have a INP of 200 milliseconds or less.\n\n- Cumulative Layout Shift (CLS): measures visual stability.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E2",
+  "rule": "Nilai LCP yang baik adalah 2,5 detik atau kurang.",
+  "quote": "sites should strive to have Largest Contentful Paint of 2.5 seconds or less.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E3",
+  "rule": "INP mengukur interaktivitas; menurut web.dev, halaman sebaiknya memiliki INP 200 milidetik atau kurang.",
+  "quote": "Interaction to Next Paint (INP): measures interactivity. To provide a good user experience, pages should have a INP of 200 milliseconds or less.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E4",
+  "rule": "INP di atas 200 ms sampai 500 ms (inklusif) berarti responsivitas halaman perlu diperbaiki.",
+  "quote": "An INP above 200 milliseconds and below or at 500 milliseconds means a page's responsiveness needs improvement.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E5",
+  "rule": "INP di atas 500 ms berarti responsivitas halaman buruk.",
+  "quote": "An INP above 500 milliseconds means a page has poor responsiveness.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E6",
+  "rule": "Nilai CLS yang baik adalah 0,1 atau kurang, dan nilai buruk adalah di atas 0,25.",
+  "quote": "Good CLS values are 0.1 or less. Poor values are greater than 0.25.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E7",
+  "rule": "Dokumentasi Google Search Central menulis target LCP: terjadi dalam 2,5 detik pertama sejak halaman mulai dimuat.",
+  "quote": "strive to have LCP occur within the first 2.5 seconds of the page starting to load.",
+  "source": "g-core-web-vitals"
+ },
+ {
+  "id": "E8",
+  "rule": "Dokumentasi Google Search Central menulis target INP dengan redaksi \"kurang dari\" 200 milidetik.",
+  "quote": "strive to have an INP of less than 200 milliseconds.",
+  "source": "g-core-web-vitals"
+ },
+ {
+  "id": "E9",
+  "rule": "Dokumentasi Google Search Central menulis target CLS dengan redaksi \"kurang dari\" 0,1.",
+  "quote": "strive to have a CLS score of less than 0.1.",
+  "source": "g-core-web-vitals"
+ },
+ {
+  "id": "E10",
+  "rule": "Ukur pada persentil ke-75 dari page load, dipisah antara perangkat mobile dan desktop.",
+  "quote": "a good threshold to measure is the 75th percentile of page loads, segmented across mobile and desktop devices.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E11",
+  "rule": "Halaman dianggap lulus Core Web Vitals jika memenuhi target pada persentil ke-75 untuk ketiga metrik sekaligus.",
+  "quote": "should consider a page passing if it meets the recommended targets at the 75th percentile for all three of the Core Web Vitals metrics.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E12",
+  "rule": "Metrik Core Web Vitals yang berstatus stable tidak berubah lebih dari sekali per tahun.",
+  "quote": "Stable Core Web Vitals metrics won't change more than once per year.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E13",
+  "rule": "LCP, CLS, dan INP semuanya berstatus stable pada siklus hidup Core Web Vitals.",
+  "quote": "The Core Web Vitals are at the following lifecycle stages: - LCP: Stable - CLS: Stable - INP: Stable",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E14",
+  "rule": "Core Web Vitals pada dasarnya adalah metrik lapangan, dan banyak di antaranya juga bisa diukur di lab.",
+  "quote": "While all of the Core Web Vitals are, first and foremost, field metrics, many of them are also measurable in the lab.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E15",
+  "rule": "Gunakan pengukuran lab untuk menguji fitur selama pengembangan sebelum dirilis ke pengguna dan untuk menangkap regresi kinerja.",
+  "quote": "Lab measurement is the best way to test the performance of features during development—before they've been released to users. It's also the best way to catch performance regressions before they happen.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E16",
+  "rule": "Jangan menjadikan pengukuran lab sebagai pengganti pengukuran lapangan.",
+  "quote": "While lab measurement is an essential part of delivering great experiences, it is not a substitute for field measurement.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E17",
+  "rule": "Chrome User Experience Report (CrUX) mengumpulkan data pengukuran pengguna nyata yang dianonimkan untuk setiap Core Web Vital.",
+  "quote": "The Chrome User Experience Report collects anonymized, real user measurement data for each Core Web Vital.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E18",
+  "rule": "Data CrUX tidak memberi telemetri terperinci per pageview untuk mendiagnosis dan bereaksi terhadap regresi, sehingga sumber sangat merekomendasikan situs menyiapkan real-user monitoring sendiri.",
+  "quote": "it does not provide the detailed, per-pageview telemetry that is often necessary to accurately diagnose, monitor, and quickly react to regressions. As a result, we strongly recommend that sites set up their own real-user monitoring.",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E19",
+  "rule": "Cara termudah mengukur ketiga metrik adalah memakai library JavaScript web-vitals.",
+  "quote": "The easiest way to measure all the Core Web Vitals is to use the web-vitals JavaScript library",
+  "source": "webdev-vitals"
+ },
+ {
+  "id": "E20",
+  "rule": "Jika data CrUX tersedia untuk situs, utamakan data pengguna nyata terlebih dahulu.",
+  "quote": "If CrUX data is available for your website, always concentrate on the real user data first.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E21",
+  "rule": "Jika Lighthouse dan CrUX berbeda, CrUX kemungkinan memberi gambaran pengalaman pengguna yang lebih akurat.",
+  "quote": "If Lighthouse and CrUX disagree, then CrUX likely provides a more accurate picture of your user experience.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E22",
+  "rule": "Uji lab tidak selalu mewakili pengalaman pengguna sebenarnya.",
+  "quote": "be aware that lab tests alone may not be entirely representative of what your actual users experience.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E23",
+  "rule": "CrUX mengukur CLS sepanjang umur halaman, bukan hanya saat load awal seperti yang umumnya diukur alat lab.",
+  "quote": "CrUX is the Google dataset of the Web Vitals program, and for that, CLS is measured throughout the full life of the page and not just during the initial page load that lab tools typically measure.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E24",
+  "rule": "Beberapa alat lab tidak melaporkan INP karena hanya mengamati load halaman tanpa interaksi; Total Blocking Time (TBT) bisa menjadi proxy yang wajar, tetapi bukan pengganti INP.",
+  "quote": "Additionally, some lab tools won't report a page's INP because they only observe the loading of a page without any interactions. In such cases, Total Blocking Time (TBT) may be a reasonable proxy metric for INP, but it's not a substitute for INP in and of itself.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E25",
+  "rule": "Search Console menyediakan laporan Core Web Vitals yang menunjukkan kinerja halaman.",
+  "quote": "Check the Core Web Vitals report in Search Console. This shows how your pages perform.",
+  "source": "g-core-web-vitals"
+ },
+ {
+  "id": "E26",
+  "rule": "Google sangat menyarankan pemilik situs mencapai Core Web Vitals yang baik demi keberhasilan di Search dan pengalaman pengguna yang baik.",
+  "quote": "We highly recommend site owners achieve good Core Web Vitals for success with Search and to ensure a great user experience generally.",
+  "source": "g-core-web-vitals"
+ },
+ {
+  "id": "E27",
+  "rule": "Tidak ada satu sinyal page experience tunggal; sistem ranking inti melihat berbagai sinyal yang selaras dengan page experience secara keseluruhan.",
+  "quote": "There is no single signal. Our core ranking systems look at a variety of signals that align with overall page experience.",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E28",
+  "rule": "Hasil bagus di laporan Core Web Vitals atau alat pihak ketiga tidak menjamin halaman berada di peringkat teratas.",
+  "quote": "Keep in mind that getting good results in reports like Search Console's Core Web Vitals report\nor third-party tools doesn't guarantee that your pages will rank at the top of Google Search results",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E29",
+  "rule": "Mengejar skor sempurna hanya demi SEO mungkin bukan penggunaan waktu terbaik.",
+  "quote": "trying to get a perfect score just for SEO reasons may not be the best use of your time.",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E30",
+  "rule": "Aspek page experience selain Core Web Vitals tidak secara langsung membantu peringkat, tetapi dapat membuat situs lebih memuaskan dipakai.",
+  "quote": "Beyond Core Web Vitals, other page experience aspects don't directly help your website rank higher in search results. However, they can make your website more satisfying to use, which is generally aligned with what our ranking systems seek to reward.",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E31",
+  "rule": "Sistem ranking inti umumnya menilai konten per halaman, termasuk aspek page experience, meskipun ada beberapa penilaian tingkat situs.",
+  "quote": "Our core ranking systems generally evaluate content on a page-specific basis, including when understanding aspects related to page experience. However, we do have some site-wide assessments.",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E32",
+  "rule": "Daftar swa-nilai Google mencakup pertanyaan apakah konten tampil baik di perangkat mobile.",
+  "quote": "Does your content display well on mobile devices?",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E33",
+  "rule": "Daftar swa-nilai Google mencakup pertanyaan apakah halaman menghindari intrusive interstitials.",
+  "quote": "Do your pages avoid using intrusive interstitials?",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E34",
+  "rule": "Daftar swa-nilai Google mencakup pertanyaan apakah halaman disajikan secara aman.",
+  "quote": "Are your pages served in a secure fashion?",
+  "source": "g-page-experience"
+ },
+ {
+  "id": "E35",
+  "rule": "LCP melaporkan waktu render dari gambar, blok teks, atau video terbesar yang terlihat di viewport, relatif terhadap saat pengguna pertama kali menavigasi ke halaman.",
+  "quote": "LCP reports the render time of the largest image, text block, or video visible in the viewport, relative to when the user first navigated to the page.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E36",
+  "rule": "Elemen yang dipertimbangkan untuk LCP mencakup elemen yang memuat background image lewat fungsi url() (bukan gradient CSS).",
+  "quote": "An element with a background image loaded using the url() function, (as opposed to a CSS gradient)",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E37",
+  "rule": "Elemen yang dipertimbangkan untuk LCP juga mencakup elemen level-blok yang berisi node teks atau elemen teks inline.",
+  "quote": "Block-level elements containing text nodes or other inline-level text element children.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E38",
+  "rule": "Pada browser berbasis Chromium, elemen dengan opacity 0 dikecualikan dari LCP.",
+  "quote": "LCP measurements use heuristics to exclude certain elements that users are likely to see as \"non-contentful\". For Chromium-based browsers, these include:\n\n- Elements with an opacity of 0, that are invisible to the user",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E39",
+  "rule": "Pada browser berbasis Chromium, placeholder image atau gambar berentropi rendah dikecualikan dari LCP.",
+  "quote": "LCP measurements use heuristics to exclude certain elements that users are likely to see as \"non-contentful\". For Chromium-based browsers, these include:\n\n- Elements with an opacity of 0, that are invisible to the user\n\n- Elements that cover the full viewport, that are likely considered as background rather than content\n\n- Placeholder images or other images with a low entropy, that likely don't reflect the true content of the page",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E40",
+  "rule": "Elemen yang belum dirender tidak dihitung: gambar yang belum termuat, dan node teks yang memakai web font selama font block period.",
+  "quote": "Images that haven't yet loaded aren't considered \"rendered\". Neither are text nodes using web fonts during the font block period.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E41",
+  "rule": "Perubahan ukuran atau posisi elemen tidak membuat kandidat LCP baru; hanya ukuran dan posisi awal di viewport yang dipertimbangkan.",
+  "quote": "changes to an element's size or position don't generate new LCP candidates. Only the element's initial size and position in the viewport is considered.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E42",
+  "rule": "Perbaikan LCP jarang berhasil lewat satu perbaikan cepat pada satu bagian halaman; seluruh proses loading harus dioptimalkan.",
+  "quote": "It's rare that a quick fix to a single part of a page will result in a meaningful improvement to LCP. To improve LCP, you have to look at the entire loading process and make sure every step along the way is optimized.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E43",
+  "rule": "Ringkasan empat langkah: pastikan resource LCP mulai dimuat sedini mungkin.",
+  "quote": "Ensure the LCP resource starts loading as early as possible.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E44",
+  "rule": "Ringkasan empat langkah: pastikan elemen LCP bisa dirender segera setelah resource-nya selesai dimuat.",
+  "quote": "Ensure the LCP element can render as soon as its resource finishes loading.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E45",
+  "rule": "Ringkasan empat langkah: kurangi waktu muat resource LCP sebanyak mungkin tanpa mengorbankan kualitas.",
+  "quote": "Reduce the load time of the LCP resource as much as you can without sacrificing quality.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E46",
+  "rule": "Ringkasan empat langkah: sajikan dokumen HTML awal secepat mungkin.",
+  "quote": "Deliver the initial HTML document as fast as possible.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E47",
+  "rule": "CLS adalah ukuran burst terbesar dari skor layout shift untuk setiap layout shift tak terduga selama seluruh siklus hidup halaman.",
+  "quote": "CLS is a measure of the largest burst of layout shift scores for every unexpected layout shift that occurs during the entire lifecycle of a page.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E48",
+  "rule": "Layout shift terjadi setiap kali elemen yang terlihat berubah posisi dari satu frame yang dirender ke frame berikutnya.",
+  "quote": "A layout shift occurs any time a visible element changes its position from one rendered frame to the next.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E49",
+  "rule": "Satu burst (session window) berisi layout shift dengan jeda kurang dari 1 detik di antaranya dan durasi jendela maksimum 5 detik.",
+  "quote": "with less than 1-second in between each shift and a maximum of 5 seconds for the total window duration.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E50",
+  "rule": "Skor layout shift adalah impact fraction dikali distance fraction.",
+  "quote": "layout shift score = impact fraction * distance fraction",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E51",
+  "rule": "Skor CLS tidak memiliki satuan, berbeda dari Core Web Vitals lain yang berbasis waktu.",
+  "quote": "Unlike the other Core Web Vitals, which are time-based values measured in seconds or milliseconds, the CLS score is a unitless value based on a calculation of how much content is shifting and by how far.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E52",
+  "rule": "Elemen baru yang ditambahkan ke DOM, atau elemen yang berubah ukuran, tidak dihitung sebagai layout shift selama tidak membuat elemen terlihat lain berubah posisi awal.",
+  "quote": "it doesn't count as a layout shift—as long as the change doesn't cause other visible elements to change their start position.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E53",
+  "rule": "Layout shift hanya buruk jika pengguna tidak mengharapkannya.",
+  "quote": "A layout shift is only bad if the user isn't expecting it.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E54",
+  "rule": "Layout shift dalam 500 milidetik setelah input pengguna ditandai hadRecentInput sehingga bisa dikecualikan dari perhitungan.",
+  "quote": "Layout shifts that occur within 500 milliseconds of user input will have the hadRecentInput flag set, so they can be excluded from calculations.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E55",
+  "rule": "Penyebab CLS buruk yang paling umum menurut sumber: gambar tanpa dimensi, iklan/embed/iframe tanpa dimensi, konten yang disuntikkan secara dinamis, dan web font.",
+  "quote": "The most common causes of a poor CLS are: - Images without dimensions. - Ads, embeds, and iframes without dimensions. - Dynamically injected content such as ads, embeds, and iframes without dimensions. - Web fonts.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E56",
+  "rule": "INP menilai responsivitas keseluruhan halaman dengan mengamati latensi semua interaksi klik, tap, dan keyboard selama kunjungan pengguna.",
+  "quote": "INP is a metric that assesses a page's overall responsiveness to user interactions by observing the latency of all click, tap, and keyboard interactions that occur throughout the lifespan of a user's visit to a page.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E57",
+  "rule": "Nilai INP akhir adalah interaksi terlama yang teramati, dengan mengabaikan outlier.",
+  "quote": "The final INP value is the longest interaction observed, ignoring outliers.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E58",
+  "rule": "Latensi interaksi dihitung dari saat pengguna memulai interaksi sampai browser berikutnya mampu mem-paint frame.",
+  "quote": "from the time the user begins the interaction to the moment the browser is next able to paint a frame.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E59",
+  "rule": "Tujuan INP bukan mengukur semua efek akhir interaksi, melainkan lamanya paint berikutnya terblokir.",
+  "quote": "Therefore, the intent of INP is not to measure all the eventual effects of an interaction—such as network fetches and UI updates from other asynchronous operations)—but the time that the next paint is being blocked.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E60",
+  "rule": "Interaksi terdiri dari tiga subbagian: input delay, processing duration, dan presentation delay.",
+  "quote": "Interactions can be broken down into three subparts: - The input delay, which starts when the user initiates an interaction with the page, and ends when the event callbacks for the interaction begin to run. - The processing duration, which consists of the time it takes for event callbacks to run to completion. - The presentation delay, which is the time it takes for the browser to present the next frame which contains the visual result of the interaction.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E61",
+  "rule": "Jumlah ketiga subbagian itu adalah total latensi interaksi.",
+  "quote": "The sum of these three subparts is the total interaction latency.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E62",
+  "rule": "Scrolling dan hovering termasuk gestur yang tidak diukur INP.",
+  "quote": "The page loaded, but the user interacted with it using gestures that aren't measured, such as scrolling or hovering over elements.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E63",
+  "rule": "Halaman bisa tidak memiliki nilai INP, misalnya bila diakses bot atau headless browser yang tidak diskrip untuk berinteraksi.",
+  "quote": "It's possible for a page to return no INP value. This can happen for a number of reasons, including the following:\n\n- The page was loaded, but the user never clicked, tapped, or pressed a key on their keyboard.\n\n- The page loaded, but the user interacted with it using gestures that aren't measured, such as scrolling or hovering over elements.\n\n- The page is being accessed by a bot such as a search crawler or headless browser that has not been scripted to interact with the page.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E64",
+  "rule": "INP adalah penerus First Input Delay (FID).",
+  "quote": "INP is the successor metric to First Input Delay (FID).",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E65",
+  "rule": "Data lapangan sumber menunjukkan 90% waktu pengguna di halaman dihabiskan setelah halaman selesai dimuat, sehingga responsivitas perlu diukur sepanjang siklus hidup halaman.",
+  "quote": "Chrome usage data shows that 90% of a user's time on a page is spent after it loads, Thus, careful measurement of responsiveness throughout the page lifecycle is important.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E66",
+  "rule": "Untuk mereproduksi interaksi lambat di lab, ikuti alur pengguna yang umum dan berinteraksi dengan halaman saat sedang dimuat, ketika main thread sering paling sibuk.",
+  "quote": "Strategies include following common user flows and testing interactions along the way, as well as interacting with the page as it loads—when the main thread is often busiest—in order to identify slow interactions during that crucial part of the user experience.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E67",
+  "rule": "Google memakai versi mobile dari konten situs, yang di-crawl dengan smartphone agent, untuk indexing dan ranking.",
+  "quote": "Google uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E68",
+  "rule": "Versi mobile tidak wajib agar konten masuk hasil Search, tetapi sangat direkomendasikan.",
+  "quote": "While it's not required to have a mobile version of your pages to have your content included in Google's Search results, it is very strongly recommended.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E69",
+  "rule": "Google merekomendasikan Responsive Web Design karena merupakan pola desain yang paling mudah diimplementasikan dan dipelihara.",
+  "quote": "Google recommends Responsive Web Design because it's the easiest design pattern to implement and maintain.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E70",
+  "rule": "Responsive design menyajikan kode HTML yang sama pada URL yang sama untuk semua perangkat, tetapi dapat menampilkan konten secara berbeda menurut ukuran layar.",
+  "quote": "Serves the same HTML code on the same URL regardless of the users' device (for example, desktop, tablet, mobile, non-visual browser), but can display the content differently based on the screen size.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E71",
+  "rule": "Pada responsive design, konten dan metadata sama antara halaman mobile dan desktop.",
+  "quote": "In case of responsive design, the content and the metadata are the same on the mobile and desktop version of the pages.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E72",
+  "rule": "Pastikan situs mobile memuat konten yang sama dengan situs desktop.",
+  "quote": "Make sure that your mobile site contains the same content as your desktop site.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E73",
+  "rule": "Hanya konten yang tampil di situs mobile yang dipakai untuk indexing.",
+  "quote": "Only the content shown on the mobile site is used for indexing.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E74",
+  "rule": "Desain di mobile boleh berbeda (misalnya konten dipindah ke accordion atau tab), asalkan kontennya setara dengan desktop.",
+  "quote": "You can have a different design on mobile to maximize user experience (for example, moving content into accordions or tabs); just make sure that the content is equivalent to the desktop site",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E75",
+  "rule": "Gunakan heading yang sama jelas dan bermakna di mobile seperti di desktop.",
+  "quote": "Use the same clear and meaningful headings on the mobile site as you do on the desktop site.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E76",
+  "rule": "Jangan lazy-load konten utama dengan memerlukan interaksi pengguna; Google tidak memuat konten yang butuh swipe, klik, atau mengetik.",
+  "quote": "Don't lazy-load primary content upon user interaction. Google won't load content that requires user interactions (for example, swiping, clicking, or typing) to load.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E77",
+  "rule": "Gunakan robots meta tag yang sama di situs mobile dan desktop; tag berbeda (terutama noindex atau nofollow) dapat membuat Google gagal meng-crawl dan mengindeks halaman.",
+  "quote": "If you use a different robots meta tag on the mobile site (especially the noindex or nofollow tags), Google may fail to crawl and index your page when your site is enabled for mobile-first indexing.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E78",
+  "rule": "Jangan blokir URL resource dengan aturan disallow jika ingin Google meng-crawl-nya.",
+  "quote": "If you want Google to crawl your URLs, make sure that you're not blocking the URL with the disallow rule.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E79",
+  "rule": "Pastikan situs mobile dan desktop memiliki structured data yang sama.",
+  "quote": "Make sure that your mobile and desktop sites have the same structured data.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E80",
+  "rule": "Pastikan title element dan meta description setara di kedua versi situs.",
+  "quote": "Make sure that the title element and the meta description are equivalent across both versions of your site.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E81",
+  "rule": "Ikuti Better Ads Standard saat menampilkan iklan di mobile.",
+  "quote": "Follow the Better Ads Standard when displaying ads on mobile devices.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E82",
+  "rule": "Iklan di bagian atas halaman dapat memakan terlalu banyak ruang di perangkat mobile.",
+  "quote": "ads at the top of the page can take up too much room on a mobile device",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E83",
+  "rule": "Sediakan gambar berkualitas tinggi di mobile; jangan pakai gambar yang terlalu kecil atau beresolusi rendah.",
+  "quote": "Don't use images that are too small or have a low resolution on the mobile site.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E84",
+  "rule": "Jangan pakai URL gambar yang berubah setiap halaman dimuat.",
+  "quote": "Don't use URLs that change every time the page loads for images.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E85",
+  "rule": "Pakai alt text gambar yang sama di mobile seperti di desktop.",
+  "quote": "Make sure that the mobile site has the same alt text for images as the desktop site.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E86",
+  "rule": "Google mendukung gambar SVG, tetapi tidak dapat mengindeks gambar .jpg di dalam tag <image> pada inline SVG.",
+  "quote": "Google supports SVG format images, but our systems can't index a .jpg image in the <image> tag inside an inline SVG.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E87",
+  "rule": "Video dikenali dari keberadaan tag HTML seperti <video>, <embed>, atau <object>.",
+  "quote": "Videos are identified in the page by the presence of an HTML tag, for example: <video>, <embed>, or <object>.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E88",
+  "rule": "Letakkan video di posisi yang mudah ditemukan pada tampilan mobile.",
+  "quote": "Place the video in an easy to find position on the page when viewed on a mobile device.",
+  "source": "g-mobile-first"
+ },
+ {
+  "id": "E89",
+  "rule": "Google Search menjalankan JavaScript dengan versi evergreen Chromium, tetapi ada beberapa hal yang dapat dioptimalkan.",
+  "quote": "While Google Search runs JavaScript with an evergreen version of Chromium, there are a few things that you can optimize.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E90",
+  "rule": "Google memproses aplikasi web JavaScript dalam tiga fase utama: crawling, rendering, dan indexing.",
+  "quote": "Google processes JavaScript web apps in three main phases: - Crawling - Rendering - Indexing",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E91",
+  "rule": "Google Search tidak merender JavaScript dari file yang diblokir atau pada halaman yang diblokir.",
+  "quote": "Google Search won't render JavaScript from blocked files or on blocked pages.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E92",
+  "rule": "Pada model app shell, HTML awal tidak berisi konten sebenarnya sehingga Google harus mengeksekusi JavaScript untuk melihat konten tersebut.",
+  "quote": "Some JavaScript sites may use the app shell model where the initial HTML does not contain the actual content and Google needs to execute JavaScript before being able to see the actual page content that JavaScript generates.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E93",
+  "rule": "Halaman dapat menunggu di antrean render beberapa detik, tetapi bisa lebih lama.",
+  "quote": "The page may stay on this queue for a few seconds, but it can take longer than that.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E94",
+  "rule": "Server-side rendering atau pre-rendering tetap ide yang bagus karena membuat situs lebih cepat bagi pengguna dan crawler, dan tidak semua bot dapat menjalankan JavaScript.",
+  "quote": "server-side or pre-rendering is still a great idea because it makes your website faster for users and crawlers, and not all bots can run JavaScript.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E95",
+  "rule": "Title dan meta description boleh diatur atau diubah dengan JavaScript.",
+  "quote": "You can use JavaScript to set or change the meta description as well as the <title> element.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E96",
+  "rule": "Cara terbaik menetapkan canonical URL adalah lewat HTML.",
+  "quote": "The best way to set the canonical URL is to use HTML",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E97",
+  "rule": "Jika terpaksa memakai JavaScript untuk canonical, nilainya harus selalu sama dengan HTML asli.",
+  "quote": "make sure that you always set the canonical URL to the same value as the original HTML.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E98",
+  "rule": "Jangan memakai JavaScript untuk mengubah canonical URL menjadi URL lain dari yang ditetapkan di HTML asli.",
+  "quote": "you shouldn't use JavaScript to change the canonical URL to something else than the URL you specified as the canonical URL in the original HTML.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E99",
+  "rule": "Google punya keterbatasan pada API dan fitur JavaScript yang didukung.",
+  "quote": "Google has some limitations regarding which APIs and JavaScript features it supports.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E100",
+  "rule": "Gunakan differential serving dan polyfill jika mendeteksi (feature-detect) API browser yang dibutuhkan tidak ada.",
+  "quote": "We recommend using differential serving and polyfills if you feature-detect a missing browser API that you need.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E101",
+  "rule": "Gunakan status code HTTP yang bermakna, misalnya 404 untuk halaman tidak ditemukan dan 401 untuk halaman di balik login.",
+  "quote": "use a meaningful status code, like a 404 for a page that could not be found or a 401 code for pages behind a login.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E102",
+  "rule": "Pada single-page app dengan client-side routing, hindari soft 404 dengan JavaScript redirect ke URL yang direspons server dengan status 404 (misalnya /not-found).",
+  "quote": "Use a JavaScript redirect to a URL for which the server responds with a 404 HTTP status code (for example /not-found).",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E103",
+  "rule": "Alternatif untuk menghindari soft 404 adalah menambahkan <meta name=\"robots\" content=\"noindex\"> ke halaman error memakai JavaScript.",
+  "quote": "Add a <meta name=\"robots\" content=\"noindex\"> to error pages using JavaScript.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E104",
+  "rule": "Google hanya dapat menemukan link yang berupa elemen HTML <a> dengan atribut href.",
+  "quote": "Google can only discover your links if they are <a> HTML elements with an href attribute.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E105",
+  "rule": "Untuk client-side routing, gunakan History API untuk routing antar tampilan.",
+  "quote": "use the History API to implement routing between different views of your web app.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E106",
+  "rule": "Jangan memakai fragment (#) untuk memuat konten halaman yang berbeda, agar Googlebot dapat mengurai dan mengekstrak URL.",
+  "quote": "To ensure that Googlebot can parse and extract your URLs, don't use fragments to load different page content.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E107",
+  "rule": "Googlebot menyimpan cache secara agresif dan WRS dapat mengabaikan header caching, sehingga bisa memakai resource JavaScript atau CSS yang usang.",
+  "quote": "Googlebot caches aggressively in order to reduce network requests and resource usage. WRS may ignore caching headers. This may lead WRS to use outdated JavaScript or CSS resources.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E108",
+  "rule": "Content fingerprinting menjadikan fingerprint dari isi file bagian dari nama file (misalnya main.2bb85551.js); karena bergantung pada isi file, update menghasilkan nama file berbeda setiap kali.",
+  "quote": "Content fingerprinting avoids this problem by making a fingerprint of the content part of the filename, like main.2bb85551.js.\nThe fingerprint depends on the content of the file, so updates generate a different filename every time.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E109",
+  "rule": "JSON-LD structured data boleh dihasilkan dan disuntikkan dengan JavaScript; uji implementasinya.",
+  "quote": "When using structured data on your pages, you can use JavaScript to generate the required JSON-LD and inject it into the page. Make sure to test your implementation to avoid issues.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E110",
+  "rule": "Untuk web component, Google hanya melihat konten yang terlihat di rendered HTML.",
+  "quote": "This means Google can only see content that's visible in the rendered HTML.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E111",
+  "rule": "Konten yang tidak terlihat di rendered HTML tidak dapat diindeks Google; periksa dengan Rich Results Test atau URL Inspection Tool.",
+  "quote": "To make sure that Google can still see your content after it's rendered, use the Rich Results Test or the URL Inspection Tool and look at the rendered HTML. If the content isn't visible in the rendered HTML, Google won't be able to index it.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E112",
+  "rule": "Salah satu cara agar konten light DOM dan shadow DOM sama-sama tampil di rendered HTML adalah memakai elemen slot.",
+  "quote": "One way to make sure both light DOM and shadow DOM content is displayed in the rendered HTML is to use a Slot element.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E113",
+  "rule": "Lazy-loading gambar adalah strategi yang baik untuk memuat gambar hanya saat pengguna akan melihatnya, dan perlu diterapkan dengan cara yang ramah Search.",
+  "quote": "A good strategy is to use lazy-loading to only load images when the user is about to see them. To make sure you're implementing lazy-loading in a search-friendly way, follow our lazy-loading guidelines.",
+  "source": "g-js-seo"
+ },
+ {
+  "id": "E114",
+  "rule": "Tambahkan tag <link> favicon di header halaman utama (home page).",
+  "quote": "Add a <link> tag to the header of your home page",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E115",
+  "rule": "Sintaks dasar tag favicon adalah <link rel=\"icon\" href=\"/path/to/favicon.ico\">.",
+  "quote": "<link rel=\"icon\" href=\"/path/to/favicon.ico\">",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E116",
+  "rule": "Google Search hanya mendukung satu favicon per situs, dengan situs didefinisikan oleh hostname.",
+  "quote": "Google Search only supports one favicon per site, where a site is defined by the hostname.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E117",
+  "rule": "Hostname berbeda (misalnya www dan subdomain code) dapat memiliki favicon berbeda.",
+  "quote": "https://code.example.com/ are two different hostnames, and therefore can have two different favicons.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E118",
+  "rule": "Satu favicon untuk hostname berlaku bagi situs dan subdirektorinya.",
+  "quote": "you can only set one favicon for https://www.example.com/, which applies to the site and its subdirectories.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E119",
+  "rule": "Home page tingkat subdirektori (misalnya https://example.com/news) tidak didukung untuk favicon.",
+  "quote": "Not supported: https://example.com/news (this is a subdirectory-level home page)",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E120",
+  "rule": "Googlebot-Image harus bisa meng-crawl file favicon dan Googlebot harus bisa meng-crawl home page; keduanya tidak boleh diblokir.",
+  "quote": "Googlebot-Image must be able to crawl the favicon file and Googlebot must be able to crawl the home page",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E121",
+  "rule": "Favicon harus persegi (rasio 1:1) dengan ukuran minimal 8x8px.",
+  "quote": "Your favicon must be a square (1:1 aspect ratio) that's at least 8x8px.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E122",
+  "rule": "Sumber merekomendasikan favicon yang lebih besar dari 48x48px agar tampak baik di berbagai permukaan.",
+  "quote": "we recommend using a favicon that's larger than 48x48px so that it looks good on various surfaces.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E123",
+  "rule": "Format favicon yang didukung: BMP, GIF, ICO, PNG, JPEG, PPM, dan TIFF.",
+  "quote": "Google Search supports the following favicon file formats: BMP, GIF, ICO, PNG, JPEG, PPM, and TIFF.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E124",
+  "rule": "URL favicon harus stabil dan tidak sering diganti.",
+  "quote": "The favicon URL must be stable (don't change the URL frequently).",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E125",
+  "rule": "Favicon sebaiknya secara visual mewakili brand situs.",
+  "quote": "make sure your favicon is visually representative of your website's brand.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E126",
+  "rule": "URL favicon boleh relatif atau absolut dan tidak harus dihosting di situs sendiri (misalnya di CDN).",
+  "quote": "The URL can be a relative path (/smile.ico) or absolute path (https://example.com/smile.ico). The URL doesn't need to be hosted on your site (for example, your favicon could be hosted on a content delivery network (CDN)).",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E127",
+  "rule": "Setelah favicon dipasang, beri waktu Google meng-crawl ulang; prosesnya bisa beberapa hari sampai beberapa minggu.",
+  "quote": "Allow time for Google to recrawl and process the new information on your home page. Remember that crawling can take anywhere from several days to several weeks, depending on how often our systems determine content needs to be refreshed.",
+  "source": "g-favicon"
+ },
+ {
+  "id": "E128",
+  "rule": "Lihat apa yang dialami pengguna nyata, bukan hanya hasil alat lab seperti Lighthouse atau pengujian lokal.",
+  "quote": "To understand LCP of real users, we should look at what real users are experiencing, rather than what a lab-based tool like Lighthouse or local testing shows.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E129",
+  "rule": "Home page cenderung dikunjungi pengguna baru sehingga sering dimuat tanpa cache dan menjadi halaman paling lambat di situs.",
+  "quote": "Home pages tend to be visted by new users and so may often be loaded \"cold\", without any cached content and so are often the slowest pages on a website.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E130",
+  "rule": "TTFB yang tinggi dapat membuat target LCP 2,5 detik sulit dicapai, bahkan mustahil.",
+  "quote": "A high TTFB can make achieving a 2.5 second LCP challenging, or even impossible.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E131",
+  "rule": "Selisih besar antara TTFB dan FCP dapat berarti browser harus mengunduh banyak aset render-blocking.",
+  "quote": "A large delta between TTFB and FCP could indicate that the browser needs to download a lot of render-blocking assets.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E132",
+  "rule": "Selisih besar TTFB dan FCP juga bisa menjadi tanda situs yang sangat bergantung pada client-side rendering.",
+  "quote": "a classic sign of a site that relies heavily on client-side rendering.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E133",
+  "rule": "Selisih besar antara FCP dan LCP menunjukkan resource LCP tidak langsung tersedia untuk diprioritaskan browser, misalnya teks atau gambar yang dikelola JavaScript dan bukan ada di HTML awal.",
+  "quote": "A large delta between FCP and LCP indicates that the LCP resource is either not immediately available for the browser to prioritize (for example, text or images that are managed by JavaScript rather than being available in the initial HTML)",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E134",
+  "rule": "Nilai LCP dapat dipecah menjadi empat subbagian yang tidak tumpang tindih dan tanpa celah, dan jumlahnya sama dengan total LCP.",
+  "quote": "Every single page can have its LCP value broken down into these four subparts. There is no overlap or gap between them. Collectively, they add up to the full LCP time.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E135",
+  "rule": "Optimalkan semua subbagian; optimasi satu bagian bisa hanya memindahkan waktu yang dihemat ke bagian lain tanpa memperbaiki LCP.",
+  "quote": "But it's also important to keep in mind that you need to optimize all of them. In some cases, an optimization applied to one part won't improve LCP, it will just shift the time saved to another part.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E136",
+  "rule": "Proporsi panduan: TTFB sekitar 40%, resource load delay di bawah 10%, resource load duration sekitar 40%, element render delay di bawah 10%.",
+  "quote": "Time to first byte | ~40% | Resource load delay | <10% | Resource load duration | ~40% | Element render delay | <10%",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E137",
+  "rule": "Proporsi tersebut adalah panduan, bukan aturan ketat.",
+  "quote": "Note that these time breakdowns are guidelines, not strict rules.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E138",
+  "rule": "Dua subbagian yang bernama \"delay\" (resource load delay dan element render delay) sebaiknya sedekat mungkin dengan nol.",
+  "quote": "Of the four subparts, two have the word \"delay\" in their names. That is a clue that you want to get these times as close to zero as possible.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E139",
+  "rule": "Patokan: resource LCP sebaiknya mulai dimuat bersamaan dengan resource pertama yang dimuat halaman itu.",
+  "quote": "A good rule of thumb is that your LCP resource should start loading at the same time as the first resource loaded by that page.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E140",
+  "rule": "Resource LCP harus dapat ditemukan dari sumber HTML.",
+  "quote": "your LCP resource should be discoverable from the HTML source.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E141",
+  "rule": "Jika elemen LCP adalah <img>, taruh atribut src atau srcset di markup HTML awal sehingga browser dapat menemukan resource LCP dengan memindai respons HTML.",
+  "quote": "in the following cases, the browser can discover the LCP resource by scanning the HTML document response: - The LCP element is an <img> element, and its src or srcset attributes are present in the initial HTML markup.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E142",
+  "rule": "Resource LCP tidak dapat ditemukan dari pemindaian respons HTML jika <img> ditambahkan dinamis dengan JavaScript, di-lazy-load dengan library JavaScript yang menyembunyikan src atau srcset (data-src atau data-srcset), atau memerlukan CSS background image.",
+  "quote": "Here are some examples where the LCP resource cannot be discovered from scanning the HTML document response: - The LCP element is an <img> that is dynamically added to the page using JavaScript. - The LCP element is lazily loaded with a JavaScript library that hides its src or srcset attributes (often as data-src or data-srcset). - The LCP element requires a CSS background image.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E143",
+  "rule": "Jika resource LCP hanya direferensikan dari file CSS atau JavaScript eksternal, preload resource itu dengan fetch priority tinggi.",
+  "quote": "In cases where the resource is only referenced from an external CSS or JavaScript file, the LCP resource should be preloaded with a high fetch priority",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E144",
+  "rule": "Contoh preload dengan prioritas tinggi untuk gambar LCP: <link rel=\"preload\" fetchpriority=\"high\" as=\"image\" href=\"/path/to/hero-image.webp\" type=\"image/webp\">.",
+  "quote": "<link rel=\"preload\" fetchpriority=\"high\" as=\"image\" href=\"/path/to/hero-image.webp\" type=\"image/webp\">",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E145",
+  "rule": "Hindari loading=\"lazy\" pada <img> yang menjadi LCP, karena gambar baru dimuat setelah layout memastikan gambar ada di viewport dan dapat mulai lebih lambat.",
+  "quote": "you can delay your LCP image using HTML if you set loading=\"lazy\" on your <img> element. Using lazy loading means that the resource won't be loaded until after layout confirms the image is in the viewport and so may begin loading later than it otherwise would.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E146",
+  "rule": "Pasang fetchpriority=\"high\" pada <img> yang kemungkinan besar menjadi elemen LCP.",
+  "quote": "It's a good idea to set fetchpriority=\"high\" on an <img> element if you think it's likely to be your page's LCP element.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E147",
+  "rule": "Memberi prioritas tinggi pada lebih dari satu atau dua gambar membuat pengaturan prioritas tidak membantu menurunkan LCP.",
+  "quote": "However, setting a high priority on more than one or two images makes priority setting unhelpful in reducing LCP.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E148",
+  "rule": "Prioritas gambar yang tidak terlihat saat awal (misalnya slide carousel) dapat diturunkan dengan fetchpriority=\"low\".",
+  "quote": "You can also lower the priority of images that might be early in the document response but aren't visible due to styling, such as images in carousel slides that aren't visible at startup:\n\n<img fetchpriority=\"low\" src=\"/path/to/carousel-slide-3.webp\">",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E149",
+  "rule": "Selalu periksa prioritas resource di DevTools dan uji perubahan dengan alat lab dan lapangan.",
+  "quote": "Always check resource priority in DevTools and test changes with lab and field tools.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E150",
+  "rule": "Rendering seluruh halaman dapat terblokir oleh stylesheet atau script sinkron di <head> yang masih dimuat.",
+  "quote": "Rendering of the entire page is blocked due to stylesheets or synchronous scripts in the <head> that are still loading.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E151",
+  "rule": "Elemen LCP dapat disembunyikan oleh kode lain, misalnya library A/B testing yang masih menentukan eksperimen pengguna.",
+  "quote": "The element is being hidden by some other code, such as an A/B testing library that's still determining what experiment the user should be in.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E152",
+  "rule": "Cara terbaik agar stylesheet tidak memblokir render elemen LCP adalah memperkecil ukurannya sampai lebih kecil dari resource LCP.",
+  "quote": "the best way to ensure the style sheet does not block rendering of the LCP element is to reduce its size so that it's smaller than the LCP resource.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E153",
+  "rule": "Meng-inline stylesheet hanya direkomendasikan jika stylesheet kecil, karena konten inline di HTML tidak bisa memanfaatkan cache pada pemuatan berikutnya.",
+  "quote": "inlining your style sheet is only recommended if your style sheet is small since inlined content in the HTML cannot benefit from caching in subsequent page loads.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E154",
+  "rule": "Hapus CSS yang tidak dipakai (atau tunda pemuatannya).",
+  "quote": "Remove unused CSS: use Chrome DevTools to find CSS rules that aren't being used and can potentially be removed (or deferred).",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E155",
+  "rule": "Tunda CSS non-kritis dengan memisahkan stylesheet menjadi gaya yang dibutuhkan saat load awal dan gaya yang bisa dimuat belakangan.",
+  "quote": "Defer non-critical CSS: split your style sheet out into styles that are required for initial page load and then styles that can be loaded lazily.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E156",
+  "rule": "Minify dan kompres CSS kritis untuk memperkecil ukuran transfer.",
+  "quote": "Minify and compress CSS: for styles that are critical, make sure you're reducing their transfer size as much as possible.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E157",
+  "rule": "Hampir tidak pernah perlu menambahkan script sinkron (tanpa async atau defer) di <head>, dan hal itu hampir selalu berdampak negatif pada kinerja.",
+  "quote": "It is almost never necessary to add synchronous scripts (scripts without the async or defer attributes) to the <head> of your pages, and doing so will almost always have a negative impact on performance.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E158",
+  "rule": "Jika JavaScript harus berjalan sedini mungkin, inline script itu, dan hanya bila script sangat kecil.",
+  "quote": "In cases where JavaScript code needs to run as early as possible in the page load, it's best to inline it so rendering isn't delayed waiting on another network request. As with stylesheets, though, you should only inline scripts if they're very small.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E159",
+  "rule": "Server-side rendering (SSR) membuat resource gambar dapat ditemukan dari sumber HTML dan konten halaman tidak menunggu request JavaScript tambahan.",
+  "quote": "Your image resources will be discoverable from the HTML source (as discussed in step 1 earlier). - Your page content won't require additional JavaScript requests to finish before it can render.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E160",
+  "rule": "Kekurangan utama SSR adalah butuh waktu pemrosesan server tambahan yang dapat memperlambat TTFB.",
+  "quote": "The main downside of SSR is it requires additional server processing time, which can slow down your TTFB.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E161",
+  "rule": "Jika arsitektur memungkinkan prerendering (static site generation), umumnya itu pilihan yang lebih baik untuk kinerja.",
+  "quote": "If prerendering is possible with your architecture, it's generally a better choice for performance.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E162",
+  "rule": "Semua browser merender gambar di main thread, sehingga apa pun yang memblokir main thread dapat menambah element render delay.",
+  "quote": "All browsers today render images on the main thread, which means anything that blocks the main thread can also lead to unnecessary element render delay.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E163",
+  "rule": "Resource LCP sebuah halaman (jika ada) berupa gambar atau web font.",
+  "quote": "The LCP resource of a page (if it has one) will either be an image or a web font.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E164",
+  "rule": "Dekatkan server ke pengguna; cara terbaik adalah memakai content delivery network (CDN).",
+  "quote": "you can also reduce the load times by getting your servers as geographically close to your users as possible. And the best way to do that is to use a content delivery network (CDN).",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E165",
+  "rule": "Image CDN membantu karena mengurangi jarak tempuh resource dan umumnya juga memperkecil ukuran resource.",
+  "quote": "they not only reduce the distance the resource has to travel, but they also generally reduce the size of the resource",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E166",
+  "rule": "Memuat banyak resource sekaligus, terutama banyak resource ber-fetchpriority tinggi, dapat memperlambat pemuatan resource LCP.",
+  "quote": "if you're loading many resources with high fetchpriority, or if you're just loading a lot of resources in general, then it could affect how quickly the LCP resource loads.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E167",
+  "rule": "Sajikan resource dengan kebijakan cache-control yang efisien agar kunjungan berikutnya dilayani dari cache.",
+  "quote": "If you serve your resources with an efficient cache-control policy, then visitors who request those resources a second time will have them served from the cache",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E168",
+  "rule": "Jika font-display diatur selain auto atau block, teks selalu terlihat saat load dan LCP tidak terblokir request jaringan tambahan.",
+  "quote": "If you set a font-display value of anything other than auto or block, then text will always be visible during load, and LCP won't be blocked on an additional network request.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E169",
+  "rule": "Data URL punya caveat: resource tidak bisa di-cache dan bisa memperpanjang render delay karena biaya decode tambahan.",
+  "quote": "using data URLs comes with caveats because then the resources cannot be cached and in some cases can lead to longer render delays because of the additional decode cost.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E170",
+  "rule": "Tidak ada yang bisa terjadi di frontend sebelum backend mengirim byte pertama, sehingga mempercepat TTFB memperbaiki semua metrik load lain.",
+  "quote": "Nothing can happen on the frontend until the backend delivers that first byte of content, so anything you can do to speed up your TTFB will improve every other load metric as well.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E171",
+  "rule": "Minimalkan jumlah redirect yang harus dilewati pengunjung.",
+  "quote": "Always minimize the number of redirects a visitor must wait through.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E172",
+  "rule": "Parameter URL unik untuk analitik dapat membuat konten cache di CDN edge tidak terpakai, sehingga semua request harus kembali ke origin server.",
+  "quote": "Another common cause is when cached content cannot be used from a CDN edge server, and all requests must be directed all the way back to the origin server. This can happen if unique URL parameters are used by visitors for analytics—even if they don't result in different pages.",
+  "source": "webdev-optimize-lcp"
+ },
+ {
+  "id": "E173",
+  "rule": "Untuk mengukur LCP di JavaScript, gunakan Largest Contentful Paint API.",
+  "quote": "To measure LCP in JavaScript, you can use the Largest Contentful Paint API.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E174",
+  "rule": "Untuk analisis, hanya laporkan PerformanceEntry yang paling baru dikirim.",
+  "quote": "For analysis purposes, you should only report the most recently dispatched PerformanceEntry to your analytics service.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E175",
+  "rule": "Library web-vitals menangani perbedaan antara metrik dan API LCP, kecuali kasus iframe.",
+  "quote": "developers can use the web-vitals JavaScript library to measure LCP, which handles these differences for you (where possible—note the iframe issue is not covered)",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E176",
+  "rule": "Bila elemen terpenting berbeda dari elemen terbesar, waktu render elemen lain dapat diukur dengan Element Timing API.",
+  "quote": "In some cases the most important element (or elements) on the page is not the same as the largest element, and developers may be more interested in measuring the render times of these other elements instead. This is possible using the Element Timing API, as described in the article on custom metrics.",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E177",
+  "rule": "Disarankan menyetel header Timing-Allow-Origin agar metrik lebih akurat.",
+  "quote": "it's still recommended to set the Timing-Allow-Origin header, so your metrics will be more accurate",
+  "source": "webdev-lcp"
+ },
+ {
+  "id": "E178",
+  "rule": "Tool lab seperti Lighthouse biasanya hanya memuat halaman dasar sehingga mungkin tidak menampilkan CLS penuh sebuah halaman.",
+  "quote": "Web performance lab tools like Lighthouse may not show the full CLS of a page as they typically do a basic load of the page",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E179",
+  "rule": "Layout shift yang terjadi dalam 500 milidetik setelah interaksi pengguna dikecualikan dari skor CLS karena dianggap diharapkan.",
+  "quote": "will be excluded from the CLS score as they are expected shifts—as long as they occur within 500 milliseconds of that interaction.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E180",
+  "rule": "Konten lazy-loaded yang termuat saat pengguna scroll dan menggeser halaman dapat dihitung sebagai CLS.",
+  "quote": "other post-load shifts that are unexpected by the user may be included where there was no qualifying interaction—for example, if you scroll further along the page and lazy-loaded content is loaded and that causes shifts.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E181",
+  "rule": "CLS sering terjadi saat pengguna scroll ketika konten lazy-loaded termuat tanpa ruang yang dicadangkan.",
+  "quote": "CLS often happens while the user scrolls through a page, when lazy-loaded content loads fully without space reserved for it.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E182",
+  "rule": "Konten yang bergeser saat pointer diarahkan ke atasnya (hover) juga penyebab umum CLS setelah load.",
+  "quote": "Content shifting when the user holds the pointer over it is another common post-load CLS cause.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E183",
+  "rule": "Pergeseran apa pun pada kedua interaksi itu (scroll dan hover) dihitung tidak terduga, bahkan jika terjadi dalam 500 milidetik.",
+  "quote": "Any content shift during either of these interactions counts as unexpected, even if it happens within 500 milliseconds.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E184",
+  "rule": "Perbedaan antara CLS CrUX dan Lighthouse sering menandakan CLS setelah load.",
+  "quote": "Disagreement between the CrUX and Lighthouse CLS scores often indicates post-load CLS.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E185",
+  "rule": "Di Lighthouse, audit CLS menunjukkan gambar tanpa width dan height serta elemen yang bergeser saat load.",
+  "quote": "Lighthouse will help with two audits to provide more information on images causing CLS due to missing width and height, and also list all the elements that shifted for the page load along with their CLS contribution.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E186",
+  "rule": "Selalu sertakan atribut width dan height pada elemen gambar dan video.",
+  "quote": "Always include width and height size attributes on your images and video elements.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E187",
+  "rule": "Alternatifnya, cadangkan ruang dengan CSS aspect-ratio atau yang serupa.",
+  "quote": "Alternatively, reserve the required space with CSS aspect-ratio or similar.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E188",
+  "rule": "Browser modern menghitung aspect ratio default dari atribut width dan height sebelum gambar dimuat, sehingga atribut tersebut mencegah layout shift.",
+  "quote": "Because modern browsers set the default aspect ratio of images based on an image's width and height attributes, you can prevent layout shifts by setting those attributes on the image",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E189",
+  "rule": "Untuk gambar dalam container, ubah ukuran dengan CSS lebar container dan height: auto agar tidak memakai tinggi tetap.",
+  "quote": "We set height: auto; to avoid using a fixed value for the image height.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E190",
+  "rule": "Gambar tanpa dimensi tidak memiliki ruang yang dialokasikan sampai browser mulai mengunduhnya dan mengetahui ukurannya.",
+  "quote": "space can't be allocated for it until the browser starts to download it and can determine its dimensions.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E191",
+  "rule": "Pada responsive images dengan srcset, setiap gambar harus memakai aspect ratio yang sama agar width dan height pada <img> bisa ditetapkan.",
+  "quote": "To ensure <img> width and height attributes can be set, each image should use the same aspect ratio.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E192",
+  "rule": "Chrome, Firefox, dan Safari mendukung width dan height pada elemen <source> di dalam <picture>.",
+  "quote": "Chrome, Firefox, and Safari now support setting width and height on the <source> elements within a given <picture> element:",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E193",
+  "rule": "Iklan, embed, iframe, dan konten yang disuntikkan secara dinamis dapat membuat konten sesudahnya bergeser ke bawah dan menaikkan CLS.",
+  "quote": "Ads, embeds, iframes, and other dynamically injected content can all cause content appearing after them to shift down, increasing your CLS.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E194",
+  "rule": "Cadangkan ruang untuk konten yang dimuat belakangan di layout awal.",
+  "quote": "layout shifts can be avoided by reserving the space for them in the initial layout.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E195",
+  "rule": "Tambahkan aturan CSS min-height untuk mencadangkan ruang, atau pakai properti aspect-ratio untuk konten responsif seperti iklan.",
+  "quote": "One approach is to add a min-height CSS rule to reserve space or—for responsive content such as ads, for example—use the aspect-ratio CSS property",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E196",
+  "rule": "Untuk konten tanpa tinggi tetap seperti iklan, ukuran ruang yang tepat mungkin tidak bisa dicadangkan sehingga pergeseran tidak sepenuhnya hilang.",
+  "quote": "you might not be able to reserve the exact amount of space needed to eliminate the layout shift entirely.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E197",
+  "rule": "Menetapkan ukuran awal ke ukuran terkecil yang akan dipakai dengan min-height mengurangi dampak pergeseran dibanding ukuran awal 0px.",
+  "quote": "You can instead set the initial size to the smallest size that will be used, and accept some level of shift for larger content. Using min-height, as suggested previously, allows the parent element to grow as necessary while reducing the impact of layout shifts, compared to the 0px default size of an empty element.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E198",
+  "rule": "Hindari meruntuhkan ruang yang dicadangkan; tampilkan placeholder jika, misalnya, tidak ada iklan yang dikembalikan.",
+  "quote": "Try to avoid collapsing the reserved space by showing a placeholder if, for example, no ad is returned.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E199",
+  "rule": "Menghapus ruang yang disisihkan dapat menyebabkan CLS sebanyak menyisipkan konten.",
+  "quote": "Removing the space set aside for elements can cause just as much CLS as inserting content.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E200",
+  "rule": "Konten yang disuntikkan dekat bagian atas viewport biasanya menyebabkan pergeseran lebih besar daripada yang di bagian bawah viewport.",
+  "quote": "Dynamically injected content closer to the top of the viewport usually causes greater layout shifts than content injected lower in the viewport.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E201",
+  "rule": "Jika ruang tidak bisa dicadangkan, letakkan konten yang disuntikkan lebih rendah pada halaman untuk mengurangi dampak CLS.",
+  "quote": "If you can't reserve space for injected content, we recommend placing it later on the page to reduce the impact on its CLS.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E202",
+  "rule": "Untuk banner dan form yang muncul tiba-tiba, cadangkan ruang di muka (misalnya placeholder atau skeleton UI).",
+  "quote": "reserve sufficient space in the viewport for it in advance (for example, using a placeholder or skeleton UI)",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E203",
+  "rule": "Alternatifnya, tempatkan elemen di luar alur dokumen dengan overlay bila masuk akal.",
+  "quote": "Alternatively, ensure the element is not part of the document flow by overlaying the content where this makes sense.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E204",
+  "rule": "Saat memuat konten tambahan, pengguna dapat memulai pemuatan sendiri (misalnya tombol \"Load more\" atau \"Refresh\") agar pergeseran tidak mengejutkan.",
+  "quote": "Have the user initiate the load of new content, so they are not surprised by the shift (for example with a \"Load more\" or \"Refresh\" button)",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E205",
+  "rule": "Ganti konten lama dengan konten baru di dalam container berukuran tetap atau pakai carousel, dan nonaktifkan link serta kontrol sampai transisi selesai.",
+  "quote": "Replace the old content with the new content within a fixed size container or use a carousel and remove the old content after the transition. Remember to disable any links and controls until the transition has completed to prevent accidental clicks or taps while the new content is coming in.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E206",
+  "rule": "Jika interaksi pengguna memicu request jaringan yang lama, sediakan ruang dan tampilkan loading indicator segera.",
+  "quote": "it's best to create some space right away and show a loading indicator to avoid an unpleasant layout shift when the request completes.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E207",
+  "rule": "Properti top dan left menyebabkan layout shift saat dianimasikan, bahkan jika elemen berada di layer sendiri; hindari menganimasikan properti ini.",
+  "quote": "Changing the top and left properties also cause layout shifts, even when the element being moved is on its own layer.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E208",
+  "rule": "Animasi transform (translate, scale, rotate, skew) dapat mengubah elemen tanpa memicu re-layout.",
+  "quote": "Other CSS properties can be changed without triggering re-layouts. These include using transform animations to translate, scale, rotate, or skew elements.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E209",
+  "rule": "Alih-alih mengubah height dan width, pakai transform: scale().",
+  "quote": "Instead of changing the height and width properties, use transform: scale().",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E210",
+  "rule": "Untuk memindahkan elemen, hindari mengubah top, right, bottom, atau left dan pakai transform: translate().",
+  "quote": "To move elements around, avoid changing the top, right, bottom, or left properties and use transform: translate() instead.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E211",
+  "rule": "Hormati pengaturan browser prefers-reduced-motion karena sebagian pengunjung dapat terganggu oleh animasi.",
+  "quote": "Be sure to respect prefers-reduced-motion browser settings, as some site visitors can experience ill effects or attention issues from animation.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E212",
+  "rule": "Baik FOUT maupun FOIT dapat menyebabkan layout shift karena teks tetap ditata dengan font fallback.",
+  "quote": "Even if the text is invisible, it's still laid out using the fallback font, so when the web font loads, the text block and the surrounding content shift in the same way as for the visible font.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E213",
+  "rule": "font-display: optional dapat menghindari re-layout karena web font hanya dipakai jika sudah tersedia saat layout awal.",
+  "quote": "font-display: optional can avoid a re-layout as the web font is only used if it is available by the time of initial layout.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E214",
+  "rule": "Tentukan font fallback yang sesuai, misalnya font-family: \"Google Sans\", sans-serif; bukan hanya nama web font.",
+  "quote": "Ensure the appropriate fallback font is used. For example, using font-family: \"Google Sans\", sans-serif; will ensure the browser's sans-serif fallback font is used while \"Google Sans\" is loaded.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E215",
+  "rule": "Perkecil perbedaan ukuran antara font fallback dan web font dengan size-adjust, ascent-override, descent-override, dan line-gap-override.",
+  "quote": "Minimize the size differences between the fallback font and the web font using the new size-adjust, ascent-override, descent-override, and line-gap-override APIs",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E216",
+  "rule": "Muat web font kritis sedini mungkin dengan <link rel=preload>.",
+  "quote": "Load critical web fonts as early as possible using <link rel=preload>.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E217",
+  "rule": "Memastikan halaman memenuhi syarat back/forward cache (bfcache) adalah teknik yang sangat efektif untuk menjaga CLS tetap rendah.",
+  "quote": "A highly effective technique for keeping CLS scores low is to ensure your web pages are eligible for the back/forward cache (bfcache).",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E218",
+  "rule": "Tetap usahakan menghindari pergeseran pada load awal, karena bfcache hanya mengurangi dampak pada navigasi back/forward.",
+  "quote": "You should always aim to avoid the shifts even on the initial load, but where that is more tricky to resolve fully, you can at least reduce the impact by avoiding them on any bfcache navigations.",
+  "source": "webdev-optimize-cls"
+ },
+ {
+  "id": "E219",
+  "rule": "Untuk mengukur CLS di JavaScript, kelompokkan entri layout-shift ke dalam session dan hitung nilai session maksimum.",
+  "quote": "you need to group these unexpected layout-shift entries into sessions, and calculate the maximum session value.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E220",
+  "rule": "CLS perlu dilaporkan setiap kali halaman masuk background, selain saat di-unload.",
+  "quote": "CLS should be reported any time a page is background—in addition to any time it's unloaded",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E221",
+  "rule": "Jika halaman dipulihkan dari back/forward cache, nilai CLS harus direset ke nol karena dialami sebagai kunjungan halaman yang berbeda.",
+  "quote": "If a page is restored from the back/forward cache, its CLS value should be reset to zero since users experience this as a distinct page visit.",
+  "source": "webdev-cls"
+ },
+ {
+  "id": "E222",
+  "rule": "Input delay dimulai saat pengguna memulai interaksi dan berakhir saat event callback mulai berjalan.",
+  "quote": "The input delay, which starts when the user initiates an interaction with the page, and ends when the event callbacks for the interaction begin to run.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E223",
+  "rule": "Kurangi input delay seminimal mungkin agar event callback dapat mulai berjalan secepatnya.",
+  "quote": "you'll want to reduce input delay to a minimum so that interactions can begin running event callbacks as soon as possible.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E224",
+  "rule": "Input delay dapat berasal dari aktivitas main thread (script yang dimuat, di-parse, dan dikompilasi), fetch handling, timer, atau interaksi lain yang tumpang tindih.",
+  "quote": "perhaps due to scripts loading, parsing and compiling), fetch handling, timer functions, or even from other interactions that occur in quick succession and overlap with one another.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E225",
+  "rule": "Pengguna dapat berinteraksi saat halaman masih dimuat; halaman yang sudah tampil belum tentu selesai dimuat.",
+  "quote": "just because a page has rendered, doesn't mean that the page is finished loading. Depending on how many resources a page requires to become fully functional, it's possible that users may attempt to interact with the page while it's still loading.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E226",
+  "rule": "Setelah file JavaScript diunduh, browser masih harus mem-parse, mengompilasi ke bytecode, lalu mengeksekusinya.",
+  "quote": "that work includes parsing a script to check its syntax is valid, compiling it into bytecode, and then finally executing it.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E227",
+  "rule": "Bergantung pada ukuran script, pekerjaan itu dapat menimbulkan long task di main thread yang menunda respons terhadap interaksi lain.",
+  "quote": "Depending on the size of a script, this work can introduce long tasks on the main thread, which will delay the browser from responding to other user interactions.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E228",
+  "rule": "Saran umum terbaik: lakukan pekerjaan sesedikit mungkin di dalam event callback.",
+  "quote": "The best general advice in optimizing event callbacks is to do as little work as possible in them.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E229",
+  "rule": "Jika tidak bisa dikurangi banyak, pecah pekerjaan di event callback menjadi task terpisah agar tidak menjadi long task yang memblokir main thread.",
+  "quote": "the next thing you can try is to break up the work in event callbacks into separate tasks. This prevents the collective work from becoming a long task that blocks the main thread",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E230",
+  "rule": "setTimeout adalah salah satu cara memecah task karena callback-nya berjalan di task baru.",
+  "quote": "setTimeout is one way to break up tasks, because the callback passed to it runs in a new task.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E231",
+  "rule": "Yielding tanpa pandang bulu lebih baik daripada tidak yielding sama sekali.",
+  "quote": "Yielding indiscriminately is better than not yielding at all",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E232",
+  "rule": "Cara yang lebih halus: yield tepat setelah event callback yang memperbarui antarmuka agar logika rendering bisa berjalan lebih cepat.",
+  "quote": "only yielding immediately after an event callback that updates the user interface so rendering logic can run sooner.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E233",
+  "rule": "Teknik lanjutan: batasi event callback hanya pada logika yang dibutuhkan untuk pembaruan visual frame berikutnya, dan tunda sisanya ke task berikutnya.",
+  "quote": "A more advanced yielding technique involves structuring the code in your event callbacks to limit what gets run to just the logic required to apply visual updates for the next frame. Everything else can be deferred to a subsequent task.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E234",
+  "rule": "setTimeout di dalam requestAnimationFrame berfungsi di semua browser untuk mencegah kode non-kritis memblokir frame berikutnya.",
+  "quote": "it is an effective method that works in all browsers to prevent non-critical code from blocking the next frame.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E235",
+  "rule": "Layout thrashing (memperbarui style di JavaScript lalu segera membaca nilainya) adalah bottleneck kinerja karena memaksa browser melakukan pekerjaan layout sinkron.",
+  "quote": "Layout thrashing is a performance bottleneck because by updating styles and then immediately requesting the values of those styles in JavaScript, the browser is forced to do synchronous layout work",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E236",
+  "rule": "Pekerjaan rendering cenderung membesar mengikuti ukuran DOM yang besar.",
+  "quote": "However, when DOMs get very large, rendering work tends to scale with increasing DOM size.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E237",
+  "rule": "DOM besar bermasalah pada render awal halaman dan saat merespons interaksi pengguna.",
+  "quote": "A large DOM is problematic in two cases: - During the initial page render, where a large DOM requires a lot of work to render the page's initial state. - In response to a user interaction, where a large DOM can cause rendering updates to be very expensive",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E238",
+  "rule": "Ada kasus DOM besar tidak bisa dikurangi banyak; teknik seperti meratakan DOM atau menambah DOM saat interaksi hanya sampai batas tertentu.",
+  "quote": "While there are approaches you can take to reduce DOM size, such as flattening your DOM or add to the DOM during user interactions to keep your initial DOM size small, those techniques may only go so far.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E239",
+  "rule": "Salah satu cara membatasi pekerjaan rendering saat load halaman dan saat merespons interaksi adalah memakai properti CSS content-visibility, yang pada dasarnya merender elemen secara lazy ketika mendekati viewport.",
+  "quote": "One way you can limit the amount of both rendering work during page load and rendering work in response to user interactions is to lean on the CSS content-visibility property, which effectively amounts to lazily rendering elements as they approach the viewport.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E240",
+  "rule": "HTML dari server tiba sebagai stream, dan browser mem-parse serta merender bagian demi bagian sambil secara implisit yield secara berkala.",
+  "quote": "When the server sends HTML, it arrives in the browser as a stream. Streaming means that the HTML response from the server is arriving in chunks. The browser optimizes how it handles a stream by incrementally parsing chunks of that stream as they arrive, and rendering them bit by bit. This is a performance optimization in that the browser implicitly yields periodically and automatically during page load, and you get that for free.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E241",
+  "rule": "Pada model single-page application, merender HTML dengan JavaScript di klien menambah biaya pemrosesan JavaScript dan browser tidak yield sampai selesai mem-parse dan merender HTML itu.",
+  "quote": "by rendering HTML with JavaScript on the client, you not only get the cost of the JavaScript processing to create that HTML, but also the browser will not yield until it has finished parsing that HTML, and rendering it.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E242",
+  "rule": "Merender HTML lewat JavaScript umumnya tidak masalah selama tidak merender HTML dalam jumlah besar di klien, yang dapat menunda presentasi frame berikutnya.",
+  "quote": "This is generally fine, so long as you're not rendering large amounts of HTML on the client, which can delay presentation of the next frame.",
+  "source": "webdev-optimize-inp"
+ },
+ {
+  "id": "E243",
+  "rule": "Ukuran INP di JavaScript memerlukan event timing semua interaksi, lalu persentil ke-98 pada saat halaman di-unload.",
+  "quote": "you need to measure event timings for all interactions, and then take the 98th percentile across all these interactions on page unload.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E244",
+  "rule": "Entri event di bawah 104 milidetik tidak dilaporkan secara default oleh performance observer.",
+  "quote": "event entries below 104 milliseconds don't report by default using performance observers.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E245",
+  "rule": "Jika halaman dipulihkan dari back/forward cache, nilai INP harus direset ke nol.",
+  "quote": "If a page is restored from the back/forward cache, its INP value should be reset to zero since users experience this as a distinct page visit.",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E246",
+  "rule": "INP perlu dilaporkan setiap kali halaman masuk background, selain saat di-unload.",
+  "quote": "INP should be reported any time a page is background—in addition to any time it's unloaded",
+  "source": "webdev-inp"
+ },
+ {
+  "id": "E247",
+  "rule": "Library web-vitals menangani kasus tersebut kecuali kasus iframe.",
+  "quote": "developers can use the web-vitals JavaScript library to measure INP, which accounts for everything mentioned previously, except the iframe case",
+  "source": "webdev-inp"
+ }
+]

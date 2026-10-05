@@ -1,0 +1,90 @@
+/* Not in the prototype: parts added by the "professional level" pass. Loads after views.css and before
+   responsive.css, so the breakpoint rules still win where they overlap. */
+
+/* Loading: skeleton rows in a table while its data is fetched (Table's `loading`). */
+.skel{display:block;height:12px;max-width:100%;border-radius:var(--md-sys-shape-corner-full);background:linear-gradient(90deg,var(--md-sys-color-surface-container-highest) 25%,var(--md-sys-color-surface-container) 50%,var(--md-sys-color-surface-container-highest) 75%);background-size:200% 100%;animation:skel 1400ms linear infinite}
+@keyframes skel{from{background-position:200% 0}to{background-position:-200% 0}}
+tr.skel-row td{padding-block:18px}
+@media (hover:hover){tbody tr.skel-row:hover td{background:transparent}}
+
+/* "How this works": a longer explanation folded under a one-line lede (Info). */
+.more{color:var(--md-sys-color-on-surface-variant);width:100%;max-width:none}
+.more>summary{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 10px 0 6px;margin-left:-6px;cursor:pointer;list-style:none;border-radius:var(--md-sys-shape-corner-full);font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary)}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary .ms{font-size:18px}
+@media (hover:hover){.more>summary:hover{background:color-mix(in srgb,var(--md-sys-color-primary) 8%,transparent)}}
+.more>:not(summary){margin-top:6px}
+.more ul{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+
+/* Page header: a one-line lede on the left, the screen's one primary action on the right. */
+.sh>.lede{flex:1 1 320px;margin-right:auto}
+
+/* Two-line table cell: the main text, then a quieter second line. */
+.sub2{display:block;font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+
+/* A lone field (Settings) does not stretch across the whole view. */
+.view .fields>.f:only-child:not(.wide){max-width:420px}
+
+/* The main text cell of a wide table keeps a readable width instead of wrapping word by word. */
+.tcell{display:block;min-width:220px}
+
+/* Agent cards (B1, B2): an idle card is its header, model and controls; the task, bar and tokens show while it works. */
+.desk .task{min-height:0}
+.desk[data-st="work"] .task,.desk[data-st="wait"] .task,.desk[data-st="err"] .task{min-height:40px}
+.desk.planned{gap:10px;padding:16px;border-radius:var(--md-sys-shape-corner-large-increased)}
+.desk.planned .ava{width:40px;height:40px;border-radius:12px;font-size:0.75rem;opacity:0.85}
+.planned-group>summary{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 16px 0 12px;cursor:pointer;list-style:none;border-radius:var(--md-sys-shape-corner-large-increased);background:var(--md-sys-color-surface-container-low);font:var(--md-sys-typescale-title-small);color:var(--md-sys-color-on-surface)}
+.planned-group>summary::-webkit-details-marker{display:none}
+.planned-group>summary .ms{font-size:20px;color:var(--md-sys-color-on-surface-variant);transition:transform var(--md-sys-motion-standard-default-effects)}
+.planned-group[open]>summary .ms{transform:rotate(90deg)}
+.planned-group>summary .note{margin-left:auto;font:var(--md-sys-typescale-body-small);text-align:right}
+.planned-group>summary:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
+@media (hover:hover){.planned-group>summary:hover{background:var(--md-sys-color-surface-container)}}
+.planned-group>.cards{margin-top:12px}
+.planned-group>.note{margin-top:12px}
+
+/* "Finish setup" on the Workspace (C3): a checklist computed from real state. */
+.setup{padding:20px;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface-container-low);display:flex;flex-direction:column;gap:14px}
+.setup-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.setup-head h2{font:var(--md-sys-typescale-title-large);margin-right:auto}
+.setup-head .note{font-variant-numeric:tabular-nums}
+.setup-bar{height:6px;border-radius:var(--md-sys-shape-corner-full);background:var(--md-sys-color-surface-container-highest);overflow:hidden}
+.setup-bar i{display:block;height:100%;border-radius:inherit;background:var(--md-ext-color-success);transition:width var(--md-sys-motion-standard-default-spatial)}
+.setup-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(440px,100%),1fr));gap:2px 24px}
+.setup-list li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:4px 12px;min-height:44px;padding:6px 4px 6px 8px;border-radius:var(--md-sys-shape-corner-large)}
+.setup-list li>.ms{font-size:22px;color:var(--md-sys-color-outline)}
+.setup-list li[data-done="1"]>.ms{color:var(--md-ext-color-success)}
+.setup-list li b{display:block;font:var(--md-sys-typescale-title-small);font-weight:600}
+.setup-list li[data-done="1"] b{font-weight:500;color:var(--md-sys-color-on-surface-variant)}
+.setup-list li span.sub2{overflow-wrap:anywhere}
+.setup-list .btn{margin-right:-4px}
+
+/* Templates on Workflows as plain reference, not cards that look clickable. */
+.reflist{margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;padding:16px 20px;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface-container-low)}
+.reflist dt{font:var(--md-sys-typescale-title-small);font-weight:700}
+.reflist dd{margin:2px 0 0;color:var(--md-sys-color-on-surface-variant)}
+
+/* Sign-in: why the person is here again (A6). */
+.lnote{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
+.lnote .ms{font-size:20px}
+
+/* Office (A5): a name keeps two lines, so every pill and site line sits level with its neighbours. */
+.plate b{display:flex;align-items:center;justify-content:center;min-height:2lh}
+.office-key{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0;padding:0;list-style:none}
+.office-key li{display:inline-flex;align-items:center;gap:6px}
+.office-key .ms{font-size:18px}
+
+/* Side navigation (D2): denser rows where there is a pointer, so the whole list fits a laptop screen. */
+@media (min-width:1200px) and (hover:hover){
+  .navgroup button{min-height:42px}
+  .navgroup h2{padding:12px 16px 6px}
+  .navsearch{min-height:44px}
+}
+
+/* Phones: a checklist step puts its link under the text instead of squeezing the text beside it. */
+@media (max-width:599px){
+  .setup{padding:16px}
+  .setup-list li{grid-template-columns:24px minmax(0,1fr)}
+  .setup-list li .btn{grid-column:2;justify-self:start;margin:0 0 4px -12px}
+  .planned-group>summary .note{display:none}
+}

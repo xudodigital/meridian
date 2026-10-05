@@ -1,0 +1,151 @@
+/* Ported verbatim from web/index.html (breakpoints 600/840/1200/1400 and reduced motion). Must load last. */
+@media (min-width:840px) and (max-width:1199px){
+  th,td{padding-inline:10px}
+  .sname{min-width:170px}
+}
+@media (min-width:840px) and (max-width:1399px){
+  /* Tables with 7 or more columns stay as cards until the screen is wide enough for them */
+  .scroll:not(.container-table).wide{padding:0;background:transparent;overflow:visible;border-radius:0}
+  .scroll:not(.container-table).wide table,.scroll:not(.container-table).wide tbody,.scroll:not(.container-table).wide tr,.scroll:not(.container-table).wide td{display:block;width:auto}
+  .scroll:not(.container-table).wide thead{display:none}
+  .scroll:not(.container-table).wide tr{background:var(--md-sys-color-surface-container-low);border-radius:var(--md-sys-shape-corner-large-increased);padding:6px 16px;margin-bottom:8px}
+  .scroll:not(.container-table).wide td{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0;min-width:0!important;text-align:right;border-top:1px solid var(--md-sys-color-outline-variant);overflow-wrap:anywhere}
+  .scroll:not(.container-table).wide td::before{content:attr(data-label);flex:none;max-width:45%;text-align:left;font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant)}
+  .scroll:not(.container-table).wide td:first-child{display:block;text-align:left;border-top:0;font-weight:600}
+  .scroll:not(.container-table).wide td:first-child::before{display:block;max-width:none;margin-bottom:2px}
+  .scroll:not(.container-table).wide td.c{padding:2px 0;text-align:right}
+  .scroll:not(.container-table).wide tbody tr:first-child td{border-top-color:var(--md-sys-color-outline-variant)}
+  .scroll:not(.container-table).wide tbody tr td:first-child{border-top:0}
+  .scroll:not(.container-table).wide tbody tr:hover td{background:transparent}
+  .scroll:not(.container-table).wide td .ddw{min-width:0;flex:1 1 auto;max-width:250px}
+  .scroll:not(.container-table).wide td .dd{font:var(--md-sys-typescale-body-medium);min-height:48px}
+  .scroll:not(.container-table).wide td .steps{justify-content:flex-end}
+  .scroll:not(.container-table).wide td .row{justify-content:flex-end}
+  .scroll:not(.container-table).wide tbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px;align-items:start}
+  .scroll:not(.container-table).wide tr{margin-bottom:0}
+  .scroll:not(.container-table).wide tbody>tr:only-child{grid-column:1/-1}
+  .scroll:not(.container-table).wide td[data-label="Actions"]{flex-wrap:wrap}
+  .scroll:not(.container-table).wide .sname{min-width:0}
+}
+@media (min-width:600px) and (max-width:839px){
+  /* Tables become stacked cards on tablets too, two cards per row: one card per row, label on the left, value on the right */
+  .scroll:not(.container-table){padding:0;background:transparent;overflow:visible;border-radius:0}
+  .scroll:not(.container-table) table,.scroll:not(.container-table) tbody,.scroll:not(.container-table) tr,.scroll:not(.container-table) td{display:block;width:auto}
+  .scroll:not(.container-table) thead{display:none}
+  .scroll:not(.container-table) tr{background:var(--md-sys-color-surface-container-low);border-radius:var(--md-sys-shape-corner-large-increased);padding:6px 16px;margin-bottom:8px}
+  .scroll:not(.container-table) td{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0;min-width:0!important;text-align:right;border-top:1px solid var(--md-sys-color-outline-variant);overflow-wrap:anywhere}
+  .scroll:not(.container-table) td::before{content:attr(data-label);flex:none;max-width:45%;text-align:left;font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant)}
+  .scroll:not(.container-table) td:first-child{display:block;text-align:left;border-top:0;font-weight:600}
+  .scroll:not(.container-table) td:first-child::before{display:block;max-width:none;margin-bottom:2px}
+  .scroll:not(.container-table) td.c{padding:2px 0;text-align:right}
+  .scroll:not(.container-table) tbody tr:first-child td{border-top-color:var(--md-sys-color-outline-variant)}
+  .scroll:not(.container-table) tbody tr td:first-child{border-top:0}
+  .scroll:not(.container-table) tbody tr:hover td{background:transparent}
+  .scroll:not(.container-table) td .ddw{min-width:0;flex:1 1 auto;max-width:250px}
+  .scroll:not(.container-table) td .dd{font:var(--md-sys-typescale-body-medium);min-height:48px}
+  .scroll:not(.container-table) td .steps{justify-content:flex-end}
+  .scroll:not(.container-table) td .row{justify-content:flex-end}
+  .rvd .scroll:not(.container-table) tr{background:var(--md-sys-color-surface)}
+  table.bi td{width:auto;display:block;text-align:left;padding:10px 0}
+  table.bi td::before{display:block;max-width:none;margin-bottom:4px}
+  .sname{min-width:0}
+  .scroll:not(.container-table) tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start}
+  .scroll:not(.container-table) tr{margin-bottom:0}
+  .scroll:not(.container-table) tbody>tr:only-child{grid-column:1/-1}
+  .scroll:not(.container-table) td[data-label="Actions"]{flex-wrap:wrap}
+  table.bi tbody{display:block}
+  table.bi tr{margin-bottom:8px}
+}
+@media (max-width:599px){
+  /* Tables become stacked cards on phones: one card per row, label on the left, value on the right */
+  .scroll:not(.container-table){padding:0;background:transparent;overflow:visible;border-radius:0}
+  .scroll:not(.container-table) table,.scroll:not(.container-table) tbody,.scroll:not(.container-table) tr,.scroll:not(.container-table) td{display:block;width:auto}
+  .scroll:not(.container-table) thead{display:none}
+  .scroll:not(.container-table) tr{background:var(--md-sys-color-surface-container-low);border-radius:var(--md-sys-shape-corner-large-increased);padding:6px 16px;margin-bottom:8px}
+  .scroll:not(.container-table) td{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0;min-width:0!important;text-align:right;border-top:1px solid var(--md-sys-color-outline-variant);overflow-wrap:anywhere}
+  .scroll:not(.container-table) td::before{content:attr(data-label);flex:none;max-width:45%;text-align:left;font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant)}
+  .scroll:not(.container-table) td:first-child{display:block;text-align:left;border-top:0;font-weight:600}
+  .scroll:not(.container-table) td:first-child::before{display:block;max-width:none;margin-bottom:2px}
+  .scroll:not(.container-table) td.c{padding:2px 0;text-align:right}
+  .scroll:not(.container-table) tbody tr:first-child td{border-top-color:var(--md-sys-color-outline-variant)}
+  .scroll:not(.container-table) tbody tr td:first-child{border-top:0}
+  .scroll:not(.container-table) tbody tr:hover td{background:transparent}
+  .scroll:not(.container-table) td .ddw{min-width:0;flex:1 1 auto;max-width:250px}
+  .scroll:not(.container-table) td .dd{font:var(--md-sys-typescale-body-medium);min-height:48px}
+  .sh>.grow{display:none}
+  .scroll:not(.container-table) td .steps{justify-content:flex-end}
+  .scroll:not(.container-table) td .row{justify-content:flex-end}
+  .rvd .scroll:not(.container-table) tr{background:var(--md-sys-color-surface)}
+  table.bi td{width:auto;display:block;text-align:left;padding:10px 0}
+  table.bi td::before{display:block;max-width:none;margin-bottom:4px}
+  .sname{min-width:0}
+  .top{gap:4px}
+  .top h1{flex:1 1 0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:700 1.125rem/1.75rem var(--md-ref-typeface-brand)}
+  .top [data-act="search"]{display:none}
+  .tile{padding:16px}
+  .tile b{font:var(--md-sys-typescale-headline-medium);font-weight:800}
+  .ph h2{font:var(--md-sys-typescale-title-medium);font-weight:700}
+  .bars{grid-template-columns:minmax(0,1fr);gap:6px}
+  .bars span.v{margin-bottom:10px}
+  .sitepick{order:9;flex:1 1 100%;width:auto}
+}
+@media (min-width:600px){
+  .hero{padding:32px}
+  .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .kpis.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .kpis.five .kpi:last-child{grid-column:auto}
+}
+@media (min-width:840px){
+  .cols{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+  .gwrap{grid-template-columns:280px minmax(0,1fr)}
+  .tree{max-height:560px}
+  .gcanvas canvas{height:560px}
+  .rv{grid-template-columns:340px minmax(0,1fr)}
+  .rv:not([data-detail="1"]) .rvd{display:flex}
+  .rv[data-detail="1"] .rvlist{display:flex}
+  .rvback{display:none}
+}
+@media (min-width:1200px){
+  .app{grid-template-columns:288px minmax(0,1fr)}
+  .side{position:static;width:auto;transform:none;visibility:visible;border-radius:0;box-shadow:none}
+  .backdrop{display:none}
+  #menuBtn{display:none}
+  .top{padding-left:var(--md-layout-margin)}
+  .top h1{padding-left:0}
+  .hero{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);padding:40px;align-items:end}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpis.five{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpis.five .kpi:last-child{grid-column:1/-1}
+}
+
+@media (min-width:600px){
+  .top{flex-wrap:nowrap}
+  .top h1{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sitepick{flex:1 1 160px;width:auto;max-width:280px}
+  .mk{--d:var(--s)}
+
+  .heat .hh .full{display:inline}.heat .hh .abr{display:none}
+  .heat .hr .cc{display:grid}
+  .heat{padding:20px;gap:6px}
+}
+@media (min-width:840px){
+  .pipe{grid-template-columns:repeat(8,minmax(0,1fr));padding:20px 12px}
+  .pst{flex-direction:column;text-align:center;gap:6px;padding:8px 2px}
+  .pst .pt{align-items:center}
+  .pst .docs{display:flex}
+  .pst+.pst::before{content:"";position:absolute;right:calc(50% + 28px);left:calc(-50% + 22px);top:28px;height:4px;border-radius:2px;
+    background:repeating-linear-gradient(90deg,var(--md-sys-color-outline) 0 8px,transparent 8px 14px);background-size:14px 4px;opacity:0.55}
+  .pipe[data-run="1"] .pst+.pst::before{animation:belt 700ms linear infinite}
+}
+@media (min-width:1200px){
+  .mapgrid{grid-template-columns:minmax(0,1.9fr) minmax(280px,1fr)}
+}
+
+/* Not in the prototype: the top bar lines up with the capped view (--view-max) on wide monitors. */
+@media (min-width:1200px){
+  .top{padding-inline:max(var(--md-layout-margin),calc((100% - var(--view-max)) / 2 + var(--md-layout-margin)))}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+}

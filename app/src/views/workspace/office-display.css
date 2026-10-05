@@ -1,0 +1,132 @@
+/* The Office page (/office, OfficeDisplay.tsx): the office on a screen of its own, for a second tab or a TV on the
+   wall. A slim header, the floor (sized for big screens in workspace.css, .office.big) and the latest activity.
+   In full screen the header and the cursor hide after a few seconds without input (data-idle). */
+
+/* Edge to edge: the app keeps the browser's 8px body margin elsewhere. */
+body:has(.od){margin:0;overflow:hidden}
+
+/* --od-fs: the text size of the header and the activity line. 14px up to a 1920 x 1080 screen, then it grows with the
+   screen (28px at 3840 x 2160) so a wall display stays readable from across the room. Sizes below are in em of it. */
+.od{position:fixed;inset:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;background:var(--md-sys-color-surface-container-low);color:var(--md-sys-color-on-surface);
+  --od-fs:max(0.875rem,min(0.73vw,1.3vh))}
+
+/* The header collapses smoothly: its row goes from 1fr to 0fr. The clip keeps padding out of the collapsed row. */
+.od-top{display:grid;grid-template-rows:1fr;transition:grid-template-rows var(--md-sys-motion-standard-default-spatial),opacity var(--md-sys-motion-standard-default-effects)}
+.od-clip{min-height:0;overflow:hidden}
+.od-head{display:flex;flex-wrap:wrap;align-items:center;gap:0.57em 1.15em;padding:0.72em var(--md-layout-margin);padding-top:calc(0.72em + env(safe-area-inset-top,0px));
+  background:var(--md-sys-color-surface);border-bottom:1px solid var(--md-sys-color-outline-variant);font-size:var(--od-fs)}
+.od-brand{flex:none;display:flex;align-items:center;gap:0.86em;min-width:0}
+.od-brand .logo{width:2.86em;height:2.86em;border-radius:0.86em}
+.od-brand .logo .ms{font-size:1.72em}
+.od-eyebrow{display:block;font:var(--md-sys-typescale-label-medium);font-size:0.86em;line-height:1.33;color:var(--md-sys-color-on-surface-variant)}
+.od-brand h1{font:var(--md-sys-typescale-title-large);font-size:1.43em;font-weight:800;line-height:1.15}
+
+/* The live summary: one tonal chip per count */
+.od-sum{order:2;flex:1 1 100%;display:flex;flex-wrap:wrap;gap:0.43em;margin:0;padding:0;list-style:none}
+.od-sum li{display:inline-flex;align-items:center;gap:0.43em;min-height:2.57em;padding:0 1em 0 0.72em;border-radius:var(--md-sys-shape-corner-full);white-space:nowrap;
+  background:var(--md-sys-color-surface-container-high);color:var(--md-sys-color-on-surface-variant);font:var(--md-sys-typescale-label-large);font-size:1em;line-height:1.43}
+.od-sum li .ms{font-size:1.43em}
+.od-sum b{font:var(--md-sys-typescale-title-medium);font-size:1.15em;line-height:1.2;font-weight:800;font-variant-numeric:tabular-nums;color:inherit}
+.od-sum li[data-k="work"]{background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container)}
+.od-sum li[data-k="wait"]{background:var(--md-ext-color-warning-container);color:var(--md-ext-color-on-warning-container)}
+.od-sum li[data-k="idle"]{background:var(--md-ext-color-cyan-container);color:var(--md-ext-color-on-cyan-container)}
+.od-sum li[data-k="err"]{background:var(--md-sys-color-error-container);color:var(--md-sys-color-on-error-container)}
+
+.od-site{order:3;display:inline-flex;align-items:center;gap:0.43em;min-height:2.29em;min-width:0;padding:0.29em 0.86em;border-radius:var(--md-sys-shape-corner-full);
+  border:1px solid var(--md-sys-color-outline-variant);font:var(--md-sys-typescale-label-large);font-size:1em;line-height:1.43;color:var(--md-sys-color-on-surface-variant);overflow-wrap:anywhere}
+.od-site .ms{font-size:1.29em}
+.od-head>.pill{order:3}
+.od-acts{order:1;margin-left:auto;display:flex;align-items:center;gap:0.29em}
+.od a.btn{text-decoration:none}
+@media (min-width:600px){
+  /* The buttons and the demo label grow with the header text: their usual sizes at 14px. */
+  .od-acts .btn:is(.tonal,.text){min-height:2.86em;gap:0.57em;padding:0 0.86em;font-size:1em;line-height:1.43}
+  .od-acts .btn.tonal{padding:0 1.43em}
+  .od-acts .btn .ms{font-size:1.43em;margin-left:-0.2em}
+  .od-head>.pill{font-size:0.86em;line-height:1.33;min-height:2.17em;gap:0.5em;padding:0 0.83em}
+}
+@media (max-width:599px){
+  /* Icon buttons on a phone; the label stays for screen readers and the tooltip says the shortcut. */
+  .od-acts .btn{width:48px;min-height:48px;padding:0}
+  .od-acts .btn .ms{margin:0}
+  .od-acts .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
+@media (min-width:840px){
+  .od-sum{order:0;flex:0 1 auto}
+  .od-site,.od-head>.pill,.od-acts{order:0}
+}
+
+/* A failed save, under the header: it stays when the header hides. Empty (and 0 high) when all is saved. */
+.od-alert .banner{margin:0;border-radius:0;padding-inline:var(--md-layout-margin)}
+
+/* The floor fills the space between header and ticker, and scrolls when the rooms need more. */
+.od-main{min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column}
+.od-main>.office{flex:1 0 auto;display:flex;flex-direction:column;border-radius:0}
+
+/* The latest activity: a ticker (OfficeTicker.tsx). It moves from right to left when the entries are wider than their
+   lane (data-mode="move"): the track holds them twice and moves by one copy (-50%) per loop of --od-tick-dur, and
+   every entry has the gap and the dot after it, the last one too, where the second copy meets it, so the loop has no
+   seam. It is paused while it has no data-run. It stands still when the entries fit, or when the person prefers
+   reduced motion (data-mode="still"); then it scrolls sideways by hand if it has to (data-over). Sizes are in em of
+   --od-fs, so it grows with the page from a phone to a 4K wall display, and stays one row. */
+.od-tick{--od-tick-gap:2.29em;--od-tick-fade:min(3em,8vw);display:flex;flex-direction:row;align-items:center;gap:0 1.15em;min-width:0;
+  padding:0.29em var(--md-layout-margin);padding-bottom:calc(0.29em + env(safe-area-inset-bottom,0px));
+  background:var(--md-sys-color-surface);border-top:1px solid var(--md-sys-color-outline-variant);font-size:var(--od-fs);line-height:1.5}
+.od-tick h2{flex:none;display:flex;align-items:center;gap:0.57em;margin:0;font:var(--md-sys-typescale-label-large);font-size:inherit;line-height:inherit;color:var(--md-sys-color-on-surface-variant)}
+/* A dot before the heading: lit (and breathing) while the ticker moves. */
+.od-tick h2::before{content:"";flex:none;width:0.5em;height:0.5em;border-radius:50%;background:var(--md-sys-color-outline-variant)}
+.od-tick[data-run] h2::before{background:var(--md-sys-color-primary);animation:pulse var(--md-sys-motion-duration-pulse) infinite}
+/* The lane: the Pause button and the view. It is as high as the button in either mode, so nothing jumps between them. */
+.od-tick-lane{flex:1;min-width:0;display:flex;align-items:center;gap:0.57em;min-height:max(48px,2.86em)}
+.od-tick .od-tick-pp{width:max(48px,2.86em);height:max(48px,2.86em)}
+.od-tick .od-tick-pp::before{inset:max(4px,0.29em)}
+.od-tick .od-tick-pp .ms{font-size:max(24px,1.43em)}
+.od-tick .od-tick-pp[aria-pressed="true"]{color:var(--md-sys-color-on-primary)}
+.od-tick .od-tick-pp[aria-pressed="true"]::before{background:var(--md-sys-color-primary)}
+/* Its focus ring. .ib (shell.css) unsets the outline that base.css gives :focus-visible; this file is outside the
+   proto layer, so it wins. The ring sits 2px outside the round fill (inset max(4px,0.29em)), so it never merges with
+   the primary fill of the pressed state, and stays inside the strip's padding, so the screen edge never cuts it. It
+   grows with the text on a wall display. */
+.od-tick .od-tick-pp:focus-visible{outline:max(3px,0.2em) solid var(--md-sys-color-primary);outline-offset:calc(max(2px,0.14em) - max(4px,0.29em))}
+.od-tick-view{flex:1;min-width:0;overflow:hidden}
+/* Moving: a soft fade at both edges (a mask, so it shows whatever is behind, in light and dark). */
+.od-tick[data-mode="move"] .od-tick-view{mask-image:linear-gradient(to right,transparent,#000 var(--od-tick-fade),#000 calc(100% - var(--od-tick-fade)),transparent)}
+.od-tick[data-mode="still"][data-over] .od-tick-view{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.od-tick-track{display:flex;width:max-content}
+.od-tick[data-mode="move"] .od-tick-track{animation:od-tick var(--od-tick-dur,60s) linear infinite;will-change:transform}
+.od-tick[data-mode="move"]:not([data-run]) .od-tick-track{animation-play-state:paused}
+@keyframes od-tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.od-tick-list{flex:none;display:flex;align-items:baseline;margin:0;padding:0;list-style:none}
+/* An entry in full, never cut: time, who, what and the site. */
+.od-tick li{position:relative;flex:none;display:flex;align-items:baseline;gap:0.57em;padding-right:var(--od-tick-gap);white-space:nowrap}
+.od-tick li::after{content:"";position:absolute;top:50%;right:calc(var(--od-tick-gap) / 2 - 0.18em);width:0.36em;height:0.36em;margin-top:-0.18em;border-radius:50%;
+  background:color-mix(in srgb,var(--md-sys-color-primary) 45%,transparent)}
+.od-tick[data-mode="still"] li:last-child{padding-right:0}
+.od-tick[data-mode="still"] li:last-child::after{display:none}
+.od-tick time{flex:none;font-family:var(--font-data);font-size:0.86em;font-variant-numeric:tabular-nums;color:var(--md-sys-color-on-surface-variant)}
+.od-tick b{font-weight:700;color:var(--md-sys-color-primary)}
+.od-tick .chip{display:inline-block;margin-left:0.14em;padding:0 0.57em;border-radius:var(--md-sys-shape-corner-full);background:var(--md-sys-color-surface-container-high);
+  font-size:0.79em;font-weight:600;line-height:1.6}
+.od-tick li.none{color:var(--md-sys-color-on-surface-variant)}
+.od-tick li.none::after{display:none}
+@media (max-width:839px){
+  /* The heading above, the entries in one row under it. */
+  .od-tick{flex-direction:column;align-items:stretch}
+}
+
+/* A short screen (a phone on its side) scrolls as one page. */
+@media (max-height:520px){
+  .od{display:block;overflow:auto}
+  .od-main{overflow:visible}
+}
+
+/* Full screen, nobody there: the header folds away and the cursor hides. Focus that came by Tab keeps the header
+   (OfficeDisplay.tsx leaves data-idle off then); :focus-visible cannot tell, since a clicked button matches it after
+   any key press. */
+.od[data-idle] .od-top{grid-template-rows:0fr;opacity:0}
+.od[data-idle],.od[data-idle] *{cursor:none}
+@media (prefers-reduced-motion: reduce){
+  .od-top{transition:none}
+  /* OfficeTicker.tsx does not move the ticker then; this is a second guard. */
+  .od-tick-track,.od-tick h2::before{animation:none!important}
+}

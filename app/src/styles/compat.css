@@ -1,0 +1,54 @@
+/* Undoes the parts of Tailwind's preflight that would change how the prototype looks.
+   The prototype was written against browser defaults; `revert` restores the browser's own value.
+   This file loads first inside the proto layer, so any prototype rule that sets the same property still wins.
+
+   Kept from preflight because the prototype never relies on the browser default: the universal `border: 0 solid`
+   and `padding: 0` (every prototype control sets its own border and padding), button/input background and radius
+   resets, `table`, `summary`, `textarea` and `b, strong` rules (same as the prototype or the browser default). */
+
+/* No body margin: the app fills the window edge to edge (the prototype's 8px browser-default frame made the whole
+   page scroll by 8px). */
+body{margin:0}
+/* React mounts into #root; the prototype's .app and .login were direct children of body. */
+#root{display:contents}
+html{line-height:revert;-webkit-text-size-adjust:revert;tab-size:revert;font-family:revert;font-feature-settings:revert;font-variation-settings:revert;-webkit-tap-highlight-color:revert}
+/* Preflight zeroes every margin; a modal <dialog> is centred by the browser's `margin:auto`. */
+dialog{margin:auto}
+h1,h2,h3,h4,h5,h6{font-size:revert;font-weight:revert}
+h4,h5,h6,blockquote,figure,pre,dl,dd,hr,fieldset,legend{margin:revert;padding:revert}
+ol,ul,menu{list-style:revert;margin:revert;padding:revert}
+a{color:revert;text-decoration:revert}
+code,kbd,samp,pre{font-family:revert;font-size:revert}
+small{font-size:revert}
+img,svg,video,canvas,audio,iframe,embed,object{display:revert;vertical-align:revert}
+img,video{max-width:revert;height:revert}
+::before,::after{box-sizing:revert}
+::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:revert}
+:-moz-ui-invalid{box-shadow:revert}
+
+/* Not in the prototype: a neutral callout for status that is not a problem (for example Live mode). */
+.callout.info{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
+
+/* Not in the prototype: the Approve action is green, and stays recognisably green while it cannot be used yet. */
+.btn.filled.approve{background:var(--md-ext-color-success);color:#ffffff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.filled.approve{color:#00382a}}
+:root[data-theme="dark"] .btn.filled.approve{color:#00382a}
+.btn.filled.approve:disabled{background:var(--md-ext-color-success);opacity:.4}
+
+/* Not in the prototype: the banners under the top bar (demo mode, a save that failed). */
+.banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:calc(100% - 2 * var(--md-layout-margin));max-width:calc(var(--view-max) - 2 * var(--md-layout-margin));margin:0 auto 12px;padding:10px 16px;border-radius:var(--md-sys-shape-corner-large,16px);font:var(--md-sys-typescale-body-medium,inherit)}
+.banner.demo{background:var(--md-sys-color-tertiary-container);color:var(--md-sys-color-on-tertiary-container)}
+.banner.warn{background:var(--md-ext-color-warning-container);color:var(--md-ext-color-on-warning-container)}
+.banner .grow{flex:1}
+
+/* Not in the prototype: 2-step verification setup (QR code and setup key) and the recovery codes. */
+.qrbox{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.qr{border-radius:8px;flex:none}
+.qrbox code,#tsKey{font-size:1rem;letter-spacing:.06em;word-break:break-all}
+.recovery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;list-style:none;padding:0;margin:12px 0}
+.recovery code{font-size:1rem;letter-spacing:.04em}
+.twostep .row{margin-top:12px}
+
+/* Not in the prototype: the one-time invitation link with its Copy button. */
+.invlink{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.invlink input{flex:1;min-width:0}

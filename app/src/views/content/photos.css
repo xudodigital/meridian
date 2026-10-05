@@ -1,0 +1,23 @@
+/* Article review: the photos of a real article (ArticlePhotos.tsx). */
+@layer proto {
+  .ph-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+  .ph-head h3{margin-right:auto}
+  .ph-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:12px}
+  .ph-item{display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:var(--md-sys-shape-corner-extra-large);background:var(--md-sys-color-surface);border:1px solid var(--md-sys-color-outline-variant)}
+  .ph-item>a{display:block;line-height:0}
+  .ph-item>a:focus-visible{outline-offset:-3px}
+  .ph-item img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:var(--md-sys-color-surface-container-highest)}
+  .ph-body{display:flex;flex-direction:column;gap:12px;padding:16px;flex:1}
+  .ph-body dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 12px;margin:0}
+  .ph-body dt{font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant);padding-top:2px}
+  .ph-body dd{margin:0;min-width:0;overflow-wrap:anywhere;font:var(--md-sys-typescale-body-medium)}
+  .ph-body dd .note{display:block;font:var(--md-sys-typescale-body-small)}
+  .ph-body a,.ph-fig a{color:var(--md-sys-color-primary)}
+  .ph-foot{display:flex;justify-content:flex-end;margin:auto -8px -8px 0}
+  /* In the article table: the photo where it sits, at its own proportions. */
+  .ph-fig{margin:0;display:flex;flex-direction:column;gap:8px}
+  .ph-fig img{display:block;max-width:100%;height:auto;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface-container-highest)}
+  .ph-fig figcaption{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+  .ph-alt{display:block;margin-top:4px;font:var(--md-sys-typescale-body-small)}
+  dialog.ph-ask{width:min(400px,calc(100vw - 32px))}
+}

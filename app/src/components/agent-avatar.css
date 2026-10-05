@@ -1,0 +1,65 @@
+@layer components {
+  .agent-avatar{display:block;width:100%;height:auto;overflow:visible}
+  .agent-avatar .avatar-light{stop-color:color-mix(in srgb,var(--acc) 55%,var(--md-sys-color-surface-container-lowest))}
+  .agent-avatar .avatar-tone{stop-color:var(--acc)}
+  .agent-avatar .avatar-suit-light{stop-color:var(--ac)}
+  .agent-avatar .avatar-suit-tone{stop-color:color-mix(in srgb,var(--ac) 75%,var(--aonc))}
+  .agent-avatar .avatar-halo{fill:color-mix(in srgb,var(--acc) 55%,transparent)}
+  .agent-avatar .avatar-shadow{fill:color-mix(in srgb,var(--md-sys-color-on-surface) 9%,transparent)}
+  .agent-avatar .avatar-shell,.agent-avatar .avatar-ear{stroke:var(--ac);stroke-width:2}
+  .agent-avatar .avatar-ear,.agent-avatar .avatar-hand{fill:var(--acc)}
+  .agent-avatar .avatar-visor{fill:var(--aonc)}
+  .agent-avatar .avatar-shine{fill:none;stroke:var(--md-sys-color-surface-container-lowest);stroke-width:4;stroke-linecap:round;opacity:.8}
+  .agent-avatar .avatar-eye-light,.agent-avatar .avatar-eye-glint{fill:var(--acc)}
+  .agent-avatar .avatar-pupil{fill:var(--aonc)}
+  .agent-avatar .avatar-mouth,.agent-avatar .avatar-eye-closed{fill:none;stroke:var(--acc);stroke-width:2.4;stroke-linecap:round}
+  .agent-avatar .avatar-cheek{stroke:var(--ac);stroke-width:2;stroke-linecap:round}
+  .agent-avatar .avatar-panel,.agent-avatar .avatar-antenna{stroke:var(--ac);stroke-width:3;stroke-linecap:round}
+  .agent-avatar .avatar-signal{fill:var(--ac)}
+  .agent-avatar .avatar-arm-rest,.agent-avatar .avatar-arm{fill:none;stroke:var(--ac);stroke-width:12;stroke-linecap:round}
+  .agent-avatar .avatar-hand{stroke:var(--ac);stroke-width:2}
+  .agent-avatar .avatar-fingers{stroke:var(--ac);stroke-width:1.4;stroke-linecap:round}
+  .agent-avatar .avatar-seam{fill:none;stroke:var(--aon);stroke-width:2;stroke-linecap:round;opacity:.45}
+  .agent-avatar .avatar-role-disc{fill:var(--acc)}
+  .agent-avatar .avatar-role{fill:none;stroke:var(--aonc);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .agent-avatar{--avatar-rest-cycle:var(--md-ext-motion-duration-avatar-rest);--avatar-rest-delay:calc(var(--md-sys-motion-duration-pulse) * var(--avatar-phase,0))}
+  .agent-avatar .avatar-cup-body{fill:var(--md-sys-color-surface-container-lowest);stroke:var(--ac);stroke-width:2}
+  .agent-avatar .avatar-cup-handle{fill:none;stroke:var(--ac);stroke-width:3;stroke-linecap:round}
+  .agent-avatar .avatar-coffee-top{fill:var(--aonc);stroke:var(--ac);stroke-width:1.5}
+  .agent-avatar .avatar-steam{fill:none;stroke:var(--ac);stroke-width:2;stroke-linecap:round;opacity:.6}
+  .agent-avatar .avatar-coffee{transform-origin:130px 127px;transform:rotate(45deg);animation:avatar-sip var(--avatar-rest-cycle) var(--md-ext-motion-easing-character) var(--avatar-rest-delay) infinite}
+  .agent-avatar .avatar-steam{animation:avatar-steam var(--md-sys-motion-duration-pulse) var(--md-ext-motion-easing-character) var(--avatar-rest-delay) infinite}
+  .agent-avatar .avatar-thought{fill:var(--md-sys-color-surface-container-lowest);stroke:var(--ac);stroke-width:1.5;opacity:0;animation:avatar-daydream var(--avatar-rest-cycle) var(--md-ext-motion-easing-character) var(--avatar-rest-delay) infinite}
+  .agent-avatar .avatar-thought-dots{fill:none;stroke-width:3;stroke-linecap:round}
+  .agent-avatar[data-behavior="break"] .headg{transform-origin:100px 108px;animation:avatar-wonder var(--avatar-rest-cycle) var(--md-ext-motion-easing-character) var(--avatar-rest-delay) infinite}
+  .agent-avatar[data-behavior="break"] .avatar-gaze{transform:translate(-1px,-2px);animation:avatar-look-away var(--avatar-rest-cycle) var(--md-ext-motion-easing-character) var(--avatar-rest-delay) infinite}
+  .agent-avatar .avatar-wave{transform-origin:130px 127px;animation:avatar-raise-hand var(--md-ext-motion-duration-avatar-wave) var(--md-ext-motion-easing-character) infinite}
+  .agent-avatar .avatar-spiral path{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;transform-box:fill-box;transform-origin:center;animation:avatar-spin var(--md-sys-motion-duration-pulse) var(--md-ext-motion-easing-orbit) infinite}
+  .agent-avatar .avatar-orbit{fill:none;stroke:var(--ac);stroke-width:1.5;stroke-dasharray:3 5;opacity:.5}
+  .agent-avatar .avatar-stars{fill:var(--ac);transform-origin:100px 19px;animation:avatar-stars var(--md-sys-motion-duration-pulse) var(--md-ext-motion-easing-character) infinite}
+  .agent-avatar[data-behavior="dizzy"] .headg{transform-origin:100px 108px;animation:avatar-dizzy var(--md-sys-motion-duration-pulse) var(--md-ext-motion-easing-character) infinite}
+  .agent-avatar .avatar-state-mark{display:block}
+  .agent-avatar .avatar-state-mark circle{fill:var(--md-sys-color-error);stroke:var(--md-sys-color-surface-container-lowest);stroke-width:3}
+  .agent-avatar .avatar-state-mark path{fill:none;stroke:var(--md-sys-color-on-error);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .agent-avatar .okmark circle{fill:var(--md-ext-color-success-container)}
+  .agent-avatar .okmark path{stroke:var(--md-ext-color-on-success-container)}
+  .agent-avatar[data-state="work"] .avatar-signal{animation:avatar-signal var(--md-sys-motion-duration-pulse) var(--md-ext-motion-easing-character) infinite}
+  .agent-avatar[data-state="work"] .headg{animation:avatar-nod var(--md-sys-motion-duration-pulse) var(--md-ext-motion-easing-character) infinite;transform-box:fill-box;transform-origin:center bottom}
+  .agent-avatar[data-state="off"] .avatar-character,.agent-avatar[data-state="planned"] .avatar-character{opacity:.55}
+  .agent-avatar[data-state="err"] .avatar-signal,.agent-avatar[data-state="failed"] .avatar-signal{fill:var(--md-sys-color-error)}
+  .ava.agent-portrait,.sx-ava.agent-portrait{background:var(--acc);color:var(--aonc);padding:3px;overflow:visible}
+  .agent-portrait>.agent-avatar{width:100%;height:100%;max-width:none}
+  .agent-portrait .avatar-state-mark{display:none}
+  @keyframes avatar-nod{50%{transform:translateY(1.5px)}}
+  @keyframes avatar-signal{50%{opacity:.45}}
+  @keyframes avatar-sip{0%,10%,65%,100%{transform:rotate(45deg)}25%,45%{transform:rotate(0deg)}35%{transform:rotate(-4deg)}}
+  @keyframes avatar-steam{0%,100%{opacity:.3;transform:translateY(1px)}50%{opacity:.75;transform:translateY(-2px)}}
+  @keyframes avatar-daydream{0%,48%,100%{opacity:0;transform:translateY(2px)}65%,88%{opacity:1;transform:translateY(0)}}
+  @keyframes avatar-wonder{0%,48%,100%{transform:rotate(0deg)}65%,88%{transform:rotate(-7deg)}}
+  @keyframes avatar-look-away{0%,48%,100%{transform:translate(0,0)}65%,88%{transform:translate(-2px,-3px)}}
+  @keyframes avatar-raise-hand{0%,35%,65%,100%{transform:rotate(0deg)}42%,56%{transform:rotate(-7deg)}49%{transform:rotate(5deg)}}
+  @keyframes avatar-spin{to{transform:rotate(360deg)}}
+  @keyframes avatar-stars{0%,100%{transform:translateX(-3px) rotate(-8deg)}50%{transform:translateX(3px) rotate(8deg)}}
+  @keyframes avatar-dizzy{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+  @media(prefers-reduced-motion:reduce){.agent-avatar,.agent-avatar *{animation:none!important}}
+}

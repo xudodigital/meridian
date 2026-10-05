@@ -1,0 +1,512 @@
+[
+ {
+  "id": "E1",
+  "rule": "Pahami bahwa Google memakai tautan sebagai sinyal relevansi halaman dan untuk menemukan halaman baru yang akan di-crawl.",
+  "quote": "Google uses links as a signal when determining the relevancy of pages and to find new pages to crawl.",
+  "source": "g-links"
+ },
+ {
+  "id": "E2",
+  "rule": "Pahami bahwa Google terutama menemukan halaman lewat tautan dari halaman lain yang sudah pernah di-crawl.",
+  "quote": "Google primarily finds pages through links from other pages it already crawled.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E3",
+  "rule": "Pahami bahwa sebagian besar halaman baru yang ditemukan Google setiap hari berasal dari tautan.",
+  "quote": "the vast majority of the new pages Google finds every day are through links",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E4",
+  "rule": "Pastikan setiap halaman yang penting memiliki tautan dari minimal satu halaman lain di situs yang sama.",
+  "quote": "Every page you care about should have a link from at least one other page on your site.",
+  "source": "g-links"
+ },
+ {
+  "id": "E5",
+  "rule": "Pilih tautan internal dengan bertanya sumber apa lagi di situs yang membantu pembaca memahami halaman tertentu, lalu tautkan halaman itu secara kontekstual (in context).",
+  "quote": "Think about what other resources on your site could help your readers understand a given page on your site, and link to those pages in context.",
+  "source": "g-links"
+ },
+ {
+  "id": "E6",
+  "rule": "Perhatikan anchor text tautan internal karena dapat membantu orang dan Google memahami situs dan menemukan halaman lain di situs itu.",
+  "quote": "paying more attention to the anchor text used for internal links can help both people and Google make sense of your site more easily and find other pages on your site.",
+  "source": "g-links"
+ },
+ {
+  "id": "E7",
+  "rule": "Anggap satu hostname unik sebagai satu situs dalam konteks crawling Google; www.example.com dan code.example.com diperlakukan sebagai situs terpisah dengan crawl budget terpisah.",
+  "quote": "In this context, Google's crawling infrastructure defines a site as a unique hostname. For example, https://www.example.com/ and https://code.example.com/ are treated as separate sites and have separate crawl budgets.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E8",
+  "rule": "Gunakan elemen <a> dengan atribut href; pada umumnya Google hanya dapat meng-crawl tautan yang berbentuk begitu, dan sebagian besar tautan dalam format lain tidak akan di-parse.",
+  "quote": "Generally, Google can only crawl your link if it's an <a> HTML element (also known as anchor element) with an href attribute. Most links in other formats won't be parsed and extracted by Google's crawlers.",
+  "source": "g-links"
+ },
+ {
+  "id": "E9",
+  "rule": "Jangan mengandalkan <a> tanpa atribut href atau tag lain yang berfungsi sebagai tautan lewat script event; Google tidak dapat mengekstrak URL dari bentuk itu secara andal.",
+  "quote": "Google can't reliably extract URLs from <a> elements that don't have an href attribute or other tags that perform as links because of script events.",
+  "source": "g-links"
+ },
+ {
+  "id": "E10",
+  "rule": "Gunakan bentuk yang Google nyatakan dapat di-parse: href URL absolut, href relatif dari root (/products/category/shoes), href relatif (./products/category/shoes), serta <a href> yang juga punya onclick atau class.",
+  "quote": "Recommended (Google can parse) <a href=\"https://example.com\"> <a href=\"/products/category/shoes\"> <a href=\"./products/category/shoes\"> <a href=\"/products/category/shoes\" onclick=\"javascript:goTo('shoes')\"> <a href=\"/products/category/shoes\" class=\"pretty\">",
+  "source": "g-links"
+ },
+ {
+  "id": "E11",
+  "rule": "Hindari <a routerLink=\"...\">, <span href=\"...\"> dan <a onclick=\"goto('...')\"> sebagai tautan; dokumen menyebutnya tidak direkomendasikan, meskipun Google mungkin tetap mencoba mem-parse.",
+  "quote": "Not recommended (but Google may still attempt to parse this): <a routerLink=\"products/category\"> <span href=\"https://example.com\"> <a onclick=\"goto('https://example.com')\">",
+  "source": "g-links"
+ },
+ {
+  "id": "E12",
+  "rule": "Pastikan URL di dalam <a> berubah menjadi alamat web nyata (menyerupai URI) yang dapat diminta oleh crawler Google.",
+  "quote": "Make sure that the URL in your <a> element resolves into an actual web address (meaning, it resembles a URI) that Google crawlers can send requests to",
+  "source": "g-links"
+ },
+ {
+  "id": "E13",
+  "rule": "Hindari href berbentuk javascript: (misalnya javascript:goTo('products')); dokumen menyebutnya tidak direkomendasikan, meskipun Google mungkin tetap mencoba me-resolve-nya.",
+  "quote": "Not recommended (but Google may still attempt to resolve this): <a href=\"javascript:goTo('products')\"> <a href=\"javascript:window.location.href='/products'\">",
+  "source": "g-links"
+ },
+ {
+  "id": "E14",
+  "rule": "Untuk tautan ke konten lain, gunakan tag <a href> dan jangan gunakan JavaScript event pada elemen DOM HTML lain untuk navigasi.",
+  "quote": "To ensure Googlebot correctly locates the link, use <a href> tags when creating links to other content. Don't use JavaScript events on other HTML DOM elements for navigation.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E15",
+  "rule": "Letakkan anchor text (teks tautan yang terlihat) di antara elemen <a> yang dapat di-crawl Google.",
+  "quote": "Anchor text (also known as link text) is the visible text of a link. This text tells people and Google something about the page you're linking to. Place anchor text between <a> elements that Google can crawl.",
+  "source": "g-links"
+ },
+ {
+  "id": "E16",
+  "rule": "Jangan membuat tautan dengan teks tautan kosong, misalnya <a href=\"https://example.com\"></a>; dokumen mengategorikannya Bad (empty link text).",
+  "quote": "Bad (empty link text): <a href=\"https://example.com\"></a>",
+  "source": "g-links"
+ },
+ {
+  "id": "E17",
+  "rule": "Ketahui bahwa jika elemen <a> kosong, Google dapat memakai atribut title sebagai anchor text; ini hanya fallback.",
+  "quote": "As a fallback, Google can use the title attribute as anchor text if the <a> element is for some reason empty.",
+  "source": "g-links"
+ },
+ {
+  "id": "E18",
+  "rule": "Untuk tautan berupa gambar, isi atribut alt pada img dengan teks deskriptif karena Google memakai alt sebagai anchor text.",
+  "quote": "For images as links, Google uses the alt attribute of the img element as anchor text, so be sure to add descriptive alt text to your images",
+  "source": "g-links"
+ },
+ {
+  "id": "E19",
+  "rule": "Jika anchor text disisipkan dengan JavaScript, gunakan URL Inspection Tool untuk memastikan teks itu ada di rendered HTML.",
+  "quote": "If you are using JavaScript to insert anchor text, use the URL Inspection Tool to make sure it's present in the rendered HTML.",
+  "source": "g-links"
+ },
+ {
+  "id": "E20",
+  "rule": "Tulis anchor text yang deskriptif, cukup ringkas, serta relevan dengan halaman tempat tautan berada dan halaman yang ditautkan.",
+  "quote": "Good anchor text is descriptive, reasonably concise, and relevant to the page that it's on and to the page it links to. It provides context for the link, and sets the expectation for your readers.",
+  "source": "g-links"
+ },
+ {
+  "id": "E21",
+  "rule": "Hindari anchor text yang terlalu generik; dokumen memberi contoh buruk \"Click here\", \"Read more\", \"website\" dan \"article\".",
+  "quote": "Bad (too generic): <a href=\"https://example.com\">Click here</a> to learn more. <a href=\"https://example.com\">Read more</a>. Learn more about our cheese on our <a href=\"https://example.com\">website</a>. We have an <a href=\"https://example.com\">article</a> that provides more background on how the cheese is made.",
+  "source": "g-links"
+ },
+ {
+  "id": "E22",
+  "rule": "Hindari anchor text yang terlalu panjang (\"weirdly long\"); contoh yang lebih ringkas (\"Better (more concise)\") hanya menautkan sebagian kalimat.",
+  "quote": "Bad (weirdly long): Starting next Tuesday, the <a href=\"https://example.com\">Knitted Cow invites local residents of Wisconsin to their grand re-opening by also offering complimentary cow-shaped ice sculptures</a> to the first 20 customers. Better (more concise): Starting next Tuesday, the <a href=\"https://example.com\">Knitted Cow invites local residents of Wisconsin</a> to their grand re-opening by also offering complimentary cow-shaped ice sculptures to the first 20 customers.",
+  "source": "g-links"
+ },
+ {
+  "id": "E23",
+  "rule": "Tulis anchor text sewajar mungkin dan jangan menjejalkan semua kata kunci yang berkaitan dengan halaman tujuan; keyword stuffing melanggar kebijakan spam Google.",
+  "quote": "Write as naturally as possible, and resist the urge to cram every keyword that's related to the page that you're linking to (remember, keyword stuffing is a violation of our spam policies).",
+  "source": "g-links"
+ },
+ {
+  "id": "E24",
+  "rule": "Uji anchor text dengan pertanyaan apakah pembaca membutuhkan kata kunci itu untuk memahami halaman berikutnya; jika terasa memaksakan kata kunci, kemungkinan sudah berlebihan.",
+  "quote": "Ask yourself, does the reader need these keywords to understand the next page? If it feels like you're forcing keywords into the anchor text, then it's probably too much.",
+  "source": "g-links"
+ },
+ {
+  "id": "E25",
+  "rule": "Beri konteks pada tautan: kata sebelum dan sesudah tautan penting, jadi perhatikan kalimat secara keseluruhan.",
+  "quote": "Remember to give context to your links: the words before and after links matter, so pay attention to the sentence as a whole.",
+  "source": "g-links"
+ },
+ {
+  "id": "E26",
+  "rule": "Jangan merangkai tautan berdempetan; pembaca sulit membedakan tautan dan setiap tautan kehilangan teks sekelilingnya.",
+  "quote": "Don't chain up links next to each other; it's harder for your readers to distinguish between links, and you lose surrounding text for each link.",
+  "source": "g-links"
+ },
+ {
+  "id": "E27",
+  "rule": "Untuk tujuan sitelinks, pastikan anchor text tautan internal ringkas dan relevan dengan halaman yang ditunjuk.",
+  "quote": "Ensure that your internal links' anchor text is concise and relevant to the page they're pointing to.",
+  "source": "g-sitelinks"
+ },
+ {
+  "id": "E28",
+  "rule": "Ketahui bahwa dengan anchor text yang sesuai, pengguna dan mesin pencari dapat memahami isi halaman tertaut sebelum mengunjunginya.",
+  "quote": "With appropriate anchor text, users and search engines can easily understand what your linked pages contain before they visit.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E29",
+  "rule": "Pahami bahwa Google menganalisis hubungan antarhalaman berdasarkan tautannya, sehingga struktur navigasi (menu dan cross page links) dapat memengaruhi pemahaman Google atas struktur situs.",
+  "quote": "Google tries to find the best content on your site by analyzing the relationship between pages based on their linkages. This means navigation structures on your site (such as menus and cross page links) can impact Google's understanding of your site structure.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E30",
+  "rule": "Pahami bahwa Google dapat memakai jumlah tautan yang harus diikuti untuk mencapai sebuah halaman dan jumlah tautan ke halaman itu untuk menyimpulkan kepentingan relatifnya.",
+  "quote": "Google can use information such as the number of links it needs to follow to reach a page and the number of links to a page to infer the relative importance of a page over the rest of your site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E31",
+  "rule": "Pastikan halaman dapat dijangkau dengan mengikuti tautan melalui navigasi situs; contoh: menu ke halaman kategori, kategori ke subkategori, lalu subkategori ke semua halaman produk.",
+  "quote": "your pages are reachable by following links through your site's navigation. For example, add links from menus to category pages, from category pages to sub-category pages, and finally from sub-category pages to all product pages.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E32",
+  "rule": "Waspadai produk yang tidak tertaut dari halaman kategori: bila halaman kategori tidak memuat tautan langsung ke semua produk, Googlebot mungkin tidak menemukan semua produk hanya lewat crawling.",
+  "quote": "If category pages don't include direct links to all products in a category, Googlebot might not find all of your products by crawling alone.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E33",
+  "rule": "Tautkan semua produk yang ingin diindeks; Googlebot umumnya tidak mencoba mengirim pencarian ke kotak pencarian saat meng-crawl, dan dokumen sangat merekomendasikan menautkan semua produk yang ingin diindeks.",
+  "quote": "Googlebot generally doesn't try to submit searches into a search box as part of crawling a site. It's strongly recommended to link to all products that you wish indexed.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E34",
+  "rule": "Jika tidak mungkin menautkan semua halaman, gunakan sitemap atau feed Google Merchant Center, yang dapat memuat tautan ke halaman yang tidak akan ditemukan crawler dengan cara lain.",
+  "quote": "If it's not possible to link to all pages, use a sitemap or a Google Merchant Center feed. These sources can include links to pages on a site that a crawler would not otherwise find.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E35",
+  "rule": "Pahami bahwa sitemap dapat meningkatkan crawling situs yang lebih besar atau lebih kompleks.",
+  "quote": "Even so, a sitemap can improve the crawling of larger or more complex sites, or more specialized files.",
+  "source": "g-sitemaps-overview"
+ },
+ {
+  "id": "E36",
+  "rule": "Waspadai situs besar: pada umumnya lebih sulit memastikan setiap halaman ditautkan dari minimal satu halaman lain, sehingga Googlebot mungkin tidak menemukan sebagian halaman baru.",
+  "quote": "Your site is large. Generally, on large sites it's more difficult to make sure that every page is linked by at least one other page on the site. As a result, it's more likely Googlebot might not discover some of your new pages.",
+  "source": "g-sitemaps-overview"
+ },
+ {
+  "id": "E37",
+  "rule": "Ketahui bahwa situs tertaut internal secara menyeluruh berarti Googlebot dapat menemukan semua halaman penting dengan mengikuti tautan mulai dari beranda.",
+  "quote": "Your site is comprehensively linked internally. This means that Googlebot can find all the important pages on your site by following links starting from the home page.",
+  "source": "g-sitemaps-overview"
+ },
+ {
+  "id": "E38",
+  "rule": "Pahami bahwa Google umumnya tidak melihat struktur URL untuk menentukan struktur situs; ia menganalisis tautan antarhalaman untuk menilai kepentingan relatif halaman.",
+  "quote": "Google generally doesn't look at the structure of URLs to work out the structure of a site. Instead, it analyzes the linkages between pages to gain insights about the relative importance of different pages on a site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E39",
+  "rule": "Ketahui kaidah umum bahwa semakin banyak tautan ke suatu halaman di dalam situs, semakin tinggi kepentingan relatif halaman itu dibanding halaman lain di situs.",
+  "quote": "As a general rule, the more links a page has to it within a site, the higher the relative importance of the page to other pages on your site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E40",
+  "rule": "Untuk produk terlaris, pertimbangkan menautkannya dari beranda atau dari konten lain seperti postingan blog atau newsletter di situs, agar Google memahami pentingnya produk itu.",
+  "quote": "if you have a best selling product, consider linking to it from the home page or in other content, such as blog posts or newsletters on your site. This will help Google understand how important the product is in relation to your site.",
+  "source": "g-ecommerce-structure"
+ },
+ {
+  "id": "E41",
+  "rule": "Buat struktur situs yang logis dan mudah dinavigasi, serta tautkan halaman penting dari halaman lain yang relevan.",
+  "quote": "Create a logical site structure that is easy for users to navigate, and make sure you link to your important pages from other relevant pages.",
+  "source": "g-sitelinks"
+ },
+ {
+  "id": "E42",
+  "rule": "Ketahui bahwa sitelinks saat ini otomatis; praktik terbaik hanya dapat memperbaiki kualitasnya.",
+  "quote": "At the moment, sitelinks are automated. We're always working to improve our sitelinks algorithms, and we may incorporate site owner input in the future. There are best practices you can follow, however, to improve the quality of your sitelinks.",
+  "source": "g-sitelinks"
+ },
+ {
+  "id": "E43",
+  "rule": "Ingat bahwa Google memakai banyak sinyal peringkat; PageRank yang memakai tautan hanyalah salah satunya.",
+  "quote": "While PageRank uses links and is one of the fundamental algorithms at Google, there's much more to Google Search than just links. We have many ranking signals, and PageRank is just one of those.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E44",
+  "rule": "Pahami bahwa breadcrumb menunjukkan posisi halaman dalam hierarki situs dan dapat membantu pengguna memahami dan menjelajahi situs.",
+  "quote": "A breadcrumb trail on a page indicates the page's position in the site hierarchy, and it may help users understand and explore a site effectively.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E45",
+  "rule": "Buat breadcrumb yang mewakili jalur pengguna yang umum menuju halaman, bukan sekadar mengikuti struktur URL.",
+  "quote": "We recommend providing breadcrumbs that represent a typical user path to a page, instead of mirroring the URL structure.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E46",
+  "rule": "Anda tidak wajib menyertakan ListItem breadcrumb untuk level teratas (domain atau host name situs) maupun untuk halaman itu sendiri.",
+  "quote": "It is not required to include a breadcrumb ListItem for the top level path (your site's domain or host name), nor for the page itself.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E47",
+  "rule": "Definisikan BreadcrumbList yang berisi minimal dua ListItem.",
+  "quote": "To specify breadcrumbs, define a BreadcrumbList that contains at least two ListItems.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E48",
+  "rule": "Sertakan properti wajib agar konten Anda memenuhi syarat untuk tampil dengan breadcrumb.",
+  "quote": "To specify breadcrumbs, define a BreadcrumbList that contains at least two ListItems. You must include the required properties for your content to be eligible for display with breadcrumbs.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E49",
+  "rule": "Pada ListItem, isi item dengan URL halaman yang diwakili breadcrumb.",
+  "quote": "Required properties | item | URL or a subtype of Thing The URL to the webpage that represents the breadcrumb.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E50",
+  "rule": "Pada ListItem, isi name dengan judul breadcrumb yang ditampilkan kepada pengguna.",
+  "quote": "The title of the breadcrumb displayed for the user.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E51",
+  "rule": "Pada ListItem, isi position dengan integer; posisi 1 menandai awal trail.",
+  "quote": "| position | Integer The position of the breadcrumb in the breadcrumb trail. Position 1 signifies the beginning of the trail.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E52",
+  "rule": "Untuk item terakhir di trail, item tidak wajib; jika dihilangkan, Google memakai URL halaman yang memuatnya.",
+  "quote": "If the breadcrumb is the last item in the breadcrumb trail, item is not required. If item isn't included for the last item, Google uses the URL of the containing page.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E53",
+  "rule": "Jika ada beberapa jalur navigasi menuju satu halaman, Anda dapat menentukan beberapa breadcrumb trail untuk halaman itu.",
+  "quote": "If there are multiple ways to navigate to a page on your site, you can specify multiple breadcrumb trails for a single page.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E54",
+  "rule": "Ikuti guideline breadcrumb karena wajib dipenuhi agar berhak tampil dengan breadcrumb di Google Search.",
+  "quote": "You must follow these guidelines to be eligible to appear with breadcrumbs in Google Search.",
+  "source": "g-breadcrumb"
+ },
+ {
+  "id": "E55",
+  "rule": "Tidak perlu menambahkan atribut rel pada tautan biasa yang Anda harapkan di-fetch dan di-parse Google tanpa kualifikasi.",
+  "quote": "For regular links that you expect Google to fetch and parse without any qualifications, you don't need to add a rel attribute.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E56",
+  "rule": "Tandai tautan iklan atau penempatan berbayar (paid links) dengan rel=\"sponsored\".",
+  "quote": "Mark links that are advertisements or paid placements (commonly called paid links) with the sponsored value.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E57",
+  "rule": "Tandai tautan konten buatan pengguna (UGC), seperti komentar dan postingan forum, dengan rel=\"ugc\"; ini rekomendasi Google.",
+  "quote": "We recommend marking user-generated content (UGC) links, such as comments and forum posts, with the ugc value.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E58",
+  "rule": "Anda mungkin menghapus atribut ugc dari tautan anggota atau pengguna yang konsisten berkontribusi berkualitas tinggi dalam jangka panjang.",
+  "quote": "If you want to recognize and reward trustworthy contributors, you might remove this attribute from links posted by members or users who have consistently made high-quality contributions over time.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E59",
+  "rule": "Gunakan rel=\"nofollow\" bila nilai lain tidak berlaku dan Anda lebih suka Google tidak mengaitkan situs Anda dengan, atau meng-crawl, halaman tertaut dari situs Anda.",
+  "quote": "Use the nofollow value when other values don't apply, and you'd rather Google not associate your site with, or crawl the linked page from, your site.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E60",
+  "rule": "Gunakan nofollow hanya bila Anda tidak mempercayai sumbernya, dan jangan untuk setiap tautan eksternal di situs.",
+  "quote": "Use nofollow only when you don't trust the source, and not for every external link on your site.",
+  "source": "g-links"
+ },
+ {
+  "id": "E61",
+  "rule": "Jika tautan dibayar dengan cara apa pun, kualifikasikan dengan sponsored atau nofollow; jika pengguna dapat menyisipkan tautan, tambahkan ugc atau nofollow.",
+  "quote": "If you were paid in some way for the link, qualify these links with sponsored or nofollow. If users can insert links on your site (for example, you have a forum section or Q&A site), add ugc or nofollow to these links too.",
+  "source": "g-links"
+ },
+ {
+  "id": "E62",
+  "rule": "Tulis beberapa nilai rel sebagai daftar yang dipisah spasi atau koma, misalnya rel=\"ugc nofollow\" atau rel=\"ugc,nofollow\".",
+  "quote": "You may specify multiple rel values as a space- or comma-separated list.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E63",
+  "rule": "Ketahui bahwa tautan dengan atribut rel ini umumnya tidak diikuti, tetapi halaman tertaut dapat ditemukan lewat cara lain seperti sitemap atau tautan dari situs lain sehingga mungkin tetap di-crawl.",
+  "quote": "Links marked with these rel attributes will generally not be followed. Remember that the linked pages may be found through other means, such as sitemaps or links from other sites, and thus they may still be crawled.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E64",
+  "rule": "Ingat bahwa atribut rel ini hanya dipakai pada elemen <a> yang dapat di-crawl Google, kecuali nofollow yang juga tersedia sebagai robots meta tag.",
+  "quote": "These rel attributes are used only in <a> elements that Google can crawl, except nofollow, which is also available as robots meta tag.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E65",
+  "rule": "Untuk mencegah Google mengambil tautan ke halaman di situs sendiri, gunakan aturan disallow robots.txt.",
+  "quote": "If you need to prevent Google from fetching a link to a page on your own site, use the robots.txt disallow rule.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E66",
+  "rule": "Untuk mencegah halaman diindeks, izinkan crawling dan gunakan aturan robots noindex.",
+  "quote": "To prevent Google from indexing a page, allow crawling and use the noindex robots rule.",
+  "source": "g-outbound-links"
+ },
+ {
+  "id": "E67",
+  "rule": "Tautan ke situs lain dapat dibuat bila masuk akal, dan beri pembaca konteks tentang apa yang akan mereka temukan.",
+  "quote": "Link out to external sites when it makes sense, and provide context to your readers about what they can expect.",
+  "source": "g-links"
+ },
+ {
+  "id": "E68",
+  "rule": "Saat menautkan ke halaman di luar kendali Anda, pastikan Anda memercayai sumbernya; jika tidak percaya tetapi tetap ingin menautkan, tambahkan nofollow atau anotasi serupa.",
+  "quote": "when you're linking to pages outside of your control, for example content on other sites, make sure you trust the resource you're linking to. If you can't trust the content and you still want to link to them, add a nofollow or similar annotation",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E69",
+  "rule": "Untuk konten buatan pengguna, pastikan setiap tautan yang diposting pengguna otomatis diberi nofollow atau anotasi serupa oleh CMS.",
+  "quote": "make sure every link that's posted by users has a nofollow or similar annotation automatically added by your CMS.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E70",
+  "rule": "Kenali definisi link spam: membuat tautan ke atau dari sebuah situs terutama untuk memanipulasi peringkat pencarian.",
+  "quote": "Link spam is the practice of creating links to or from a site primarily for the purpose of manipulating search rankings.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E71",
+  "rule": "Jangan membuat pertukaran tautan yang berlebihan (\"Link to me and I'll link to you\") atau halaman partner yang semata-mata untuk saling menautkan (cross-linking); dokumen mendaftarkannya sebagai contoh link spam.",
+  "quote": "Excessive link exchanges (\"Link to me and I'll link to you\") or partner pages exclusively for the sake of cross-linking",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E72",
+  "rule": "Jangan memasang tautan yang tersebar luas di footer atau template pada berbagai situs; dokumen mendaftarkannya sebagai contoh link spam.",
+  "quote": "Widely distributed links in the footers or templates of various sites",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E73",
+  "rule": "Jangan menanam tautan kaya kata kunci, tersembunyi, atau berkualitas rendah dalam widget yang didistribusikan ke berbagai situs.",
+  "quote": "Keyword-rich, hidden, or low-quality links embedded in widgets that are distributed across various sites",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E74",
+  "rule": "Jangan memakai program atau layanan otomatis untuk membuat tautan ke situs Anda; dokumen mendaftarkannya sebagai contoh link spam.",
+  "quote": "Using automated programs or services to create links to your site",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E75",
+  "rule": "Jangan membuat konten bernilai rendah terutama untuk memanipulasi sinyal tautan dan peringkat.",
+  "quote": "Creating low-value content primarily for the purposes of manipulating linking and ranking signals",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E76",
+  "rule": "Jangan membeli atau menjual tautan untuk tujuan peringkat (uang, barang atau jasa, atau produk yang ditukar dengan tulisan berisi tautan).",
+  "quote": "Buying or selling links for ranking purposes. This includes: - Exchanging money for links, or posts that contain links - Exchanging goods or services for links - Sending someone a product in exchange for them writing about it and including a link",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E77",
+  "rule": "Ketahui bahwa membeli atau menjual tautan untuk iklan dan sponsorship bukan pelanggaran selama dikualifikasi dengan rel=\"nofollow\" atau rel=\"sponsored\" pada tag <a>.",
+  "quote": "Google does understand that buying and selling links is a normal part of the economy of the web for advertising and sponsorship purposes. It's not a violation of our policies to have such links as long as they are qualified with a rel=\"nofollow\" or rel=\"sponsored\" attribute value to the <a> tag.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E78",
+  "rule": "Jangan menyembunyikan teks atau tautan semata-mata untuk memanipulasi mesin pencari dan agar tidak mudah terlihat pengunjung manusia.",
+  "quote": "Hidden text or link abuse is the practice of placing content on a page in a way solely to manipulate search engines and not to be easily viewable by human visitors.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E79",
+  "rule": "Jangan menyembunyikan tautan dengan menautkan hanya satu karakter kecil, misalnya tanda hubung di tengah paragraf.",
+  "quote": "Hiding a link by only linking one small character (for example, a hyphen in the middle of a paragraph)",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E80",
+  "rule": "Jangan memakai teks putih di latar putih, menyembunyikan teks di balik gambar, memosisikan teks di luar layar dengan CSS, atau mengatur ukuran font atau opacity ke 0.",
+  "quote": "Using white text on a white background - Hiding text behind an image - Using CSS to position text off-screen - Setting the font size or opacity to 0",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E81",
+  "rule": "Ketahui bahwa elemen desain yang menampilkan dan menyembunyikan konten secara dinamis (akordeon, tab, slider, tooltip, teks khusus pembaca layar) tidak melanggar kebijakan.",
+  "quote": "these elements don't violate our policies: - Accordion or tabbed content that toggle between hiding and showing additional content - Slideshow or slider that cycles between several images or text paragraphs - Tooltip or similar text that displays additional content when users interact with over an element - Text that's only accessible to screen readers and is intended to improve the experience for those using screen readers",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E82",
+  "rule": "Ketahui bahwa panduan crawl budget terutama untuk situs besar (1 juta+ halaman unik dengan perubahan seminggu sekali), situs menengah atau lebih besar (10.000+ halaman unik dengan perubahan harian), atau situs dengan banyak URL berstatus Discovered - currently not indexed di Search Console.",
+  "quote": "Large sites (1 million+ unique pages) with content that changes moderately often (once a week) - Medium or larger sites (10,000+ unique pages) with very rapidly changing content (daily) - Sites with a large portion of their total URLs classified by Search Console as Discovered - currently not indexed",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E83",
+  "rule": "Ketahui bahwa tanpa panduan dari Anda, Google mencoba meng-crawl semua atau sebagian besar URL yang diketahuinya; URL duplikat atau yang tidak diinginkan di-crawl menyia-nyiakan waktu crawl.",
+  "quote": "Without guidance from you, Google tries to crawl all or most of the URLs that it knows about on your site. If many of these URLs are duplicates, or you don't want them crawled for some other reason (removed, unimportant, and so on), this wastes a lot of Google crawling time on your site.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E84",
+  "rule": "Hindari rantai redirect yang panjang karena berdampak negatif pada crawling.",
+  "quote": "Avoid long redirect chains, which have a negative effect on crawling.",
+  "source": "g-crawl-budget"
+ },
+ {
+  "id": "E85",
+  "rule": "Eliminasi soft 404 karena halaman soft 404 tetap di-crawl dan menyia-nyiakan budget.",
+  "quote": "soft 404 pages will continue to be crawled, and waste your budget.",
+  "source": "g-crawl-budget"
+ }
+]

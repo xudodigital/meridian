@@ -1,0 +1,740 @@
+[
+ {
+  "id": "E1",
+  "rule": "Jangan mengirim query otomatis ke Google; Google mendefinisikan machine-generated traffic sebagai praktik mengirim query otomatis ke Google.",
+  "quote": "refers to the practice of sending automated queries to Google.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E2",
+  "rule": "Jangan melakukan scraping hasil pencarian Google untuk rank-checking atau akses otomatis lain ke Google Search tanpa izin eksplisit; Google memasukkannya ke machine-generated traffic.",
+  "quote": "This includes scraping results for rank-checking purposes or other types of automated access to Google Search conducted without express permission.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E3",
+  "rule": "Ingat bahwa Google menyatakan aktivitas semacam itu melanggar spam policies dan Google Terms of Service.",
+  "quote": "Such activities violate our spam policies and the Google Terms of Service.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E4",
+  "rule": "Ambil data SERP lewat SERP API, yang dirancang untuk menyediakan hasil SERP; hasil yang dikembalikan spesifik untuk parameter keyword, search engine, language, dan location yang ditunjukkan.",
+  "quote": "This API is designed to provide you with SERP results SERP API encompasses a broad range of endpoints. You can get the full list here. All major search engines are supported: Google, Bing, YouTube, Yahoo, Baidu, Naver, and Seznam. The returned results are specific to the indicated keyword, search engine, language and location parameters.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E5",
+  "rule": "Tetapkan parameter keyword, search engine, language, dan location pada setiap permintaan, karena hasil yang dikembalikan spesifik untuk keempatnya.",
+  "quote": "The returned results are specific to the indicated keyword, search engine, language and location parameters.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E6",
+  "rule": "Ingat definisi Google: scraping adalah mengambil konten dari situs lain, sering lewat cara otomatis, lalu menayangkannya dengan tujuan memanipulasi peringkat pencarian.",
+  "quote": "Scraping refers to the practice of taking content from other sites, often through automated means, and hosting it with the purpose of manipulating search rankings.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E7",
+  "rule": "Jangan menerbitkan ulang konten situs lain tanpa menambahkan konten atau nilai orisinal, atau bahkan tanpa mengutip sumber aslinya; Google mencantumkannya sebagai contoh scraping yang abusif.",
+  "quote": "Republishing content from other sites without adding any original content or value, or even citing the original source",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E8",
+  "rule": "Jangan menyalin konten situs lain, mengubahnya hanya sedikit (misalnya mengganti sinonim atau memakai teknik otomatis), lalu menerbitkannya ulang; Google mencantumkannya sebagai contoh scraping yang abusif.",
+  "quote": "Copying content from other sites, modify it only slightly (for example, by substituting synonyms or using automated techniques), and republish it",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E9",
+  "rule": "Susun konten sendiri berdasarkan pengetahuan tentang topik, jangan hanya mengulang apa yang sudah diterbitkan orang lain.",
+  "quote": "don't copy others' content in part or in its entirety: create the content yourself based on what you know about the topic. Don't just rehash what others already published.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E10",
+  "rule": "Anggap relevansi hasil Google ditentukan oleh ratusan faktor, yang dapat mencakup lokasi, bahasa, dan perangkat pengguna (desktop atau ponsel).",
+  "quote": "Relevancy is determined by hundreds of factors, which could include information such as the user's location, language, and device (desktop or phone).",
+  "source": "g-how-search-works"
+ },
+ {
+  "id": "E11",
+  "rule": "Gunakan contoh Google sebagai pengingat: pencarian \"bicycle repair shops\" menampilkan hasil berbeda untuk pengguna di Paris dibanding pengguna di Hong Kong.",
+  "quote": "searching for \"bicycle repair shops\" would show different results to a user in Paris than it would to a user in Hong Kong.",
+  "source": "g-how-search-works"
+ },
+ {
+  "id": "E12",
+  "rule": "Ingat bahwa fitur pencarian yang muncul di halaman hasil ikut berubah menurut query pengguna.",
+  "quote": "Based on the user's query the search features that appear on the search results page also change.",
+  "source": "g-how-search-works"
+ },
+ {
+  "id": "E13",
+  "rule": "Ingat bahwa tampilan sebuah hasil dapat berbeda menurut desktop atau ponsel, negara, bahasa query, dan faktor lain.",
+  "quote": "a given result can be displayed differently depending on whether you're using a desktop computer or a phone, what country you're in, the language of your search query, and many other factors.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E14",
+  "rule": "Ingat bahwa Google Search berusaha menemukan halaman yang cocok dengan bahasa pencari.",
+  "quote": "Google Search tries to find pages that match the language of the searcher.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E15",
+  "rule": "Catat bahwa penyedia data mengabaikan preferensi pengguna, riwayat pencarian, dan faktor personalisasi lain, sehingga hasil API tidak mencerminkan personalisasi.",
+  "quote": "user preferences, search history, and other personalized search factors are ignored by our system and thus would not be reflected in the returned SERP results.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E16",
+  "rule": "Catat bahwa penyedia data menyatakan meniru lokasi dan search engine yang ditetapkan dengan akurasi tertinggi, dan hasilnya sesuai dengan hasil pencarian sebenarnya pada saat task ditetapkan.",
+  "quote": "We emulate set location and search engine with the highest accuracy so that the results you receive will match the actual search results for the specified parameters at the time of task setting.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E17",
+  "rule": "Gunakan endpoint Live Google Organic SERP Advanced: endpoint ini memberi data real-time hasil pencarian teratas untuk keyword, search engine, dan lokasi yang ditentukan, beserta gambaran lengkap featured snippet dan elemen SERP ekstra lainnya.",
+  "quote": "Live SERP provides real-time data on top search engine results for the specified keyword, search engine, and location. This endpoint will supply a complete overview of featured snippets and other extra elements of SERPs.",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E18",
+  "rule": "Isi field keyword (wajib); keyword boleh sampai 700 karakter.",
+  "quote": "keyword required field you can specify up to 700 characters in the keyword field",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E19",
+  "rule": "Tentukan lokasi dengan location_code, location_name, atau location_coordinate; location_code wajib jika location_name dan location_coordinate tidak diisi.",
+  "quote": "search engine location code required field if you don't specify location_name or location_coordinate",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E20",
+  "rule": "Ambil daftar location_code yang valid dari endpoint https://api.dataforseo.com/v3/serp/google/locations.",
+  "quote": "you can receive the list of available locations of the search engines with their location_code by making a separate request to the https://api.dataforseo.com/v3/serp/google/locations",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E21",
+  "rule": "Tentukan bahasa dengan language_code atau language_name; salah satunya cukup.",
+  "quote": "optional field if you specify language_name if you use this field, you don't need to specify language_name",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E22",
+  "rule": "Ambil daftar language_code yang valid dari endpoint https://api.dataforseo.com/v3/serp/google/languages.",
+  "quote": "you can receive the list of available languages of the search engine with their language_code by making a separate request to the https://api.dataforseo.com/v3/serp/google/languages",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E23",
+  "rule": "Pilih device sesuai target: nilai yang diterima desktop atau mobile, dengan default desktop.",
+  "quote": "can take the values:desktop, mobile default value: desktop",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E24",
+  "rule": "Jika perlu, tentukan os: untuk desktop pilih windows atau macos (default windows); untuk mobile pilih android atau ios (default android).",
+  "quote": "if you specify desktop in the device field, choose from the following values: windows, macos default value: windows if you specify mobile in the device field, choose from the following values: android, ios default value: android",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E25",
+  "rule": "Biarkan se_domain kosong bila tidak perlu; penyedia memilih domain search engine yang relevan secara otomatis menurut lokasi dan bahasa yang ditentukan.",
+  "quote": "we choose the relevant search engine domain automatically according to the location and language you specify",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E26",
+  "rule": "Jangan memakai field url (URL pencarian langsung) pada kebanyakan kasus; penyedia menyebut metode ini paling sulit diproses dan tidak merekomendasikannya.",
+  "quote": "Note that this method is the most difficult for our API to process and also requires you to specify the exact language and location in the URL. In most cases, we wouldn’t recommend using this method.",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E27",
+  "rule": "Jangan mengandalkan parameter lr, cr, as_qdr, as_sitesearch, as_occt, as_filetype di search_param atau url; penyedia otomatis menghapusnya.",
+  "quote": "the following search engine parameters are not supported and will be automatically unset if specified: lr, cr, as_qdr, as_sitesearch, as_occt, as_filetype.",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E28",
+  "rule": "Perhitungkan bahwa field keyword yang memuat operator seperti site:, intitle:, inurl:, atau filetype: membuat biaya per task dikalikan 5.",
+  "quote": "if this field contains such parameters as 'allinanchor:', 'allintext:', 'allintitle:', 'allinurl:', 'cache:', 'define:', 'definition:', 'filetype:', 'id:', 'inanchor:', 'info:', 'intext:', 'intitle:', 'inurl:', 'link:', 'site:', the charge per task will be multiplied by 5",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E29",
+  "rule": "Kirim satu task per panggilan Live SERP API.",
+  "quote": "each Live SERP API call can contain only one task.",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E30",
+  "rule": "Patuhi batas 2000 panggilan API per menit untuk Live SERP.",
+  "quote": "You can send up to 2000 API calls per minute",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E31",
+  "rule": "Uji alur pengambilan data tanpa biaya dengan DataForSEO Sandbox.",
+  "quote": "You can test SERP API for free using DataForSEO Sandbox.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E32",
+  "rule": "Pakai metode Live bila sistem membutuhkan hasil instan; tidak perlu permintaan POST dan GET terpisah.",
+  "quote": "If your system requires delivering instant results, the Live method is the best solution for you. Unlike the Standard method, it doesn’t require making separate POST and GET requests to the corresponding endpoints.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E33",
+  "rule": "Pakai metode Standard bila data tidak perlu real-time; metode ini butuh permintaan POST dan GET terpisah tetapi lebih murah.",
+  "quote": "If you don’t need to receive data in real-time, you can use the Standard method of data retrieval. This method requires making separate POST and GET requests, but it’s more affordable.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E34",
+  "rule": "Perhitungkan bahwa metode Live adalah yang paling mahal.",
+  "quote": "the cost of requests made using this method will be the highest.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E35",
+  "rule": "Perhitungkan bahwa menaikkan depth di atas nilai default menaikkan biaya task.",
+  "quote": "setting depth above the default value will increase the cost of the task.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E36",
+  "rule": "Ingat default depth adalah 10 dan nilai maksimumnya 200.",
+  "quote": "number of results in SERP default value: 10 max value: 200",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E37",
+  "rule": "Catat exploration features sebagai fitur yang membantu pencari menjelajahi pertanyaan atau pencarian yang terkait dengan query awal.",
+  "quote": "Exploration features help searchers explore more questions or searches that are related to their original search query",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E38",
+  "rule": "Catat text result sebagai hasil berbasis konten teks halaman, dengan elemen visual seperti attribution, title link, dan snippet.",
+  "quote": "is a result in Google Search that's based on the textual content of the page. It includes visual elements such as attribution, title link, and snippet.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E39",
+  "rule": "Catat rich result sebagai hasil yang biasanya bergantung pada structured data di markup halaman untuk menampilkan elemen grafis atau pengalaman interaktif.",
+  "quote": "A result that typically relies on structured data in the markup of your page to display graphical elements or interactive experiences.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E40",
+  "rule": "Catat rich attributes sebagai satu baris atau lebih informasi tambahan tentang halaman, seperti bintang ulasan dan informasi resep.",
+  "quote": "Rich attributes are one or more lines of additional information about the web page, such as review stars and recipe information.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E41",
+  "rule": "Catat sitelinks group sebagai dua tautan atau lebih dari domain yang sama atau variasi lokalnya yang dikelompokkan di bawah sebuah text result.",
+  "quote": "Two or more links from the same domain or its localized variations that are clustered together under a text result.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E42",
+  "rule": "Catat byline date sebagai tanggal yang diperkirakan Google sebagai waktu halaman diperbarui atau diterbitkan.",
+  "quote": "The date that Google estimates the web page was updated or published.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E43",
+  "rule": "Catat attribution sebagai sumber hasil pencarian; dapat mencakup nama situs, favicon, dan URL halaman.",
+  "quote": "Attribution can include various aspects of the source, such as the name of the site, favicon, and URL to the web page.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E44",
+  "rule": "Catat image result sebagai hasil berbasis gambar yang tertanam di halaman web; lebih mungkin muncul untuk query yang mencari gambar.",
+  "quote": "An image result is a result that's based on an image that's embedded on a web page. It's more likely to appear for image-seeking queries.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E45",
+  "rule": "Catat video result sebagai hasil berbasis video yang tertanam di halaman web; lebih mungkin muncul untuk query yang mencari video.",
+  "quote": "A video result is a result that's based on a video that's embedded on a web page. It's more likely to appear for video-seeking queries.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E46",
+  "rule": "Catat related questions group (juga dikenal sebagai People Also Ask) sebagai kelompok pertanyaan terkait query awal.",
+  "quote": "A related questions group is a cluster of questions that are related to what the user initially searched for (also known as \"People Also Ask\").",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E47",
+  "rule": "Catat related searches group sebagai kelompok pencarian terkait yang dilakukan orang lain, dihasilkan otomatis dari query awal dan hal lain yang dicari orang.",
+  "quote": "These searches are automatically generated based on the initial query and other things people have searched for.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E48",
+  "rule": "Manfaatkan related searches untuk menggali topik yang bisa ditulis, walaupun apa yang muncul di exploration features tidak bisa dikendalikan.",
+  "quote": "While you can't control what shows up here, it can be helpful to pay attention to the related search queries when you're thinking about topics you could write about for your site.",
+  "source": "g-visual-elements"
+ },
+ {
+  "id": "E49",
+  "rule": "Catat bahwa Google memakai beberapa sumber untuk membuat title link, termasuk isi elemen <title> dan heading lain di halaman.",
+  "quote": "There are a few sources that Google uses to generate this title link, including the words inside the <title> element (also called the title text) and other headings on the page.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E50",
+  "rule": "Rancang sistem penanganan kondisi pengecualian atau error untuk respons API; penyedia sangat menyarankannya.",
+  "quote": "we strongly recommend designing a necessary system for handling related exceptional or error conditions",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E51",
+  "rule": "Baca item_types untuk mengetahui jenis hasil apa saja yang ada di SERP sebelum menganalisis items.",
+  "quote": "contains types of search results (items) found in SERP.",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E52",
+  "rule": "Gunakan rank_absolute untuk posisi absolut di antara semua elemen SERP.",
+  "quote": "absolute position among all the elements in SERP",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E53",
+  "rule": "Gunakan rank_group untuk posisi dalam kelompok elemen bertipe sama; posisi elemen bertipe lain tidak dihitung.",
+  "quote": "position within a group of elements with identical type values positions of elements with different type values are omitted from rank_group",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E54",
+  "rule": "Periksa objek spell: jika search engine mengoreksi keyword, hasil diberikan untuk keyword yang dikoreksi.",
+  "quote": "the results will be provided for the corrected keyword",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E55",
+  "rule": "Ingat bahwa objek faq sudah deprecated dan selalu mengembalikan null.",
+  "quote": "| faq | object | frequently asked questions questions and answers extension shown below some of Google's search results Note: this object is deprecated and always returns null",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E56",
+  "rule": "Jangan mengandalkan field is_featured_snippet pada elemen organic; penyedia menyatakan pengecekan ini tidak lagi muncul di SERP.",
+  "quote": "indicates whether the element is a featured_snippet Note: this check no longer appears in SERP",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E57",
+  "rule": "Untuk melihat ai_overview yang dimuat asinkron, set load_async_ai_overview ke true; bila false, hanya ai_overview dari cache yang diperoleh.",
+  "quote": "set to true to obtain ai_overview items is SERPs even if they are loaded asynchronously; if set to false, you will only obtain ai_overview items from cache;",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E58",
+  "rule": "Gunakan people_also_ask_click_depth untuk mendapatkan item people_also_ask_element tambahan; parameter ini dikenai biaya tambahan $0.00015 per klik.",
+  "quote": "specify the click depth on the people_also_ask element to get additional people_also_ask_element items; Note your account will be billed $0.00015 extra for each click;",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E59",
+  "rule": "Baca title dan url dari tiap elemen organic untuk mencatat judul dan halaman yang tampil.",
+  "quote": "title | string | title of the result in SERP | url | string | relevant URL in SERP",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E60",
+  "rule": "Catat links (sitelinks) pada elemen organic: tautan yang tampil di bawah sebagian hasil pencarian Google; bernilai null bila tidak ada.",
+  "quote": "the links shown below some of Google's search results if there are none, equals null",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E61",
+  "rule": "Catat rating pada elemen organic: tingkat popularitas berdasarkan ulasan yang tampil di SERP; bernilai null bila tidak ada.",
+  "quote": "the popularity rate based on reviews and displayed in SERP if there is none, equals null",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E62",
+  "rule": "Catat price pada elemen organic: detail harga produk atau layanan yang ditampilkan di hasil; bernilai null bila tidak ada.",
+  "quote": "contains the pricing details of the product or service featured in the result; if there is none, equals null",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E63",
+  "rule": "Catat pre_snippet sebagai informasi tambahan yang ditempatkan sebelum deskripsi hasil di SERP.",
+  "quote": "includes additional information appended before the result description in SERP",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E64",
+  "rule": "Pelajari variasi kata yang dipakai pencari: pengguna yang paham topik dapat memakai keyword berbeda dari pemula.",
+  "quote": "Users who know a lot about the topic might use different keywords in their search queries than someone who is new to the topic.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E65",
+  "rule": "Ingat bahwa Google menyebut konten yang menarik dan berguna umumnya berbagi atribut, seperti teks yang mudah dibaca dan tertata baik.",
+  "quote": "While \"compelling and useful content\" can mean different things to different people, content like this generally shares some common attributes, such as: - The text is easy-to-read and well organized",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E66",
+  "rule": "Catat atribut pertama konten berguna menurut Google: teks mudah dibaca dan tertata baik, ditulis dengan baik, mudah diikuti, dan bebas kesalahan ejaan serta tata bahasa.",
+  "quote": "content like this generally shares some common attributes, such as: - The text is easy-to-read and well organized: Write content naturally and make sure the content is well written, easy to follow, and free of spelling and grammatical mistakes.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E67",
+  "rule": "Catat atribut konten berguna menurut Google: konten yang membantu dan andal bagi pembaca.",
+  "quote": "The content is helpful, reliable, and people-first: Be sure that you're writing content that your readers will find helpful and reliable.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E68",
+  "rule": "Catat bahwa situs multi-regional adalah situs yang secara eksplisit menargetkan pengguna di negara berbeda.",
+  "quote": "A multi-regional website is one that explicitly targets users in different countries.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E69",
+  "rule": "Ingat bahwa Google menentukan bahasa halaman dari konten yang terlihat, bukan dari atribut lang atau URL.",
+  "quote": "Google uses the visible content of your page to determine its language. We don't use any code-level language information such as lang attributes, or the URL.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E70",
+  "rule": "Ingat bahwa geotargeting dapat meningkatkan peringkat halaman di negara target, tetapi mengorbankan hasil di locale atau bahasa lain.",
+  "quote": "This can improve your page rankings in the target country, but at the expense of results in other locales or languages.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E71",
+  "rule": "Ingat bahwa Google mengabaikan meta tag lokasi (seperti geo.position atau distribution) dan atribut HTML geotargeting.",
+  "quote": "Google ignores locational meta tags (like geo.position or distribution) or geotargeting HTML attributes.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E72",
+  "rule": "Ingat bahwa situs dengan halaman locale-adaptive (konten berbeda menurut perkiraan negara atau bahasa pengunjung) mungkin tidak di-crawl, diindeks, atau diberi peringkat untuk semua locale.",
+  "quote": "Google might not crawl, index, or rank all your content for different locales.",
+  "source": "g-locale-adaptive"
+ },
+ {
+  "id": "E73",
+  "rule": "Ingat alasannya: IP default Googlebot tampak berbasis di AS, dan crawler mengirim permintaan HTTP tanpa Accept-Language di header.",
+  "quote": "This is because the default IP addresses of the Googlebot crawler appear to be based in the USA. In addition, the crawler sends HTTP requests without setting Accept-Language in the request header.",
+  "source": "g-locale-adaptive"
+ },
+ {
+  "id": "E74",
+  "rule": "Ambil daftar lokasi lewat endpoint SERP Google Locations; daftar ini dapat disaring per negara saat menetapkan task.",
+  "quote": "You will receive the list of locations by this API call. You can filter the list of locations by country when setting a task.",
+  "source": "dfs-locations"
+ },
+ {
+  "id": "E75",
+  "rule": "Ingat bahwa akun tidak dikenai biaya untuk panggilan SERP Google Locations.",
+  "quote": "Your account will not be charged for using this API",
+  "source": "dfs-locations"
+ },
+ {
+  "id": "E76",
+  "rule": "Saring daftar lokasi per negara dengan field country (kode ISO negara, opsional), misalnya us.",
+  "quote": "country ISO code optional field specify the ISO code if you want to filter the list of locations by country example: us",
+  "source": "dfs-locations"
+ },
+ {
+  "id": "E77",
+  "rule": "Ingat bahwa semua lokasi di Rusia dan Belarus tidak lagi didukung di semua layanan DataForSEO.",
+  "quote": "All locations in Russia and Belarus are no longer supported across all DataForSEO services due to the invasion of Ukraine.",
+  "source": "dfs-locations"
+ },
+ {
+  "id": "E78",
+  "rule": "Kirim semua data POST dalam format JSON (encoding UTF-8).",
+  "quote": "All POST data should be sent in the JSON format (UTF-8 encoding).",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E79",
+  "rule": "Tulis karakter % sebagai %25 dan karakter + sebagai %2B di field keyword.",
+  "quote": "if you need to use the “%” character for your keyword, please specify it as “%25”; if you need to use the “+” character for your keyword, please specify it as “%2B”;",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E80",
+  "rule": "Gunakan location_name (mis. London,England,United Kingdom) sebagai alternatif location_code; wajib bila location_code dan location_coordinate tidak diisi.",
+  "quote": "full name of search engine location required field if you don't specify location_code or location_coordinate if you use this field, you don't need to specify location_code or location_coordinate you can receive the list of available locations of the search engine with their location_name by making a separate request to the https://api.dataforseo.com/v3/serp/google/locations example: London,England,United Kingdom",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E81",
+  "rule": "Gunakan location_coordinate dengan format \"latitude,longitude,radius\" bila perlu lokasi berbasis koordinat.",
+  "quote": "location_coordinate parameter should be specified in the \"latitude,longitude,radius\" format",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E82",
+  "rule": "Batasi location_coordinate: maksimum 7 digit desimal untuk latitude dan longitude, radius minimum 199 dan maksimum 199999.",
+  "quote": "the maximum number of decimal digits for \"latitude\" and \"longitude\": 7 the minimum value for \"radius\": 199 (mm) the maximum value for \"radius\": 199999 (mm)",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E83",
+  "rule": "Gunakan language_name (mis. English) sebagai alternatif language_code; opsional bila language_code diisi.",
+  "quote": "full name of search engine language optional field if you specify language_code if you use this field, you don't need to specify language_code you can receive the list of available languages of the search engine with their language_name by making a separate request to the https://api.dataforseo.com/v3/serp/google/languages example: English",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E84",
+  "rule": "Pakai max_crawl_pages (maksimum 100) untuk membatasi jumlah halaman hasil pencarian yang di-crawl; biaya dikenakan per halaman yang di-crawl (10 hasil organic per halaman).",
+  "quote": "number of search results pages to crawl max value: 100 Note: you will be charged for each page crawled (10 organic results per page);",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E85",
+  "rule": "Pakai stop_crawl_on_match (hingga 10 objek target) untuk menghentikan crawl; respons berisi hasil SERP sampai dan termasuk match_value yang ditentukan.",
+  "quote": "you can specify up to 10 target objects in this array if specified, the response will contain SERP results up to and including the specified match_value;",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E86",
+  "rule": "Isi match_type (domain, with_subdomains, atau wildcard) bila stop_crawl_on_match diisi.",
+  "quote": "target match type required field if stop_crawl_on_match is specified type of match for the match_value possible values: domain – specific domain or subdomain with_subdomains – main domain and subdomains wildcard – wildcard pattern",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E87",
+  "rule": "Pakai remove_from_url (hingga 10 parameter) untuk menghapus parameter tertentu, misalnya srsltid, dari URL pada hasil.",
+  "quote": "remove specific parameters from URLs optional field using this field, you can specify up to 10 parameters to remove from URLs in the result example: \"remove_from_url\": [\"srsltid\"]",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E88",
+  "rule": "Pakai tag (maksimum 255 karakter) untuk menandai task dan mencocokkannya dengan hasil; nilainya muncul di objek data pada respons.",
+  "quote": "user-defined task identifier optional field the character limit is 255 you can use this parameter to identify the task and match it with the result you will find the specified tag value in the data object of the response",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E89",
+  "rule": "Pakai calculate_rectangles untuk menghitung pixel rankings elemen SERP; parameter ini dikenai biaya tambahan $0.002.",
+  "quote": "| calculate_rectangles | boolean | calcualte pixel rankings for SERP elements in advanced results optional field pixel ranking refers to the distance between the result snippet and top left corner of the screen; Visit Help Center to learn more>> by default, the parameter is set to false; Note: you will be charged extra $0.002 for using this parameter",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E90",
+  "rule": "Atur browser_screen_width hanya bersama calculate_rectangles=true.",
+  "quote": "| browser_screen_width | integer | browser screen width optional field you can set a custom browser screen width to calculate pixel rankings for a particular device; can be specified within the following range: 240-9999; by default, the parameter is set to: 1920 for desktop; 360 for mobile on android; 375 for mobile on iOS; Note: to use this parameter, set calculate_rectangles to true",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E91",
+  "rule": "Ingat bahwa hasil task berparameter target hanya memuat elemen SERP yang memiliki string url.",
+  "quote": "note that the results of target-specific tasks will only include SERP elements that contain a url string;",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E92",
+  "rule": "Aktifkan stop_crawl_on_match terlebih dulu sebelum memakai target_search_mode.",
+  "quote": "| target_search_mode | string | target matching mode optional field to enable this parameter, stop_crawl_on_match must also be enabled",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E93",
+  "rule": "Ingat batas pengiriman SERP API: hingga 2000 panggilan POST dan GET per menit secara total, dengan tiap POST berisi paling banyak 100 task.",
+  "quote": "You can send up to 2000 POST and GET API calls per minute in total, with each POST call containing no more than 100 tasks.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E94",
+  "rule": "Pakai pingback_url atau postback_url pada metode Standard bila ingin diberi tahu atau dikirimi hasil saat task selesai.",
+  "quote": "you can specify pingback_url or postback_url when setting a task, and we will notify you on completion of tasks or send the results to you respectively.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E95",
+  "rule": "Ketahui tiga fungsi SERP standar: Regular, Advanced, dan HTML.",
+  "quote": "SERP API provides search engine results with three standard functions: Regular, Advanced and HTML.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E96",
+  "rule": "Ingat bahwa fungsi Advanced didukung di semua search engine SERP API dan memberi gambaran lengkap hasil pencarian.",
+  "quote": "The Advanced function is supported across all SERP API search engines. This function provides a complete overview of search results.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E97",
+  "rule": "Ingat bahwa fungsi HTML memberikan halaman HTML SERP mentah untuk keyword, search engine, dan lokasi.",
+  "quote": "provides a raw SERP HTML page for the specified keyword, search engine, and location.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E98",
+  "rule": "Ingat bahwa Google News, Images, Search By Image, dan Jobs saat ini hanya tersedia untuk desktop.",
+  "quote": "Google News/Images/Search By Image/Jobs are currently available for desktop only.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E99",
+  "rule": "Ingat bahwa metode Standard punya dua prioritas, normal dan high, dengan harga berbeda.",
+  "quote": "The Standard method has two different priorities that stand for the relative speed of task execution and have different prices: 1. Normal priority; 2. High priority.",
+  "source": "dfs-serp-overview"
+ },
+ {
+  "id": "E100",
+  "rule": "Baca respons sebagai data JSON dengan array tasks yang memuat informasi tiap task.",
+  "quote": "you will receive JSON-encoded data containing a tasks array with the information specific to the set tasks.",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E101",
+  "rule": "Baca tasks_error untuk jumlah task dalam array tasks yang mengembalikan error.",
+  "quote": "the number of tasks in the tasks array returned with an error",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E102",
+  "rule": "Ketahui bahwa check_url berisi URL langsung ke hasil search engine, yang menurut penyedia dapat dipakai untuk memastikan hasil yang diberikan akurat.",
+  "quote": "direct URL to search engine results you can use it to make sure that we provided accurate results",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E103",
+  "rule": "Baca objek spell untuk keyword hasil autokoreksi dan tipe koreksinya.",
+  "quote": "we will specify the keyword corrected by the search engine and the type of autocorrection",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E104",
+  "rule": "Kenali nilai type koreksi di spell: did_you_mean, showing_results_for, no_results_found_for, atau including_results_for.",
+  "quote": "did_you_mean, showing_results_for, no_results_found_for, including_results_for",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E105",
+  "rule": "Kenali item_types yang mungkin: answer_box, app, carousel, multi_carousel, featured_snippet, google_flights, google_reviews, third_party_reviews, images, jobs, knowledge_graph, local_pack, hotels_pack, map, organic, paid, people_also_ask, related_searches, people_also_search, shopping, top_stories, twitter, video, events, recipes, top_sights, scholarly_articles, popular_products, questions_and_answers, find_results_on, stocks_box, commercial_units, local_services, google_hotels, math_solver, currency_box, product_considerations, short_videos, refine_products, perspectives, discussions_and_forums, compare_sites, ai_overview.",
+  "quote": "answer_box, app, carousel, multi_carousel, featured_snippet, google_flights, google_reviews, third_party_reviews, images, jobs, knowledge_graph, local_pack, hotels_pack, map, organic, paid, people_also_ask, related_searches, people_also_search, shopping, top_stories, twitter, video, events, recipes, top_sights, scholarly_articles, popular_products, questions_and_answers, find_results_on, stocks_box, commercial_units, local_services, google_hotels, math_solver, currency_box,product_considerations, short_videos, refine_products, perspectives, discussions_and_forums, compare_sites, ai_overview",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E106",
+  "rule": "Baca pages_count untuk total halaman hasil pencarian yang diambil.",
+  "quote": "total search results pages retrieved total number of retrieved SERPs in the result",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E107",
+  "rule": "Baca field page pada tiap elemen untuk nomor halaman SERP tempat elemen berada.",
+  "quote": "indicates the number of the SERP page on which the element is located",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E108",
+  "rule": "Pakai featured_title untuk judul halaman sumber featured snippet.",
+  "quote": "the title of the featured snippets source page",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E109",
+  "rule": "Baca asynchronous_ai_overview untuk mengetahui apakah elemen ai_overview dimuat asinkron (true) atau dari cache (false).",
+  "quote": "indicates whether the element is loaded asynchronously if true, the ai_overview element is loaded asynchronously; if false, the ai_overview element is loaded from cache",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E110",
+  "rule": "Baca markdown pada ai_overview untuk isi teks ai_overview dalam format markdown.",
+  "quote": "content of the element in markdown format the text of the ai_overview formatted in the markdown markup language",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E111",
+  "rule": "Baca checks pada related_result untuk properti yang terdeteksi pada elemen; bernilai null bila tidak ada yang terdeteksi.",
+  "quote": "possible values in the array: is_image, is_video, is_featured_snippet, amp_version, is_malicious, is_web_story, is_highly_cited equals null if none of the properties are detected for the element",
+  "source": "dfs-serp-google-organic"
+ },
+ {
+  "id": "E112",
+  "rule": "Ingat bahwa Google mengandalkan sejumlah sinyal untuk menentukan target audiens terbaik sebuah halaman.",
+  "quote": "Google relies on a number of signals to determine the best target audience for a page:",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E113",
+  "rule": "Catat ccTLD sebagai sinyal kuat bahwa situs ditujukan untuk negara tertentu.",
+  "quote": "These are tied to a specific country (for example .de for Germany, .cn for China), and therefore provide a strong signal to both users and search engines that your site is explicitly intended for a certain country.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E114",
+  "rule": "Catat hreflang (di tag, header, atau sitemap) sebagai sinyal target lokal.",
+  "quote": "Google relies on a number of signals to determine the best target audience for a page: - Country-code top-level domain names (ccTLDs). These are tied to a specific country (for example .de for Germany, .cn for China), and therefore provide a strong signal to both users and search engines that your site is explicitly intended for a certain country. Some countries have restrictions on who can use ccTLDs, so be sure to do your research first. We also treat some vanity ccTLDs (such as .tv and .me) as gTLDs, as we've found that users and website owners frequently see these as being more generic than country-targeted. See Google's list of gTLDs. - hreflang statements, whether in tags, headers, or sitemaps.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E115",
+  "rule": "Catat lokasi server (lewat IP server) sebagai sinyal audiens; bukan sinyal definitif karena CDN atau hosting di negara lain.",
+  "quote": "Server location (through the IP address of the server). The server location is often physically near your users and can be a signal about your site's intended audience. Some websites use distributed content delivery networks (CDNs) or are hosted in a country with better webserver infrastructure, so it is not a definitive signal.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E116",
+  "rule": "Catat sinyal lain: alamat dan nomor telepon lokal di halaman, bahasa dan mata uang lokal, tautan dari situs lokal lain, atau sinyal Business Profile (bila tersedia).",
+  "quote": "local addresses and phone numbers on the pages, the use of local language and currency, links from other local sites, or signals from your Business Profile (where available).",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E117",
+  "rule": "Ingat bahwa Google memperlakukan sebagian ccTLD (seperti .tv dan .me) sebagai gTLD.",
+  "quote": "Google treats some ccTLDs (such as .tv and .me) as gTLDs",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E118",
+  "rule": "Ingat bahwa gTLD adalah domain yang tidak terkait lokasi tertentu, misalnya .com atau .org.",
+  "quote": "Generic top-level domains (gTLDs) are domains that aren't associated with specific locations. If your site has a generic top-level domain such as .com, .org, or any of the following domains,",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E119",
+  "rule": "Ingat bahwa situs ber-gTLD yang menargetkan lokasi geografis tertentu perlu menetapkan target negara secara eksplisit lewat salah satu metode yang dijelaskan Google.",
+  "quote": "If your site has a generic top-level domain such as .com, .org, or any of the following domains, and wants to target users in a particular geographic location, explicitly set a country target using one of the methods described previously.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E120",
+  "rule": "Ingat bahwa Google meng-crawl web dari berbagai lokasi dan tidak mencoba mengubah sumber crawler untuk satu situs guna menemukan variasi halaman.",
+  "quote": "Google crawls the web from different locations around the world. We do not attempt to vary the crawler source used for a single site in order to find any possible variations in a page.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E121",
+  "rule": "Ingat bahwa geotargeting bukan ilmu pasti, sehingga pengguna yang mendarat di versi situs yang \"salah\" perlu dipertimbangkan.",
+  "quote": "Remember that geotargeting isn't an exact science, so it's important to consider users who land on the \"wrong\" version of your site.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E122",
+  "rule": "Ingat bahwa Google merekomendasikan URL berbeda untuk tiap versi bahasa, bukan cookie atau pengaturan browser untuk mengubah bahasa konten.",
+  "quote": "Google recommends using different URLs for each language version of a page rather than using cookies or browser settings to adjust the content language on the page.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E123",
+  "rule": "Ingat bahwa konten mirip atau duplikat pada URL berbeda dalam bahasa yang sama di situs multi-regional ditangani dengan memilih versi pilihan serta rel=\"canonical\" dan hreflang.",
+  "quote": "If you provide similar or duplicate content on different URLs in the same language as part of a multi-regional site (for instance, if both example.de/ and example.com/de/ show similar German language content), pick a preferred version and use the rel=\"canonical\" element and hreflang tags to make sure that the correct language or regional URL is served to searchers.",
+  "source": "g-multi-regional"
+ }
+]

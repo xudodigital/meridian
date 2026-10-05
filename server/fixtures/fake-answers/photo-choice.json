@@ -1,0 +1,12 @@
+{
+  "hero": { "candidate": 0, "alt": "Buah kopi robusta matang di dahan", "altEn": "Ripe robusta coffee cherries on the branch", "caption": "Buah Coffea canephora (robusta) di sebuah kebun di Lampung.", "captionEn": "Coffea canephora (robusta) cherries on a farm in Lampung." },
+  "inline": [
+    { "candidate": 1, "after": 0, "alt": "Segelas kopi cold brew dengan es batu", "altEn": "A glass of cold brew coffee with ice cubes", "caption": "Cold brew disajikan dingin dengan es batu.", "captionEn": "Cold brew served cold with ice cubes." },
+    { "candidate": 9, "after": 1, "alt": "Foto yang tidak ada di daftar", "altEn": "A photo that is not in the list", "caption": "", "captionEn": "" },
+    { "candidate": 2, "after": 2, "alt": "Penggiling kopi setelah daftar", "altEn": "Coffee grinder after a list", "caption": "", "captionEn": "" },
+    { "candidate": 0, "after": 1, "alt": "Buah kopi sekali lagi", "altEn": "The cherries again", "caption": "", "captionEn": "" },
+    { "candidate": 2, "after": 1, "alt": "", "altEn": "", "caption": "Tanpa alt.", "captionEn": "No alt." },
+    { "candidate": 2, "after": 1, "alt": "Penggiling kopi manual dengan gilingan kasar", "altEn": "A manual coffee grinder set to a coarse grind", "caption": "Penggiling tangan yang diatur untuk gilingan kasar.", "captionEn": "A hand grinder set to a coarse grind." }
+  ],
+  "notes": "The cherries show the main subject; the cold brew and the grinder illustrate the opening paragraph and the ratio section."
+}

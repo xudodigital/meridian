@@ -1,0 +1,55 @@
+/* The 2026 visual workspace: existing colour roles, clearer surfaces and quieter navigation. */
+.meridian-next{background:var(--md-sys-color-surface-container-low)}
+.meridian-next main{background:var(--md-sys-color-surface);scrollbar-gutter:stable}
+.meridian-next .side{background:var(--md-sys-color-surface-container-lowest);border-right:1px solid var(--md-sys-color-outline-variant);gap:8px}
+.meridian-next .brand{padding:16px 12px 20px}
+.meridian-next .brand b{font:var(--md-sys-typescale-title-large);letter-spacing:-.04em}
+.meridian-next .brand .logo{border-radius:var(--md-sys-shape-corner-large)}
+.meridian-next .navsearch{background:var(--md-sys-color-surface-container-low);border-radius:var(--md-sys-shape-corner-medium);min-height:48px}
+.meridian-next .navgroup h2{padding:8px 16px;color:var(--md-sys-color-on-surface-variant)}
+.meridian-next .navgroup button{border-radius:var(--md-sys-shape-corner-medium);min-height:48px;gap:12px}
+.meridian-next .navgroup button[aria-current="page"]{color:var(--md-sys-color-on-primary-container);background:var(--md-sys-color-primary-container);font-weight:700}
+.meridian-next .navgroup button[aria-current="page"]::after{content:"";width:4px;height:20px;border-radius:var(--md-sys-shape-corner-full);background:var(--md-sys-color-primary);position:absolute;left:0}
+.meridian-next .navgroup button[aria-current="page"]:focus-visible{outline-color:var(--md-sys-color-primary)}
+.meridian-next .top{border-bottom:1px solid var(--md-sys-color-outline-variant);margin-bottom:24px;background:var(--md-sys-color-surface-container-lowest)}
+.meridian-next .top h1{letter-spacing:-.025em}
+.meridian-next .view{gap:24px;padding-top:0}
+.meridian-next .hero{position:relative;isolation:isolate;padding:28px;gap:28px;background:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-extra-large);grid-template-columns:1fr;overflow:hidden}
+.meridian-next .hero::before{content:"";z-index:-1;position:absolute;inset:0;background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--md-sys-color-primary-container) 65%,transparent),transparent 65%);pointer-events:none}
+.meridian-next .hero h2{font:var(--md-sys-typescale-display-small);letter-spacing:-.04em;max-width:none}
+.meridian-next .hero .sub{color:var(--md-sys-color-on-surface-variant);font:var(--md-sys-typescale-body-medium);line-height:1.6;max-width:none}
+.meridian-next .hero .eyebrow{color:var(--md-sys-color-primary);font:var(--md-sys-typescale-label-medium)}
+.meridian-next .hero .eyebrow i{background:currentColor;animation:none}
+.meridian-next .hero .onhero{background:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary)}
+.meridian-next .hero .ghost{border-color:var(--md-sys-color-outline-variant);color:var(--md-sys-color-on-surface);background:transparent}
+.meridian-next .kpis,.meridian-next .kpis.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.meridian-next .kpis:not(.five){grid-template-columns:repeat(4,minmax(0,1fr))}
+.meridian-next .kpis.five .kpi:last-child{grid-column:auto}
+.meridian-next .kpi{position:relative;min-width:0;padding:16px;gap:8px;background:var(--md-sys-color-surface-container-low);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-large);color:var(--md-sys-color-on-surface)}
+.meridian-next .kpi>.ms{color:var(--md-sys-color-primary);background:var(--md-sys-color-primary-container);width:32px;height:32px;display:grid;place-items:center;font-size:20px;border-radius:var(--md-sys-shape-corner-small)}
+.meridian-next .kpi b{font:var(--md-sys-typescale-headline-medium);font-variant-numeric:tabular-nums}
+.meridian-next .kpi .l{color:var(--md-sys-color-on-surface-variant);font:var(--md-sys-typescale-label-medium)}
+.meridian-next .setup{border:1px solid var(--md-sys-color-outline-variant);background:var(--md-sys-color-surface-container-lowest)}
+.meridian-next .office{border:1px solid var(--md-sys-color-outline-variant)}
+.meridian-next .pipe{background:var(--md-sys-color-surface-container-lowest);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-extra-large);padding:24px 12px}
+.meridian-next .pst .ico{border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface-container-low);color:var(--md-sys-color-primary);width:48px;height:48px}
+.meridian-next .pst .n{font:var(--md-sys-typescale-headline-medium);font-variant-numeric:tabular-nums}
+.meridian-next .desk:not(.planned){border:1px solid var(--md-sys-color-outline-variant);background:var(--md-sys-color-surface-container-lowest)}
+.meridian-next .desk[data-st="work"]{border-color:var(--md-sys-color-primary)}
+.meridian-next .rvlist button.art{border:1px solid var(--md-sys-color-outline-variant);background:var(--md-sys-color-surface-container-lowest)}
+.meridian-next .rvlist button.art.on{background:var(--md-sys-color-primary-container);border-color:var(--md-sys-color-primary)}
+.meridian-next .scroll{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-surface-container-lowest)}
+.meridian-next .an-gauge i,.meridian-next .setup-bar i{transition:width var(--md-sys-motion-standard-default-spatial)}
+/* Pausing only affects presentation. The store and SSE keep receiving real updates. */
+:root[data-motion-paused="true"] *, :root[data-motion-paused="true"] *::before, :root[data-motion-paused="true"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+:root[data-motion-paused="true"] .view[data-anim]>*{animation:none!important}
+@media(min-width:1200px){.meridian-next{grid-template-columns:256px minmax(0,1fr)}.meridian-next .side{padding:16px 12px}.meridian-next .hero{grid-template-columns:1fr}.meridian-next .navgroup{gap:2px}}
+@media(max-width:839px){.meridian-next .kpis,.meridian-next .kpis.five{grid-template-columns:repeat(3,minmax(0,1fr))}.meridian-next .hero{padding:24px}.meridian-next .hero h2{font:var(--md-sys-typescale-headline-medium)}.meridian-next .view{gap:24px}}
+@media(max-width:599px){.meridian-next .top{gap:4px;margin-bottom:16px}.meridian-next .top h1{flex:1;min-width:0;font:var(--md-sys-typescale-title-medium)}.meridian-next .top>.ib[data-act="search"]{display:none}.meridian-next .sitepick{order:10;flex-basis:100%;width:100%;max-width:none}.meridian-next .hero{padding:20px;gap:20px}.meridian-next .kpis,.meridian-next .kpis.five,.meridian-next .kpis:not(.five){grid-template-columns:repeat(2,minmax(0,1fr))}.meridian-next .kpi{padding:12px}.meridian-next .hero .row{gap:8px}.meridian-next .hero .btn{font:var(--md-sys-typescale-label-large);min-height:48px}.meridian-next .scroll{border:0;background:transparent}}
+@media(prefers-reduced-motion:reduce){.meridian-next *,.meridian-next *::before,.meridian-next *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.skip-link{position:fixed;left:16px;top:16px;z-index:1000;transform:translateY(-200%);padding:12px 20px;border-radius:var(--md-sys-shape-corner-medium);background:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary)}.skip-link:focus{transform:none}.journey-loading{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:16px 24px;border-radius:var(--md-sys-shape-corner-large);background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);z-index:20}
+
+/* Card-mode tables use their row surfaces; a second outer surface leaves an empty frame beside sparse grids. */
+@media(max-width:839px){.meridian-next .scroll{border:0;background:transparent;border-radius:0}}
+@media(min-width:840px) and (max-width:1399px){.meridian-next .scroll.wide{border:0;background:transparent;border-radius:0}}

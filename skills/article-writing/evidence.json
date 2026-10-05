@@ -1,0 +1,716 @@
+[
+ {
+  "id": "E1",
+  "rule": "Tulis artikel terutama untuk membantu orang, bukan untuk memanipulasi peringkat; sistem peringkat otomatis Google dirancang untuk memprioritaskan informasi yang membantu dan dapat diandalkan.",
+  "quote": "are designed to prioritize helpful, reliable information that's created to benefit people, and not content that's created to manipulate search engine rankings",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E2",
+  "rule": "Utamakan konten people-first, bukan konten search engine-first yang dibuat terutama demi peringkat.",
+  "quote": "We recommend that you focus on creating people-first content to be successful with Google Search, rather than search engine-first content made primarily to gain search engine rankings.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E3",
+  "rule": "Terapkan SEO pada konten people-first; SEO dapat menjadi kegiatan yang membantu bila diterapkan pada konten people-first, bukan pada konten search engine-first.",
+  "quote": "SEO can be a helpful activity when it is applied to people-first content, rather than search engine-first content.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E4",
+  "rule": "Jangan membuat konten terutama untuk menarik kunjungan mesin pencari; alasan seperti itu tidak selaras dengan yang ingin diberi ganjaran oleh sistem Google.",
+  "quote": "If the \"why\" is that you're primarily making content to attract search engine visits, that's not aligned with what our systems seek to reward.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E5",
+  "rule": "Jangan memakai otomatisasi, termasuk AI, untuk menghasilkan konten dengan tujuan utama memanipulasi peringkat pencarian; itu pelanggaran kebijakan spam Google.",
+  "quote": "If you use automation, including AI-generation, to produce content for the primary purpose of manipulating search rankings, that's a violation of our spam policies.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E6",
+  "rule": "Konten yang menarik dan berguna bagi orang kemungkinan besar lebih memengaruhi kehadiran situs di hasil pencarian daripada saran lain dalam panduan SEO Google.",
+  "quote": "Creating content that people find compelling and useful will likely influence your website's presence in search results more than any of the other suggestions in this guide.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E7",
+  "rule": "Jika jawaban ya untuk sebagian atau semua pertanyaan tanda bahaya di bagian ini, evaluasi ulang cara konten dibuat.",
+  "quote": "Answering yes to some or all of the questions below is a warning sign that you should reevaluate how you're creating content",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E8",
+  "rule": "Tanyakan: apakah konten ini terutama dibuat untuk menarik kunjungan dari mesin pencari?",
+  "quote": "Is the content primarily made to attract visits from search engines?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E9",
+  "rule": "Tanyakan: apakah saya membuat banyak konten tentang banyak topik berbeda dengan harapan sebagian akan berkinerja baik di hasil pencarian?",
+  "quote": "Are you producing lots of content on many different topics in hopes that some of it might perform well in search results?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E10",
+  "rule": "Tanyakan: apakah saya memakai otomatisasi secara ekstensif untuk membuat konten tentang banyak topik?",
+  "quote": "Are you using extensive automation to produce content on many topics?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E11",
+  "rule": "Tanyakan: apakah saya terutama hanya merangkum apa kata orang lain tanpa menambah banyak nilai?",
+  "quote": "Are you mainly summarizing what others have to say without adding much value?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E12",
+  "rule": "Tanyakan: apakah saya menulis suatu hal hanya karena sedang tren dan bukan karena akan ditulis untuk audiens yang sudah ada?",
+  "quote": "Are you writing about things simply because they seem trending and not because you'd write about them otherwise for your existing audience?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E13",
+  "rule": "Tanyakan: apakah konten membuat pembaca merasa perlu mencari lagi untuk mendapat informasi yang lebih baik dari sumber lain?",
+  "quote": "Does your content leave readers feeling like they need to search again to get better information from other sources?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E14",
+  "rule": "Tanyakan: apakah saya masuk ke topik niche tanpa keahlian nyata, terutama karena mengira akan mendapat trafik pencarian?",
+  "quote": "Did you decide to enter some niche topic area without any real expertise, but instead mainly because you thought you'd get search traffic?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E15",
+  "rule": "Jangan menjanjikan jawaban atas pertanyaan yang sebenarnya tidak punya jawaban, misalnya menyiratkan ada tanggal rilis produk, film, atau acara TV padahal belum dikonfirmasi.",
+  "quote": "Does your content promise to answer a question that actually has no answer, such as suggesting there's a release date for a product, movie, or TV show when one isn't confirmed?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E16",
+  "rule": "Jangan mengubah tanggal halaman agar tampak segar bila isinya tidak berubah secara substansial.",
+  "quote": "Are you changing the date of pages to make them seem fresh when the content has not substantially changed?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E17",
+  "rule": "Jangan menambah banyak konten baru atau menghapus banyak konten lama terutama karena yakin hal itu membuat situs tampak segar; menurut Google, itu tidak akan membantu.",
+  "quote": "Are you adding a lot of new content or removing a lot of older content primarily because you believe it will help your search rankings overall by somehow making your site seem \"fresh?\" (No, it won't)",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E18",
+  "rule": "Jangan menulis demi jumlah kata tertentu; Google tidak memiliki jumlah kata yang disukai.",
+  "quote": "Are you writing to a particular word count because you've heard or read that Google has a preferred word count? (No, we don't.)",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E19",
+  "rule": "Periksa apakah konten memberi informasi, pelaporan, riset, atau analisis yang orisinal.",
+  "quote": "Does the content provide original information, reporting, research, or analysis?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E20",
+  "rule": "Periksa apakah konten memberi deskripsi topik yang substansial, lengkap, atau komprehensif.",
+  "quote": "Does the content provide a substantial, complete, or comprehensive description of the topic?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E21",
+  "rule": "Periksa apakah konten memberi analisis yang mendalam atau informasi menarik yang melampaui hal yang sudah jelas.",
+  "quote": "Does the content provide insightful analysis or interesting information that is beyond the obvious?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E22",
+  "rule": "Jika konten bersumber dari pihak lain, hindari sekadar menyalin atau menulis ulang sumber itu; berikan nilai tambah dan orisinalitas yang substansial.",
+  "quote": "If the content draws on other sources, does it avoid simply copying or rewriting those sources, and instead provide substantial additional value and originality?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E23",
+  "rule": "Saat menulis konten baru, jangan menyalin konten orang lain sebagian maupun seluruhnya; buat sendiri berdasarkan yang diketahui tentang topik dan jangan sekadar mengulang apa yang sudah diterbitkan orang lain.",
+  "quote": "don't copy others' content in part or in its entirety: create the content yourself based on what you know about the topic. Don't just rehash what others already published.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E24",
+  "rule": "Pastikan judul utama atau judul halaman memberi ringkasan isi yang deskriptif dan membantu.",
+  "quote": "Does the main heading or page title provide a descriptive, helpful summary of the content?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E25",
+  "rule": "Pastikan judul utama atau judul halaman tidak melebih-lebihkan atau bersifat mengejutkan.",
+  "quote": "Does the main heading or page title avoid exaggerating or being shocking in nature?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E26",
+  "rule": "Tulis dengan wajar dan pastikan teks tertulis baik, mudah diikuti, dan bebas dari kesalahan ejaan dan tata bahasa; pecah konten panjang menjadi paragraf dan bagian serta beri judul bagian agar pembaca mudah bernavigasi.",
+  "quote": "Write content naturally and make sure the content is well written, easy to follow, and free of spelling and grammatical mistakes. Break up long content into paragraphs and sections, and provide headings to help users navigate your pages.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E27",
+  "rule": "Periksa apakah ada kesalahan fakta yang mudah diverifikasi.",
+  "quote": "Does the content have any easily-verified factual errors?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E28",
+  "rule": "Periksa apakah konten diproduksi massal atau dialihdayakan ke banyak pembuat, atau tersebar di jaringan situs besar, sehingga halaman tidak mendapat perhatian dan kepedulian yang cukup.",
+  "quote": "Is the content mass-produced by or outsourced to a large number of creators, or spread across a large network of sites, so that individual pages or sites don't get as much attention or care?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E29",
+  "rule": "Periksa konten yang sudah terbit dan perbarui sesuai kebutuhan, atau hapus bila sudah tidak relevan.",
+  "quote": "Check in on previously published content and update it as needed, or even delete it if it's not relevant anymore.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E30",
+  "rule": "Pikirkan kata yang mungkin dicari pembaca; pembaca yang ahli dan pemula dapat memakai kata kunci berbeda untuk topik yang sama.",
+  "quote": "Think about the words that a user might search for to find a piece of your content. Users who know a lot about the topic might use different keywords in their search queries than someone who is new to the topic.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E31",
+  "rule": "Tidak perlu khawatir bila tidak mengantisipasi semua variasi; sistem pencocokan bahasa Google canggih dan dapat memahami kaitan halaman dengan banyak kueri meski istilah persisnya tidak dipakai.",
+  "quote": "However, don't worry if you don't anticipate every variation of how someone might seek your content. Google's language matching systems are sophisticated and can understand how your page relates to many queries, even if you don't explicitly use the exact terms in them.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E32",
+  "rule": "Jangan melakukan keyword stuffing: mengulang kata yang sama berlebihan (juga dalam variasi) melelahkan pembaca dan melanggar kebijakan spam Google.",
+  "quote": "Excessively repeating the same words over and over (even in variations) is tiring for users, and keyword stuffing is against Google's spam policies.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E33",
+  "rule": "Jangan membuat blok teks yang mendaftar kota dan wilayah yang ingin dijadikan target peringkat.",
+  "quote": "Blocks of text that list cities and regions that a web page is trying to rank for",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E34",
+  "rule": "Jangan mengulang kata atau frasa begitu sering sehingga terdengar tidak alami.",
+  "quote": "Repeating the same words or phrases so often that it sounds unnatural.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E35",
+  "rule": "Google Search tidak menggunakan meta tag keywords.",
+  "quote": "Google Search doesn't use the keywords meta tag.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E36",
+  "rule": "Generative AI dapat sangat berguna saat meriset topik dan menambah struktur pada konten orisinal.",
+  "quote": "Generative AI can be particularly useful when researching a topic, and to add structure to original content.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E37",
+  "rule": "Jangan memakai generative AI atau alat sejenis untuk menghasilkan banyak halaman tanpa menambah nilai bagi pengguna; ini dapat melanggar kebijakan spam scaled content abuse.",
+  "quote": "using generative AI tools or other similar tools to generate many pages without adding value for users may violate Google's spam policy on scaled content abuse.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E38",
+  "rule": "Fokus pada akurasi, kualitas, dan relevansi, terutama saat konten dibuat otomatis; ini mencakup metadata seperti elemen <title>, meta description, structured data, dan teks alternatif gambar yang dapat tampil di hasil pencarian.",
+  "quote": "focus on accuracy, quality, and relevance, especially when automatically generating the content. This includes metadata like <title> elements, meta description elements, structured data, and alternate texts for images, which can appear in Search results.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E39",
+  "rule": "Bila konten dibuat otomatis, pertimbangkan menambahkan informasi tentang cara pembuatannya dengan cara yang masuk akal bagi audiens, misalnya latar belakang penggunaan otomatisasi dan metadata gambar.",
+  "quote": "If you're automatically generating content, consider adding information on how your content was created in a way that makes sense for your audience, such as by providing more background information on how automation was used and adding image metadata.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E40",
+  "rule": "Bila otomatisasi dipakai untuk menghasilkan konten secara substansial, tanyakan apakah penggunaan otomatisasi atau AI terlihat jelas bagi pengunjung lewat pengungkapan atau cara lain.",
+  "quote": "If automation is used to substantially generate content, here are some questions to ask yourself: - Is the use of automation, including AI-generation, self-evident to visitors through disclosures or in other ways?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E41",
+  "rule": "Pengungkapan AI atau otomatisasi berguna untuk konten yang membuat orang bertanya cara pembuatannya; pertimbangkan menambahkannya bila memang wajar diharapkan.",
+  "quote": "Overall, AI or automation disclosures are useful for content where someone might think \"How was this created?\" Consider adding these when it would be reasonably expected.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E42",
+  "rule": "Untuk situs ecommerce, Google Merchant Center punya kebijakan untuk konten buatan AI: gambar buatan AI harus memuat metadata IPTC DigitalSourceType TrainedAlgorithmicMedia.",
+  "quote": "For ecommerce sites, Google Merchant Center has policies for AI-generated content. In particular, AI-generated images must contain metadata using the IPTC DigitalSourceType TrainedAlgorithmicMedia metadata.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E43",
+  "rule": "Untuk situs ecommerce, data produk buatan AI seperti atribut judul dan deskripsi harus ditentukan terpisah dan diberi label sebagai buatan AI.",
+  "quote": "AI-generated product data such as title and description attributes must be specified separately and labeled as AI-generated.",
+  "source": "g-gen-ai-content"
+ },
+ {
+  "id": "E44",
+  "rule": "Scaled content abuse adalah pembuatan banyak halaman terutama untuk memanipulasi peringkat dan bukan untuk membantu pengguna.",
+  "quote": "Scaled content abuse is when many pages are generated for the primary purpose of manipulating search rankings and not helping users.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E45",
+  "rule": "Scaled content abuse umumnya berfokus membuat konten tidak orisinal dalam jumlah besar yang hampir tidak bernilai bagi pengguna, apa pun cara pembuatannya.",
+  "quote": "typically focused on creating large amounts of unoriginal content that provides little to no value to users, no matter how it's created.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E46",
+  "rule": "Jangan melakukan scraping feed, hasil pencarian, atau konten lain untuk membuat banyak halaman, termasuk lewat transformasi otomatis seperti sinonimisasi atau penerjemahan, bila nilai bagi pengguna sedikit.",
+  "quote": "Scraping feeds, search results, or other content to generate many pages (including through automated transformations like synonymizing, translating, or other obfuscation techniques), where little value is provided to users",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E47",
+  "rule": "Jangan membuat banyak situs dengan maksud menyembunyikan sifat konten berskala.",
+  "quote": "Creating multiple sites with the intent of hiding the scaled nature of the content",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E48",
+  "rule": "Jangan menerbitkan ulang konten situs lain tanpa menambah konten orisinal atau nilai, bahkan tanpa mengutip sumber aslinya.",
+  "quote": "Republishing content from other sites without adding any original content or value, or even citing the original source",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E49",
+  "rule": "Jangan menyalin konten situs lain lalu mengubahnya sedikit, misalnya dengan mengganti sinonim atau teknik otomatis, kemudian menerbitkannya ulang.",
+  "quote": "Copying content from other sites, modify it only slightly (for example, by substituting synonyms or using automated techniques), and republish it",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E50",
+  "rule": "Doorway abuse mencakup membuat banyak domain atau halaman yang menarget wilayah atau kota tertentu yang mengarahkan pengguna ke satu halaman.",
+  "quote": "Doorway abuse is when sites or pages are created to rank for specific, similar search queries. They lead users to intermediate pages that aren't as useful as the final destination. Examples of doorway abuse include: - Having multiple websites with slight variations to the URL and home page to maximize their reach for any specific query - Having multiple domain names or pages targeted at specific regions or cities that funnel users to one page",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E51",
+  "rule": "Dari aspek E-E-A-T, kepercayaan (trust) adalah yang terpenting; aspek lain berkontribusi pada trust, dan konten tidak harus menunjukkan semuanya.",
+  "quote": "Of these aspects, trust is most important. The others contribute to trust, but content doesn't necessarily have to demonstrate all of them.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E52",
+  "rule": "Sistem Google memberi bobot lebih pada konten yang selaras dengan E-E-A-T kuat untuk topik yang dapat berdampak signifikan pada kesehatan, stabilitas finansial, atau keselamatan orang, atau kesejahteraan masyarakat; Google menyebutnya topik \"Your Money or Your Life\" atau YMYL.",
+  "quote": "our systems give even more weight to content that aligns with strong E-E-A-T for topics that could significantly impact the health, financial stability, or safety of people, or the welfare or well-being of society. We call these \"Your Money or Your Life\" topics, or YMYL for short.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E53",
+  "rule": "Tunjukkan keahlian pertama tangan dan kedalaman pengetahuan, misalnya keahlian dari benar-benar memakai produk atau layanan, atau mengunjungi suatu tempat.",
+  "quote": "Does your content clearly demonstrate first-hand expertise and a depth of knowledge (for example, expertise that comes from having actually used a product or service, or visiting a place)?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E54",
+  "rule": "Sajikan informasi dengan cara yang membuat orang percaya, misalnya sumber yang jelas, bukti keahlian, serta latar belakang penulis atau situs lewat tautan ke halaman penulis atau halaman Tentang.",
+  "quote": "Does the content present information in a way that makes you want to trust it, such as clear sourcing, evidence of the expertise involved, background about the author or the site that publishes it, such as through links to an author page or a site's About page?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E55",
+  "rule": "Tanyakan apakah konten ditulis atau ditinjau oleh ahli atau penggemar yang terbukti menguasai topiknya.",
+  "quote": "Is this content written or reviewed by an expert or enthusiast who demonstrably knows the topic well?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E56",
+  "rule": "Buat jelas siapa yang menulis konten (Who); tanyakan apakah pengunjung langsung tahu siapa penulisnya.",
+  "quote": "Is it self-evident to your visitors who authored your content?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E57",
+  "rule": "Google sangat menganjurkan menambahkan informasi kepenulisan yang akurat, seperti byline, pada konten yang pembacanya mungkin mengharapkannya.",
+  "quote": "We strongly encourage adding accurate authorship information, such as bylines to content where readers might expect it.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E58",
+  "rule": "Saat menautkan ke halaman di luar kendali Anda, pastikan Anda memercayai sumber tersebut.",
+  "quote": "when you're linking to pages outside of your control, for example content on other sites, make sure you trust the resource you're linking to.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E59",
+  "rule": "Jika tidak memercayai konten yang ingin ditautkan namun tetap ingin menautkannya, tambahkan anotasi nofollow atau sejenisnya.",
+  "quote": "If you can't trust the content and you still want to link to them, add a nofollow or similar annotation",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E60",
+  "rule": "Judul yang baik unik untuk halaman, jelas dan ringkas, dan secara akurat menggambarkan isi halaman.",
+  "quote": "a good title is unique to the page, clear and concise, and accurately describes the contents of the page.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E61",
+  "rule": "Meta description yang baik singkat, unik untuk satu halaman, dan memuat poin paling relevan dari halaman.",
+  "quote": "A good meta description is short, unique to one particular page, and includes the most relevant points of the page.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E62",
+  "rule": "Gunakan gambar yang tajam dan jelas, dan tempatkan dekat teks yang relevan dengan gambar.",
+  "quote": "Use images that are sharp and clear, and place them near text that's relevant to the image.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E63",
+  "rule": "Alt text adalah teks singkat namun deskriptif yang menjelaskan hubungan antara gambar dan konten Anda.",
+  "quote": "Alt text is a short, but descriptive piece of text that explains the relationship between the image and your content.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E64",
+  "rule": "Google menentukan bahasa halaman dari konten yang terlihat; Google tidak memakai informasi bahasa tingkat kode seperti atribut lang, atau URL.",
+  "quote": "Google uses the visible content of your page to determine its language. We don't use any code-level language information such as lang attributes, or the URL.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E65",
+  "rule": "Bantu Google menentukan bahasa dengan memakai satu bahasa untuk konten dan navigasi di tiap halaman, dan hindari terjemahan berdampingan.",
+  "quote": "You can help Google determine the language correctly by using a single language for content and navigation on each page, and by avoiding side-by-side translations.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E66",
+  "rule": "Menerjemahkan hanya teks boilerplate sementara isi utama tetap satu bahasa dapat menciptakan pengalaman buruk bila konten yang sama muncul berkali-kali di hasil pencarian dengan bahasa boilerplate berbeda.",
+  "quote": "Translating only the boilerplate text of your pages while keeping the bulk of your content in a single language (as often happens on pages featuring user-generated content) can create a bad user experience if the same content appears multiple times in search results with various boilerplate languages.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E67",
+  "rule": "Versi halaman yang dilokalkan hanya dianggap duplikat bila konten utama halaman tetap tidak diterjemahkan.",
+  "quote": "Localized versions of a page are only considered duplicates if the main content of the page remains untranslated.",
+  "source": "g-localized-versions"
+ },
+ {
+  "id": "E68",
+  "rule": "Sinyal lain untuk mengenali audiens situs dapat mencakup alamat dan nomor telepon lokal di halaman, penggunaan bahasa dan mata uang lokal, serta tautan dari situs lokal lain.",
+  "quote": "Other signals to identify the intended audience of your site can include local addresses and phone numbers on the pages, the use of local language and currency, links from other local sites",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E69",
+  "rule": "Google mengabaikan meta tag lokasi (seperti geo.position atau distribution) dan atribut HTML geotargeting.",
+  "quote": "Google ignores locational meta tags (like geo.position or distribution) or geotargeting HTML attributes.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E70",
+  "rule": "Bila ada konten serupa atau duplikat di URL berbeda dalam bahasa yang sama pada situs multi-regional, pilih versi pilihan dan gunakan rel=\"canonical\" serta hreflang agar URL bahasa atau wilayah yang benar ditayangkan.",
+  "quote": "If you provide similar or duplicate content on different URLs in the same language as part of a multi-regional site (for instance, if both example.de/ and example.com/de/ show similar German language content), pick a preferred version and use the rel=\"canonical\" element and hreflang tags to make sure that the correct language or regional URL is served to searchers.",
+  "source": "g-multi-regional"
+ },
+ {
+  "id": "E71",
+  "rule": "Tiap versi bahasa harus mencantumkan dirinya sendiri dan semua versi bahasa lain.",
+  "quote": "Each language version must list itself as well as all other language versions.",
+  "source": "g-localized-versions"
+ },
+ {
+  "id": "E72",
+  "rule": "Jika dua halaman tidak saling menunjuk, tag hreflang diabaikan.",
+  "quote": "If two pages don't both point to each other, the tags will be ignored.",
+  "source": "g-localized-versions"
+ },
+ {
+  "id": "E73",
+  "rule": "Panduan gaya ini ditulis Google untuk dokumentasi developer berbahasa Inggris AS, yang sebagian diterjemahkan ke bahasa lain atau dibaca pengembang yang bahasa utamanya bukan Inggris.",
+  "quote": "We write our developer documentation in US English, but some of it is translated into languages other than English or is read by developers for whom English is not their primary language.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E74",
+  "rule": "Lokalisasi berarti menyesuaikan produk dan dokumentasinya untuk negara tertentu, lebih dari sekadar terjemahan, misalnya memakai mata uang dan satuan ukuran lokal.",
+  "quote": "Localization: Adapting a product and its associated documentation for a specific country. This process involves more than translation—for example, using local currencies or units of measurement.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E75",
+  "rule": "Hindari kolokialisme, idiom, atau slang; frasa seperti ballpark figure, back burner, atau hang in there dapat membingungkan dan sulit diterjemahkan.",
+  "quote": "Avoid colloquialisms, idioms, or slang. Phrases like ballpark figure, back burner, or hang in there can be confusing and difficult to translate.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E76",
+  "rule": "Hindari rujukan spesifik geografis seperti musim; Agustus bukan musim panas di belahan bumi selatan.",
+  "quote": "Avoid geographically specific references, like the seasons. Remember that August isn't summer in the southern hemisphere.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E77",
+  "rule": "Jangan terlalu spesifik budaya; jangan merujuk liburan, praktik budaya, atau olahraga tertentu kecuali yakin dikenal di seluruh dunia.",
+  "quote": "don't refer to specific holidays, cultural practices, or sports unless you're certain they're known worldwide.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E78",
+  "rule": "Tulis tanggal dan waktu dengan cara yang jelas dan tidak ambigu.",
+  "quote": "Write dates and times in unambiguous and clear ways.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E79",
+  "rule": "Tulis kalimat lebih pendek; makin pendek kalimat, makin mudah diterjemahkan.",
+  "quote": "Write shorter sentences. The shorter the sentence, the easier it is to translate.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E80",
+  "rule": "Pakai istilah yang sama persis untuk konsep yang sama, termasuk kapitalisasi yang sama; istilah yang tidak konsisten dapat membuat penerjemah mengira konsepnya berbeda.",
+  "quote": "If you use a particular term for a concept in one place, then use that exact same term elsewhere, including the same capitalization. If you use different names for the same thing, translators might think you're referring to different concepts, and thus might use different translations.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E81",
+  "rule": "Gambar tidak ikut diterjemahkan; sampaikan informasi baru lewat teks, bukan memperkenalkannya di gambar.",
+  "quote": "Images don't get translated. Any new information should be conveyed through text and not introduced in a figure or image.",
+  "source": "gstyle-global"
+ },
+ {
+  "id": "E82",
+  "rule": "Tambahkan tanggal yang terlihat pengguna pada halaman dan tampilkan secara menonjol.",
+  "quote": "Add a user-visible date to the page and feature it prominently.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E83",
+  "rule": "Beri label tanggal secara tepat dengan teks seperti \"Publish\" atau \"Last updated\".",
+  "quote": "Add a user-visible date to the page and feature it prominently. Label your dates appropriately with text like \"Publish\" or \"Last updated\".",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E84",
+  "rule": "Tentukan tanggal dengan structured data: Google menyarankan subtipe CreativeWork (seperti Article, BlogPosting, atau VideoObject) dengan field datePublished dan/atau dateModified.",
+  "quote": "We recommend that you add a subtype of CreativeWork (such as Article, BlogPosting, or VideoObject), and specify the datePublished and/or dateModified fields.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E85",
+  "rule": "Tanggal wajib, waktu tidak; namun Google menyarankan menyertakan waktu dan zona waktu dalam markup untuk presisi tambahan.",
+  "quote": "The date is required; the time is not: However, we recommend you provide a time and timezone in markup for added precision.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E86",
+  "rule": "Bila menentukan zona waktu, berikan zona waktu yang benar dengan memperhitungkan daylight saving time bila sesuai.",
+  "quote": "If you choose to specify the timezone, provide the correct timezone, taking into account daylight saving time as appropriate.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E87",
+  "rule": "Pastikan tanggal (dan waktu serta zona waktu opsional) pada tampilan yang terlihat pengguna cocok dengan nilai di structured data.",
+  "quote": "Ensure that the date (and optional time and timezone) match between the equivalent user-visible and structured values.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E88",
+  "rule": "Jangan menentukan tanggal di masa depan, atau tanggal aksi yang dijelaskan di halaman.",
+  "quote": "Don't specify future dates, or the date of the action described on the page.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E89",
+  "rule": "Tanggal harus menggambarkan tanggal terbit atau pembaruan halaman, bukan cerita atau peristiwa yang dijelaskan di dalamnya.",
+  "quote": "The dates must describe the publication or update date of the page, not the stories or events described therein.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E90",
+  "rule": "Minimalkan keberadaan tanggal lain di halaman: bila sudah mengikuti praktik terbaik dan menemukan tanggal yang salah terpilih, pertimbangkan menghapus sebagian atau semua tanggal lain yang muncul di halaman.",
+  "quote": "Minimize the presence of other dates on the page: If you've followed the best practices and find incorrect dates are being selected, consider removing some or all other dates that appear on the page.",
+  "source": "g-publication-dates"
+ },
+ {
+  "id": "E91",
+  "rule": "Objek Article harus berbasis salah satu tipe schema.org: Article, NewsArticle, atau BlogPosting.",
+  "quote": "Article objects must be based on one of the following schema.org types: Article, NewsArticle, BlogPosting.",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E92",
+  "rule": "datePublished adalah tanggal dan waktu artikel pertama kali terbit dalam format ISO 8601; Google menyarankan menyertakan zona waktu, kalau tidak Google memakai zona waktu Googlebot.",
+  "quote": "The date and time the article was first published, in ISO 8601 format. We recommend that you provide timezone information; otherwise, we will default to the timezone used by Googlebot.",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E93",
+  "rule": "Cantumkan semua penulis yang ditampilkan sebagai penulis di halaman ke dalam markup.",
+  "quote": "Make sure that all the authors that are presented as authors on the web page are also included in markup.",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E94",
+  "rule": "Jangan menggabungkan beberapa penulis dalam satu field author.",
+  "quote": "Don't merge multiple authors in the same author field",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E95",
+  "rule": "Gunakan properti type dan url (atau sameAs) dengan URL valid untuk membantu Google memahami siapa penulisnya; Google sangat menyarankannya.",
+  "quote": "To help Google better understand who the author is, we strongly recommend using the type and url (or sameAs) properties. Use valid URLs for the url or sameAs properties.",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E96",
+  "rule": "Pada properti author.name, tulis hanya nama penulis dan jangan menambahkan informasi lain.",
+  "quote": "In the author.name property, only specify the name of the author. Don't add any other piece of information.",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E97",
+  "rule": "Gunakan tipe Person untuk orang dan Organization untuk organisasi; jangan memakai tipe Thing dan jangan salah tipe.",
+  "quote": "Use the Person type for people, and the Organization type for organizations. Don't use the Thing type, and don't use the wrong type",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E98",
+  "rule": "Untuk artikel multi-bagian, rel=canonical harus menunjuk ke tiap halaman individual atau halaman \"view-all\", bukan ke halaman 1 dari seri.",
+  "quote": "For multi-part articles, make sure that the rel=canonical points at either each individual page or a \"view-all\" page (and not to page 1 of a multi-part series).",
+  "source": "g-sd-article"
+ },
+ {
+  "id": "E99",
+  "rule": "Ikuti praktik terbaik di bagian ini agar halaman ulasan lebih mudah ditemukan di Google Search dan permukaan Google lainnya; mulailah dengan mengevaluasi dari sudut pandang pengguna.",
+  "quote": "To help people discover your review pages in Google Search and on other Google surfaces, follow these best practices: - Evaluate from a user's perspective.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E100",
+  "rule": "Tunjukkan bahwa Anda berpengetahuan tentang hal yang diulas dan menunjukkan bahwa Anda ahli.",
+  "quote": "Demonstrate that you are knowledgeable about what you are reviewing—show you are an expert.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E101",
+  "rule": "Sertakan bukti seperti visual, audio, atau tautan dari pengalaman Anda sendiri dengan hal yang diulas, untuk mendukung keahlian dan memperkuat keaslian ulasan.",
+  "quote": "Provide evidence such as visuals, audio, or other links of your own experience with what you are reviewing, to support your expertise and reinforce the authenticity of your review.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E102",
+  "rule": "Bagikan pengukuran kuantitatif tentang seberapa baik sesuatu di berbagai kategori kinerja.",
+  "quote": "Share quantitative measurements about how something measures up in various categories of performance.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E103",
+  "rule": "Jelaskan apa yang membedakan sesuatu dari pesaingnya.",
+  "quote": "Explain what sets something apart from its competitors.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E104",
+  "rule": "Bahas hal-hal sebanding yang perlu dipertimbangkan, atau jelaskan mana yang terbaik untuk kegunaan atau keadaan tertentu.",
+  "quote": "Cover comparable things to consider, or explain which might be best for certain uses or circumstances.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E105",
+  "rule": "Bahas manfaat dan kekurangan sesuatu berdasarkan riset orisinal Anda sendiri.",
+  "quote": "Discuss the benefits and drawbacks of something, based on your own original research.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E106",
+  "rule": "Jelaskan bagaimana produk berkembang dari model atau rilis sebelumnya untuk memberi peningkatan, mengatasi masalah, atau membantu keputusan pembelian.",
+  "quote": "Describe how a product has evolved from previous models or releases to provide improvements, address issues, or otherwise help users in making a purchase decision.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E107",
+  "rule": "Fokus pada faktor pengambilan keputusan terpenting berdasarkan pengalaman atau keahlian Anda (misalnya ulasan mobil dapat menetapkan efisiensi bahan bakar dan keselamatan sebagai faktor kunci lalu menilai kinerja di area itu).",
+  "quote": "Focus on the most important decision-making factors, based on your experience or expertise (for example, a car review might determine that fuel economy and safety are key decision-making factors and rate performance in those areas).",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E108",
+  "rule": "Jelaskan pilihan desain utama pada produk dan dampaknya bagi pengguna, melampaui yang dikatakan produsen.",
+  "quote": "Describe key choices in how a product has been designed and their effect on the users beyond what the manufacturer says.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E109",
+  "rule": "Sertakan tautan ke sumber daya berguna lain (milik sendiri atau dari situs lain) untuk membantu pembaca memutuskan.",
+  "quote": "Include links to other useful resources (your own or from other sites) to help a reader make a decision.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E110",
+  "rule": "Pertimbangkan menyertakan tautan ke beberapa penjual agar pembaca dapat membeli dari penjual pilihan mereka.",
+  "quote": "Consider including links to multiple sellers to give the reader the option to purchase from their merchant of choice.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E111",
+  "rule": "Saat merekomendasikan sesuatu sebagai terbaik secara keseluruhan atau terbaik untuk tujuan tertentu, jelaskan alasannya dengan bukti pendukung pengalaman langsung.",
+  "quote": "When recommending something as the best overall or the best for a certain purpose, include why you consider it the best, with first-hand supporting evidence.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E112",
+  "rule": "Pastikan daftar peringkat memuat konten berguna yang cukup agar dapat berdiri sendiri, meski Anda juga menulis ulasan tunggal yang mendalam secara terpisah.",
+  "quote": "Ensure there is enough useful content in your ranked lists for them to stand on their own, even if you choose to write separate in-depth single reviews.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E113",
+  "rule": "Saat menulis ulasan, fokus pada kualitas dan orisinalitas, bukan panjang, dengan mengikuti sebanyak mungkin praktik terbaik di atas.",
+  "quote": "When writing reviews, focus on the quality and originality of your reviews, not the length, following as many of the above best practices as you are able.",
+  "source": "g-reviews"
+ },
+ {
+  "id": "E114",
+  "rule": "Pada ulasan produk, kepercayaan pembaca dapat dibangun bila mereka memahami jumlah produk yang diuji, hasil pengujian, dan cara pengujian dilakukan, disertai bukti pekerjaan seperti foto.",
+  "quote": "it can build trust with readers when they understand the number of products that were tested, what the test results were, and how the tests were conducted, all accompanied by evidence of the work involved, such as photographs.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E115",
+  "rule": "Thin affiliation adalah menerbitkan konten dengan tautan afiliasi produk di mana deskripsi dan ulasan produk disalin langsung dari merchant asli tanpa konten orisinal atau nilai tambah.",
+  "quote": "Thin affiliation is the practice of publishing content with product affiliate links where the product descriptions and reviews are copied directly from the original merchant without any original content or added value.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E116",
+  "rule": "Halaman afiliasi dapat dianggap tipis bila bagian dari program yang mendistribusikan kontennya ke jaringan afiliasi tanpa memberi nilai tambahan.",
+  "quote": "Affiliate pages can be considered thin if they are a part of a program that distributes its content across a network of affiliates without providing additional value.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E117",
+  "rule": "Halaman afiliasi tipis sering tampak seperti situs cookie-cutter atau templat dengan konten sama atau mirip yang direplikasi dalam satu situs atau lintas banyak domain atau bahasa.",
+  "quote": "These sites often appear to be cookie-cutter sites or templates with the same or similar content replicated within the same site or across multiple domains or languages.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E118",
+  "rule": "Tidak setiap situs yang ikut program afiliasi adalah afiliasi tipis; situs afiliasi yang baik menambah nilai lewat konten atau fitur yang bermakna.",
+  "quote": "Not every site that participates in an affiliate program is a thin affiliate. Good affiliate sites add value by offering meaningful content or features.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E119",
+  "rule": "Contoh halaman afiliasi yang baik: informasi tambahan tentang harga, ulasan produk orisinal, pengujian dan penilaian yang ketat, navigasi produk atau kategori, dan perbandingan produk.",
+  "quote": "additional information about price, original product reviews, rigorous testing and ratings, navigation of products or categories, and product comparisons.",
+  "source": "g-spam-policies"
+ }
+]

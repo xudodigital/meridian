@@ -1,0 +1,710 @@
+[
+ {
+  "id": "E1",
+  "rule": "Pilih kata kunci untuk konten yang dibuat demi manfaat bagi orang. Sistem peringkat otomatis Google dirancang memprioritaskan informasi yang membantu dan tepercaya, bukan konten yang dibuat untuk memanipulasi peringkat.",
+  "quote": "Google's automated ranking systems are designed to prioritize helpful, reliable information that's created to benefit people, and not content that's created to manipulate search engine rankings.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E2",
+  "rule": "Definisi people-first: konten yang dibuat terutama untuk orang, bukan untuk memanipulasi peringkat mesin pencari.",
+  "quote": "People-first content means content that's created primarily for people, and not to manipulate search engine rankings.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E3",
+  "rule": "SEO dapat menjadi aktivitas yang bermanfaat jika diterapkan pada konten people-first, bukan konten search engine-first.",
+  "quote": "SEO can be a helpful activity when it is applied to people-first content, rather than search engine-first content.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E4",
+  "rule": "Utamakan konten yang menarik dan berguna; menurut panduan Google, ini kemungkinan besar lebih berpengaruh pada kehadiran situs di hasil pencarian daripada saran SEO lain di panduan itu.",
+  "quote": "Creating content that people find compelling and useful will likely influence your website's presence in search results more than any of the other suggestions in this guide.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E5",
+  "rule": "Perlakukan jawaban \"ya\" pada sebagian atau semua pertanyaan tanda peringatan search engine-first sebagai alasan untuk mengevaluasi ulang cara membuat konten.",
+  "quote": "Answering yes to some or all of the questions below is a warning sign that you should reevaluate how you're creating content",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E6",
+  "rule": "Tanda peringatan: memproduksi banyak konten di banyak topik berbeda dengan harapan sebagian akan berkinerja baik di hasil pencarian. Jangan memilih kata kunci dengan pola ini.",
+  "quote": "Are you producing lots of content on many different topics in hopes that some of it might perform well in search results?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E7",
+  "rule": "Tanda peringatan: menulis tentang sesuatu hanya karena tampak sedang tren, bukan karena akan ditulis untuk audiens yang sudah ada. Jangan menargetkan kata kunci hanya karena tren.",
+  "quote": "Are you writing about things simply because they seem trending and not because you'd write about them otherwise for your existing audience?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E8",
+  "rule": "Tanda peringatan: menulis dengan jumlah kata tertentu karena mengira Google punya jumlah kata yang disukai. Google menyatakan tidak punya.",
+  "quote": "Are you writing to a particular word count because you've heard or read that Google has a preferred word count? (No, we don't.)",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E9",
+  "rule": "Jangan menetapkan target jumlah kata minimum atau maksimum sebagai syarat peringkat; menurut panduan Google tidak ada target jumlah kata yang ajaib.",
+  "quote": "there's no magical word count target, minimum or maximum",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E10",
+  "rule": "Jika konten dihasilkan dengan otomatisasi, termasuk AI, untuk tujuan utama memanipulasi peringkat, itu pelanggaran kebijakan spam Google.",
+  "quote": "If you use automation, including AI-generation, to produce content for the primary purpose of manipulating search rankings, that's a violation of our spam policies.",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E11",
+  "rule": "Jika lokasi tidak ditentukan pada permintaan volume pencarian, hasil yang diterima adalah hasil seluruh dunia, yaitu untuk semua lokasi yang tersedia.",
+  "quote": "if you do not indicate the location, you will receive worldwide results, i.e., for all available locations;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E12",
+  "rule": "Ambil daftar location_code yang tersedia dengan permintaan terpisah ke https://api.dataforseo.com/v3/keywords_data/google_ads/locations.",
+  "quote": "you can receive the list of available locations of the search engines with their location_code by making a separate request to https://api.dataforseo.com/v3/keywords_data/google_ads/locations",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E13",
+  "rule": "Jika memakai location_code, tidak perlu menentukan location_name atau location_coordinate.",
+  "quote": "if you use this field, you don't need to specify location_name or location_coordinate;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E14",
+  "rule": "Jika memakai location_coordinate, data diberikan untuk negara tempat koordinat itu berada.",
+  "quote": "the data will be provided for the country the specified coordinates belong to;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E15",
+  "rule": "Menurut Keyword Planner, rata-rata pencarian bulanan dihitung berdasarkan rentang bulan serta pengaturan lokasi dan Search Network yang dipilih.",
+  "quote": "The average number of times people have searched for a keyword and its close variants based on the month range as well as the location and Search Network settings you selected.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E16",
+  "rule": "Volume pencarian Keyword Planner dibulatkan; saat ide kata kunci diambil untuk beberapa lokasi, volume mungkin tidak berjumlah sesuai yang diharapkan.",
+  "quote": "Your search volume statistics are rounded. This means that when you get keyword ideas for multiple locations, the search volumes might not add up as you'd expect.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E17",
+  "rule": "Data Search Console yang dikelompokkan berdasarkan Queries, Countries, Devices, atau Dates diagregasi per property.",
+  "quote": "Data grouped by Queries, Countries, Devices, or Dates is aggregated by property.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E18",
+  "rule": "Menurut panduan Google, TLD hanya berpengaruh jika menarget pengguna negara tertentu, dan bahkan itu biasanya sinyal berdampak rendah.",
+  "quote": "the TLD (the domain name ending like \".com\" or \".guru\") only matters if you're targeting a specific country's users, and even then it's usually a low impact signal.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E19",
+  "rule": "Jika isi halaman berbeda menurut lokasi fisik pengguna, pastikan isi yang dilihat Google dari lokasi crawler-nya, yang umumnya AS, sudah sesuai.",
+  "quote": "make sure you're satisfied with the information that Google sees from its crawler's location, which is generally the US",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E20",
+  "rule": "Tulis title dengan bahasa dan sistem tulisan (script atau alfabet) yang sama dengan konten utama halaman.",
+  "quote": "Use the same language and writing system (meaning, the script or alphabet for a given language) as the primary content on your pages.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E21",
+  "rule": "Jika Google menilai title tidak cocok dengan sistem tulisan atau bahasa konten utama, Google dapat memilih teks lain sebagai title link.",
+  "quote": "If Google determines that a <title> element does not match the writing system or language of the page's primary content, we may choose a different text as the title link.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E22",
+  "rule": "Doorway abuse mencakup memiliki banyak domain atau halaman yang menarget wilayah atau kota tertentu dan menggiring pengguna ke satu halaman. Jangan membuat halaman kota atau wilayah dengan pola ini.",
+  "quote": "Having multiple domain names or pages targeted at specific regions or cities that funnel users to one page",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E23",
+  "rule": "Doorway abuse mencakup memiliki banyak situs dengan variasi kecil pada URL dan halaman beranda untuk memaksimalkan jangkauan pada kueri tertentu. Jangan membuat banyak situs dengan pola ini.",
+  "quote": "Having multiple websites with slight variations to the URL and home page to maximize their reach for any specific query",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E24",
+  "rule": "Scaled content abuse mencakup scraping atau pembuatan banyak halaman lewat transformasi otomatis seperti sinonim atau terjemahan jika sedikit nilai diberikan kepada pengguna. Jangan membuat banyak halaman dengan cara ini.",
+  "quote": "Scraping feeds, search results, or other content to generate many pages (including through automated transformations like synonymizing, translating, or other obfuscation techniques), where little value is provided to users",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E25",
+  "rule": "Satu permintaan endpoint ini memberi volume pencarian, monthly searches, competition, dan data terkait untuk hingga 1000 kata kunci.",
+  "quote": "This endpoint will provide you with search volume, monthly searches, competition, and other related data for up to 1000 keywords in a single request.",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E26",
+  "rule": "Biaya dihitung per permintaan, bukan per kata kunci: harga untuk 1 atau 1000 kata kunci sama.",
+  "quote": "Our system will charge your account per each request, no matter what number of keywords an array has, the price for 1 or 1000 keywords will be the same.",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E27",
+  "rule": "Patuhi batas laju: tidak lebih dari 12 permintaan per menit per akun pada endpoint Live Google Ads.",
+  "quote": "Note: you can send no more than 12 requests per minute per account using Google Ads Live endpoints.",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E28",
+  "rule": "Setiap panggilan Live API hanya boleh berisi satu task.",
+  "quote": "each Live API call can contain only one task.",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E29",
+  "rule": "Google Ads dapat tidak mengembalikan data untuk kelompok kata kunci tertentu.",
+  "quote": "Note #1: Google Ads may return no data for certain groups of keywords;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E30",
+  "rule": "Google Ads tidak mengizinkan simbol dan karakter tertentu (misalnya simbol UTF, emoji), sehingga tidak dapat dipakai saat mengatur task.",
+  "quote": "Note #3: Google Ads doesn't allow using certain symbols and characters (e.g., UTF symbols, emojis), so you can't use them when setting a task;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E31",
+  "rule": "DataForSEO sangat menyarankan merancang sistem penanganan kondisi pengecualian atau error terkait status_code.",
+  "quote": "| status_code\n| integer\n|\ngeneral status code\nyou can find the full list of the response codes here\nNote: we strongly recommend designing a necessary system for handling related exceptional or error conditions",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E32",
+  "rule": "Keyword dengan volume pencarian sangat rendah atau yang dianggap sensitif tidak dapat ditemukan atau diprakirakan di Keyword Planner.",
+  "quote": "Keywords with very low search volumes, or keywords that are considered sensitive aren't discoverable or forecastable.",
+  "source": "ads-keyword-planner"
+ },
+ {
+  "id": "E33",
+  "rule": "Kolom search_volume adalah perkiraan (approximate) rata-rata pencarian bulanan, di google.com atau google.com dan mitra, tergantung targeting pengguna.",
+  "quote": "monthly average search volume rate; represents either the (approximate) number of searches for the given keyword idea on google.com or google.com and partners, depending on the user’s targeting;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E34",
+  "rule": "Kolom monthly_searches adalah perkiraan jumlah pencarian per bulan, secara default untuk dua belas bulan terakhir, pada lokasi geografis yang ditentukan.",
+  "quote": "represents the (approximate) number of searches on this keyword idea (as available for the past twelve months by default), targeted to the specified geographic locations;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E35",
+  "rule": "Gunakan data bulanan untuk melihat seberapa populer kata kunci pada waktu berbeda dalam setahun.",
+  "quote": "You can use this information to see how popular your keywords are during different times of the year.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E36",
+  "rule": "Secara default, jumlah pencarian suatu istilah (apa pun bahasanya) dirata-ratakan selama periode 12 bulan.",
+  "quote": "By default, the number of searches for the term (regardless of language) is averaged over a 12-month period.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E37",
+  "rule": "Lalu lintas web dipengaruhi musim, peristiwa terkini, dan faktor lain, sehingga jumlah pencarian suatu kata kunci terus berfluktuasi.",
+  "quote": "Web traffic is influenced by seasonality, current events, and a number of other factors. Therefore, the number of searches on your keywords is constantly fluctuating.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E38",
+  "rule": "Statistik historis seperti rata-rata pencarian bulanan hanya ditampilkan untuk exact match.",
+  "quote": "historical stats like average monthly searches are only shown for exact matches",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E39",
+  "rule": "Field competition dan competition_index mewakili kompetisi relatif untuk kata kunci di paid SERP saja, berdasarkan data Google Ads; competition dapat bernilai HIGH, MEDIUM, atau LOW.",
+  "quote": "competition\nrepresents the relative amount of competition associated with the given keyword in paid SERP only;\nthis value is based on Google Ads data and can take the following values: HIGH, MEDIUM, LOW;\nif there is no data the value is null;\nlearn more about the metric in this help center article\n\n|         competition_index\n| integer\n|\ncompetition\nrepresents the relative amount of competition associated with the given keyword in paid SERP only;\nthis value is based on Google Ads data and can be between 0 and 100 (inclusive);",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E40",
+  "rule": "competition_index berada antara 0 dan 100 (inklusif) dan bernilai null jika tidak ada data; nilai ini mewakili kompetisi di paid SERP saja.",
+  "quote": "competition_index\n| integer\n|\ncompetition\nrepresents the relative amount of competition associated with the given keyword in paid SERP only;\nthis value is based on Google Ads data and can be between 0 and 100 (inclusive);\nif there is no data the value is null;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E41",
+  "rule": "Di Keyword Planner, Competition adalah jumlah pengiklan yang tampil pada tiap kata kunci relatif terhadap semua kata kunci di Google.",
+  "quote": "The number of advertisers that showed on each keyword relative to all keywords across Google.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E42",
+  "rule": "Forecast Keyword Planner menunjukkan konversi, klik, atau impresi iklan yang mungkin diperoleh dari kata kunci berdasarkan pengeluaran (spend).",
+  "quote": "Your plan forecast shows you how many conversions, clicks, or impressions you’re likely to get for your keywords based on your spend.",
+  "source": "ads-keyword-planner"
+ },
+ {
+  "id": "E43",
+  "rule": "Laporan Performance menunjukkan perubahan lalu lintas pencarian dari waktu ke waktu, asalnya, dan kueri pencarian yang paling mungkin menampilkan situs.",
+  "quote": "See how your search traffic changes over time, where it's coming from, and what search queries are most likely to show your site.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E44",
+  "rule": "Gunakan data kueri yang mendatangkan lalu lintas untuk memperbaiki upaya SEO.",
+  "quote": "Learn which queries are bringing traffic to your site, and use this to improve your SEO efforts.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E45",
+  "rule": "Dimensi menentukan cara data tabel dikelompokkan; dimensi queries mengelompokkan data berdasarkan kueri yang diketik pengguna.",
+  "quote": "The dimension defines how the data in the table is grouped. For example, the \"queries\" dimension groups your data by the search query users typed.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E46",
+  "rule": "Search Console menyatakan impresi yang dikejar sebaiknya impresi yang bermakna, bukan sekadar lebih banyak impresi.",
+  "quote": "you should aim not simply for more impressions, but meaningful impressions.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E47",
+  "rule": "Posisi rata-rata adalah metrik kompleks yang dapat menyesatkan jika nuansanya tidak dipahami.",
+  "quote": "The position value is a complex metric that can be misleading if you don't understand the subtleties.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E48",
+  "rule": "Pantau perubahan posisi dari waktu ke waktu, terutama perubahan mendadak, serta posisi absolut.",
+  "quote": "We recommend that you monitor change in position over time, particularly sudden position changes, as well as absolute position.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E49",
+  "rule": "Kueri yang muncul di daftar belum tentu menampilkan situs saat dicari ulang, karena hasil pencarian spesifik untuk waktu, tempat, perangkat, dan riwayat pencari.",
+  "quote": "Even if a query appears in your list, you might not see your site in results if you run the same query in Google Search. This is because Search results are specific to the time, place, device, and recent history of the person searching.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E50",
+  "rule": "Fitur Keyword Planner \"Organize keywords into ad groups\" hanya tersedia untuk bahasa Inggris (English only).",
+  "quote": "Organize keywords into ad groups (English only)",
+  "source": "ads-keyword-planner"
+ },
+ {
+  "id": "E51",
+  "rule": "Dengan opsi Upload or paste (mengunggah berkas atau memasukkan kata kunci), Keyword Planner mencoba mengorganisasi kata kunci ke dalam kampanye Anda, atau pengguna dapat mengorganisasikannya secara manual.",
+  "quote": "Upload or paste: Upload a file or enter keywords. Keyword Planner will try to organize keywords into your campaigns, or you can manually organize them yourself.",
+  "source": "ads-keyword-planner"
+ },
+ {
+  "id": "E52",
+  "rule": "Fitur Refine by category menampilkan kelompok kata kunci berdasarkan tema, merek, atau kategori.",
+  "quote": "View groups of keywords based on their themes, brands or categories.",
+  "source": "ads-keyword-planner"
+ },
+ {
+  "id": "E53",
+  "rule": "Google Ads memberi nilai volume gabungan untuk kelompok kata kunci yang mirip; untuk mendapat volume kata kunci mirip secara terpisah, kirim dalam permintaan terpisah.",
+  "quote": "Note #2: Google Ads provides combined search volume values for groups of similar keywords to obtain search volume for similar keywords, we recommend submitting such keywords in separate requests;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E54",
+  "rule": "Jika perkiraan klik diminta untuk 2 atau lebih kata kunci yang mirip, Keyword Planner memprediksi pembagian lalu lintas di antara istilah yang tumpang tindih, sehingga perkiraan kurang akurat.",
+  "quote": "If you estimate clicks for 2 or more similar keywords, Keyword Planner tries to predict how traffic will be divided between the overlapping terms. As a result, your forecasts will be less accurate.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E55",
+  "rule": "Data klik, impresi, dan posisi untuk semua variasi sebuah halaman diberikan ke canonical URL yang dipilih Google (pada beberapa kasus ke URL aktual).",
+  "quote": "Click, impression, and position data for all variations of a page are assigned to the canonical URL that Google selects for each page (although in some cases data might be assigned to the actual URL, rather than the canonical URL).",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E56",
+  "rule": "Saat menangani kanonikalisasi, usahakan setiap isi di situs hanya dapat diakses lewat satu URL; dua halaman yang berisi informasi yang sama tentang promosi dapat menjadi pengalaman pengguna yang membingungkan.",
+  "quote": "When working on canonicalization, try to ensure that each piece of content on your site is only\naccessible through one individual URL; having two pages that contain the same\ninformation about your promotions can be a confusing user experience (for example, people\nmight wonder which is the right page, and whether there's a difference between the two).",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E57",
+  "rule": "Doorway abuse mencakup membuat halaman yang sangat mirip satu sama lain yang lebih menyerupai hasil pencarian daripada hierarki yang jelas dan dapat dijelajahi.",
+  "quote": "Creating substantially similar pages that are closer to search results than a clearly defined, browseable hierarchy",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E58",
+  "rule": "Periksa apakah ada audiens yang sudah ada atau dituju yang akan menganggap konten berguna jika datang langsung ke situs.",
+  "quote": "Do you have an existing or intended audience for your business or site that would find the content useful if they came directly to you?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E59",
+  "rule": "Periksa apakah situs memiliki tujuan atau fokus utama sebelum menambah kata kunci target.",
+  "quote": "Does your site have a primary purpose or focus?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E60",
+  "rule": "Periksa apakah konten untuk kata kunci itu memberi nilai substansial dibandingkan halaman lain di hasil pencarian.",
+  "quote": "Does the content provide substantial value when compared to other pages in search results?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E61",
+  "rule": "Jika konten memakai sumber lain, pastikan ia tidak sekadar menyalin atau menulis ulang, melainkan memberi nilai tambah dan orisinalitas yang substansial.",
+  "quote": "If the content draws on other sources, does it avoid simply copying or rewriting those sources, and instead provide substantial additional value and originality?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E62",
+  "rule": "Periksa apakah konten akan membuat pembaca merasa perlu mencari lagi untuk informasi yang lebih baik dari sumber lain; jika ya, itu tanda peringatan.",
+  "quote": "Does your content leave readers feeling like they need to search again to get better information from other sources?",
+  "source": "g-helpful-content"
+ },
+ {
+  "id": "E63",
+  "rule": "Pertimbangkan bahwa pengguna yang paham topik dapat memakai kata kunci berbeda dari pengguna yang baru mengenal topik.",
+  "quote": "Users who know a lot about the topic might use different keywords in their search queries than someone who is new to the topic.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E64",
+  "rule": "Periksa konten yang sudah terbit, perbarui jika perlu, atau hapus jika tidak lagi relevan.",
+  "quote": "Check in on previously published content and update it as needed, or even delete it if it's not relevant anymore.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E65",
+  "rule": "Keyword stuffing adalah mengisi halaman web dengan kata kunci atau angka untuk memanipulasi peringkat di hasil Google Search.",
+  "quote": "Keyword stuffing refers to the practice of filling a web page with keywords or numbers in an attempt to manipulate rankings in Google Search results.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E66",
+  "rule": "Kata kunci yang dijejalkan sering muncul dalam daftar atau kelompok, secara tidak wajar, atau di luar konteks. Jangan menulis seperti itu.",
+  "quote": "Often these keywords appear in a list or group, unnaturally, or out of context.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E67",
+  "rule": "Jangan mengulang kata atau frasa yang sama begitu sering hingga terdengar tidak wajar.",
+  "quote": "Repeating the same words or phrases so often that it sounds unnatural.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E68",
+  "rule": "Jangan membuat blok teks yang mendaftar kota dan wilayah yang ingin diperingkat oleh halaman.",
+  "quote": "Blocks of text that list cities and regions that a web page is trying to rank for",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E69",
+  "rule": "Variasikan kata dan tulis secara alami agar tidak repetitif; menurut panduan Google, ini memberi lebih banyak peluang muncul di Search karena memakai lebih banyak kata kunci.",
+  "quote": "If you are varying the words (writing naturally to not be repetitive), you have more chances to show up in Search simply because you are using more keywords.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E70",
+  "rule": "Google Search tidak memakai meta tag keywords.",
+  "quote": "Google Search doesn't use the keywords meta tag.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E71",
+  "rule": "Hidden text adalah menaruh konten di halaman semata-mata untuk memanipulasi mesin pencari dan tidak mudah dilihat pengunjung manusia; jangan menyembunyikan kata kunci.",
+  "quote": "Hidden text or link abuse is the practice of placing content on a page in a way solely to manipulate search engines and not to be easily viewable by human visitors.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E72",
+  "rule": "Scaled content abuse adalah membuat banyak halaman dengan tujuan utama memanipulasi peringkat dan bukan membantu pengguna.",
+  "quote": "Scaled content abuse is when many pages are generated for the primary purpose of manipulating search rankings and not helping users.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E73",
+  "rule": "Menghasilkan banyak halaman dengan alat generative AI tanpa menambah nilai bagi pengguna termasuk scaled content abuse.",
+  "quote": "Using generative AI tools or other similar tools to generate many pages without adding value for users",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E74",
+  "rule": "Membuat banyak halaman yang isinya hampir tidak masuk akal bagi pembaca tetapi memuat kata kunci pencarian termasuk scaled content abuse.",
+  "quote": "Creating many pages where the content makes little or no sense to a reader but contains search keywords",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E75",
+  "rule": "Situs yang melanggar kebijakan spam dapat berperingkat lebih rendah atau tidak muncul sama sekali di hasil.",
+  "quote": "Sites that violate our policies may rank lower in results or not appear in results at all.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E76",
+  "rule": "Scraping hasil Google untuk keperluan cek peringkat, atau akses otomatis lain ke Google Search tanpa izin tegas, termasuk machine-generated traffic.",
+  "quote": "This includes scraping results for rank-checking purposes or other types of automated access to Google Search conducted without express permission.",
+  "source": "g-spam-policies"
+ },
+ {
+  "id": "E77",
+  "rule": "Pastikan setiap halaman punya title di elemen <title>.",
+  "quote": "Make sure every page on your site has a title specified in the <title> element.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E78",
+  "rule": "Tulis teks elemen <title> yang deskriptif dan ringkas.",
+  "quote": "Write descriptive and concise text for your <title> elements.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E79",
+  "rule": "Title yang baik unik untuk halaman, jelas dan ringkas, serta menggambarkan isi halaman secara akurat.",
+  "quote": "a good title is unique to the page, clear and concise, and accurately describes the contents of the page.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E80",
+  "rule": "Hindari keyword stuffing di <title>: beberapa istilah deskriptif kadang membantu, tetapi tidak ada alasan mengulang kata atau frasa yang sama berkali-kali.",
+  "quote": "It's sometimes helpful to have a few descriptive terms in the <title> element, but there's no reason to have the same words or phrases appear multiple times.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E81",
+  "rule": "Keyword stuffing di title dapat membuat hasil tampak spam bagi Google dan pengguna.",
+  "quote": "this kind of keyword stuffing can make your results look spammy to Google and to users",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E82",
+  "rule": "Hindari teks <title> berulang atau boilerplate.",
+  "quote": "Avoid repeated or boilerplate text in <title> elements.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E83",
+  "rule": "Beri teks <title> yang berbeda untuk tiap halaman; misalnya, memberi judul \"Cheap products for sale\" pada setiap halaman di situs commerce membuat pengguna tidak dapat membedakan dua halaman.",
+  "quote": "important to have distinct text that describes the content of the page in the <title> element for each page on your site. Titling every page on a commerce site \"Cheap\nproducts for sale\", for example, makes it impossible for users to distinguish between two pages.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E84",
+  "rule": "Tidak ada batas panjang elemen <title>, tetapi title link dipotong di hasil Google Search sesuai kebutuhan, biasanya agar muat di lebar perangkat.",
+  "quote": "While there's no limit on how long a <title> element can be, the title link is truncated in Google Search results as needed, typically to fit the device width.",
+  "source": "g-title-link"
+ },
+ {
+  "id": "E85",
+  "rule": "Sertakan kata yang berguna bagi pengguna di URL.",
+  "quote": "Try to include words in the URL that may be useful for users",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E86",
+  "rule": "Kata kunci pada nama domain atau path URL saja hampir tidak berpengaruh pada peringkat selain tampil di breadcrumb.",
+  "quote": "the keywords in the name of the domain (or URL path) alone have hardly any effect beyond appearing in breadcrumbs.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E87",
+  "rule": "Secara umum, kemungkinan Anda perlu menunggu beberapa minggu untuk menilai apakah pekerjaan Anda berdampak baik di hasil Google Search.",
+  "quote": "In general, you likely want to wait a few weeks to assess whether your work had beneficial effects in Google Search results.",
+  "source": "g-starter-guide"
+ },
+ {
+  "id": "E88",
+  "rule": "Parameter keywords wajib diisi: maksimum 1000 kata kunci, 80 karakter per kata kunci, dan 10 kata per frasa.",
+  "quote": "keywords\nrequired field\nThe maximum number of keywords you can specify: 1000\nThe maximum number of characters for each keyword: 80\nThe maximum number of words for each keyword phrase: 10",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E89",
+  "rule": "Kata kunci yang dikirim dikonversi ke huruf kecil.",
+  "quote": "the keywords you specify will be converted to a lowercase format",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E90",
+  "rule": "language_name dan language_code bersifat opsional; daftar bahasa yang tersedia dapat diterima lewat permintaan terpisah ke https://api.dataforseo.com/v3/keywords_data/google_ads/languages.",
+  "quote": "| language_name\n| string\n|\nfull name of search engine language\noptional field\nyou can receive the list of available languages of the search engine with their language_name by making a separate request to https://api.dataforseo.com/v3/keywords_data/google_ads/languages\nexample:\nEnglish\n\n| language_code\n| string\n|\nsearch engine language code\noptional field\nyou can receive the list of available languages of the search engine with their language_code by making a separate request to https://api.dataforseo.com/v3/keywords_data/google_ads/languages",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E91",
+  "rule": "search_partners bernilai default false, yaitu hasil dikembalikan untuk situs Google search.",
+  "quote": "default value: false - results are returned for Google search sites",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E92",
+  "rule": "Jika search_partners diisi true, hasil mencakup jaringan milik, dioperasikan, dan sindikasi di Google dan situs mitra yang menjalankan Google search.",
+  "quote": "if you specify true, the results will be delivered for owned, operated, and syndicated networks across Google and partner sites that host Google search;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E93",
+  "rule": "date_from opsional dengan format yyyy-mm-dd dan nilai minimal 4 tahun dari tanggal sekarang.",
+  "quote": "starting date of the time range optional field date format: \"yyyy-mm-dd\" minimal value: 4 years from the current date",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E94",
+  "rule": "Secara default data dikembalikan untuk 12 bulan terakhir.",
+  "quote": "by default, data is returned for the past 12 months;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E95",
+  "rule": "date_to tidak boleh melebihi bulan lalu, karena Google Ads tidak mengembalikan data bulan berjalan.",
+  "quote": "the indicated date cannot be greater than the past month, Google Ads does not return data on the current month;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E96",
+  "rule": "Data historis tersedia untuk 4 tahun.",
+  "quote": "Historical data is available for 4 years.",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E97",
+  "rule": "Gunakan sort_by untuk mengurutkan hasil menurun berdasarkan relevance, search_volume, competition_index, low_top_of_page_bid, atau high_top_of_page_bid.",
+  "quote": "use these parameters to sort the results by relevance, search_volume, competition_index, low_top_of_page_bid, or high_top_of_page_bid in the descending order",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E98",
+  "rule": "Gunakan tag (maksimum 255 karakter) untuk mengidentifikasi task dan mencocokkannya dengan hasil.",
+  "quote": "the character limit is 255 you can use this parameter to identify the task and match it with the result",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E99",
+  "rule": "Kolom spell: jika kata kunci tampak salah eja, data dikembalikan untuk kata kunci dengan ejaan yang benar.",
+  "quote": "if the keyword in the POST array appears to be misspelled, data will be returned for the correctly spelled keyword;",
+  "source": "dfs-keywords-volume"
+ },
+ {
+  "id": "E100",
+  "rule": "Clicks adalah jumlah kali pengguna mengklik situs dari hasil Google Search.",
+  "quote": "Clicks: The number of times a user clicked your site from Google Search results.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E101",
+  "rule": "Impressions adalah berapa kali situs muncul di hasil Search.",
+  "quote": "Impressions: How many times your site appeared in Search results.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E102",
+  "rule": "CTR adalah jumlah klik dibagi jumlah impresi.",
+  "quote": "CTR (click-through rate): The click count divided by the impression count.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E103",
+  "rule": "Average position adalah posisi rata-rata hasil teratas dari situs.",
+  "quote": "Average position: The average position of the topmost result from your site.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E104",
+  "rule": "Di tabel, nilai posisi adalah posisi rata-rata untuk URL atau dimensi pengelompokan pada baris tabel itu.",
+  "quote": "In the table: The value is the average position in Search results for the specific URL or grouping dimension shown in the table row.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E105",
+  "rule": "Position hanya dihitung untuk hasil Google Search.",
+  "quote": "Position is calculated only for Google Search Results.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E106",
+  "rule": "Position yang ditampilkan adalah posisi teratas yang diduduki tautan ke properti atau halaman, dirata-ratakan lintas kueri tempat properti muncul.",
+  "quote": "The position value shown in the Performance report is the topmost position occupied by a link to your property or page in search results, averaged across all queries in which your property appeared.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E107",
+  "rule": "Tautan harus mendapat impresi agar posisinya tercatat.",
+  "quote": "A link must get an impression for its position to be recorded.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E108",
+  "rule": "Tanda strip (-) pada nilai posisi berarti tidak ada posisi tercatat karena pengguna tidak pernah melihat properti untuk kueri itu.",
+  "quote": "This means that there is no recorded position because the user never saw your property for that query.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E109",
+  "rule": "Gunakan filter tipe pencarian untuk melihat data pencarian web (berbasis teks atau multimodal), gambar, video, atau berita.",
+  "quote": "Search type: Use the search type filter to see data for web (text-based or multimodal), image, video, or news searches.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E110",
+  "rule": "Search Analytics mencatat data tiap tipe pencarian secara terpisah dan tidak menggabungkannya.",
+  "quote": "Search Analytics records data for each search type separately; it does not combine the data across search types.",
+  "source": "gsc-metrics"
+ },
+ {
+  "id": "E111",
+  "rule": "Granularitas Weekly dan Monthly dipakai untuk menganalisis tren jangka panjang dengan meratakan fluktuasi harian, seperti karena akhir pekan atau hari libur.",
+  "quote": "Weekly and Monthly: Used to analyze longer-term trends by smoothing out daily fluctuations (like those caused by weekends or holidays).",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E112",
+  "rule": "Data terbaru dapat bersifat preliminary, artinya masih dikumpulkan dan dapat berubah dalam beberapa jam berikutnya.",
+  "quote": "The newest data can be preliminary, meaning it's still being collected and might change in the next few hours.",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E113",
+  "rule": "Total grafik dapat berbeda dari total tabel, biasanya karena perbedaan agregasi (property vs halaman).",
+  "quote": "The chart totals can sometimes differ from the table totals. This is usually due to differences in aggregation (property vs. page).",
+  "source": "gsc-perf-report"
+ },
+ {
+  "id": "E114",
+  "rule": "Avg. monthly searches adalah rata-rata kali orang mencari kata kunci dan variasi dekatnya berdasarkan rentang bulan serta lokasi dan Search Network yang dipilih.",
+  "quote": "The average number of times people have searched for a keyword and its close variants based on the month range as well as the location and Search Network settings you selected.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E115",
+  "rule": "Volume pencarian tidak memperhitungkan bid, budget, musim, dan kualitas iklan historis, sedangkan impresi forecast memperhitungkannya.",
+  "quote": "Your forecasted impressions take your bid, budget, seasonality, and historical ad quality into account, but your search volume statistics don’t.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E116",
+  "rule": "Volume pencarian ditentukan hanya untuk exact keyword match, sedangkan perkiraan impresi didasarkan pada jenis kecocokan yang dipilih.",
+  "quote": "your search volume is determined only for exact keyword matches, while your estimated impressions are based on your selected match types.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E117",
+  "rule": "Data kompetisi Keyword Planner spesifik untuk lokasi dan targeting Search Network yang dipilih.",
+  "quote": "Note that this data is specific to the location and Search Network targeting that you've selected.",
+  "source": "ads-kp-forecast"
+ },
+ {
+  "id": "E118",
+  "rule": "Filter menyempit daftar kata kunci berdasarkan kriteria seperti kompetisi, impression share, dan teks kata kunci.",
+  "quote": "Narrow down your list of keywords based on criteria like competition, impression share, and keyword text.",
+  "source": "ads-keyword-planner"
+ }
+]

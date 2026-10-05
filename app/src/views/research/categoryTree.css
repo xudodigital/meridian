@@ -1,0 +1,10 @@
+/* The real category tree (CategoryTree.tsx): the articles of a category as rows under it. */
+.ct .ct-list{margin:8px 0 0;padding:0;border-left:0;gap:0}
+.ct .ct-list li{padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;min-height:40px;border-top:1px solid var(--md-sys-color-outline-variant)}
+.ct .ct-list li:first-child{border-top:0}
+.ct .ct-list li::before,.ct .ct-list li::after{content:none}
+.ct .ct-t{flex:1 1 240px;min-width:0;overflow-wrap:anywhere;font:var(--md-sys-typescale-body-medium)}
+.ct .linkbtn{color:var(--md-sys-color-primary);font:var(--md-sys-typescale-label-large)}
+.ct .st-pillar code{background:none;padding:0}
+dialog.ct-dlg{width:min(480px,calc(100vw - 32px))}
+dialog.ct-dlg .f{margin-top:12px}
