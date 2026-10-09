@@ -52,7 +52,7 @@ export async function seoTasksApi(req: IncomingMessage, res: ServerResponse, pat
     if (SEO_TASKS[kind].needsArticles && !taskContext(site).articles.length) { json(res, 409, { error: 'Write an article first; it must be in review or approved.' }); return true; }
     if (kind === 'serp' && b.serpProvider !== undefined && b.serpProvider !== 'auto' && !isSerpProvider(b.serpProvider)) { json(res, 400, { error: 'Choose a supported SERP provider.' }); return true; }
     const serpProvider = kind === 'serp' ? (isSerpProvider(b.serpProvider) ? b.serpProvider : defaultSerpProvider()) : null;
-    if (kind === 'serp' && (!serpProvider || !serpReady(serpProvider))) { json(res, 409, { error: serpProvider ? `Connect ${SERP_PROVIDERS[serpProvider]} before SERP research.` : 'Connect SerpApi or DataForSEO before SERP research.' }); return true; }
+    if (kind === 'serp' && (!serpProvider || !serpReady(serpProvider))) { json(res, 409, { error: serpProvider ? `Connect ${SERP_PROVIDERS[serpProvider]} before SERP research.` : 'Connect SerpApi, SearchAPI.io or DataForSEO before SERP research.' }); return true; }
     if (kind === 'analysis' && siteSearch(site.id).state !== 'ok' && siteGa4(site).state !== 'ok') { json(res, 409, { error: 'Connect Search Console or GA4 and refresh its data first.' }); return true; }
     if (db.prepare("SELECT id FROM seo_tasks WHERE site_id = ? AND kind = ? AND status IN ('queued', 'work')").get(site.id, kind)) { json(res, 409, { error: 'This task is already waiting or running for the site.' }); return true; }
     const stop = budgetStop(site.id), full = queueFull(site.id);

@@ -25,7 +25,7 @@ Meridian mendukung **Gemma localhost**, **Codex local**, dan **OpenAI API** seba
 
 Adaptor menggunakan [API chat Ollama](https://docs.ollama.com/api/chat), JSON, input gambar yang sudah diperiksa, skill yang sama, timeout dan pembatalan. Token berasal dari `prompt_eval_count` dan `eval_count`; biaya inferensi lokal tidak diberi tarif API. Metrik biaya/API dan model berharga disembunyikan pada dashboard ketika Gemma atau Codex lokal dipilih. Catatan historis tetap ada. Anggaran tetap berlaku pada mode API atau ketika DataForSEO terhubung; tanpa layanan tersebut, biaya API historis tidak menahan pekerjaan lokal.
 
-**Sumber dan batasan:** Gemma tidak mendapat pencarian web bawaan. Pekerjaan yang memerlukan sumber dapat memakai tool baca halaman HTTPS publik (maksimal 8 panggilan); alamat privat, kredensial URL dan scraping pencarian ditolak. Sumber harus benar-benar terbaca dan kutipannya harus sesuai URL yang dibaca, tetapi kebenaran klaim tetap perlu diperiksa manusia. JavaScript, PDF, halaman login/paywall tidak didukung tool ini. Cantumkan URL sumber pada permintaan atau pilih Codex Local untuk pencarian web. Riset SERP membutuhkan SerpApi atau DataForSEO; volume keyword memakai Google Ads langsung atau DataForSEO; GSC/GA4 tetap diperlukan untuk metrik situs. Pemilihan gambar tetap melalui Wikimedia Commons, bukan gambar yang dikarang model.
+**Sumber dan batasan:** Gemma tidak mendapat pencarian web bawaan. Pekerjaan yang memerlukan sumber dapat memakai tool baca halaman HTTPS publik (maksimal 8 panggilan); alamat privat, kredensial URL dan scraping pencarian ditolak. Sumber harus benar-benar terbaca dan kutipannya harus sesuai URL yang dibaca, tetapi kebenaran klaim tetap perlu diperiksa manusia. JavaScript, PDF, halaman login/paywall tidak didukung tool ini. Cantumkan URL sumber pada permintaan atau pilih Codex Local untuk pencarian web. Riset SERP membutuhkan SerpApi, SearchAPI.io atau DataForSEO; volume keyword memakai Google Ads langsung atau DataForSEO; GSC/GA4 tetap diperlukan untuk metrik situs. Pemilihan gambar tetap melalui Wikimedia Commons, bukan gambar yang dikarang model.
 
 Context size, kecepatan, RAM/VRAM dan kualitas bahasa harus diuji pada hardware serta kuantisasi yang dipakai. Context yang hampir penuh atau jawaban terpotong dihentikan; ini bukan jaminan seluruh model/kuantisasi mempunyai perilaku identik. Review manusia, approval build, serta deployment Cloudflare tetap memakai alur yang sama. Pengujian otomatis adapter memakai server Ollama tiruan yang terisolasi; kelulusannya bukan bukti benchmark atau demonstrasi nyata Gemma 31B.
 
@@ -149,7 +149,7 @@ Di **Research and SEO > Research / SEO**, pilih situs, jenis tugas dan brief, la
 | Tugas | Agen | Prasyarat |
 |---|---|---|
 | Strategi editorial | Research | Profil situs dan OpenAI |
-| SERP satu kueri | Research | Engine yang dipilih (Codex Local, Gemma localhost atau OpenAI) dan SerpApi/DataForSEO; negara/bahasa situs dipakai eksplisit |
+| SERP satu kueri | Research | Engine yang dipilih (Codex Local, Gemma localhost atau OpenAI) dan SerpApi/SearchAPI.io/DataForSEO; negara/bahasa situs dipakai eksplisit |
 | Arsitektur situs | Architect | Profil situs dan OpenAI |
 | Audit konten / refresh | SEO/GEO Optimizer | Artikel review atau approved |
 | Usulan internal link | Internal Linker | Artikel review atau approved; anchor berasal dari paragraf yang sudah ada |
@@ -211,6 +211,7 @@ Semua diisi di **Integrations** (khusus admin). Tombol **Save and test** menyimp
 | OpenAI API | API key | Mendaftar model yang bisa dipakai kunci itu |
 | DataForSEO | API login dan API password | Menampilkan saldo |
 | SerpApi | API key | Account API membaca sisa kuota tanpa memakai kredit pencarian |
+| SearchAPI.io | API key | Account API membaca kuota; tidak menjalankan pencarian |
 | Cloudflare | API token (Account > Cloudflare Pages > Edit; tambahkan Zone > Zone > Read dan Zone > DNS > Edit bila Meridian yang harus membuat rekaman DNS domain), Account ID (wajib untuk deploy) | Memeriksa token, akses ke Pages, dan menghitung zone |
 | Multi-country probes (Globalping) | Token opsional. Tanpa token: 250 tes per jam | Menampilkan sisa kuota |
 | Slack | Incoming webhook URL | Mengirim pesan tes ke channel |
@@ -355,7 +356,7 @@ Office di Workspace dan `/office` memakai komponen yang sama dan mengikuti data 
 
 ### SerpApi untuk riset SERP
 
-Di **Integrations → SerpApi → Connect**, simpan API key dari akun SerpApi. Key disimpan terenkripsi dan tidak dikembalikan ke browser. **Save and test** memakai Account API; tidak menjalankan pencarian Google. Di **Research and SEO**, pilih **SERP research** lalu provider. **Automatic** memilih SerpApi bila tersambung, lalu DataForSEO bila hanya layanan itu yang tersedia. Pilihan ditetapkan saat masuk antrean; galat/kuota habis tidak memicu pencarian ulang lewat provider lain.
+Di **Integrations → SerpApi → Connect**, simpan API key dari akun SerpApi. Key disimpan terenkripsi dan tidak dikembalikan ke browser. **Save and test** memakai Account API; tidak menjalankan pencarian Google. Di **Research and SEO**, pilih **SERP research** lalu provider. **Automatic** memilih SerpApi bila tersambung, lalu SearchAPI.io, lalu DataForSEO bila layanan sebelumnya tidak tersedia. Pilihan ditetapkan saat masuk antrean; galat/kuota habis tidak memicu pencarian ulang lewat provider lain.
 
 SerpApi mengambil satu halaman hasil Google dengan negara, bahasa, dan perangkat desktop yang eksplisit. Snapshot menyimpan maksimal 10 hasil organik serta fitur terkait yang didukung, bukan seluruh SERP atau isi lengkap halaman kompetitor. Posisi SerpApi adalah urutan organik, bukan posisi absolut semua fitur. Bukti, provider dan langkah kerja tersedia di hasil riset/Activity; snapshot yang sudah disimpan digunakan kembali saat pekerjaan dipulihkan setelah restart. SerpApi tidak memberi volume keyword atau biaya dolar per permintaan; Meridian tidak mengarang nilainya. Volume memakai Google Ads langsung atau DataForSEO. Koneksi dan pencarian nyata memerlukan key dengan kuota tersedia; tes otomatis memakai layanan tiruan terisolasi.
 
@@ -374,3 +375,9 @@ Angka adalah estimasi rata-rata pencarian bulanan (periode bawaan Google: 12 bul
 Google [menghentikan developer token pada 9 September 2026](https://developers.google.com/google-ads/api/docs/api-policy/developer-token); akses mengikuti Cloud project pemilik OAuth client. Konektor ini tidak meminta atau mengirim developer token lama. Dokumentasi lama tentang API Center dapat berbeda dari persyaratan terbaru tersebut.
 
 Tes konektor: `node --test server/google-ads.test.ts` dan tes UI terkait. Tes otomatis memakai server serta provider terisolasi, bukan akun Google Ads nyata. Tanpa OAuth dan Customer ID milik pengguna, koneksi produksi dan ketersediaan volume nyata belum terverifikasi.
+
+### SearchAPI.io untuk riset SERP
+
+**SearchAPI.io** dan **SerpApi.com** adalah layanan berbeda; API key tidak bisa dipertukarkan. Di **Integrations → SearchAPI.io → Connect**, simpan key dari dashboard SearchAPI.io. Key terenkripsi dan hanya ekornya tampil. **Save and test** membaca kuota melalui [Account API](https://www.searchapi.io/docs/account-api), bukan menjalankan pencarian. Riset menggunakan [Google Search API](https://www.searchapi.io/docs/google) dengan negara/bahasa situs dan perangkat desktop. Pilih SearchAPI.io pada **Research and SEO → SERP research**. Automatic memilih SerpApi, kemudian SearchAPI.io, kemudian DataForSEO yang tersambung dan tidak berstatus bad. Provider ditetapkan saat antrean dibuat; kegagalan tidak memicu perpindahan otomatis.
+
+Snapshot dibatasi ke 10 hasil organik dan fitur terkait yang didukung; bukan audit seluruh halaman kompetitor. Meridian menyimpan bukti, nama provider dan langkah kerja sebenarnya untuk Office/Activity. Volume keyword tetap membutuhkan Google Ads atau DataForSEO. Biaya dolar tidak dikarang dari kredit pencarian. Gemma localhost, Codex Local dan konektor lain tetap tersedia. Pengujian otomatis memakai provider terisolasi, bukan key atau kuota akun pengguna.

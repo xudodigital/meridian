@@ -25,7 +25,7 @@ export function SeoTasks({ initialKind = 'strategy' }: { initialKind?: SeoTaskKi
   const live = useStore(s => s.live), sample = useStore(s => s.sample);
   const [chosen, setChosen] = useState('');
   const [serpProvider, setSerpProvider] = useState<SerpProvider | 'auto'>('auto');
-  const autoProvider = usableInt({ live }, 'serpapi') ? 'serpapi' : usableInt({ live }, 'dfs') ? 'dfs' : null;
+  const autoProvider = usableInt({ live }, 'serpapi') ? 'serpapi' : usableInt({ live }, 'searchapi') ? 'searchapi' : usableInt({ live }, 'dfs') ? 'dfs' : null;
   const activeProvider = serpProvider === 'auto' ? autoProvider : serpProvider;
   const serpConnected = !!activeProvider && usableInt({ live }, activeProvider);
   const [kind, setKind] = useState<SeoTaskKind>(initialKind), [brief, setBrief] = useState('');
@@ -66,7 +66,7 @@ export function SeoTasks({ initialKind = 'strategy' }: { initialKind?: SeoTaskKi
       </Fields>
       <p className="note">{selectedAgent?.name ?? SEO_TASKS[kind].agent} · {runtimeModel({live}, selectedAgent?.model || 'not configured')} · {selected?.country} · {selected?.lang}. {runtimeUsage({live})}{kind === 'serp' && serpConnected ? ` ${SERP_PROVIDERS[activeProvider!]} search quota applies.` : ''}</p>
       {kind === 'serp' ? <p className="note">Keyword volume is separate and uses Google Ads or DataForSEO.</p> : null}
-      {kind === 'serp' && !serpConnected ? <Callout icon="key" info>Connect {activeProvider ? SERP_PROVIDERS[activeProvider] : 'SerpApi or DataForSEO'} in Integrations to research search results. <Button variant="text" onClick={() => go('integrations')}>Open Integrations</Button></Callout> : null}
+      {kind === 'serp' && !serpConnected ? <Callout icon="key" info>Connect {activeProvider ? SERP_PROVIDERS[activeProvider] : 'SerpApi, SearchAPI.io or DataForSEO'} in Integrations to research search results. <Button variant="text" onClick={() => go('integrations')}>Open Integrations</Button></Callout> : null}
       {kind === 'audit' ? <label className="seo-live-choice"><input type="checkbox" checked={liveAudit} onChange={e => setLiveAudit(e.target.checked)} /> Also inspect public pages, robots.txt and sitemap.xml (up to 10 URLs)</label> : null}
       {needs && !hasArticles ? <Callout icon="article" info>This task needs an article in review or approved. <Button variant="text" onClick={() => go('review')}>Open article review</Button></Callout> : null}
       {!ready ? <Callout icon="key" info>{live.engine?.reason || 'Configure the selected engine in Integrations.'} <Button variant="text" onClick={() => go('integrations')}>Open Integrations</Button></Callout> : null}
@@ -95,7 +95,7 @@ function TaskResult({ task: t, onReview, disabled }: { task: SeoTaskWire; onRevi
       <h4>Limitations and claims to verify</h4><ul>{r.limitations.map((x, i) => <li key={i}>{x}</li>)}</ul>
       {r.sources.length ? <><h4>Sources to check</h4><ul>{r.sources.map((s, i) => <li key={i}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></li>)}</ul></> : null}
       <details><summary>Saved evidence and data coverage</summary><Button variant="text" onClick={() => void loadEvidence()}>Load saved evidence</Button>{evidenceError ? <p role="alert">{evidenceError}</p> : null}{evidence ? <pre className="seo-context">{evidence}</pre> : null}</details>
-      <p className="note">{t.tokens.toLocaleString()} tokens · {engineName(t.engine)}{t.kind === 'serp' ? ` · ${SERP_PROVIDERS[t.serpProvider ?? 'dfs']}` : ''}{costs ? ` · API estimate $${t.costUsd.toFixed(4)}${t.kind === 'serp' && t.serpProvider !== 'serpapi' ? ' · DataForSEO $' + t.serviceCostUsd.toFixed(4) : ''}` : ''}</p>
+      <p className="note">{t.tokens.toLocaleString()} tokens · {engineName(t.engine)}{t.kind === 'serp' ? ` · ${SERP_PROVIDERS[t.serpProvider ?? 'dfs']}` : ''}{costs ? ` · API estimate $${t.costUsd.toFixed(4)}${t.kind === 'serp' && t.serpProvider === 'dfs' ? ' · DataForSEO $' + t.serviceCostUsd.toFixed(4) : ''}` : ''}</p>
       {t.reviewedAt ? <p>Reviewed by {t.reviewedBy}. Article changes still need their own review and build.</p> : <Button variant="tonal" disabled={disabled} onClick={onReview}>I have reviewed this draft</Button>}
     </div> : <p role="status">{t.status === 'queued' ? 'Waiting in the shared job queue.' : t.status === 'work' ? 'The agent is preparing a result. You can leave this page.' : 'No result saved. Create a new task with a revised brief.'}</p>}
   </details>;

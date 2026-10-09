@@ -9,12 +9,12 @@ const LANGUAGES: Record<string, string> = {
   bengali: 'bn', bangla: 'bn', urdu: 'ur', hindi: 'hi', portuguese: 'pt', spanish: 'es', arabic: 'ar', turkish: 'tr',
   french: 'fr', german: 'de', japanese: 'ja', korean: 'ko', chinese: 'zh-cn',
 };
-export function serpApiLocale(site: { cc: string; country: string; lang: string }) {
+export function serpApiLocale(site: { cc: string; country: string; lang: string }, service = 'SerpApi') {
   const gl = site.cc.trim().toLowerCase();
   const hl = LANGUAGES[site.lang.trim().toLowerCase()];
   const location = site.country.trim() === 'Türkiye' ? 'Turkey' : site.country.trim();
-  if (!/^[a-z]{2}$/.test(gl) || !location) throw new ServiceError('Save the site country and country code before SerpApi research.');
-  if (!hl) throw new ServiceError('This site language is not mapped for SerpApi. Update the language before running research; no language fallback was used.');
+  if (!/^[a-z]{2}$/.test(gl) || !location) throw new ServiceError(`Save the site country and country code before ${service} research.`);
+  if (!hl) throw new ServiceError(`This site language is not mapped for ${service}. Update the language before running research; no language fallback was used.`);
   return { gl: gl === 'gb' ? 'uk' : gl, hl, location };
 }
 function refused(status: number, error: unknown): ServiceError {

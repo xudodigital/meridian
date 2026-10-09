@@ -25,7 +25,7 @@ after(() => { s?.stop(); fakes?.stop(); });
 describe('integrations', () => {
   it('lists every service; nothing is connected but the probe network, which works without a token', async () => {
     const list = await ints(admin);
-    assert.deepEqual(list.map(x => x.id), ['gemma', 'openai', 'dfs', 'serpapi', 'cf', 'probe', 'slack', 'tg', 'email', 'google', 'ads', 'gsc', 'ga4']);
+    assert.deepEqual(list.map(x => x.id), ['gemma', 'openai', 'dfs', 'serpapi', 'searchapi', 'cf', 'probe', 'slack', 'tg', 'email', 'google', 'ads', 'gsc', 'ga4']);
     assert.deepEqual(list.filter(x => x.connected).map(x => x.id), ['probe']);
     assert.equal((await int(admin, 'probe')).tail, 'Public access');
   });

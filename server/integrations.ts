@@ -33,6 +33,8 @@ export const DEFS: readonly IntegrationDef[] = [
     help: 'From app.dataforseo.com > API Access. This is the API password, not the password you sign in with. Test connection shows the balance.' },
   { id: 'serpapi', name: 'SerpApi', fields: [{ k: 'key', label: 'API key', secret: true }],
     help: 'From serpapi.com > Your Account. Save and test checks remaining searches without consuming search credits. Used for SERP research; keyword volume uses Google Ads or DataForSEO.' },
+  { id: 'searchapi', name: 'SearchAPI.io', fields: [{ k: 'key', label: 'API key', secret: true }],
+    help: 'Use the key from your SearchAPI.io dashboard, not SerpApi.com. Save and test checks account quota without running a search. Keyword volume uses Google Ads or DataForSEO.' },
   { id: 'cf', name: 'Cloudflare', fields: [{ k: 'token', label: 'API token', secret: true }, { k: 'account', label: 'Account ID (needed to deploy)', secret: false, optional: true, placeholder: '32 characters, from the account home page' }],
     help: 'Create a token at dash.cloudflare.com > My Profile > API Tokens with the permission Account > Cloudflare Pages > Edit. The Account ID is required to deploy websites to Cloudflare Pages. Add Zone > Zone > Read and Zone > DNS > Edit only if you will connect custom domains whose DNS is at Cloudflare in this account: Meridian then adds the DNS record of each site itself. Without them it shows the record to add by hand. Test connection checks the token and whether Pages deploys will work.' },
   { id: 'probe', name: 'Multi-country probes', fields: [{ k: 'token', label: 'Globalping token (optional)', secret: true }],

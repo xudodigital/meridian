@@ -7,6 +7,7 @@ export const BASES = {
   OPENAI: 'https://api.openai.com',
   DATAFORSEO: 'https://api.dataforseo.com',
   SERPAPI: 'https://serpapi.com',
+  SEARCHAPI: 'https://www.searchapi.io',
   CLOUDFLARE: 'https://api.cloudflare.com',
   GLOBALPING: 'https://api.globalping.io',
   TELEGRAM: 'https://api.telegram.org',

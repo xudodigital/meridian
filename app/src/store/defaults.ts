@@ -187,6 +187,12 @@ const ints: Omit<Integration, 'tail' | 'st' | 'msg'>[] = [{ id:'gemma',name:'Gem
   use: 'Search results by country and language',
   type: 'key',
 }, {
+  id: 'searchapi',
+  name: 'SearchAPI.io',
+  icon: 'search',
+  use: 'Search results by country and language',
+  type: 'key',
+}, {
   id: 'cf',
   name: 'Cloudflare',
   use: 'DNS, SSL and deploys',

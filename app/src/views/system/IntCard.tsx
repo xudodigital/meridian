@@ -125,7 +125,7 @@ function ServiceBody({ w, using, onSetup, keyOnly }: { w: IntegrationWire; using
   const [busy, setBusy] = useState(false);
   const test = async () => { setBusy(true); await testService(w.id); setBusy(false); };
   const remove = () => { if (w.fields.length && using) openConfirm(`key:${w.id}`); else void removeService(w.id); };
-  const masked = w.tail && !w.oauth && ['openai', 'cf', 'slack', 'serpapi'].includes(w.id) || (w.id === 'probe' && !!w.updatedAt);
+  const masked = w.tail && !w.oauth && ['openai', 'cf', 'slack', 'serpapi', 'searchapi'].includes(w.id) || (w.id === 'probe' && !!w.updatedAt);
   const stored = !!w.updatedAt;
   const result = w.msg ? <p className="note">{w.msg}{w.testedAt ? <> · <span className="nw">tested {dayTime(w.testedAt)}</span></> : null}</p> : null;
 

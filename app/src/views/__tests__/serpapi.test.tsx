@@ -25,7 +25,7 @@ beforeEach(() => {
   window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', ''); };
   window.HTMLDialogElement.prototype.close = function () { this.removeAttribute('open'); };
   resetStore(false); useStore.getState().signIn(meFor('admin'));
-  useStore.setState(d => { d.sync.loaded = true; d.live.on = d.live.ready = true; d.live.engine = { mode: 'gemma-local', ready: true, keyConfigured: false, model: 'gemma4:31b', apiVersion: 'Ollama', reason: '' }; d.live.ints.serpapi = { ...service }; d.sites = [{ ...makeState().sites[0], id: 'a', domain: 'test.example', country: 'Malaysia', cc: 'MY', lang: 'English' }]; });
+  useStore.setState(d => { d.sync.loaded = true; d.live.on = d.live.ready = true; d.live.engine = { mode: 'gemma-local', ready: true, keyConfigured: false, model: 'gemma4:31b', apiVersion: 'Ollama', reason: '' }; d.live.ints.serpapi = { ...service }; d.live.ints.searchapi = { ...service, id: 'searchapi', name: 'SearchAPI.io' }; d.sites = [{ ...makeState().sites[0], id: 'a', domain: 'test.example', country: 'Malaysia', cc: 'MY', lang: 'English' }]; });
   api = new FakeApi(); vi.stubGlobal('fetch', api.fetch);
   document.body.innerHTML = '<div id="root"></div>'; root = createRoot(document.getElementById('root')!);
 });
@@ -49,9 +49,25 @@ describe('SerpApi dashboard', () => {
     expect(document.body.textContent).toContain('DataForSEO'); expect(document.body.textContent).toContain('Gemma localhost');
     expect(useStore.getState().live.engine?.mode).toBe('gemma-local');
   });
+  it('connects SearchAPI.io separately and selects it when SerpApi is unavailable', async () => {
+    await mount(<Integrations />);
+    const card = [...document.querySelectorAll('.int')].find(c => c.querySelector('h3')?.textContent === 'SearchAPI.io')!;
+    await click(card.querySelector('button')!);
+    expect(document.querySelector('#svc-searchapi-key')?.getAttribute('type')).toBe('password');
+    await act(async () => useStore.setState(d => { d.live.ints.searchapi.connected = true; d.live.ints.searchapi.status = 'ok'; }));
+    api.on('POST', '/api/seo-tasks', () => ({ task: { ...t, serpProvider: 'searchapi' } }));
+    await mount(<SeoTasks initialKind="serp" />);
+    expect(provider().selectedOptions[0].textContent).toContain('SearchAPI.io');
+    await chooseProvider('searchapi');
+    const brief = document.querySelector<HTMLTextAreaElement>('textarea')!;
+    await act(async () => { Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(brief, 'coffee'); brief.dispatchEvent(new Event('input', { bubbles: true })); });
+    expect(runButton().disabled).toBe(false); await click(runButton());
+    expect(api.to('POST', '/api/seo-tasks')[0].body).toMatchObject({ serpProvider: 'searchapi' });
+    expect(useStore.getState().live.engine?.mode).toBe('gemma-local');
+  });
   it('blocks research without a provider and preserves an explicit unavailable selection', async () => {
     await mount(<SeoTasks initialKind="serp" />);
-    expect(document.body.textContent).toContain('Connect SerpApi or DataForSEO');
+    expect(document.body.textContent).toContain('Connect SerpApi, SearchAPI.io or DataForSEO');
     expect(runButton().disabled).toBe(true);
     await act(async () => useStore.setState(d => { d.live.ints.serpapi.connected = true; d.live.ints.serpapi.status = 'ok'; }));
     expect(provider().selectedOptions[0].textContent).toContain('SerpApi');
