@@ -9,8 +9,9 @@ import { randomToken } from './secrets.ts';
 import { ServiceError, base, call, errorText, short } from './net.ts';
 import { defOf, refreshValues, storeValues, valuesOf } from './integrations.ts';
 
-export type GoogleKind = 'gsc' | 'ga4';
+export type GoogleKind = 'gsc' | 'ga4' | 'ads';
 const SCOPES: Record<GoogleKind, string> = {
+  ads: 'https://www.googleapis.com/auth/adwords',
   gsc: 'https://www.googleapis.com/auth/webmasters.readonly',
   ga4: 'https://www.googleapis.com/auth/analytics.readonly',
 };
@@ -26,6 +27,7 @@ const sweep = () => { const now = Date.now(); for (const [k, p] of pending) if (
 export function startUrl(kind: GoogleKind, by: string): { url: string } | { error: string } {
   const c = valuesOf('google');
   if (!c?.clientId || !c.clientSecret) return { error: 'Set up Google sign-in first: paste the OAuth client ID and secret from Google Cloud.' };
+  if (kind === 'ads' && !valuesOf('ads')?.customerId) return { error: 'Save the Google Ads Customer ID first.' };
   sweep();
   const state = randomToken(24);
   pending.set(state, { kind, by, exp: Date.now() + 10 * 60_000 });
@@ -56,11 +58,11 @@ export async function finish(q: URLSearchParams): Promise<{ kind: GoogleKind; by
   const r = await call<TokenAnswer>('Google', base('GOOGLE_TOKEN') + '/token', {
     form: { code: q.get('code') ?? '', client_id: c.clientId, client_secret: c.clientSecret, redirect_uri: redirectUri(), grant_type: 'authorization_code' },
   });
-  if (r.status !== 200 || !r.data.access_token) return { kind: p.kind, error: 'Google refused the sign-in: ' + short(errorText(r.data) || String(r.status), 120) };
+  if (r.status !== 200 || !r.data.access_token) return { kind: p.kind, error: 'Google refused the sign-in. Check the OAuth client and try again.' };
   if (!r.data.refresh_token) return { kind: p.kind, error: 'Google did not give a lasting token. Remove Meridian\'s access at myaccount.google.com/permissions, then connect again.' };
   const account = emailOf(r.data.id_token);
   storeValues(defOf(p.kind)!, {
-    refresh: r.data.refresh_token, access: r.data.access_token, accessExp: String(Date.now() + (r.data.expires_in ?? 3600) * 1000), account,
+    ...(valuesOf(p.kind) ?? {}), refresh: r.data.refresh_token, access: r.data.access_token, accessExp: String(Date.now() + (r.data.expires_in ?? 3600) * 1000), account,
   }, p.by);
   return { kind: p.kind, by: p.by, account };
 }
@@ -76,7 +78,7 @@ export async function accessToken(kind: GoogleKind, v = valuesOf(kind), force = 
   });
   if (r.status !== 200 || !r.data.access_token) {
     if (r.data.error === 'invalid_grant') throw new ServiceError('Google access was removed or has expired. Connect with Google again.', 401);
-    throw new ServiceError('Google refused to renew access: ' + short(errorText(r.data) || String(r.status), 120));
+    throw new ServiceError('Google refused to renew access. Check the OAuth client and reconnect.');
   }
   const next = { ...v, access: r.data.access_token, accessExp: String(Date.now() + (r.data.expires_in ?? 3600) * 1000) };
   refreshValues(defOf(kind)!, next);

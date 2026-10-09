@@ -6,7 +6,7 @@ import { lstat, readFile } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 import { actorOf, mayWrite, seesSite, type Ctx } from './access.ts';
 import { articleRow, articleTitle, type Outcome } from './articles.ts';
-import { ENGINE_MISSING, engineReady } from './engine.ts';
+import { ENGINE_MISSING, engineStatus, engineReady } from './engine.ts';
 import { bus } from './events.ts';
 import { body, json } from './http.ts';
 import { kick } from './jobs.ts';
@@ -41,7 +41,7 @@ export async function photoApi(req: IncomingMessage, res: ServerResponse, path: 
     const no = mayWrite(ctx.user);
     if (no) { json(res, no.status, { error: no.error }); return true; }
     if (!articleRow(Number(m[1]))) { json(res, 404, { error: 'Article not found.' }); return true; }
-    if (!(await engineReady())) { json(res, 503, { error: ENGINE_MISSING }); return true; }
+    if (!(await engineReady())) { json(res, 503, { error: (await engineStatus()).reason || ENGINE_MISSING }); return true; }
     const o = findPhotos(Number(m[1]));
     if (o.ok) kick();
     return answer(o, 202, t => 'Asked the Site Builder to find photos for: ' + t);

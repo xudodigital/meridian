@@ -377,7 +377,7 @@ describe('the agent prompts', () => {
   });
 });
 
-describe('without Claude Code', () => {
+describe('without a working API connection', () => {
   let off: TestServer, oc: Client;
   before(async () => { off = await startServer({ MERIDIAN_FAKE_LOGGED_OUT: '1' }); oc = await owner(off); await saveSites(oc, SITES); });
   after(() => off?.stop());
@@ -386,7 +386,7 @@ describe('without Claude Code', () => {
     assert.match(off.output(), /Engine: not available\. OpenAI connection check answered 401/);
     const st = (await oc.get('/api/state')).data;
     assert.equal((st.engine as Json).mode, 'none');
-    const guidance = 'OpenAI is not connected. Add and test your OpenAI API key in Integrations, then try again.';
+    const guidance = 'OpenAI connection check answered 401. Check the key and project permissions in Integrations.';
     const r = await oc.post('/api/requests', { siteId: 's1', domain: 's1.example', country: 'Indonesia', lang: 'Indonesian', topic: 'kopi', goal: 'x' });
     assert.deepEqual([r.status, r.data.error], [503, guidance]);
     const a = await oc.post('/api/articles', { siteId: 's1', domain: 's1.example', keyword: 'kopi', requestId: 1 });

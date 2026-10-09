@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button, Callout, Empty, Info, ModTable } from '@/components';
 import { go } from '@/nav';
 import { FLOW, runsShown } from '@/store/liveWorkflows';
-import { engineReady, codexLocal } from '@/store/rules';
+import { engineReady, localRuntime, engineName, showCosts } from '@/store/rules';
 import { useStore, useStoreShallow } from '@/store/store';
 import { mayWrite } from '../deploy/parts';
 import { RunCard } from './RunCard';
@@ -20,7 +20,9 @@ const RECENT = 6;
 export function LiveWorkflows() {
   const runs = useStoreShallow(s => runsShown(s));
   const write = useStore(mayWrite);
-  const local = useStore(codexLocal);
+  const local = useStore(localRuntime);
+  const runtime = useStore(s => s.live.engine);
+  const costs = useStore(showCosts);
   const reason = useStore(s => s.live.engine?.reason);
   const engine = useStore(s => engineReady(s));
   const liveOn = useStore(s => s.live.on);
@@ -33,7 +35,7 @@ export function LiveWorkflows() {
     <>
       <p className="lede">Run a content workflow. Review articles and approve the website before publishing.</p>
       {liveOn && !engine ? (
-        <Callout icon="info" warn>{local ? <><b>Codex local is not ready.</b> {reason || 'Sign in to Codex on this computer and check its status in Integrations.'}</> : <><b>OpenAI is not connected, so no workflow can start.</b> Add and test your API key in Integrations. A schedule whose time comes meanwhile is not started, and says so.</>}</Callout>
+        <Callout icon="info" warn>{local ? <><b>{engineName(runtime?.mode)} is not ready.</b> {reason || 'Configure the selected engine in Integrations.'}</> : <><b>OpenAI is not connected, so no workflow can start.</b> Add and test your API key in Integrations. A schedule whose time comes meanwhile is not started, and says so.</>}</Callout>
       ) : null}
       <section>
         <div className="sh">
@@ -70,7 +72,7 @@ export function LiveWorkflows() {
         <ol className="wf-explain">
           {FLOW.map(f => <li key={f.id}><b>{f.label}.</b> {WHAT[f.id]}</li>)}
         </ol>
-        <p className="note">Agent jobs use the site budget. The Orchestrator itself makes no model calls.</p>
+        <p className="note">{costs ? 'Agent jobs use the site budget.' : 'Jobs run one at a time.'} The Orchestrator itself makes no model calls.</p>
       </section>
       <section>
         <h2>Site builds</h2>

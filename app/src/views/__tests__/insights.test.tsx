@@ -108,7 +108,7 @@ const live = (role: Role = 'admin', ints: string[] = ['gsc', 'ga4']) => {
     d.live.on = true;
     d.live.engine = { mode: 'openai-api', keyConfigured: true, apiVersion: '2.1.284 (Claude Code)', ready: true, reason: '' };
     d.sites.push(site('a', 'kopi.example', 'ID', 'Indonesia'), site('b', 'teh.example', 'MY', 'Malaysia'));
-    for (const id of ['gsc', 'ga4', 'dfs', 'cf']) d.live.ints[id] = cloudflareWire(ints.includes(id), { id, name: id === 'gsc' ? 'Google Search Console' : id === 'ga4' ? 'Google Analytics 4' : id });
+    for (const id of ['gsc', 'ga4', 'dfs', 'ads', 'cf']) d.live.ints[id] = cloudflareWire(ints.includes(id), { id, name: id === 'gsc' ? 'Google Search Console' : id === 'ga4' ? 'Google Analytics 4' : id });
     if (ints.includes('gsc')) d.live.metrics = { at: 1, sites: { a: { clicks28: 1234, impressions28: 45678, position28: 8.4, clicks7: 300, property: 'sc-domain:kopi.example', to: '2026-10-01' } } };
     liveApply(d); serverFactsTo(d); d.live.ready = true;
   });
@@ -368,14 +368,14 @@ describe('search volume in keyword research', () => {
     useStore.setState(d => { d.rctab = 'keywords'; });
     await mount(<Research />);
     expect(heads(section('Keywords') ?? document).some(h => h === 'Volume/mo')).toBe(false);
-    expect(text()).toContain('Search volume is not shown: connect DataForSEO in Integrations to add it.');
+    expect(text()).toContain('Search volume is not shown: connect Google Ads or DataForSEO in Integrations to add it.');
 
     live('editor', ['gsc', 'dfs']);
     put([kw(11, 'cara membuat cold brew', { volume: 1900, competition: 'LOW', volumeAt: 5 }), kw(12, 'rasio cold brew', { volumeAt: 5 })]);
     await mount(<KwResultSheet rid={1} onClose={() => {}} />);
     expect(heads()).toEqual(['Select', 'Keyword', 'Meaning', 'Volume/mo', 'Competition', 'Intent', 'Cluster', 'Why proposed', 'Track', 'Actions']);
     expect(table(document).map(r => [r[1], r[3], r[4]])).toEqual([['cara membuat cold brew', '1,900', 'Low'], ['rasio cold brew', '—', '—']]);
-    expect(text()).toContain('Volume is approximate monthly searches in Indonesia from Google Ads data (DataForSEO).');
+    expect(text()).toContain('Volume is approximate monthly searches in Indonesia (Indonesian) from Google Ads via DataForSEO.');
     useStore.setState(d => { d.rctab = 'keywords'; });
     await mount(<Research />);
     expect(text()).toContain('Search volume comes from DataForSEO');
@@ -398,7 +398,7 @@ describe('search volume in keyword research', () => {
     await click(box);
     await flush();
     expect(calls.filter(c => c.method === 'POST')).toEqual([
-      { method: 'POST', path: '/api/requests/1/volumes', body: {} },
+      { method: 'POST', path: '/api/requests/1/volumes', body: { provider: 'dfs' } },
       { method: 'POST', path: '/api/keywords/12/track', body: { on: true } },
     ]);
     /* A viewer gets neither. */
@@ -409,4 +409,27 @@ describe('search volume in keyword research', () => {
     expect(heads()).not.toContain('Track');
     expect(heads()).toContain('Volume/mo');
   });
+  it('uses Google Ads independently, labels shared groups and refreshes through the selected provider', async () => {
+    live('editor', ['ads']);
+    put([kw(11, 'coffee', { volume: 0, volumeAt: 5, volumeProvider: 'ads', volumeGroup: 'coffee', volumeCountry: 'Malaysia', volumeLanguage: 'English' }), kw(12, 'coffees', { volume: 0, volumeAt: 5, volumeProvider: 'ads', volumeGroup: 'coffee' })]);
+    answers['POST /api/requests/1/volumes'] = () => ({ request: request([]), found: 0, sent: 2 });
+    await mount(<KwResultSheet rid={1} onClose={() => {}} />);
+    expect(text()).toContain('Malaysia (English) from Google Ads directly');
+    expect(text()).toContain('shared group: coffee'); expect(text()).toContain('must not be added together');
+    expect(text()).toContain('Last fetched:'); expect(button('Refresh volumes')).not.toBeNull();
+    await click(button('Refresh volumes')); await flush();
+    expect(calls.find(c => c.path.endsWith('/volumes'))?.body).toEqual({ provider: 'ads' });
+    expect(st().snackMsg?.msg).toBe('No search volume is available for these keywords.');
+  });
+  it('allows choosing DataForSEO while Google Ads is also connected', async () => {
+    live('editor', ['ads', 'dfs']); put([kw(11, 'coffee')]);
+    answers['POST /api/requests/1/volumes'] = () => ({ request: request([]), found: 1, sent: 1 });
+    await mount(<KwResultSheet rid={1} onClose={() => {}} />);
+    const select = document.querySelector<HTMLSelectElement>('select')!;
+    expect(select.value).toBe('ads');
+    await act(async () => { select.value = 'dfs'; select.dispatchEvent(new Event('change', { bubbles: true })); });
+    await click(button('Refresh volumes')); await flush();
+    expect(calls.find(c => c.path.endsWith('/volumes'))?.body).toEqual({ provider: 'dfs' });
+  });
+
 });

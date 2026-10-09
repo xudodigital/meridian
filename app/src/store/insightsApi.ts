@@ -48,7 +48,7 @@ export const insightsApi = {
   ga4: () => apiGet<{ ga4: Ga4OverviewWire }>('/api/ga4').then(r => r.ga4),
   ga4Map: (siteId: string, property: string) => apiSend<{ ga4: Ga4OverviewWire }>('/api/ga4/map', { siteId, property }).then(r => r.ga4),
   ga4Refresh: () => apiSend<{ ga4: Ga4OverviewWire }>('/api/ga4/refresh').then(r => r.ga4),
-  volumes: (rid: number) => apiSend<{ request: ServerRequest; found: number; sent: number }>(`/api/requests/${rid}/volumes`),
+  volumes: (rid: number, provider?: 'ads' | 'dfs') => apiSend<{ request: ServerRequest; found: number; sent: number }>(`/api/requests/${rid}/volumes`, provider ? { provider } : {}),
   track: (keywordId: number, on: boolean) => apiSend<{ request: ServerRequest }>(`/api/keywords/${keywordId}/track`, { on }).then(r => r.request),
 };
 

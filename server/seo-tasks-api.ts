@@ -10,7 +10,8 @@ import { createTask, taskContext, infographicSvg, listTasks, taskKind, taskRow, 
 import { SEO_TASKS } from '../shared/seo-tasks.ts';
 import { siteInfo, addAudit, getDoc } from './workspace.ts';
 import { bus } from './events.ts';
-import { dfsReady } from './dataforseo.ts';
+import { defaultSerpProvider, serpReady } from './serp.ts';
+import { isSerpProvider, SERP_PROVIDERS } from '../shared/serp.ts';
 import { siteSearch } from './metrics.ts';
 import { siteGa4 } from './ga4.ts';
 import { costlyActions, slowDownMessage } from './limits.ts';
@@ -49,7 +50,9 @@ export async function seoTasksApi(req: IncomingMessage, res: ServerResponse, pat
     const kind = b.kind, brief = note(b.brief, kind === 'serp' ? 150 : 3000);
     if (!brief) { json(res, 400, { error: 'Describe the audience, goal or question. SERP research needs one search query.' }); return true; }
     if (SEO_TASKS[kind].needsArticles && !taskContext(site).articles.length) { json(res, 409, { error: 'Write an article first; it must be in review or approved.' }); return true; }
-    if (kind === 'serp' && !dfsReady()) { json(res, 409, { error: 'Connect DataForSEO before SERP research.' }); return true; }
+    if (kind === 'serp' && b.serpProvider !== undefined && b.serpProvider !== 'auto' && !isSerpProvider(b.serpProvider)) { json(res, 400, { error: 'Choose a supported SERP provider.' }); return true; }
+    const serpProvider = kind === 'serp' ? (isSerpProvider(b.serpProvider) ? b.serpProvider : defaultSerpProvider()) : null;
+    if (kind === 'serp' && (!serpProvider || !serpReady(serpProvider))) { json(res, 409, { error: serpProvider ? `Connect ${SERP_PROVIDERS[serpProvider]} before SERP research.` : 'Connect SerpApi or DataForSEO before SERP research.' }); return true; }
     if (kind === 'analysis' && siteSearch(site.id).state !== 'ok' && siteGa4(site).state !== 'ok') { json(res, 409, { error: 'Connect Search Console or GA4 and refresh its data first.' }); return true; }
     if (db.prepare("SELECT id FROM seo_tasks WHERE site_id = ? AND kind = ? AND status IN ('queued', 'work')").get(site.id, kind)) { json(res, 409, { error: 'This task is already waiting or running for the site.' }); return true; }
     const stop = budgetStop(site.id), full = queueFull(site.id);
@@ -60,7 +63,7 @@ export async function seoTasksApi(req: IncomingMessage, res: ServerResponse, pat
     if (!supportedModel(model)) { json(res, 400, { error: 'Choose a supported OpenAI model.' }); return true; }
     if (!(await engineReady())) { json(res, 503, { error: ENGINE_MISSING }); return true; }
     const wait = costlyActions.take('u' + ctx.user.id); if (wait) { json(res, 429, { error: slowDownMessage(wait) }); return true; }
-    const task = createTask(site, kind, brief, model, kind === 'audit' && b.liveAudit === true);
+    const task = createTask(site, kind, brief, model, kind === 'audit' && b.liveAudit === true, serpProvider ?? undefined);
     bus.emit('audit', addAudit(actorOf(ctx), 'Requested ' + SEO_TASKS[kind].title, site.id)); kick(); json(res, 201, { task }); return true;
   }
   json(res, 405, { error: 'Method not allowed.' }); return true;

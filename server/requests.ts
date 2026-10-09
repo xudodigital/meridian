@@ -1,7 +1,9 @@
 // Keyword research requests: how they are shown, run by the job queue, and retried; and the search volume of their
-// keywords, fetched from DataForSEO after the agent's result when that service is connected (dataforseo.ts).
+// keywords, fetched from the configured Google Ads or DataForSEO connector after the agent's result.
 import { db, q, type KeywordRow, type RequestRow } from './db.ts';
-import { cleanKeyword, dfsReady, searchVolumes, type Volume } from './dataforseo.ts';
+import { cleanKeyword, type Volume } from './dataforseo.ts';
+import { defaultVolumeProvider, fetchVolumes } from './volumes.ts';
+import { VOLUME_PROVIDERS, type VolumeProvider } from '../shared/volumes.ts';
 import { runKeywordJob } from './engine.ts';
 import { bus, freshEngine } from './events.ts';
 import type { QueuedJob } from './jobs.ts';
@@ -11,7 +13,7 @@ import { addStep, startSteps, stepsOf } from './steps.ts';
 import { siteInfo, type SiteInfo } from './workspace.ts';
 
 /** A keyword row with the columns added for volumes and rank tracking (schema.ts). */
-export type KeywordFull = KeywordRow & { volume: number | null; competition: string; volume_at: number | null; track: number };
+export type KeywordFull = KeywordRow & { volume: number | null; competition: string; volume_at: number | null; track: number; volume_provider: string; volume_group: string; volume_country: string; volume_lang: string };
 
 export function viewRequest(r: RequestRow) {
   const keywords = r.status === 'done' ? (q.keywordsFor.all(r.id) as KeywordFull[]) : [];
@@ -20,10 +22,10 @@ export function viewRequest(r: RequestRow) {
     requestedBy: r.requested_by, retriedBy: r.retried_by,
     step: r.step, summary: r.summary, notes: r.notes, error: r.error, tokens: r.tokens, costUsd: r.cost_usd,
     createdAt: r.created_at, startedAt: r.started_at, finishedAt: r.finished_at,
-    /* `volume` is null when DataForSEO has no figure for the keyword; `volumeAt` is null when it was never asked. */
+    /* `volume` is null when the data provider has no figure for the keyword; `volumeAt` is null when it was never asked. */
     keywords: keywords.map(k => ({
       id: k.id, keyword: k.keyword, meaning: k.meaning, intent: k.intent, cluster: k.cluster, basis: k.basis,
-      volume: k.volume ?? null, competition: k.competition ?? '', volumeAt: k.volume_at ?? null, track: !!k.track,
+      volume: k.volume ?? null, competition: k.competition ?? '', volumeAt: k.volume_at ?? null, volumeProvider: k.volume_provider || (k.volume_at ? 'dfs' : ''), volumeGroup: k.volume_group || '', volumeCountry: k.volume_country || r.country, volumeLanguage: k.volume_lang || r.lang, track: !!k.track,
     })),
     steps: stepsOf('request', r.id),
   };
@@ -34,7 +36,7 @@ export type RequestView = ReturnType<typeof viewRequest>;
 const failed = db.prepare(`UPDATE requests SET status = 'failed', step = '', error = ?, tokens = ?, cost_usd = ?, finished_at = ? WHERE id = ?`);
 const waiting = db.prepare(`SELECT * FROM requests WHERE status = 'queued' ORDER BY id ASC LIMIT 100`);
 const qv = {
-  volume: db.prepare('UPDATE keywords SET volume = ?, competition = ?, volume_at = ? WHERE id = ?'),
+  volume: db.prepare('UPDATE keywords SET volume = ?, competition = ?, volume_at = ?, volume_provider = ?, volume_group = ?, volume_country = ?, volume_lang = ? WHERE id = ?'),
   track: db.prepare('UPDATE keywords SET track = ? WHERE id = ?'),
   keyword: db.prepare('SELECT * FROM keywords WHERE id = ?'),
 };
@@ -43,43 +45,44 @@ const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? '' : 's'}`;
 
 /* ---------- Search volume ---------- */
 
-type Volumes = { at: number; volumes: Map<string, Volume>; found: number; sent: number; cost: number };
+type Volumes = { at: number; volumes: Map<string, Volume>; found: number; sent: number; cost: number; provider: VolumeProvider; country: string; language: string };
 
 /**
- * Asks DataForSEO for the volumes of a request's keywords, in one batch, for the site's country and language (the
- * saved site's; the request's own when the site is gone). The cost DataForSEO states is written to the spend ledger
+ * Asks the chosen data provider for the volumes of a request's keywords, in one batch, for the site's country and language (the
+ * saved site's; the request's own when the site is gone). Any provider charge is written to the spend ledger
  * as a run of the Keyword agent that used no tokens. Throws a ServiceError with a message fit to show.
  */
-async function volumesOf(r: RequestRow, keywords: string[]): Promise<Volumes> {
+async function volumesOf(r: RequestRow, keywords: string[], provider?: VolumeProvider): Promise<Volumes> {
   const site = siteInfo(r.site_id), startedAt = Date.now();
-  const res = await searchVolumes({ cc: site?.cc ?? '', country: site?.country || r.country, lang: site?.lang || r.lang }, keywords);
+  const country = site?.country || r.country, language = site?.lang || r.lang;
+  const res = await fetchVolumes({ cc: site?.cc ?? '', country: site?.country || r.country, lang: site?.lang || r.lang }, keywords, provider);
   const at = Date.now();
-  if (res.sent) recordRun({ kind: 'request', jobId: r.id, siteId: r.site_id, agent: 'Keyword', model: 'DataForSEO search volume', startedAt, endedAt: at, tokens: 0, costUsd: res.cost, outcome: 'ok' });
-  return { at, volumes: res.volumes, found: [...res.volumes.values()].filter(v => v.volume !== null).length, sent: res.sent, cost: res.cost };
+  if (res.sent) recordRun({ kind: 'request', jobId: r.id, siteId: r.site_id, agent: 'Keyword', model: VOLUME_PROVIDERS[res.provider] + ' search volume', startedAt, endedAt: at, tokens: 0, costUsd: res.cost, outcome: 'ok' });
+  return { at, volumes: res.volumes, found: [...res.volumes.values()].filter(v => v.volume !== null).length, sent: res.sent, cost: res.cost, provider: res.provider, country, language };
 }
 /** Writes the volumes to the request's keyword rows: every keyword was asked for, so each gets the time. */
 function saveVolumes(requestId: number, v: Volumes): void {
   for (const k of q.keywordsFor.all(requestId) as KeywordFull[]) {
     const hit = v.volumes.get(cleanKeyword(k.keyword) ?? '');
-    qv.volume.run(hit?.volume ?? null, hit?.competition ?? '', v.at, k.id);
+    qv.volume.run(hit?.volume ?? null, hit?.competition ?? '', v.at, v.provider, hit?.group ?? '', v.country, v.language, k.id);
   }
 }
 const volumeNote = (v: Volumes): string =>
-  `Search volume is Google Ads data from DataForSEO for ${plural(v.sent, 'keyword')}${v.found < v.sent ? `; ${v.found ? `only ${v.found} ${v.found === 1 ? 'has' : 'have'}` : 'none has'} a figure` : ''}.`;
+  `Search volume is Google Ads data from ${VOLUME_PROVIDERS[v.provider]} for ${plural(v.sent, 'keyword')}${v.found < v.sent ? `; ${v.found ? `only ${v.found} ${v.found === 1 ? 'has' : 'have'}` : 'none has'} a figure` : ''}.`;
 
 /**
  * "Refresh volumes" on a finished request. Resolves to the request as it is now, or to why it could not be done
  * (with the HTTP status to answer). The site's daily budget is a stop here as for any paid job.
  */
-export async function refreshVolumes(id: number): Promise<{ ok: true; request: RequestView; found: number; sent: number } | { ok: false; status: number; error: string }> {
+export async function refreshVolumes(id: number, provider?: VolumeProvider): Promise<{ ok: true; request: RequestView; found: number; sent: number } | { ok: false; status: number; error: string }> {
   const r = q.getRequest.get(id) as RequestRow | undefined;
   if (!r) return { ok: false, status: 404, error: 'Not found.' };
   if (r.status !== 'done') return { ok: false, status: 409, error: 'Volumes can be refreshed once the research is finished.' };
-  if (!dfsReady()) return { ok: false, status: 409, error: 'Connect DataForSEO in Integrations to see search volume.' };
+  if (!provider && !defaultVolumeProvider()) return { ok: false, status: 409, error: 'Connect Google Ads or DataForSEO in Integrations to see search volume.' };
   const keywords = (q.keywordsFor.all(id) as KeywordFull[]).map(k => k.keyword);
   if (!keywords.length) return { ok: false, status: 409, error: 'This research has no keywords.' };
   try {
-    const v = await volumesOf(r, keywords);
+    const v = await volumesOf(r, keywords, provider);
     /* The request may have been queued again meanwhile: its keywords are gone, and the new run fetches its own. */
     if ((q.getRequest.get(id) as RequestRow | undefined)?.status !== 'done') return { ok: false, status: 409, error: 'The research is running again; its new result gets volumes by itself.' };
     saveVolumes(id, v);
@@ -117,10 +120,10 @@ async function runRequest(r: RequestRow, signal: AbortSignal): Promise<void> {
     const result = await metered({ kind: 'request', jobId: r.id, siteId: r.site_id, agent: 'Keyword' }, () => runKeywordJob(r, engine, step, signal), used);
     /* Volumes are an extra: when they cannot be had, the research is still saved and the notes say why. */
     let vol: Volumes | null = null, volNote = '';
-    if (dfsReady() && result.keywords.length) {
+    if (defaultVolumeProvider() && result.keywords.length) {
       if (budgetHeld(r.site_id)) volNote = 'Search volume was not fetched: the site has used its daily budget. Use "Refresh volumes" tomorrow.';
       else {
-        step('Fetching search volume from DataForSEO');
+        step('Fetching search volume from ' + VOLUME_PROVIDERS[defaultVolumeProvider()!]);
         try { vol = await volumesOf(r, result.keywords.map(k => k.keyword)); volNote = volumeNote(vol); }
         catch (e) {
           if (!(e instanceof ServiceError)) throw e;

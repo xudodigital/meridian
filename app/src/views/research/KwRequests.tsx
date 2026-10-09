@@ -67,17 +67,18 @@ export function KwRequests() {
 /** "Live mode" when OpenAI is signed in, otherwise how to sign it in, with the "Check again" action (eng-refresh). */
 function EngineCallout({ engine }: { engine: EngineStatus | null }) {
   const dfs = useStore(st => usableInt(st, 'dfs'));
+  const ads = useStore(st => usableInt(st, 'ads'));
   if (engine?.ready && engine.mode !== 'none') {
     return (
       <Callout icon="bolt" info>
-        <b>Live mode.</b> {'Requests are done by the Keyword agent through ' + (engine.mode === 'codex-local' ? 'Codex local (ChatGPT usage limits)' : 'OpenAI Responses API') + '. ' + (dfs ? 'Search volume comes from DataForSEO (Google Ads data) after each research; keyword difficulty is not shown.' : 'Search volume is not shown: connect DataForSEO in Integrations to add it. Keyword difficulty is not shown.')}
+        <b>Live mode.</b> {'Requests are done by the Keyword agent through ' + (engine.mode === 'gemma-local' ? 'Gemma localhost (Ollama)' : engine.mode === 'codex-local' ? 'Codex local (ChatGPT usage limits)' : 'OpenAI Responses API') + '. ' + (ads ? 'Search volume comes directly from Google Ads after research; keyword difficulty is not shown.' : dfs ? 'Search volume comes from DataForSEO (Google Ads data) after each research; keyword difficulty is not shown.' : 'Search volume is not shown: connect Google Ads or DataForSEO in Integrations to add it. Keyword difficulty is not shown.')}
       </Callout>
     );
   }
   const check = () => { if (useStore.getState().guard()) void refreshEngine(); };
   return (
     <Callout icon="key_off" warn>
-      {engine?.mode === 'codex-local' ? <><b>Codex local is not ready.</b> {engine.reason || 'Sign in to Codex on this computer, then check again.'}</> : <><b>OpenAI is not connected.</b> Add and test the API key in Integrations, then try again. Until then requests are refused, so nothing is made up.</>}{' '}
+      {engine?.mode === 'gemma-local' ? <><b>Gemma localhost is not ready.</b> {engine.reason || 'Configure Ollama in Integrations.'}</> : engine?.mode === 'codex-local' ? <><b>Codex local is not ready.</b> {engine.reason || 'Sign in to Codex on this computer, then check again.'}</> : <><b>OpenAI is not connected.</b> Add and test the API key in Integrations, then try again. Until then requests are refused, so nothing is made up.</>}{' '}
       <Button variant="text" size="sm" onClick={check}>Check again</Button>
     </Callout>
   );
@@ -102,7 +103,7 @@ function SimTable({ list }: { list: KwRequest[] }) {
 }
 
 function LiveTable({ list, onOpen }: { list: KwRequest[]; onOpen: (rid: number) => void }) {
-  const doneBy = (r: KwRequest) => r.engine === 'codex-local' ? 'Codex local' : r.engine === 'openai-api' ? 'OpenAI' : '';
+  const doneBy = (r: KwRequest) => r.engine === 'gemma-local' ? 'Gemma localhost' : r.engine === 'codex-local' ? 'Codex local' : r.engine === 'openai-api' ? 'OpenAI' : '';
   const action = (r: KwRequest) => {
     const rid = r.rid;
     if ((r.st !== 'done' && r.st !== 'failed') || rid == null) return null;

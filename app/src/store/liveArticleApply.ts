@@ -65,7 +65,7 @@ function logJob(s: Target, a: ServerArticle, hue: number): void {
       steps: failed ? ['Started the article', 'Stopped: ' + a.error] : [
         'Loaded the site profile and the article-writing and google-seo skills',
         revised ? 'Read the previous version and the reviewer\'s note' : 'Read the keyword: ' + a.keyword,
-        a.engine === 'codex-local' ? 'Ran through Codex local' : 'Ran through OpenAI Responses API',
+        a.engine === 'gemma-local' ? 'Ran through Gemma localhost (Ollama)' : a.engine === 'codex-local' ? 'Ran through Codex local' : 'Ran through OpenAI Responses API',
         'Cited ' + n + ' source' + (n === 1 ? '' : 's'),
         'Sent the article to Article review',
       ],

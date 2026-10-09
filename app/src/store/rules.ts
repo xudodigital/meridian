@@ -89,7 +89,13 @@ export const openaiReady = (s: S<'live'>): boolean => s.live.on && s.live.engine
 /** A usable runtime, including the explicitly enabled local Codex CLI. */
 export const engineReady = (s: S<'live'>): boolean => s.live.on && !!s.live.engine?.ready && s.live.engine.mode !== 'none';
 export const codexLocal = (s: S<'live'>): boolean => s.live.on && s.live.engine?.mode === 'codex-local';
-export const runtimeModel = (s: S<'live'>, apiModel: string): string => codexLocal(s) ? s.live.engine?.model || 'Local runtime model' : apiModel;
+/** Both locally selected engines keep API model defaults intact. Codex still calls the Codex service. */
+export const localRuntime = (s: S<'live'>): boolean => s.live.on && ['codex-local','gemma-local'].includes(s.live.engine?.mode || '');
+export const showBudget = (s: S<'live' | 'sample'>): boolean => s.sample || !localRuntime(s) || !!s.live.ints.dfs?.updatedAt;
+export const showCosts = (s: S<'live' | 'sample'>): boolean => s.sample || !localRuntime(s);
+export const engineName = (mode: string | null | undefined): string => mode === 'gemma-local' ? 'Gemma localhost' : mode === 'codex-local' ? 'Codex local' : mode === 'openai-api' || mode === 'none' ? 'OpenAI' : 'AI runtime';
+export const runtimeUsage = (s: S<'live'>): string => s.live.engine?.mode === 'gemma-local' ? 'Runs on this computer.' : codexLocal(s) ? 'Uses ChatGPT usage limits.' : 'Uses your OpenAI API quota.';
+export const runtimeModel = (s: S<'live'>, apiModel: string): string => localRuntime(s) ? s.live.engine?.model || 'Local runtime model' : apiModel;
 /** Agents can run on the provider: it has a key saved, or the server confirmed its environment key. */
 export const provOK = (s: S<'ints' | 'live'>, id: string): boolean => (id === 'openai' && s.live.on && s.live.engine ? engineReady(s) : !!s.ints.find(x => x.id === id && x.st !== 'bad')?.tail);
 /** Agents can run on the agent's provider. */
@@ -282,7 +288,7 @@ export function setupSteps(s: S<'live' | 'sites' | 'session'>): SetupStep[] {
   const int = (id: SetupStepId, key: string, title: string, hint: string): SetupStep =>
     ({ id, title, hint: admin ? hint : hint + ' Ask an admin: Integrations is an admin screen.', done: connected(key), to: admin ? 'integrations' : null, action: 'Open Integrations' });
   return [
-    { id: 'engine', title: codexLocal(s) ? 'Connect Codex local' : 'Connect OpenAI', hint: codexLocal(s) ? 'Sign in to Codex on this computer, then check the runtime.' : 'Add and test the OpenAI API key in Integrations.', done: engineReady(s), to: 'integrations', action: 'Open Integrations' },
+    { id: 'engine', title: 'Connect ' + engineName(s.live.engine?.mode), hint: localRuntime(s) ? 'Configure and check the selected engine in Integrations.' : 'Add and test the OpenAI API key in Integrations.', done: engineReady(s), to: 'integrations', action: 'Open Integrations' },
     { id: 'site', title: 'Add your first site', hint: 'One domain per country, with its language and topic.', done: s.sites.length > 0, to: 'sites', action: 'Open Sites' },
     { id: 'verify', title: 'Verify you own the domain', hint: 'Add the DNS TXT record shown in Sites, then choose Verify.', done: Object.values(L.verify).some(v => !!v.verifiedAt && mine(v.siteId, v.domain)), to: 'sites', action: 'Open Sites' },
     { id: 'research', title: 'Run the first keyword research', hint: 'Send the Keyword agent a topic for a site.', done: Object.values(L.reqs).some(r => r.status === 'done'), to: 'keywords', action: 'Open Keywords' },

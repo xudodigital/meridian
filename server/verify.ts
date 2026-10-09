@@ -1,7 +1,7 @@
 // Domain ownership by a DNS TXT record: the admin adds _meridian.<domain> with the value Meridian shows, and Meridian
 // looks it up on public resolvers. The value is derived from the server's key (vault.ts), so it stays the same for a
 // site and cannot be guessed by someone else.
-import { Resolver } from 'node:dns/promises';
+import { lookupPublicTxt } from './dns-txt.ts';
 import { db } from './db.ts';
 import { derive } from './vault.ts';
 import { siteInfo, siteList } from './workspace.ts';
@@ -27,11 +27,7 @@ export function verifyViews(): VerifyView[] {
 }
 
 type TxtLookup = (name: string) => Promise<string[][]>;
-let lookup: TxtLookup = name => {
-  const r = new Resolver({ timeout: 5000, tries: 2 });
-  r.setServers((process.env.MERIDIAN_DNS_SERVERS || '1.1.1.1,8.8.8.8').split(','));
-  return r.resolveTxt(name);
-};
+let lookup: TxtLookup = lookupPublicTxt;
 /** Tests replace the DNS lookup. */
 export const setTxtLookup = (fn: TxtLookup) => { lookup = fn; };
 

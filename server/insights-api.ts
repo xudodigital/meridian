@@ -12,6 +12,7 @@ import { budgetStop } from './ledger.ts';
 import { costlyActions, slowDownMessage } from './limits.ts';
 import { siteSearch } from './metrics.ts';
 import { rankEffects, siteRank } from './rank.ts';
+import { isVolumeProvider } from '../shared/volumes.ts';
 import { refreshVolumes, trackKeyword } from './requests.ts';
 import { addAudit, siteInfo, siteList } from './workspace.ts';
 
@@ -95,7 +96,9 @@ export async function insightsApi(req: IncomingMessage, res: ServerResponse, pat
     if (!r) { json(res, 404, { error: 'Not found.' }); return true; }
     const stop = budgetStop(r.site_id);
     if (stop) { json(res, 409, { error: stop }); return true; }
-    const done = await refreshVolumes(r.id);
+    const input = await body(req);
+    if (input.provider !== undefined && !isVolumeProvider(input.provider)) { json(res, 400, { error: 'Choose Google Ads or DataForSEO for keyword volume.' }); return true; }
+    const done = await refreshVolumes(r.id, input.provider as 'ads' | 'dfs' | undefined);
     if (!done.ok) { json(res, done.status, { error: done.error }); return true; }
     audit(`Refreshed search volume for the research: ${r.topic}`, r.site_id);
     json(res, 200, { request: done.request, found: done.found, sent: done.sent });

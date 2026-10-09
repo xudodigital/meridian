@@ -1,8 +1,9 @@
 import { Button, Empty } from '@/components';
 import { go } from '@/nav';
-import { codexLocal } from '@/store/rules';
+import { codexLocal, showCosts } from '@/store/rules';
 import { heldJobs, usd } from '@/store/spend';
 import { useStore, useStoreShallow } from '@/store/store';
+import { LocalOverview } from './LocalOverview';
 import { Scatter } from './Scatter';
 import { AgentTokens, Attention, BudgetCard, Card, Compare, Kpis, TopSites } from './parts';
 import { MIN_GUIDES, agentShares, agentUse, budgetOf, centreMode, insights, plotted, siteRows, totals } from './model';
@@ -17,6 +18,7 @@ import './analytics.css';
 export function Overview() {
   const [sites, siteFilter, sample, live, settings, agents] = useStoreShallow(s => [s.sites, s.siteFilter, s.sample, s.live, s.settings, s.agents] as const);
   const gsc = useStore(s => s.sample || !!s.ints.find(x => x.id === 'gsc')?.tail);
+  const costs = useStore(showCosts);
   const admin = useStore(s => s.session?.role === 'admin');
   const local = !sample && codexLocal({live});
   const state = { sites, siteFilter, sample, live, settings, agents };
@@ -28,6 +30,7 @@ export function Overview() {
   const lede = <p className="lede">How the sites compare: clicks from Search Console, and what the agents used and spent.</p>;
   const connect = !gsc && admin ? <Button variant="tonal" icon="extension" onClick={() => go('integrations')}>Connect Search Console</Button> : undefined;
 
+  if (!costs) return <LocalOverview />;
   if (!rows.length) {
     return (
       <>

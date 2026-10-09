@@ -46,7 +46,7 @@ export function LiveArticleDetail({ a, live }: { a: Article; live: LiveArticle }
         <Tag icon="translate">{live.lang}</Tag>
         <Tag icon="key">{a.kw}</Tag>
         <Tag icon="history">Revision {a.rev}</Tag>
-        {live.engine === 'codex-local' ? <Tag icon="smart_toy">Codex local</Tag> : live.engine === 'openai-api' ? <Tag icon="smart_toy">OpenAI</Tag> : null}
+        {live.engine === 'gemma-local' ? <Tag icon="smart_toy">Gemma localhost</Tag> : live.engine === 'codex-local' ? <Tag icon="smart_toy">Codex local</Tag> : live.engine === 'openai-api' ? <Tag icon="smart_toy">OpenAI</Tag> : null}
         <Pill kind={kind} live={busy}>{label}</Pill>
         {a.archived ? <Pill kind="mut">Archived</Pill> : null}
       </div>

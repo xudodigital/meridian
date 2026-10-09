@@ -46,8 +46,8 @@ function AddSiteForm({ onClose }: { onClose: () => void }) {
       <Fields>
         <Field label="Domain" wide><input type="text" id="sdDomain" required placeholder="domain-f.example" value={domain} onChange={e => setDomain(e.target.value)} /></Field>
         <Field label="Target country"><Select id="sdCountry" label="Target country" value={country < 0 ? '' : String(country)} options={sample ? COUNTRY_OPTIONS : [{ value: '', label: 'Choose a country' }, ...COUNTRY_OPTIONS]} onChange={pickCountry} /></Field>
-        <Field label="Content language"><input type="text" id="sdLang" required value={lang} onChange={e => setLang(e.target.value)} /></Field>
-        <Field label="Site topic" wide><input type="text" id="sdTopic" required placeholder="Home cooking recipes" value={topic} onChange={e => setTopic(e.target.value)} /></Field>
+        <Field label="Content language"><input type="text" id="sdLang" required maxLength={120} value={lang} onChange={e => setLang(e.target.value)} /></Field>
+        <Field label="Site topic" wide><input type="text" id="sdTopic" required maxLength={120} aria-describedby="site-topic-hint" placeholder="Home cooking recipes" value={topic} onChange={e => setTopic(e.target.value)} /><span id="site-topic-hint" className="note">One line, up to 120 characters.</span></Field>
         {sample ? null : (
           <Field label="Status" wide>
             <Select id="sdStatus" label="Status" value={status} options={STATUS_OPTIONS} onChange={v => { const o = STATUS_OPTIONS.find(x => x.value === v); if (o) setStatus(o.value); }} />

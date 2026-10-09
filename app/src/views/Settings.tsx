@@ -1,5 +1,5 @@
 import { Field, Fields, Info, Select, SwitchRow } from '@/components';
-import { codexLocal } from '@/store/rules';
+import { showBudget } from '@/store/rules';
 import { useStore } from '@/store/store';
 import type { SystemSettingKey } from '@/store/slices/system';
 import type { QuietId, Settings as SettingsT, TimeoutId } from '@/store/types';
@@ -28,7 +28,7 @@ const timeouts = (sample: boolean, current: TimeoutId) => TIMEOUT.filter(o => o.
  * (the server runs one job at a time, and nothing reaches a site without an approved article and website build).
  */
 export function Settings() {
-  const local = useStore(codexLocal);
+  const costs = useStore(showBudget);
   const settings = useStore(s => s.settings);
   const setSystemSetting = useStore(s => s.setSystemSetting);
   const admin = useStore(s => s.session?.role === 'admin');
@@ -38,16 +38,16 @@ export function Settings() {
   const setTimeoutId = (v: string) => { const o = TIMEOUT.find(x => x.value === v); if (o) setSystemSetting('timeout', o.value); };
   return (
     <>
-      <p className="lede">Budgets, approvals, alerts and account security.</p>
-      <section>
+      <p className="lede">{costs ? 'Budgets, approvals, alerts and account security.' : 'Approvals, alerts and account security.'}</p>
+      {costs ? <section>
         <h2>Limits</h2>
         <Fields>
           <NumberSetting k="budget" label="Daily budget per site (USD)" />
           {sample ? <NumberSetting k="parallel" label="Maximum parallel workers" /> : null}
         </Fields>
-        {sample ? null : <p className="note">{local ? 'The budget covers recorded API and service costs. Codex subscription usage has separate ChatGPT limits.' : 'New jobs pause when the daily limit is reached.'}</p>}
+        {sample ? null : <p className="note">{'New jobs pause when the daily limit is reached.'}</p>}
         {sample ? null : <Info label="Budget rules"><p>Waiting jobs resume at local midnight or when you raise the limit. Alerts appear at 80% and when work stops. Jobs run one at a time. The limit checks spend before a job starts; a call already running can exceed the remaining budget. Provider invoices remain authoritative.</p></Info>}
-      </section>
+      </section> : null}
       <section>
         <h2>Human approval</h2>
         {sample ? sw('apPublish', 'Require approval before content publishes') : <p className="note">Articles always need human approval before a build.</p>}

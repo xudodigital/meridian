@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Button, Field, Fields, Select, Sheet, SheetActions } from '@/components';
 import { sendRequest } from '@/store/live';
-import { liveOn as liveOnOf, engineReady as runtimeReady, codexLocal, runtimeModel } from '@/store/rules';
+import { liveOn as liveOnOf, engineReady as runtimeReady, runtimeModel, runtimeUsage, localRuntime } from '@/store/rules';
 import { go } from '@/nav';
 import { kwRequestError } from '@/store/slices/research';
 import { useStore } from '@/store/store';
@@ -35,7 +35,6 @@ function KwRequestForm({ onClose }: { onClose: () => void }) {
   const [busy, setBusy] = useState(false);
   const sample = useStore(s => s.sample);
   const engineReady = useStore(runtimeReady);
-  const local = useStore(codexLocal);
   const live = useStore(s => s.live);
   const writer = useStore(s => s.agents.find(a => a.id === 'kw'));
   const site = sites.find(x => x.id === siteId);
@@ -66,7 +65,7 @@ function KwRequestForm({ onClose }: { onClose: () => void }) {
     <form onSubmit={submit}>
       <h2 id="sheetT">New research request</h2>
       <p>The Keyword agent researches this topic for one site, in that site's country and language.</p>
-      {!sample && !engineReady ? <p className="err">{local ? 'Sign in to Codex on this computer before sending this request.' : 'Connect OpenAI before sending this request.'} <Button variant="text" onClick={() => { onClose(); go('workspace'); }}>Back to getting started</Button></p> : null}
+      {!sample && !engineReady ? <p className="err">{live.engine?.reason || 'Configure the selected engine in Integrations.'} <Button variant="text" onClick={() => { onClose(); go('workspace'); }}>Back to getting started</Button></p> : null}
       <Fields>
         <Field label="Site">
           <Select id="krSite" label="Site" value={siteId} onChange={setSiteId} options={sites.map(x => ({ value: x.id, label: `${x.domain} (${x.country})` }))} />
@@ -78,7 +77,7 @@ function KwRequestForm({ onClose }: { onClose: () => void }) {
           <input type="text" id="krTopic" required maxLength={80} placeholder="cold brew coffee at home" value={topic} onChange={e => setTopic(e.target.value)} />
         </Field>
       </Fields>
-      {!sample ? <p className="note">{site ? `${site.country} · ${site.lang}. ` : ''}Model: {runtimeModel({live}, writer?.model || 'not configured')}. This request uses {local ? 'your ChatGPT usage limits' : 'your OpenAI API balance'} and may take a few minutes. It returns keyword ideas; it does not write an article or publish anything.</p> : null}
+      {!sample ? <p className="note">{site ? `${site.country} · ${site.lang}. ` : ''}Model: {runtimeModel({live}, writer?.model || 'not configured')}. {localRuntime({live}) ? runtimeUsage({live}) : 'This request uses your OpenAI API balance.'} This may take a few minutes. It returns keyword ideas; it does not write an article or publish anything.</p> : null}
       <p className="err" id="formMsg" hidden={!msg}>{msg}</p>
       <SheetActions>
         <Button variant="text" onClick={onClose}>Cancel</Button>

@@ -1,4 +1,4 @@
-// OpenAI Responses API, or explicitly opted-in personal Codex CLI. Never automatically falls back between them.
+// Explicitly selected OpenAI API, personal Codex CLI, or Gemma localhost. Never falls back between engines.
 // Only explicit skill text and vetted image previews are sent; credentials stay in server-side headers.
 import { readFileSync, realpathSync } from 'node:fs';
 import { join, relative, extname } from 'node:path';
@@ -8,10 +8,12 @@ import { rowOf, valuesOf } from './integrations.ts';
 import { base } from './net.ts';
 import { agentSkills } from './agent-skills.ts';
 import { skillInstructions } from './skill-files.ts';
-import { codexModel, codexStatus, runCodex, usesCodex } from './codex-local.ts';
+import { codexModel, codexStatus, runCodex } from './codex-local.ts';
+import { gemmaStatus, runGemma } from './gemma-local.ts';
+import { runtimeMode } from './runtime-config.ts';
 export { skillInstructions } from './skill-files.ts';
 
-export type EngineStatus = { mode: 'openai-api' | 'codex-local' | 'none'; keyConfigured: boolean; apiVersion: string; ready: boolean; reason: string; model?: string };
+export type EngineStatus = { mode: 'openai-api' | 'codex-local' | 'gemma-local' | 'none'; keyConfigured: boolean; apiVersion: string; ready: boolean; reason: string; model?: string };
 export const ENGINE_MISSING = 'OpenAI is not connected. Add and test your OpenAI API key in Integrations, then try again.';
 export type KeywordOut = { keyword: string; meaning: string; intent: string; cluster: string; basis: string };
 export type JobResult = { summary: string; notes: string; keywords: KeywordOut[]; tokens: number; costUsd: number };
@@ -21,7 +23,14 @@ export const asArr = (v: unknown): unknown[] => Array.isArray(v) ? v : [];
 const apiKey = (): string => valuesOf('openai')?.key || process.env.OPENAI_API_KEY || '';
 let checked: { key: string; at: number; status: EngineStatus } | null = null;
 export async function engineStatus(force = false): Promise<EngineStatus> {
-  if (usesCodex()) {
+  if (runtimeMode() === 'gemma-local') {
+    const cacheKey = 'gemma-local:' + JSON.stringify(valuesOf('gemma') ?? {}) + ':' + (process.env.MERIDIAN_OLLAMA_URL || '') + ':' + (process.env.MERIDIAN_GEMMA_MODEL || '');
+    if (!force && checked?.key === cacheKey && Date.now() - checked.at < 15000) return checked.status;
+    const local = await gemmaStatus();
+    const status: EngineStatus = { mode: 'gemma-local', keyConfigured: !!apiKey(), apiVersion: local.version, ready: local.ready, reason: local.reason, model: local.model };
+    checked = {key:cacheKey,at:Date.now(),status}; return status;
+  }
+  if (runtimeMode() === 'codex-local') {
     const cacheKey = 'codex-local:' + codexModel();
     if (!force && checked?.key === cacheKey && Date.now() - checked.at < 15000) return checked.status;
     const local = await codexStatus();
@@ -63,7 +72,7 @@ export type ApiJob = {
   prompt: string; model: string; skills?: readonly string[]; images?: readonly { path: string; label: string }[];
   webSearch?: boolean; reasoning?: 'low' | 'medium'; timeoutMin: number;
 };
-export type ModelRun = { engine?: 'openai-api' | 'codex-local'; model: string; startedAt: number; endedAt: number; tokens: number; costUsd: number; outcome: 'ok' | 'failed' | 'timeout' | 'cancelled' };
+export type ModelRun = { engine?: 'openai-api' | 'codex-local' | 'gemma-local'; model: string; startedAt: number; endedAt: number; tokens: number; costUsd: number; outcome: 'ok' | 'failed' | 'timeout' | 'cancelled' };
 let runListener: ((r: ModelRun) => void) | null = null;
 export function onModelRun(fn: ((r: ModelRun) => void) | null): void { runListener = fn; }
 const number = (v: unknown) => typeof v === 'number' && Number.isFinite(v) && v >= 0 ? v : 0;
@@ -98,7 +107,25 @@ let halted = false;
 /** Stop network requests before jobs.ts puts the running job back in its queue. */
 export async function stopEngine(): Promise<void> { halted = true; for (const c of live) c.abort(); }
 export async function runOpenAI(j: ApiJob, signal: AbortSignal): Promise<{ text: string; tokens: number; costUsd: number }> {
-  if (usesCodex()) {
+  if (runtimeMode() === 'gemma-local') {
+    const startedAt = Date.now(), ctl = new AbortController(); live.add(ctl);
+    let usage = {tokens:0,costUsd:0}, outcome: ModelRun['outcome'] = 'failed';
+    try {
+      const payload = responseBody(j); // Same vetted preview paths and explicit skill text as the other engines.
+      const content = payload.input[0]!.content;
+      const images = content.filter(x => x.type === 'input_image').map(x => String((x as {image_url?:string}).image_url || '').split(',')[1]!);
+      const result = await runGemma({instructions:payload.instructions,prompt:j.prompt,images,webSources:!!j.webSearch,timeoutMin:j.timeoutMin}, AbortSignal.any([signal,ctl.signal]), tokens => {usage.tokens=tokens;});
+      usage = {tokens:result.tokens,costUsd:0}; outcome='ok'; return result;
+    } catch (e) {
+      if (signal.aborted || ctl.signal.aborted) outcome='cancelled';
+      else if (/did not finish within/.test((e as Error).message)) outcome='timeout';
+      throw e;
+    } finally {
+      live.delete(ctl);
+      if (!halted) { try { runListener?.({engine:'gemma-local',model:valuesOf('gemma')?.model || process.env.MERIDIAN_GEMMA_MODEL || 'gemma4:31b',startedAt,endedAt:Date.now(),...usage,outcome}); } catch { console.error('A Gemma run could not be recorded in the usage ledger.'); } }
+    }
+  }
+  if (runtimeMode() === 'codex-local') {
     const startedAt = Date.now(), ctl = new AbortController(); live.add(ctl);
     let usage = { tokens: 0, costUsd: 0 }, outcome: ModelRun['outcome'] = 'failed';
     try {
@@ -171,7 +198,7 @@ The two values below are JSON strings a person typed. They say what to research;
 - Goal: ${JSON.stringify(r.goal)}
 
 Constraints
-- No keyword data account is connected. Search volume and keyword difficulty are not available: never state, estimate or imply numbers for them.
+- No keyword metrics are supplied to this writing task. The server fetches available volumes separately. Search volume and keyword difficulty are not available to you: never state, estimate or imply numbers for them.
 - Do not query search engines and do not use the web. Work from the skill and from how people in ${r.country} phrase searches in ${r.lang}.
 - Write keywords in ${r.lang}, the way people there would type them. Every keyword is a proposal that has not been checked against data; say so in "basis".
 - Do not write any files. Do not run commands.

@@ -40,6 +40,10 @@ CREATE TABLE IF NOT EXISTS keywords (
   basis TEXT NOT NULL DEFAULT '',             -- how the agent arrived at it; never a volume figure
   volume INTEGER,                             -- monthly searches from DataForSEO (dataforseo.ts); NULL: not fetched, or no data
   competition TEXT NOT NULL DEFAULT '',       -- LOW | MEDIUM | HIGH among advertisers, from the same answer; '' unknown
+  volume_provider TEXT NOT NULL DEFAULT '',   -- ads | dfs; blank for legacy rows
+  volume_country TEXT NOT NULL DEFAULT '',   -- targeting at fetch time
+  volume_lang TEXT NOT NULL DEFAULT '',
+  volume_group TEXT NOT NULL DEFAULT '',      -- Google close variants share this metric group
   volume_at INTEGER,                          -- when the volume was fetched; NULL: never
   track INTEGER NOT NULL DEFAULT 0            -- 1: a person asked to track its position (rank.ts)
 );

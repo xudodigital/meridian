@@ -70,17 +70,17 @@ describe('toArticle through liveApply', () => {
 });
 
 describe('the Content Writer, Run history and notifications', () => {
-  it('shows the running job on the Content Writer, and frees it when the job ends', () => {
+  it('shows the running job on the Content Writer, then waits for human review', () => {
     const s = withSite();
     live(s, [serverArticle(5, { status: 'work', step: 'Reading the skills', content: null, finishedAt: null })]);
     expect(s.agents.find(a => a.id === 'wr')).toMatchObject({ live: true, liveReq: 5, status: 'work', site: 'a', task: 'Writing an article: cà phê phin', progress: 4 });
     liveArticleTo(s, serverArticle(5, { status: 'work', pendingNote: 'Shorter.', siteId: 'gone' }));
     expect(s.agents.find(a => a.id === 'wr')).toMatchObject({ task: 'Revising an article: cà phê phin', site: null });
-    /* The finished job shows for a moment, then the Content Writer rests. */
+    /* The finished job shows briefly, then the writer waits for human review. */
     liveArticleTo(s, serverArticle(5), T_ART + 100_000);
     expect(s.agents.find(a => a.id === 'wr')).toMatchObject({ live: false, status: 'idle', task: 'Revising an article: cà phê phin', progress: 100, ended: { ok: true, note: 'Sent to Article review', until: T_ART + 104_000 } });
     liveApply(s, T_ART + 104_000);
-    expect(s.agents.find(a => a.id === 'wr')).toMatchObject({ live: false, status: 'idle', task: 'Waiting for a task', progress: 0, ended: null });
+    expect(s.agents.find(a => a.id === 'wr')).toMatchObject({ live: false, status: 'wait', task: 'Article awaiting your review: cà phê phin', progress: 0, ended: null });
   });
 
   it('drops an answer that arrives after the event stream reported a newer change', () => {

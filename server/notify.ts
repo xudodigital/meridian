@@ -6,7 +6,7 @@
 // Integrations shows that. Several alerts waiting at once (after quiet hours) go out as one summary per channel.
 import { db } from './db.ts';
 import { bus } from './events.ts';
-import { budget, siteSpendToday } from './ledger.ts';
+import { budget, budgetApplies, siteSpendToday } from './ledger.ts';
 import { slackPost, telegramSend } from './connectors.ts';
 import { setResult, usable, valuesOf } from './integrations.ts';
 import { ServiceError } from './net.ts';
@@ -153,6 +153,7 @@ export { siteSpendToday };
  * and day; a run that takes a site from under 80% straight past the budget sends the second only.
  */
 export function budgetCheck(siteId: string, at: number): void {
+  if (!budgetApplies()) return;
   /* Only a run that ended today can push today's spend over the line. */
   if (today(at) !== today(Date.now())) return;
   const b = budget(), usd = siteSpendToday(siteId, at), domain = siteInfo(siteId)?.domain || 'A site';

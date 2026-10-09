@@ -167,7 +167,7 @@ const baseAgents: Omit<AgentConfig, 'hue'>[] = [{
   workers: 1,
   tasks: ['Designing a featured image', 'Drawing an infographic as SVG', 'Building a comparison chart', 'Writing alt text for new images']
 }];
-const ints: Omit<Integration, 'tail' | 'st' | 'msg'>[] = [{
+const ints: Omit<Integration, 'tail' | 'st' | 'msg'>[] = [{ id:'gemma',name:'Gemma localhost',use:'Local Gemma 4 through Ollama',icon:'computer',type:'key' }, {
   id: 'openai',
   name: 'OpenAI API',
   use: 'AI jobs on your chosen model.',
@@ -180,6 +180,12 @@ const ints: Omit<Integration, 'tail' | 'st' | 'msg'>[] = [{
   use: 'Keyword volumes and SERP data by country',
   icon: 'database',
   type: 'key'
+}, {
+  id: 'serpapi',
+  name: 'SerpApi',
+  icon: 'search',
+  use: 'Search results by country and language',
+  type: 'key',
 }, {
   id: 'cf',
   name: 'Cloudflare',
@@ -216,6 +222,8 @@ const ints: Omit<Integration, 'tail' | 'st' | 'msg'>[] = [{
   use: 'Connects your Google services',
   icon: 'key',
   type: 'key'
+}, {
+  id: 'ads', name: 'Google Ads', use: 'Monthly keyword searches by country and language', icon: 'query_stats', type: 'oauth'
 }, {
   id: 'gsc',
   name: 'Google Search Console',

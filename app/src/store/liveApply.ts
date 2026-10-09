@@ -27,7 +27,7 @@ export function liveApply(s: LiveTarget, now: number = Date.now()): void {
     if (s.live.logged.includes(key)) continue;
     s.live.logged.push(key);
     const a = s.agents.find(a => a.id === t.agent);
-    s.jobLog.unshift({ id: nextUid(s), t: new Date(t.finishedAt), agent: a?.name ?? t.agent, hue: a?.hue ?? 0, task: t.kind + ': ' + t.brief, site: t.siteId, domain: t.domain, dur: Math.max(0, (t.finishedAt - (t.startedAt ?? t.createdAt)) / 1000), engine: t.engine, tokens: t.tokens, cost: t.costUsd, status: t.status === 'done' ? 'Done' : 'Failed', steps: [t.status === 'done' ? 'Saved a draft for human review' : t.error] });
+    s.jobLog.unshift({ id: nextUid(s), t: new Date(t.finishedAt), agent: a?.name ?? t.agent, hue: a?.hue ?? 0, task: t.kind + ': ' + t.brief, site: t.siteId, domain: t.domain, dur: Math.max(0, (t.finishedAt - (t.startedAt ?? t.createdAt)) / 1000), engine: t.engine, tokens: t.tokens, cost: t.costUsd, status: t.status === 'done' ? 'Done' : 'Failed', ...(timedSteps(t.steps, t.startedAt) ?? { steps: [t.status === 'done' ? 'Saved a draft for human review' : t.error] }) });
     s.jobLog.sort((a, b) => b.t.getTime() - a.t.getTime());
     s.jobLog = s.jobLog.slice(0, 80);
   }
@@ -83,7 +83,7 @@ function applyRequests(s: LiveTarget): void {
       dur: r.dur || 0, engine: r.engine, tokens: r.tokens || 0, cost: r.cost || 0, status: r.st === 'done' ? 'Done' : 'Failed', ...(by ? { by } : {}),
       ...(timed ? timed : {
         steps: r.st === 'done'
-          ? ['Loaded the site profile and the keyword-research skill', 'Read the request: ' + r.topic, r.engine === 'codex-local' ? 'Ran through Codex local' : 'Ran through OpenAI Responses API', 'Proposed ' + n + ' keywords', 'Saved the result']
+          ? ['Loaded the site profile and the keyword-research skill', 'Read the request: ' + r.topic, r.engine === 'gemma-local' ? 'Ran through Gemma localhost (Ollama)' : r.engine === 'codex-local' ? 'Ran through Codex local' : 'Ran through OpenAI Responses API', 'Proposed ' + n + ' keywords', 'Saved the result']
           : ['Started the request', 'Stopped: ' + r.error],
       }),
     });

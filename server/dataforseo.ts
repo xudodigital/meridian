@@ -33,7 +33,7 @@ export function cleanKeyword(k: string): string | null {
   return /^[\p{L}\p{M}\p{N} .'&+#_/-]+$/u.test(t) ? t : null;
 }
 
-export type Volume = { volume: number | null; competition: '' | 'LOW' | 'MEDIUM' | 'HIGH' };
+export type Volume = { volume: number | null; competition: '' | 'LOW' | 'MEDIUM' | 'HIGH'; group?: string };
 export type VolumeResult = {
   /** By keyword as cleanKeyword() returns it. A keyword that is not in the map was not sent or has no data. */
   volumes: Map<string, Volume>;

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button, Chip, Pill, Sheet, SheetActions, Tag } from '@/components';
 import { go } from '@/nav';
 import { apiGet } from '@/store/serverApi';
-import { runtimeModel, agentPlanned, fmt, fmtDur, stamp } from '@/store/rules';
+import { runtimeModel, engineName, showCosts, agentPlanned, fmt, fmtDur, stamp } from '@/store/rules';
 import { useStore, useStoreShallow } from '@/store/store';
 import type { Agent, Skill } from '@/store/types';
 import { agentLook, workersText } from './helpers';
@@ -12,6 +12,7 @@ import { agentLook, workersText } from './helpers';
 function AgentDetail({ a }: { a: Agent }) {
   const [skills, log, jobLog, guard, closeAgent, retryAgent, pauseAgent, openConfirm, sample] = useStoreShallow(s =>
     [s.skills, s.log, s.jobLog, s.guard, s.closeAgent, s.retryAgent, s.pauseAgent, s.openConfirm, s.sample] as const);
+  const costs = useStore(showCosts);
   const live = useStore(s => s.live);
   const look = agentLook(a);
   const sk = a.skills.map(i => skills.find(k => k.id === i)).filter((k): k is Skill => !!k);
@@ -58,7 +59,7 @@ function AgentDetail({ a }: { a: Agent }) {
         <h3>Recent runs</h3>
         <ul>
           {runs.length ? runs.map(r => (
-            <li key={r.id}><Chip>{stamp(r.t)}</Chip>{` ${r.task} · ${fmtDur(r.dur)} · ${r.engine === 'codex-local' ? 'ChatGPT limits' : '$' + r.cost.toFixed(2)} `}<Pill kind={r.status === 'Done' ? 'ok' : 'bad'}>{r.status}</Pill></li>
+            <li key={r.id}><Chip>{stamp(r.t)}</Chip>{` ${r.task} · ${fmtDur(r.dur)} · ${!costs || r.engine === 'gemma-local' || r.engine === 'codex-local' ? engineName(r.engine) : '$' + r.cost.toFixed(2)} `}<Pill kind={r.status === 'Done' ? 'ok' : 'bad'}>{r.status}</Pill></li>
           )) : <li className="note">No finished runs yet.</li>}
         </ul>
       </div>

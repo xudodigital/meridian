@@ -165,6 +165,10 @@ export const sitesSlice: Slice<SitesState, SitesActions> = {
       const domain = f.domain.trim().toLowerCase();
       if (!DOMAIN_RE.test(domain)) return 'That domain is not valid. Write it without https://, for example domain-f.example.';
       if (get().sites.some(s => s.domain === domain)) return 'This domain is already registered.';
+      for (const [label, value] of [['language', f.lang.trim()], ['topic', f.topic.trim()]] as const) {
+        if (value.length > 120 || /[\u0000-\u001f\u007f]/.test(value)) return `A site's ${label} must be one line of at most 120 characters.`;
+      }
+      if (!COUNTRIES[f.country]) return 'Choose the target country for your site.';
       const c = COUNTRIES[f.country] ?? COUNTRIES[0];
       const token = 'verify-' + Math.random().toString(36).slice(2, 8);
       set(d => {

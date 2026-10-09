@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Empty, Pager, Pill, usePaged } from '@/components';
 import { domainNote, domainOf } from '@/store/domains';
-import { ACC, SST, siteStatusText } from '@/store/rules';
+import { ACC, SST, showCosts, siteStatusText } from '@/store/rules';
 import { budgetUsed, usd } from '@/store/spend';
 import { useStore, useStoreShallow } from '@/store/store';
 import type { Site } from '@/store/types';
@@ -18,7 +18,8 @@ export function SitesTable() {
   /* Spend today per site: the simulation's in demo mode, otherwise the sum of the server's spend ledger (store/spend.ts).
      The column is left out until the server has sent it, instead of showing $0.00 that is not measured. */
   const measured = useStore(s => s.live.spend !== null);
-  const spend = sample || measured;
+  const costs = useStore(showCosts);
+  const spend = costs && (sample || measured);
   if (!list.length) {
     return (
       <Empty icon="filter_alt_off" title="No sites match these filters" action={<Button variant="tonal" onClick={() => setFilter({ sq: '', sst: '', sco: '' })}>Clear filters</Button>}>

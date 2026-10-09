@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Empty, Pager, Pill, Table, Tile, Tiles, usePaged } from '@/components';
 import { go } from '@/nav';
 import { REPORT_KEY } from '@/store/live';
-import { dayTime, fmt, inSite } from '@/store/rules';
+import { showCosts, dayTime, fmt, inSite } from '@/store/rules';
 import { usableInt } from '@/store/serverFacts';
 import { NO_EMAIL } from '@/store/slices/content';
 import { servicesApi, type ServerReport } from '@/store/servicesApi';
@@ -14,14 +14,15 @@ import { Delivery } from './Delivery';
 type Row = ServerReport['rows'][number];
 const money = (v: number) => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-function csvOf(rows: readonly Row[]): string {
+function csvOf(rows: readonly Row[], costs = true): string {
   const esc = (v: string) => /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
-  return 'Site,Country,Clicks,Articles approved,Waiting for review,Spend (USD),Issue\n'
-    + rows.map(r => [r.site, r.country, r.clicks === null ? '' : String(r.clicks), String(r.published), String(r.waiting), r.spend.toFixed(2), r.issue].map(esc).join(',')).join('\n');
+  return 'Site,Country,Clicks,Articles approved,Waiting for review,' + (costs ? 'Spend (USD),' : '') + 'Issue\n'
+    + rows.map(r => [r.site, r.country, r.clicks === null ? '' : String(r.clicks), String(r.published), String(r.waiting), ...(costs ? [r.spend.toFixed(2)] : []), r.issue].map(esc).join(',')).join('\n');
 }
 
 /** Reports outside demo mode: the figures the server has for the last 7 days, the same ones the email carries. */
 export function LiveReport() {
+  const costs = useStore(showCosts);
   const sid = useStore(s => s.session?.id ?? null);
   const siteFilter = useStore(s => s.siteFilter);
   const emailOk = useStore(s => usableInt(s, 'email'));
@@ -41,7 +42,7 @@ export function LiveReport() {
   const top = r?.clicksKnown ? byClicks[0] : undefined;
 
   const copy = () => {
-    const txt = csvOf(rows);
+    const txt = csvOf(rows,costs);
     try { navigator.clipboard.writeText(txt).then(() => snack('Report copied as CSV'), () => setCsv(txt)); }
     catch { setCsv(txt); }
   };
@@ -60,23 +61,23 @@ export function LiveReport() {
         <Tile tone="a" value={r?.clicksKnown ? fmt(clicks) : '—'} label={r?.clicksKnown ? 'Organic clicks' : 'Organic clicks (connect Search Console)'} />
         <Tile tone="b" value={sum('published')} label="Articles approved" />
         <Tile tone="c" value={sum('waiting')} label="Waiting for review" />
-        <Tile tone="d" value={money(sum('spend'))} label="API/service spend" />
+        {costs ? <Tile tone="d" value={money(sum('spend'))} label="API/service spend" /> : null}
       </Tiles>
       <section>
         <h2>By site</h2>
         <Table
-          cols={['Site', 'Country', 'Clicks', 'Approved', 'Waiting', 'Spend', 'Issue']}
+          cols={['Site', 'Country', 'Clicks', 'Approved', 'Waiting', ...(costs ? ['Spend'] : []), 'Issue']}
           num={[2, 3, 4, 5]}
           loading={q.isPending}
           empty={<Empty icon="summarize" title="Nothing to report yet" action={<Button variant="tonal" icon="language" onClick={() => go('sites')}>Open Sites</Button>}>There are no sites yet. Add a domain in Sites and its week is summarised here.</Empty>}
           rowKey={(_, i) => pg.rows[i]!.siteId}
           rows={pg.rows.map(x => [
-            <b>{x.site}</b>, x.country, x.clicks === null ? <span className="note">Not connected</span> : fmt(x.clicks), String(x.published), String(x.waiting), money(x.spend),
+            <b>{x.site}</b>, x.country, x.clicks === null ? <span className="note">Not connected</span> : fmt(x.clicks), String(x.published), String(x.waiting), ...(costs ? [money(x.spend)] : []),
             x.issue === 'None' ? <Pill kind="ok">None</Pill> : <Pill kind="warn">{x.issue}</Pill>,
           ])}
         />
         <Pager pkey="rep" paged={pg} />
-        <p className="note">Clicks come from Search Console for the 7 days ending about 3 days ago, because Search Console data arrives late. Spend covers recorded API and service costs. Codex subscription costs are not estimated.</p>
+        <p className="note">Clicks come from Search Console for the 7 days ending about 3 days ago, because Search Console data arrives late. {costs ? 'Spend covers recorded API and service costs.' : ''}</p>
       </section>
       {rows.length ? (
         <section>

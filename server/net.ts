@@ -6,11 +6,13 @@ import { VERSION } from './version.ts';
 export const BASES = {
   OPENAI: 'https://api.openai.com',
   DATAFORSEO: 'https://api.dataforseo.com',
+  SERPAPI: 'https://serpapi.com',
   CLOUDFLARE: 'https://api.cloudflare.com',
   GLOBALPING: 'https://api.globalping.io',
   TELEGRAM: 'https://api.telegram.org',
   GOOGLE_AUTH: 'https://accounts.google.com',
   GOOGLE_TOKEN: 'https://oauth2.googleapis.com',
+  GOOGLE_ADS: 'https://googleads.googleapis.com',
   GOOGLE_APIS: 'https://www.googleapis.com',
   SEARCH_CONSOLE: 'https://searchconsole.googleapis.com',
   GA_ADMIN: 'https://analyticsadmin.googleapis.com',

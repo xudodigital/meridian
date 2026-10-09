@@ -178,7 +178,7 @@ describe('Research and SEO in live mode', () => {
   it('sends a request through the server and shows its refusal in the form', async () => {
     goLive({ ...engineOff, mode: 'openai-api', ready: true, keyConfigured: true, apiVersion: '2.1.0', reason: '' }, []);
     await mount(<Research />);
-    expect($('.callout p')?.textContent).toBe('Live mode. Requests are done by the Keyword agent through OpenAI Responses API. Search volume is not shown: connect DataForSEO in Integrations to add it. Keyword difficulty is not shown.');
+    expect($('.callout p')?.textContent).toBe('Live mode. Requests are done by the Keyword agent through OpenAI Responses API. Search volume is not shown: connect Google Ads or DataForSEO in Integrations to add it. Keyword difficulty is not shown.');
 
     vi.stubGlobal('fetch', vi.fn(async () => json({ error: 'The queue is full.' }, 409)));
     await click(byText('button', 'addNew research request'));

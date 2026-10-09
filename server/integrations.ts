@@ -1,6 +1,7 @@
 // The services Meridian connects to: what each one asks for, how it is stored, and what the dashboard may see.
 // Secret fields are encrypted together in one sealed value (vault.ts) and never leave the server; the dashboard gets
 // the last four characters (or the connected account), the non-secret fields and the result of the last test.
+import { gemmaConfig } from './gemma-config.ts';
 import { db } from './db.ts';
 import { open, seal } from './vault.ts';
 
@@ -21,10 +22,17 @@ export type IntegrationDef = {
 };
 
 export const DEFS: readonly IntegrationDef[] = [
+  { id: 'gemma', name: 'Gemma localhost', fields: [
+    { k: 'endpoint', label: 'Ollama URL', secret: false, placeholder: 'http://127.0.0.1:11434', fallback: 'http://127.0.0.1:11434' },
+    { k: 'model', label: 'Installed model', secret: false, placeholder: 'gemma4:31b', fallback: 'gemma4:31b' },
+    { k: 'context', label: 'Context size (tokens)', secret: false, kind: 'number', placeholder: '32768', fallback: '32768' },
+  ], help: 'Start Ollama on this computer and install Gemma 4 first. Save and test checks the model; it does not download weights or run a job.' },
   { id: 'openai', name: 'OpenAI API', fields: [{ k: 'key', label: 'API key', secret: true, placeholder: 'sk-…' }],
     help: 'From platform.openai.com > API keys. Agent jobs use this encrypted key through the OpenAI Responses API. Test connection lists available models.' },
   { id: 'dfs', name: 'DataForSEO', fields: [{ k: 'login', label: 'API login', secret: false, kind: 'email' }, { k: 'password', label: 'API password', secret: true }],
     help: 'From app.dataforseo.com > API Access. This is the API password, not the password you sign in with. Test connection shows the balance.' },
+  { id: 'serpapi', name: 'SerpApi', fields: [{ k: 'key', label: 'API key', secret: true }],
+    help: 'From serpapi.com > Your Account. Save and test checks remaining searches without consuming search credits. Used for SERP research; keyword volume uses Google Ads or DataForSEO.' },
   { id: 'cf', name: 'Cloudflare', fields: [{ k: 'token', label: 'API token', secret: true }, { k: 'account', label: 'Account ID (needed to deploy)', secret: false, optional: true, placeholder: '32 characters, from the account home page' }],
     help: 'Create a token at dash.cloudflare.com > My Profile > API Tokens with the permission Account > Cloudflare Pages > Edit. The Account ID is required to deploy websites to Cloudflare Pages. Add Zone > Zone > Read and Zone > DNS > Edit only if you will connect custom domains whose DNS is at Cloudflare in this account: Meridian then adds the DNS record of each site itself. Without them it shows the record to add by hand. Test connection checks the token and whether Pages deploys will work.' },
   { id: 'probe', name: 'Multi-country probes', fields: [{ k: 'token', label: 'Globalping token (optional)', secret: true }],
@@ -42,7 +50,11 @@ export const DEFS: readonly IntegrationDef[] = [
     { k: 'from', label: 'From address (optional)', secret: false, kind: 'email', optional: true },
   ], help: 'Port 587 uses STARTTLS and port 465 uses TLS. For Gmail, use an app password. Test connection sends a test email to you.' },
   { id: 'google', name: 'Google sign-in', fields: [{ k: 'clientId', label: 'OAuth client ID', secret: false, placeholder: '…apps.googleusercontent.com' }, { k: 'clientSecret', label: 'OAuth client secret', secret: true }],
-    help: 'In Google Cloud Console: enable the Search Console API, the Google Analytics Admin API and the Google Analytics Data API, then create an OAuth client of type "Web application" with the redirect URI shown here.' },
+    help: 'In Google Cloud Console: enable the Google Ads API for keyword volume, the Search Console API, the Google Analytics Admin API and the Google Analytics Data API, then create an OAuth client of type "Web application" with the redirect URI shown here.' },
+  { id: 'ads', name: 'Google Ads', fields: [
+    { k: 'customerId', label: 'Google Ads Customer ID', secret: false, placeholder: '123-456-7890' },
+    { k: 'loginCustomerId', label: 'Manager Customer ID (optional)', secret: false, optional: true, placeholder: 'Only when access is through a manager account' },
+  ], oauth: true, help: 'Enable Google Ads API and obtain keyword-planning access for your OAuth client’s Google Cloud project. Save the customer account, then connect with Google. Meridian reads metrics; it does not create campaigns.' },
   { id: 'gsc', name: 'Google Search Console', fields: [], oauth: true, help: 'Read-only access to the Search Console properties of the Google account you choose.' },
   { id: 'ga4', name: 'Google Analytics 4', fields: [], oauth: true, help: 'Read-only access to the Analytics properties of the Google account you choose.' },
 ];
@@ -97,14 +109,14 @@ function tailOf(def: IntegrationDef, v: Record<string, string>): string {
     case 'tg': return v.chat ? 'Chat ' + v.chat : '';
     case 'email': return v.from || v.user || '';
     case 'google': return v.clientId ? v.clientId.slice(0, 12) + '…' : '';
-    case 'gsc': case 'ga4': return v.account || 'Google account';
+    case 'ads': case 'gsc': case 'ga4': return v.account || 'Google account';
     default: { const main = def.fields.find(f => f.secret); return main ? last4(v[main.k] ?? '') : ''; }
   }
 }
 
 /** A value for one field, or why it cannot be used. */
 function fieldError(f: FieldDef, v: string): string {
-  if (f.kind === 'number' && v && !/^\d{1,5}$/.test(v)) return `${f.label} must be a number.`;
+  if (f.kind === 'number' && v && !/^\d{1,6}$/.test(v)) return `${f.label} must be a number.`;
   if (f.kind === 'email' && v && f.k !== 'user' && f.k !== 'login' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return `${f.label} must be an email address.`;
   if (f.kind === 'url' && v) {
     let u: URL; try { u = new URL(v); } catch { return `${f.label} must be a full URL.`; }
@@ -121,20 +133,26 @@ function fieldError(f: FieldDef, v: string): string {
  */
 export function saveValues(id: string, input: Record<string, unknown>, by: string): string | null {
   const def = defOf(id);
-  if (!def || def.oauth) return 'This service cannot be set up with a form.';
+  if (!def || (def.oauth && !def.fields.length)) return 'This service cannot be set up with a form.';
   const old = valuesOf(id) ?? {};
-  const next: Record<string, string> = {};
+  const next: Record<string, string> = def.oauth ? { ...old } : {};
   let changed = false;
   for (const f of def.fields) {
     const raw = typeof input[f.k] === 'string' ? (input[f.k] as string).trim() : '';
     if (raw.length > 2000) return `${f.label} is too long.`;
     const err = fieldError(f, raw); if (err) return err;
     if (raw) changed = true;
-    const v = raw || old[f.k] || f.fallback || '';
+    let v = raw || old[f.k] || f.fallback || '';
+    if (id === 'ads') {
+      v = (Object.hasOwn(input, f.k) ? raw : old[f.k] || '').replace(/[\s-]/g, '');
+      if (v && !/^\d{10}$/.test(v)) return `${f.label} must contain 10 digits.`;
+      delete next[f.k];
+    }
     if (!v && !f.optional && !(def.worksWithout)) return `Enter the ${lowerFirst(f.label.replace(/ \(optional\)$/, ''))}.`;
     if (v) next[f.k] = v;
   }
   if (!changed) return 'Enter the values to save.';
+  if (id === 'gemma') { try { gemmaConfig(next); } catch (e) { return (e as Error).message; } }
   storeValues(def, next, by);
   return null;
 }
@@ -171,7 +189,7 @@ export function usable(id: string): boolean {
 export function viewOf(def: IntegrationDef, r: IntegrationRow | undefined, admin: boolean): IntegrationView {
   const config = r ? parse(r.config) : {};
   return {
-    id: def.id, name: def.name, connected: !!r || !!def.worksWithout,
+    id: def.id, name: def.name, connected: def.id === 'ads' ? !!valuesOf('ads')?.refresh : !!r || !!def.worksWithout,
     /* The end of a key, an SMTP user or a chat id tells a reader which account it is: for admins only. */
     tail: r ? (admin ? r.tail : '') : def.worksWithout ? 'Public access' : '',
     status: (r?.status ?? '') as Status, msg: r ? r.msg : '', testedAt: r?.tested_at ?? null,

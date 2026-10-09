@@ -3,6 +3,7 @@
    every run, at midnight and when the budget changes; live.ts keeps them in store.live.spend. spendTo() puts them
    where the screens read them (a site's spend today and 28-day tokens, an agent's tokens today), and the helpers below
    answer what the daily budget means for a site right now. Demo mode keeps the simulation's numbers. */
+import { showBudget } from './rules';
 import type { Agent, AppState, Site, SpendWire } from './types';
 
 /** The agents whose jobs the server runs, by the name the ledger records them under. */
@@ -34,7 +35,7 @@ export const liveBudget = (s: S): number | null => s.sample ? null : s.live.spen
 /** The site used its daily budget: the server refuses new agent jobs for it and holds the waiting ones until midnight. */
 export function budgetUsed(s: S, siteId: string): boolean {
   const sp = s.sample ? null : s.live.spend;
-  return !!sp && (sp.sites[siteId]?.today ?? 0) >= sp.budget;
+  return showBudget(s) && !!sp && (sp.sites[siteId]?.today ?? 0) >= sp.budget;
 }
 
 /** What a waiting job of such a site shows instead of "Queued". */

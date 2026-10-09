@@ -10,15 +10,19 @@ import { siteInfo, type SiteInfo } from './workspace.ts';
 import { addJobSource } from './jobs.ts';
 import { firstAllowed, metered } from './ledger.ts';
 import { bus } from './events.ts';
-import { serpSnapshot } from './dataforseo.ts';
+import { readSerp } from './serp.ts';
+import { isSerpProvider, SERP_PROVIDERS, type SerpProvider } from '../shared/serp.ts';
 import { auditPublished } from './live-audit.ts';
-import { addStep, startSteps } from './steps.ts';
+import { addStep, startSteps, stepsOf } from './steps.ts';
 
-type Row = { engine: 'openai-api' | 'codex-local' | ''; id: number; site_id: string; domain: string; kind: SeoTaskKind; agent: string; brief: string; model: string; status: SeoTaskWire['status']; result: string; context: string; error: string; tokens: number; cost_usd: number; service_cost_usd: number; created_at: number; started_at: number | null; finished_at: number | null; reviewed_at: number | null; reviewed_by: string };
+type Row = { engine: 'openai-api' | 'codex-local' | 'gemma-local' | ''; id: number; site_id: string; domain: string; kind: SeoTaskKind; agent: string; brief: string; model: string; status: SeoTaskWire['status']; result: string; context: string; error: string; tokens: number; cost_usd: number; service_cost_usd: number; created_at: number; started_at: number | null; finished_at: number | null; reviewed_at: number | null; reviewed_by: string };
 export const taskRow = (id: number) => db.prepare('SELECT * FROM seo_tasks WHERE id = ?').get(id) as Row | undefined;
 export const taskKind = (v: unknown): v is SeoTaskKind => typeof v === 'string' && Object.hasOwn(SEO_TASKS, v);
 export function taskView(r: Row, includeContext = false): SeoTaskWire {
-  return { engine: r.engine, id: r.id, siteId: r.site_id, domain: r.domain, kind: r.kind, agent: r.agent, brief: r.brief, status: r.status, result: r.result ? JSON.parse(r.result) as SeoResult : null, error: r.error, createdAt: r.created_at, startedAt: r.started_at, finishedAt: r.finished_at, tokens: r.tokens, costUsd: r.cost_usd, serviceCostUsd: r.service_cost_usd, reviewedAt: r.reviewed_at, reviewedBy: r.reviewed_by, context: includeContext ? r.context : '' };
+  const options = asObj(JSON.parse(r.context || '{}'));
+  const serpProvider = r.kind === 'serp' ? (isSerpProvider(options.serpProvider) ? options.serpProvider : 'dfs') : undefined;
+  const steps = stepsOf('seo-task', r.id);
+  return { step: steps.at(-1)?.text ?? '', steps, serpProvider, engine: r.engine, id: r.id, siteId: r.site_id, domain: r.domain, kind: r.kind, agent: r.agent, brief: r.brief, status: r.status, result: r.result ? JSON.parse(r.result) as SeoResult : null, error: r.error, createdAt: r.created_at, startedAt: r.started_at, finishedAt: r.finished_at, tokens: r.tokens, costUsd: r.cost_usd, serviceCostUsd: r.service_cost_usd, reviewedAt: r.reviewed_at, reviewedBy: r.reviewed_by, context: includeContext ? r.context : '' };
 }
 export const listTasks = (): SeoTaskWire[] => (db.prepare('SELECT * FROM seo_tasks ORDER BY id DESC LIMIT 200').all() as Row[]).map(r => taskView(r));
 const emit = (id: number) => { const row = taskRow(id); if (row) bus.emit('seo-task', taskView(row)); };
@@ -76,8 +80,8 @@ export function infographicSvg(v: NonNullable<SeoResult['visual']>): string {
   const text = (s: string, x: number, y: number, size: number, width: number) => `<text x="${x}" y="${y}" font-size="${size}" fill="#1d1b20">${wrap(s, width).map((line, i) => `<tspan x="${x}" dy="${i ? size * 1.5 : 0}">${escape(line)}</tspan>`).join('')}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 ${240 + v.steps.length * 190}" role="img" aria-labelledby="title desc"><title id="title">${escape(v.title)}</title><desc id="desc">${escape(v.alt)}</desc><rect width="900" height="100%" fill="#fffbfe"/>${text(v.title, 36, 50, 28, 45)}${v.steps.map((s, i) => `<rect x="24" y="${210 + i * 190}" width="852" height="174" rx="24" fill="#eaddff"/>${text(String(i + 1), 48, 246 + i * 190, 24, 4)}${text(s.label, 100, 240 + i * 190, 22, 56)}${text(s.detail, 100, 306 + i * 190, 18, 72)}`).join('')}</svg>`;
 }
-export function createTask(site: SiteInfo, kind: SeoTaskKind, brief: string, model: string, liveAudit: boolean): SeoTaskWire {
-  const id = Number(db.prepare('INSERT INTO seo_tasks (site_id, domain, kind, agent, brief, model, created_at, context) VALUES (?, ?, ?, ?, ?, ?, ?, ?)').run(site.id, site.domain, kind, SEO_TASKS[kind].agent, brief, model, Date.now(), JSON.stringify({ liveAudit })).lastInsertRowid);
+export function createTask(site: SiteInfo, kind: SeoTaskKind, brief: string, model: string, liveAudit: boolean, serpProvider?: SerpProvider): SeoTaskWire {
+  const id = Number(db.prepare('INSERT INTO seo_tasks (site_id, domain, kind, agent, brief, model, created_at, context) VALUES (?, ?, ?, ?, ?, ?, ?, ?)').run(site.id, site.domain, kind, SEO_TASKS[kind].agent, brief, model, Date.now(), JSON.stringify({ liveAudit, serpProvider })).lastInsertRowid);
   emit(id); return taskView(taskRow(id)!);
 }
 async function runTask(r: Row, signal: AbortSignal) {
@@ -88,24 +92,25 @@ async function runTask(r: Row, signal: AbortSignal) {
     const site = siteInfo(r.site_id);
     if (!site || site.domain !== r.domain) throw new Error('The site was removed or its domain changed. Create a new task for its current profile.');
     const options = asObj(JSON.parse(r.context || '{}'));
-    const ctx = taskContext(site) as ReturnType<typeof taskContext> & { serp?: Awaited<ReturnType<typeof serpSnapshot>>; published?: Awaited<ReturnType<typeof auditPublished>> };
+    const ctx = taskContext(site) as ReturnType<typeof taskContext> & { serp?: Awaited<ReturnType<typeof readSerp>>; published?: Awaited<ReturnType<typeof auditPublished>> };
     if (SEO_TASKS[r.kind].needsArticles && !ctx.articles.length) throw new Error('This task needs an article in review or approved first.');
     if (r.kind === 'analysis' && ctx.gsc.state !== 'ok' && ctx.ga4.state !== 'ok') throw new Error('Connect Search Console or GA4 and refresh its data before performance analysis.');
     if (r.kind === 'serp') {
-      addStep('seo-task', r.id, 'Reading the DataForSEO SERP snapshot');
-      ctx.serp = options.serp ? options.serp as typeof ctx.serp : await serpSnapshot(site, r.brief, signal);
+      const provider = isSerpProvider(options.serpProvider) ? options.serpProvider : 'dfs';
+      addStep('seo-task', r.id, `${options.serp ? 'Reusing the saved' : 'Reading the'} ${SERP_PROVIDERS[provider]} SERP snapshot`); emit(r.id);
+      ctx.serp = options.serp ? options.serp as typeof ctx.serp : await readSerp(provider, site, r.brief, signal);
       db.prepare('UPDATE seo_tasks SET service_cost_usd = ? WHERE id = ?').run(ctx.serp?.cost ?? 0, r.id);
     }
     if (r.kind === 'audit' && options.liveAudit === true) {
       addStep('seo-task', r.id, 'Observing public HTTP pages, robots and sitemap');
       ctx.published = await auditPublished(site.domain, ctx.articles.filter(a => a.status === 'approved').slice(0, 7).map(a => '/' + a.content.slug + '/'), signal);
     }
-    const context = { ...ctx, liveAudit: options.liveAudit === true };
+    const context = { ...ctx, liveAudit: options.liveAudit === true, serpProvider: r.kind === 'serp' ? (isSerpProvider(options.serpProvider) ? options.serpProvider : 'dfs') : undefined };
     db.prepare('UPDATE seo_tasks SET context = ? WHERE id = ?').run(JSON.stringify(context), r.id);
     const engine = await engineStatus();
     if (!engine.ready) throw new Error(engine.reason);
     db.prepare('UPDATE seo_tasks SET engine = ? WHERE id = ?').run(engine.mode, r.id);
-    addStep('seo-task', r.id, `Running ${engine.mode === 'codex-local' ? 'Codex Local' : 'OpenAI'} with the assigned skills`);
+    addStep('seo-task', r.id, `Running ${engine.mode === 'gemma-local' ? 'Gemma localhost' : engine.mode === 'codex-local' ? 'Codex Local' : 'OpenAI'} with the assigned skills`); emit(r.id);
     const response = await metered({ kind: 'seo-task', jobId: r.id, siteId: r.site_id, agent: ({ res: 'Research', arc: 'Architect', seo: 'SEO/GEO Optimizer', lnk: 'Internal Linker', ana: 'Analyst', gd: 'Graphic Designer' } as Record<string, string>)[r.agent]! }, () => runOpenAI({ prompt: taskPrompt(r.kind, r.brief, context), model: r.model, skills: agentSkills(r.agent), webSearch: r.kind === 'pr' || r.kind === 'audit', timeoutMin: 15 }, signal), used);
     signal.throwIfAborted();
     const current = siteInfo(r.site_id);

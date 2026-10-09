@@ -159,6 +159,16 @@ export async function sendRequest(input: { siteId: string; topic: string; goal: 
   useStore.setState(d => { snackTo(d, 'Request sent to the Keyword agent.', 'search'); });
 }
 
+/** Admin-only, persisted server selection; refuses switching while jobs are queued or running. */
+export async function selectEngine(mode: string): Promise<EngineStatus | null> {
+  try {
+    const d = await apiSend<{engine:EngineStatus}>('/api/engine/select',{mode});
+    liveEngine(d.engine);
+    useStore.getState().snack(d.engine.ready ? 'Agent engine updated.' : d.engine.reason || 'Engine selected; setup is still needed.', d.engine.ready ? 'check' : 'info');
+    return d.engine;
+  } catch (e) { useStore.getState().snack((e as Error).message,'error'); return null; }
+}
+
 /** Queues a finished or failed request again ("Run again"). Shows the prototype's snackbar either way; resolves to true on success. */
 export async function retryRequest(rid: number): Promise<boolean> {
   try {
@@ -174,7 +184,7 @@ export async function refreshEngine(): Promise<EngineStatus | null> {
     liveEngine(d.engine);
     const on = d.engine.ready;
     const local = d.engine.mode === 'codex-local';
-    useStore.getState().snack(on ? local ? 'Codex local is ready. Agents can run.' : 'OpenAI is connected. Agents can run.' : d.engine.reason || 'The engine is not ready. Check Integrations.', on ? 'bolt' : 'info');
+    useStore.getState().snack(on ? d.engine.mode === 'gemma-local' ? 'Gemma localhost is ready. Agents can run.' : local ? 'Codex local is ready. Agents can run.' : 'OpenAI is connected. Agents can run.' : d.engine.reason || 'The engine is not ready. Check Integrations.', on ? 'bolt' : 'info');
     return d.engine;
   } catch (e) { useStore.getState().snack((e as Error).message, 'error'); return null; }
 }

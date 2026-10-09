@@ -56,6 +56,72 @@ const html = (f: SiteFiles, p: string) => { const v = f.get(p); assert.ok(v !== 
 const ld = (page: string) => [...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]!) as Record<string, unknown>);
 
 describe('site generator', () => {
+  it('paginates listings without dropping or duplicating articles, with crawlable links and self canonicals', () => {
+    const many = Array.from({ length: 25 }, (_, i): SiteArticle => ({
+      id: i + 1, published: T0 - i * DAY, updated: null, category: 'Kopi', images: [],
+      content: content({ title: `Panduan ${i + 1}`, slug: `panduan-${i + 1}` }),
+    }));
+    const f = site({ articles: many });
+    assert.deepEqual(checkSite(f, 'kopi.example'), []);
+    const paths = ['index.html', 'articles/2/index.html', 'articles/3/index.html'];
+    const listed = paths.flatMap((path, i) => {
+      const page = html(f, path);
+      const links = [...page.matchAll(/class="(?:feature__title|card__title)"[^>]*><a href="(?:\.\.\/)*panduan-(\d+)\/"/g)].map(m => Number(m[1]));
+      assert.equal(links.length, i === 2 ? 1 : 12);
+      assert.match(page, new RegExp(`rel="canonical" href="https://kopi\\.example/${i ? `articles/${i + 1}/` : ''}"`));
+      assert.match(page, /aria-current="page"/);
+      if (i) assert.doesNotMatch(page, /"@type":"WebSite"/);
+      return links;
+    });
+    assert.deepEqual(listed, many.map(a => a.id));
+    assert.match(html(f, paths[0]!), /href="articles\/2\/"[^>]*rel="next"/);
+    assert.match(html(f, paths[1]!), /href="\.\.\/\.\.\/"[^>]*rel="prev"/);
+    assert.match(html(f, paths[1]!), /href="\.\.\/\.\.\/articles\/3\/"[^>]*rel="next"/);
+    assert.doesNotMatch(html(f, paths[2]!), /rel="next"/);
+    assert.ok(!f.has('articles/4/index.html'), 'no phantom final page');
+    const categories = ['kopi/index.html', 'kopi/page/2/index.html', 'kopi/page/3/index.html'];
+    assert.deepEqual(categories.flatMap(path => [...html(f, path).matchAll(/class="card__title"><a href="(?:\.\.\/)+panduan-(\d+)\/"/g)].map(m => Number(m[1]))), listed);
+    assert.match(html(f, categories[1]!), /rel="canonical" href="https:\/\/kopi\.example\/kopi\/page\/2\/"/);
+    assert.match(html(f, 'sitemap.xml'), /<loc>https:\/\/kopi\.example\/articles\/3\/<\/loc>/);
+    assert.match(html(f, 'sitemap.xml'), /<loc>https:\/\/kopi\.example\/kopi\/page\/3\/<\/loc>/);
+    assert.ok(!f.has('articles/1/index.html'), 'page one keeps the original home URL');
+    for (const count of [0, 1, 12]) {
+      const short = site({ articles: many.slice(0, count) });
+      assert.doesNotMatch(html(short, 'index.html'), /class="pagination"/);
+      assert.ok(!short.has('articles/2/index.html'));
+      assert.deepEqual(checkSite(short, 'kopi.example'), []);
+    }
+  });
+
+  it('allocates the archive after existing content URLs and localizes pagination for Indonesian sites', () => {
+    const local = identityFrom({ ...identity, labels: { ...identity.labels, articles: 'Artikel' } }, 'kopi.example');
+    const many = Array.from({ length: 13 }, (_, i): SiteArticle => ({
+      id: i + 1, published: T0 - i * DAY, updated: null, category: 'Artikel', images: [],
+      content: content({ title: `Kopi ${i}`, slug: i === 0 ? 'artikel' : `kopi-${i}` }),
+    }));
+    const f = site({ identity: local, articles: many });
+    assert.ok(f.has('artikel/index.html'), 'existing article keeps its URL');
+    assert.ok(f.has('artikel-2/index.html'), 'category keeps its URL');
+    assert.ok(f.has('artikel-3/2/index.html'), 'archive avoids both');
+    assert.match(html(f, 'index.html'), /aria-label="Halaman artikel"/);
+    assert.match(html(f, 'artikel-3/2/index.html'), /<title>Artikel · 2 \| Kopi Nusantara<\/title>/);
+    assert.deepEqual(checkSite(f, 'kopi.example'), []);
+  });
+
+  it('distinguishes the unchanged draft disclosure from a recorded review, without inventing review evidence', () => {
+    const draft = 'Tinjauan manusia belum dilakukan.';
+    const a: SiteArticle = { id: 1, published: T0, updated: null, languageReviewedAt: T0 - 1000,
+      content: content({ disclosure: { text: draft, en: '' } }), images: [] };
+    const page = html(site({ articles: [a] }), 'cara-membuat-cold-brew/index.html');
+    assert.match(page, /Tinjauan bahasa oleh manusia tercatat pada/);
+    assert.match(page, /<details><summary>Catatan saat draf dibuat<\/summary><p>Tinjauan manusia belum dilakukan\.<\/p><\/details>/);
+    assert.equal(a.content.disclosure.text, draft);
+    for (const at of [undefined, NaN, 0, T0 + 1]) {
+      const unreviewed = html(site({ articles: [{ ...a, languageReviewedAt: at }] }), 'cara-membuat-cold-brew/index.html');
+      assert.doesNotMatch(unreviewed, /Tinjauan bahasa oleh manusia tercatat pada/);
+      assert.match(unreviewed, /Tinjauan manusia belum dilakukan\./);
+    }
+  });
   it('writes every page and file of a site, and the result passes its own check', () => {
     const f = site();
     for (const p of ['index.html', 'cara-membuat-cold-brew/index.html', 'arabika-robusta/index.html', 'tentang-kami/index.html', '404.html',

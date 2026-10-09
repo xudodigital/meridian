@@ -76,14 +76,15 @@ describe('Codex local runtime without an API key', () => {
     expect(document.body.textContent).toContain('OpenAI API (optional)');
     expect(document.body.textContent).not.toContain('OpenAI ready');
   });
-  it('keeps historical API cost while showing a Codex run as subscription usage', async () => {
+  it('preserves historical API cost in data without showing prices in local mode', async () => {
     useStore.setState(d => { d.jobLog = [
       { id: 1, t: new Date(), agent: 'Keyword', hue: 0, task: 'Local research', site: null, dur: 1, tokens: 500, cost: 0, engine: 'codex-local', status: 'Done', steps: [] },
       { id: 2, t: new Date(), agent: 'Keyword', hue: 0, task: 'Earlier API research', site: null, dur: 1, tokens: 500, cost: 0.12, engine: 'openai-api', status: 'Done', steps: [] },
     ]; });
     await mount(<History />);
-    expect(document.body.textContent).toContain('ChatGPT limits');
-    expect(document.body.textContent).toContain('$0.12');
-    expect(document.body.textContent).not.toContain('$0.00');
+    expect(document.body.textContent).toContain('Codex local');
+    expect(document.body.textContent).toContain('OpenAI');
+    expect(document.body.textContent).not.toContain('$');
+    expect(st().jobLog.find(r => r.id === 2)?.cost).toBe(0.12);
   });
 });

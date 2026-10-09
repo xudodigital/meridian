@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Empty, Info, Pill, SiteChip, Table, Tile, Tiles } from '@/components';
 import { go } from '@/nav';
-import { fmtDur, inSite, short, stamp } from '@/store/rules';
+import { engineName, showCosts, fmtDur, inSite, short, stamp } from '@/store/rules';
 import { useStore } from '@/store/store';
 import type { JobRun } from '@/store/types';
 import { RunSheet } from './content/RunSheet';
@@ -12,6 +12,7 @@ export function History() {
   const siteFilter = useStore(s => s.siteFilter);
   const hasSites = useStore(s => s.sites.length > 0);
   const sample = useStore(s => s.sample);
+  const costs = useStore(showCosts);
   const [open, setOpen] = useState<JobRun | null>(null);
 
   const list = jobLog.filter(r => !r.site || inSite({ siteFilter }, r.site));
@@ -24,23 +25,23 @@ export function History() {
 
   return (
     <>
-      <p className="lede">Every job an agent has run, with its cost, duration and step-by-step log.</p>
+      <p className="lede">{costs ? 'Every job an agent has run, with its cost, duration and step-by-step log.' : 'Every job, its duration and step-by-step log.'}</p>
       {jobLog.length ? (
         <Tiles>
           <Tile tone="a" value={list.length} label="Runs recorded" />
           <Tile tone="b" value={short(tok)} label="Tokens used" />
-          <Tile tone="c" value={'$' + cost.toFixed(2)} label={subscription ? 'API/service spend' : sample ? 'Estimated cost' : 'Cost'} />
+          {costs ? <Tile tone="c" value={'$' + cost.toFixed(2)} label={subscription ? 'API/service spend' : sample ? 'Estimated cost' : 'Cost'} /> : null}
           <Tile tone={failed ? 'bad' : 'd'} value={failed} label="Failed runs" />
         </Tiles>
       ) : null}
       <section>
         <Table
-          cols={['Time', 'Agent', 'Task', 'Site', 'Duration', 'Tokens', 'Cost', 'Status', 'Actions']}
+          cols={['Time', 'Agent', 'Task', 'Site', 'Duration', 'Tokens', ...(costs ? ['Cost'] : ['Engine']), 'Status', 'Actions']}
           num={[0, 4, 5, 6]}
           empty={jobLog.length ? undefined : (
             <Empty icon="receipt_long" title="No runs yet"
               action={hasSites ? <Button variant="tonal" icon="add" onClick={() => go('keywords')}>New research request</Button> : <Button variant="tonal" icon="language" onClick={() => go('sites')}>Add your first domain</Button>}>
-              Every job an agent finishes is listed here with its cost and log.
+              {costs ? 'Every job an agent finishes is listed here with its cost and log.' : 'Completed jobs and their logs appear here.'}
             </Empty>
           )}
           rowKey={(_, i) => shown[i]?.id ?? i}
@@ -51,13 +52,13 @@ export function History() {
             <SiteChip id={r.site} domain={r.domain} />,
             fmtDur(r.dur),
             short(r.tokens),
-            r.engine === 'codex-local' ? 'ChatGPT limits' : '$' + r.cost.toFixed(2),
+            costs ? r.engine === 'gemma-local' || r.engine === 'codex-local' ? engineName(r.engine) : '$' + r.cost.toFixed(2) : engineName(r.engine),
             <Pill kind={r.status === 'Done' ? 'ok' : 'bad'}>{r.status}</Pill>,
             <Button size="sm" variant="text" onClick={() => setOpen(r)}>View log</Button>,
           ])}
         />
       </section>
-      {jobLog.length ? <Info label="How costs are worked out"><p>{sample
+      {jobLog.length && costs ? <Info label="How costs are worked out"><p>{sample
         ? 'Costs are estimates from token counts and each model\'s standard list price, assuming three input tokens per output token, with no caching or batch discount.'
         : 'API costs are estimated from reported usage. Codex local uses ChatGPT limits; its subscription cost is not estimated.'}</p></Info> : null}
       <RunSheet run={open} onClose={() => setOpen(null)} />

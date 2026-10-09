@@ -7,7 +7,7 @@ import {
   NO_SITE, approveArticle, articleRow, articleTitle, createArticle, languageReview, rejectArticle, retryArticle, reviseArticle, type ArticleView, type Outcome,
 } from './articles.ts';
 import { q, type RequestRow } from './db.ts';
-import { ENGINE_MISSING, engineReady } from './engine.ts';
+import { ENGINE_MISSING, engineStatus, engineReady } from './engine.ts';
 import { bus } from './events.ts';
 import { body, json, note, text } from './http.ts';
 import { kick, queueFull } from './jobs.ts';
@@ -59,7 +59,7 @@ export async function articleApi(req: IncomingMessage, res: ServerResponse, path
     return true;
   };
   const tooMany = (siteId: string) => { const full = queueFull(siteId); if (full) json(res, 429, { error: full }); return !!full; };
-  const noEngine = async () => { if (await engineReady()) return false; json(res, 503, { error: ENGINE_MISSING }); return true; };
+  const noEngine = async () => { if (await engineReady()) return false; json(res, 503, { error: (await engineStatus()).reason || ENGINE_MISSING }); return true; };
   const b = await body(req, edit ? EDIT_BYTES : undefined);
 
   if (edit) {

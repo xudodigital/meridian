@@ -1,5 +1,6 @@
 import { Checkbox } from '@/components';
 import { CH, EVENTS } from '@/store/constants';
+import { showBudget } from '@/store/rules';
 import { useStore } from '@/store/store';
 
 /**
@@ -7,6 +8,7 @@ import { useStore } from '@/store/store';
  * Telegram can be chosen once they are connected in Integrations; outside demo mode the server sends them.
  */
 export function AlertTable() {
+  const costs = useStore(showBudget);
   const np = useStore(s => s.np);
   const ints = useStore(s => s.ints);
   const sample = useStore(s => s.sample);
@@ -22,7 +24,7 @@ export function AlertTable() {
           <tr><th>Alert</th>{CH.map((c, i) => <th key={c}>{c}{chok[i] ? null : <><br />{why}</>}</th>)}</tr>
         </thead>
         <tbody>
-          {EVENTS.map(([ev, label]) => (
+          {EVENTS.filter(([ev]) => ev !== 'budget' || costs).map(([ev, label]) => (
             <tr key={ev}>
               <td style={{ minWidth: 220 }}><b>{label}</b></td>
               {CH.map((c, i) => (

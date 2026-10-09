@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AgentAvatar } from '@/components/AgentAvatar';
 import { Icon, IconButton, Select } from '@/components';
 import { MODELS, PROV } from '@/store/constants';
-import { agentPlanned, codexLocal, runtimeModel, provOK, provOf, skillClash, tierOf } from '@/store/rules';
+import { agentPlanned, localRuntime, runtimeModel, provOK, provOf, skillClash, tierOf } from '@/store/rules';
 import { useStore } from '@/store/store';
 import type { Agent } from '@/store/types';
 import { EFFECT_TEXT, executionModel, missingKey, modelEffect, priceText, TIER_NAME } from './model';
@@ -13,7 +13,7 @@ import { BUILTIN_SKILLS, REQUIRED_SKILLS, executionSkills } from '../../../../sh
 export function AgentGrid() {
   const agents = useStore(s => s.agents);
   const sample = useStore(s => s.sample);
-  const local = useStore(codexLocal);
+  const local = useStore(localRuntime);
   const guard = useStore(s => s.guard);
   const [editId, setEditId] = useState<string | null>(null);
   const edit = (id: string) => { if (guard()) setEditId(id); };
@@ -33,7 +33,7 @@ export function AgentGrid() {
           <div className="sx-grid">{planned.map(a => <AgentCard key={a.id} a={a} planned onSkills={() => edit(a.id)} />)}</div>
         </section>
       ) : null}
-      <p className="note">{local ? 'Codex local uses the model configured on this computer for all AI agents.' : 'OpenAI models are listed here. Connect the OpenAI API key in Integrations to run agent jobs.'}</p>
+      <p className="note">{local ? 'AI agents use the selected runtime model. Change it in Integrations.' : 'OpenAI models are listed here. Connect the OpenAI API key in Integrations to run agent jobs.'}</p>
       <AgentSkillsSheet id={editId} onClose={() => setEditId(null)} />
     </>
   );
@@ -46,7 +46,7 @@ function AgentCard({ a, planned, onSkills }: { a: Agent; planned: boolean; onSki
   const sample = useStore(s => s.sample);
   const setAgentModel = useStore(s => s.setAgentModel);
 
-  const local = !sample && codexLocal({live});
+  const local = !sample && localRuntime({live});
   const conn = { ints, live };
   const tier = tierOf(a.model), price = priceText(a.model);
   const effect = modelEffect({ sample }, a);

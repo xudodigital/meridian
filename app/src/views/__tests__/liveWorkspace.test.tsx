@@ -71,7 +71,7 @@ beforeEach(async () => {
 afterEach(async () => { await act(async () => { root.unmount(); }); });
 
 describe('the Workspace while real work runs', () => {
-  it('shows the server\'s step, then Done for a moment, then the agent rests', async () => {
+  it('shows the server\'s step, then Done briefly, then waits for human review', async () => {
     await server([writing()], T + 10_000);
     expect($('#desk-wr')?.getAttribute('data-st')).toBe('work');
     expect(pill('wr')).toBe('Working');
@@ -85,11 +85,10 @@ describe('the Workspace while real work runs', () => {
     expect($<HTMLElement>('#desk-wr .bar i')?.style.width).toBe('100%');
 
     await later(T + 95_000 + DONE_MS);
-    expect($('#desk-wr')?.getAttribute('data-st')).toBe('idle');
-    expect(pill('wr')).toBe('Idle');
-    /* An idle card is compact: no task line and no bar. */
-    expect($('#desk-wr .task')).toBeNull();
-    expect($('#desk-wr .bar')).toBeNull();
+    expect($('#desk-wr')?.getAttribute('data-st')).toBe('wait');
+    expect(pill('wr')).toBe('Needs approval');
+    expect($('#desk-wr .task')?.textContent).toContain('Article awaiting your review: cà phê phin');
+    expect($<HTMLElement>('#desk-wr .bar i')?.style.width).toBe('0%');
     expect($('#desk-wr .donemark')).toBeNull();
   });
 
@@ -101,7 +100,7 @@ describe('the Workspace while real work runs', () => {
     expect($('#desk-wr .task')?.textContent).toBe('Writing an article: cà phê phin · Claude Code did not answer.');
   });
 
-  it('in the Office, keeps a finished person at the desk for the moment, then walks them to the break room', async () => {
+  it('in the Office, keeps a finished person at the desk for the moment, then moves them to the meeting room for review', async () => {
     await click(byText('[role="tab"]', 'apartmentOffice'));
     await server([writing()], T + 10_000);
     expect($('#room-content #desk-wr')).not.toBeNull();
@@ -110,7 +109,7 @@ describe('the Workspace while real work runs', () => {
     expect($('#room-content #desk-wr')?.getAttribute('data-st')).toBe('done');
     expect($('#desk-wr')?.getAttribute('aria-label')).toBe('Content Writer, done. Open details');
     await later(T + 95_000 + DONE_MS);
-    expect($('#room-break #desk-wr')?.getAttribute('data-st')).toBe('idle');
+    expect($('#room-meet #desk-wr')?.getAttribute('data-st')).toBe('wait');
   });
 
   it('flies pages along real work in the Office: from the Keyword agent on to the meeting room and back', async () => {

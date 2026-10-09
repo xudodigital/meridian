@@ -1,5 +1,5 @@
 import { Button, Pill, Sheet, SheetActions, Tag } from '@/components';
-import { fmt, fmtDur, siteById } from '@/store/rules';
+import { engineName, showCosts, fmt, fmtDur, siteById } from '@/store/rules';
 import { useStore } from '@/store/store';
 import type { JobRun } from '@/store/types';
 
@@ -28,6 +28,7 @@ function RunLog({ r }: { r: JobRun }) {
   const site = useStore(s => siteById(s, r.site));
   /* The closing line of a failed run is a sample sentence; a real failed run already ends with its own error. */
   const sample = useStore(s => s.sample);
+  const costs = useStore(showCosts);
   const times = stepTimes(r, sample);
   return (
     <>
@@ -37,7 +38,8 @@ function RunLog({ r }: { r: JobRun }) {
         {site || r.domain ? <Tag icon="language">{site ? site.domain : r.domain}</Tag> : null}
         <Tag icon="timer">{fmtDur(r.dur)}</Tag>
         <Tag icon="toll">{fmt(r.tokens)} tokens</Tag>
-        <Tag icon="payments">{r.engine === 'codex-local' ? 'ChatGPT limits · API cost not estimated' : '$' + r.cost.toFixed(2)}</Tag>
+        {r.engine ? <Tag icon="smart_toy">{engineName(r.engine)}</Tag> : null}
+        {costs && r.engine !== 'codex-local' && r.engine !== 'gemma-local' ? <Tag icon="payments">{'$' + r.cost.toFixed(2)}</Tag> : null}
         <Pill kind={r.status === 'Done' ? 'ok' : 'bad'}>{r.status}</Pill>
       </div>
       <div className="dsec">

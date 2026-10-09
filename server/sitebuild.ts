@@ -66,6 +66,8 @@ export type SiteArticle = {
   category?: string;
   /** When it was first approved, and when it was approved again later (null when never). Milliseconds. */
   published: number; updated: number | null;
+  /** Actual review of the current revision; edits clear this in the article lifecycle. */
+  languageReviewedAt?: number;
 };
 export type SiteInput = {
   domain: string;
@@ -288,7 +290,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* Home: masthead with M3 Expressive shapes. */
 .masthead {
   position: relative; overflow: hidden; isolation: isolate; margin-block: 24px 8px;
-  padding: clamp(40px, 7vw, 88px) clamp(24px, 5vw, 64px);
+  padding: 32px clamp(24px, 5vw, 64px);
   border-radius: var(--md-sys-shape-corner-extra-large);
   background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);
 }
@@ -330,23 +332,37 @@ a:hover { text-decoration-thickness: 2px; }
 .feature__text { color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-large); }
 @media (min-width: 840px) {
   .feature { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-  /* Side by side the photo fills its column at the height of the text (at least 440px), whatever its own shape: a tall
+  /* Side by side the photo fills its column at the height of the text (at least 320px), whatever its own shape: a tall
      portrait photo would otherwise stretch the whole card. Only the shown part changes; the file is the original. */
-  .feature__media { min-height: 440px; }
+  .feature__media { min-height: 320px; }
   .feature__media img { position: absolute; inset: 0; aspect-ratio: auto; }
   .feature__body { padding: 40px 48px; }
 }
 @media (min-width: 1200px) { .feature__title { font: var(--md-sys-typescale-headline-large); font-weight: 600; letter-spacing: -0.02em; } }
 
 /* Cards. The title link covers the whole card, so a card is one link with the title as its words. */
-.grid { display: grid; gap: 8px; padding: 0; list-style: none; }
-@media (min-width: 600px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
+.grid { display: grid; gap: 24px; padding: 0; list-style: none; }
+@media (min-width: 600px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.grid:has(> li:only-child) { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 600px) {
+  .grid:has(> li:nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid > li:only-child .card { flex-direction: row; }
+  .grid > li:only-child .card__media { flex: 0 0 40%; margin: 8px; }
+}
+.card__category { color: var(--md-sys-color-primary); font: var(--md-sys-typescale-label-large); }
+.pagination { display: flex; justify-content: center; margin-top: 32px; }
+.pagination ul { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; padding: 0; list-style: none; }
+.pagination a { color: var(--md-sys-color-on-surface); }
+.pagination a[aria-current="page"] { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+.pagination a:hover { background: var(--md-sys-color-surface-container-high); }
+.pagination a:active { background: var(--md-sys-color-surface-container-highest); }
+.pagination .gap { padding-inline: 8px; color: var(--md-sys-color-on-surface-variant); }
 .card {
   position: relative; isolation: isolate; display: flex; flex-direction: column; height: 100%; overflow: hidden;
   border-radius: var(--md-sys-shape-corner-medium); background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface);
 }
-.card__media { position: relative; overflow: hidden; aspect-ratio: 3 / 2; margin: 8px 8px 0; border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-secondary-container); }
+.card__media { position: relative; overflow: hidden; aspect-ratio: 3 / 2; max-height: 240px; margin: 8px 8px 0; border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-secondary-container); }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--md-sys-motion-standard-default-spatial); }
 .card__body { display: flex; flex-direction: column; gap: 8px; flex: 1; padding: 16px; }
 .card__title { font: var(--md-sys-typescale-title-large); font-weight: 600; letter-spacing: -0.005em; }
@@ -448,6 +464,7 @@ figcaption { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; 
 .note { margin-top: 2em; padding: 20px 24px; border-radius: var(--md-sys-shape-corner-large-increased); background: var(--md-sys-color-surface-container); }
 .note h2 { margin: 0 0 6px; font: var(--md-sys-typescale-title-small); }
 .note p { color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }
+.note summary { min-height: 48px; display: list-item; align-content: center; cursor: pointer; font: var(--md-sys-typescale-label-large); }
 
 /* A band of more articles at the end of a page. */
 .band { margin-top: 72px; padding-block: 8px 72px; background: var(--md-sys-color-surface-container-low); }
@@ -492,12 +509,14 @@ main:has(> .band:last-child) + .footer { margin-top: 0; }
 type Category = { name: string; slug: string; articles: SiteArticle[] };
 /** Categories are in the navigation and on the home page from this many on; one category alone is the whole site. */
 const NAV_MIN_CATEGORIES = 2;
-/** Articles of a category the home page shows before its heading's link leads to the rest. */
-const HOME_PER_CATEGORY = 3;
+/** Total articles per listing page, including the home page's featured article. */
+const ARTICLES_PER_PAGE = 12;
+const pageCount = (list: SiteArticle[]): number => Math.max(1, Math.ceil(list.length / ARTICLES_PER_PAGE));
+const pageArticles = (list: SiteArticle[], n: number): SiteArticle[] => list.slice((n - 1) * ARTICLES_PER_PAGE, n * ARTICLES_PER_PAGE);
 
 type Ctx = {
   input: SiteInput; id: SiteIdentity; L: Labels; tag: string; dir: string; zone: string;
-  origin: string; css: string; aboutSlug: string;
+  origin: string; css: string; aboutSlug: string; archiveSlug: string;
   /** Largest first, then by name. */
   cats: Category[];
   /** The category of each article id that has one. */
@@ -523,6 +542,28 @@ const lastChange = (a: SiteArticle): number => Math.max(a.published, a.updated ?
 const categoryPath = (cat: Category): string => seg(cat.slug) + '/';
 /** The categories are part of the navigation and the home page. */
 const showCats = (c: Ctx): boolean => c.cats.length >= NAV_MIN_CATEGORIES;
+const listingPath = (c: Ctx, n: number, cat?: Category): string => cat
+  ? categoryPath(cat) + (n === 1 ? '' : `page/${n}/`)
+  : n === 1 ? '' : `${seg(c.archiveSlug)}/${n}/`;
+const paginationLabel = (c: Ctx): string => c.tag === 'id' ? 'Halaman artikel' : c.tag === 'en' ? 'Article pages' : c.L.articles;
+
+/** Real static links, bounded navigation, and a self canonical on every page; no JS or infinite scroll. */
+function pagination(c: Ctx, n: number, list: SiteArticle[], cat?: Category): string {
+  const total = pageCount(list);
+  if (total === 1) return '';
+  const root = rootOf(listingPath(c, n, cat));
+  const href = (p: number) => root + listingPath(c, p, cat) || './';
+  const label = paginationLabel(c);
+  const link = (p: number, text: string, rel = '') => `<li><a class="btn" href="${href(p)}" aria-label="${esc(label)} ${p}"${p === n ? ' aria-current="page"' : ''}${rel ? ` rel="${rel}"` : ''}>${esc(text)}</a></li>`;
+  const visible = [...new Set([1, n - 1, n, n + 1, total])].filter(p => p > 0 && p <= total).sort((a, b) => a - b);
+  let items = n > 1 ? link(n - 1, '←', 'prev') : '';
+  visible.forEach((p, i) => {
+    if (i && p - visible[i - 1]! > 1) items += '<li class="gap" aria-hidden="true">…</li>';
+    items += link(p, new Intl.NumberFormat(c.tag === 'und' ? 'en' : c.tag).format(p));
+  });
+  if (n < total) items += link(n + 1, '→', 'next');
+  return `<nav class="pagination" aria-label="${esc(label)}"><ul>${items}</ul></nav>`;
+}
 
 /** "Related articles" in the languages sites are written in, for a site whose identity was chosen before the label existed. */
 const RELATED: Record<string, string> = {
@@ -693,6 +734,7 @@ function card(c: Ctx, a: SiteArticle, root: string, heading: 'h2' | 'h3'): strin
     ? `<div class="card__media">${img(c, p, root, { sizes: '(min-width: 1200px) 380px, (min-width: 600px) 50vw, 100vw' })}</div>`
     : `<div class="card__media" aria-hidden="true"><div class="initial">${esc([...t.title.trim()][0] ?? '')}</div></div>`;
   return `<li><article class="card">${media}<div class="card__body">` +
+    (c.catOf.has(a.id) ? `<p class="card__category">${esc(c.catOf.get(a.id)!.name)}</p>` : '') +
     `<${heading} class="card__title"><a href="${root}${articlePath(c, a.id)}">${esc(t.title)}</a></${heading}>` +
     (t.metaDescription ? `<p class="card__text">${esc(t.metaDescription)}</p>` : '') +
     `<p class="meta"><time datetime="${isoDate(a.published, c.zone)}">${esc(longDate(a.published, c.tag, c.zone))}</time></p>` +
@@ -736,7 +778,7 @@ const crumbsNav = (c: Ctx, root: string, ...trail: Crumb[]) =>
   trail.map((t, i) => i === trail.length - 1 ? `<li aria-current="page">${esc(t.name)}</li>` : `<li><a href="${root}${t.at}">${esc(t.name)}</a></li>`).join('') + `</ol></nav>`;
 
 function homePage(c: Ctx): string {
-  const [first, ...rest] = c.input.articles;
+  const [first, ...rest] = pageArticles(c.input.articles, 1);
   const root = '';
   let feature = '';
   if (first) {
@@ -750,19 +792,9 @@ function homePage(c: Ctx): string {
       `<p class="meta"><time datetime="${isoDate(first.published, c.zone)}">${esc(longDate(first.published, c.tag, c.zone))}</time></p>` +
       (hero ? shortCredit(c, hero) : '') + `</div></article></section>`;
   }
-  const section = (id: string, head: string, list: SiteArticle[]) =>
-    `<section class="wrap" aria-labelledby="${id}"><div class="section-head">${head}</div><ul class="grid">${list.map(a => card(c, a, root, 'h3')).join('')}</ul></section>`;
-  let feed = '';
-  if (showCats(c)) {
-    /* One section per category with its newest articles; the heading leads to the category page, which has them all.
-       Articles without a category follow under the general heading, so every article is one or two links from here. */
-    feed = c.cats.map((k, i) => {
-      const list = k.articles.filter(a => a !== first).slice(0, HOME_PER_CATEGORY);
-      return list.length ? section(`c${i + 1}`, `<h2 id="c${i + 1}"><a href="${categoryPath(k)}">${esc(k.name)}</a></h2><span class="count">${k.articles.length}</span>`, list) : '';
-    }).join('');
-    const loose = rest.filter(a => !c.catOf.has(a.id));
-    if (loose.length) feed += section('all', `<h2 id="all">${esc(c.L.articles)}</h2>`, loose);
-  } else if (rest.length) feed = section('all', `<h2 id="all">${esc(c.L.articles)}</h2>`, rest);
+  // One chronological feed avoids a nearly empty grid per category. Categories remain in navigation and on cards.
+  const feed = rest.length ? `<section class="wrap" aria-labelledby="all"><div class="section-head"><h2 id="all">${esc(c.L.articles)}</h2></div>` +
+    `<ul class="grid">${rest.map(a => card(c, a, root, 'h3')).join('')}</ul>${pagination(c, 1, c.input.articles)}</section>` : '';
   const main = `<div class="wrap"><div class="masthead"><h1>${esc(c.id.name)}</h1>${c.id.tagline ? `<p>${esc(c.id.tagline)}</p>` : ''}</div></div>${feature}${feed}`;
   return page(c, {
     at: '', title: c.id.tagline ? `${c.id.name} | ${c.id.tagline}` : c.id.name, description: c.id.description, current: 'home',
@@ -823,8 +855,20 @@ function articlePage(c: Ctx, a: SiteArticle): string {
       return `<li><span><a href="${esc(s.url)}">${esc(s.title || s.url)}</a><span class="host">${esc(host)}</span></span></li>`;
     }).join('')}</ol></section>`
     : '';
+  // The writer's disclosure is draft text. Preserve it verbatim, but distinguish it from
+  // the later, recorded language review instead of publishing a stale workflow claim.
+  const reviewedAt = a.languageReviewedAt;
+  const reviewed = typeof reviewedAt === 'number' && Number.isFinite(reviewedAt) && reviewedAt > 0 && reviewedAt <= (a.updated ?? a.published);
+  const reviewLabels = c.tag.startsWith('id')
+    ? { draft: 'Catatan saat draf dibuat', status: 'Tinjauan bahasa oleh manusia tercatat pada' }
+    : { draft: 'Note recorded when the draft was created', status: 'Human language review recorded on' };
+  const reviewStatus = reviewed
+    ? `<p>${esc(reviewLabels.status)} <time datetime="${isoDate(reviewedAt, c.zone)}">${esc(longDate(reviewedAt, c.tag, c.zone))}</time>.</p>`
+    : '';
   const disclosure = t.disclosure.text
-    ? `<aside class="note" aria-labelledby="how"><h2 id="how">${esc(c.L.disclosure)}</h2><p>${esc(t.disclosure.text)}</p></aside>`
+    ? `<aside class="note" aria-labelledby="how"><h2 id="how">${esc(c.L.disclosure)}</h2>${reviewed
+      ? `${reviewStatus}<details><summary>${esc(reviewLabels.draft)}</summary><p>${esc(t.disclosure.text)}</p></details>`
+      : `<p>${esc(t.disclosure.text)}</p>`}</aside>`
     : '';
   const by = line(t.byline.text, 200) || c.id.name;
   const byText = by.toLowerCase().startsWith(c.L.by.toLowerCase() + ' ') ? by : `${c.L.by} ${by}`;
@@ -880,16 +924,28 @@ function aboutPage(c: Ctx): string {
 }
 
 /** A category's page: its name and every article in it, newest first. This is where the breadcrumbs of its articles lead. */
-function categoryPage(c: Ctx, cat: Category): string {
-  const at = categoryPath(cat), root = '../';
-  const main = crumbsNav(c, root, { name: cat.name, at }) +
+function categoryPage(c: Ctx, cat: Category, n = 1): string {
+  const at = listingPath(c, n, cat), root = rootOf(at), list = pageArticles(cat.articles, n);
+  const trail: Crumb[] = [{ name: cat.name, at: categoryPath(cat) }, ...(n > 1 ? [{ name: `${paginationLabel(c)} ${n}`, at }] : [])];
+  const main = crumbsNav(c, root, ...trail) +
     `<div class="wrap listing"><div class="section-head"><h1>${esc(cat.name)}</h1><span class="count">${cat.articles.length}</span></div>` +
-    `<ul class="grid">${cat.articles.map(a => card(c, a, root, 'h2')).join('')}</ul></div>`;
+    `<ul class="grid">${list.map(a => card(c, a, root, 'h2')).join('')}</ul>${pagination(c, n, cat.articles, cat)}</div>`;
   /* No sentence of its own exists in the site's language, so the description names what the page lists. */
   const first = cat.articles[0];
   return page(c, {
-    at, title: `${cat.name} | ${c.id.name}`, description: summary(cat.articles.map(a => line(a.content.title, 200)).join(' · '), 160), current: cat.slug,
-    image: first ? coverOf(c, first) : undefined, ld: [breadcrumbs(c, { name: cat.name, at })], main,
+    at, title: `${cat.name}${n > 1 ? ` · ${n}` : ''} | ${c.id.name}`, description: summary(list.map(a => line(a.content.title, 200)).join(' · '), 160), current: cat.slug,
+    image: first ? coverOf(c, first) : undefined, ld: [breadcrumbs(c, ...trail)], main,
+  });
+}
+
+function archivePage(c: Ctx, n: number): string {
+  const at = listingPath(c, n), root = rootOf(at), list = pageArticles(c.input.articles, n);
+  const name = `${c.L.articles} · ${n}`, trail = [{ name, at }];
+  return page(c, {
+    at, title: `${name} | ${c.id.name}`, description: summary(list.map(a => a.content.title).join(' · '), 160), current: 'home',
+    ld: [breadcrumbs(c, ...trail)],
+    main: crumbsNav(c, root, ...trail) + `<section class="wrap listing"><div class="section-head"><h1>${esc(name)}</h1></div>` +
+      `<ul class="grid">${list.map(a => card(c, a, root, 'h2')).join('')}</ul>${pagination(c, n, c.input.articles)}</section>`,
   });
 }
 
@@ -910,6 +966,8 @@ function sitemap(c: Ctx): string {
     ...c.input.articles.map(a => url(abs(c, articlePath(c, a.id)), lastChange(a),
       (c.photos.get(a.id) ?? []).map(p => abs(c, 'media/' + seg(mediaName(p, largest(p))))))),
     ...c.cats.map(k => url(abs(c, categoryPath(k)), Math.max(...k.articles.map(lastChange)))),
+    ...Array.from({ length: pageCount(c.input.articles) - 1 }, (_, i) => url(abs(c, listingPath(c, i + 2)), Math.max(...pageArticles(c.input.articles, i + 2).map(lastChange)))),
+    ...c.cats.flatMap(k => Array.from({ length: pageCount(k.articles) - 1 }, (_, i) => url(abs(c, listingPath(c, i + 2, k)), Math.max(...pageArticles(k.articles, i + 2).map(lastChange))))),
     url(abs(c, seg(c.aboutSlug) + '/'), c.input.identityUpdatedAt),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${entries.join('\n')}\n</urlset>\n`;
@@ -990,20 +1048,25 @@ export function buildSite(input: SiteInput): SiteFiles {
     for (let n = 2; taken.has(s); n++) s = `${base}-${n}`;
     taken.add(s); k.slug = s;
   });
+  // Allocate after articles/categories: introducing pagination never takes an existing content URL.
+  const archiveBase = slugify(L.articles) || 'articles';
+  let archiveSlug = archiveBase;
+  for (let n = 2; taken.has(archiveSlug); n++) archiveSlug = `${archiveBase}-${n}`;
 
   const css = stylesheet(id, tag);
   const cssName = `site.${createHash('sha256').update(css).digest('hex').slice(0, 8)}.css`;
   const { light, dark } = schemes(id.sourceColor);
   const c: Ctx = {
     input, id, L, tag, dir, zone: zoneOf(input.country), origin: `https://${domain}`, css: cssName, aboutSlug, slugs, photos,
-    cats, catOf, related: relatedLabel(L, tag),
+    cats, catOf, archiveSlug, related: relatedLabel(L, tag),
     surface: [light.surface!, dark.surface!],
   };
 
   files.set(`assets/${cssName}`, css);
   files.set('index.html', homePage(c));
+  for (let n = 2; n <= pageCount(input.articles); n++) files.set(`${listingPath(c, n)}index.html`, archivePage(c, n));
   for (const a of input.articles) files.set(`${slugs.get(a.id)}/index.html`, articlePage(c, a));
-  for (const k of cats) files.set(`${k.slug}/index.html`, categoryPage(c, k));
+  for (const k of cats) for (let n = 1; n <= pageCount(k.articles); n++) files.set(`${listingPath(c, n, k)}index.html`, categoryPage(c, k, n));
   files.set(`${aboutSlug}/index.html`, aboutPage(c));
   files.set('404.html', notFoundPage(c));
   files.set('sitemap.xml', sitemap(c));

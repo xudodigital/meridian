@@ -47,6 +47,8 @@ declare module './types' {
     run?: LiveRun | null;
     /** Live mode: the job that just ended, until the agent goes back to resting. */
     ended?: LiveEnd | null;
+    /** A real article/build is waiting for a person, not a running model call. */
+    approvalWait?: boolean;
   }
 }
 
@@ -150,7 +152,7 @@ function jobsOf(s: Target, now: number): Record<Driven, ServerJob | null> {
   const extra: Record<string, ServerJob | null> = {};
   for (const id of ['res', 'arc', 'seo', 'lnk', 'ana', 'gd']) {
     const task = Object.values(s.live.seoTasks ?? {}).sort((a, b) => a.id - b.id).find(t => t.agent === id && t.status === 'work');
-    extra[id] = task ? job(task.id, task.siteId, task.brief, 'seo-task', `seo-task:${task.id}`, task.startedAt, 'Preparing a draft result for review') : null;
+    extra[id] = task ? job(task.id, task.siteId, task.brief, 'seo-task', `seo-task:${task.id}`, task.startedAt, task.step || 'Preparing a draft result for review') : null;
   }
   return { kw, wr, bld, dep, ...extra } as Record<Driven, ServerJob | null>;
 }
@@ -247,7 +249,27 @@ export function liveAgentsTo(s: Target, now: number = Date.now()): void {
   /* The Orchestrator shows the running workflow and what it waits for (liveWorkflows.ts). */
   orchestratorTo(s, now);
   for (const a of s.agents) if (a.ended && (a.status !== 'idle' || now >= a.ended.until)) rest(a);
+  approvalAgentsTo(s);
   handoffsTo(s, now);
+}
+
+/** Keep human gates visible after the short done moment and across page reloads.
+ * Active jobs and an admin's pause take precedence; approval never simulates model work. */
+function approvalAgentsTo(s: Target): void {
+  const article = Object.values(s.live.arts).filter(x => x.status === 'review').sort((a, b) => a.id - b.id)[0];
+  const build = builds(s).filter(x => x.status === 'ready' && x.review === 'waiting').sort((a, b) => a.id - b.id)[0];
+  for (const [id, gate] of [['wr', article && { site: article.siteId, task: 'Article awaiting your review: ' + article.keyword }],
+    ['dep', build && { site: build.siteId, task: `Website awaiting your approval: ${build.domain} v${build.version}` }]] as const) {
+    const a = s.agents.find(x => x.id === id);
+    if (!a) continue;
+    if (a.approvalWait && (a.status !== 'wait' || !gate)) {
+      a.approvalWait = false;
+      if (a.status === 'wait') { a.status = 'idle'; a.progress = 0; a.task = 'Waiting for a task'; }
+    }
+    if (!gate || a.status === 'off' || a.status === 'work' || a.ended) continue;
+    a.approvalWait = true; a.status = 'wait'; a.progress = 0; a.live = false; a.run = null; a.liveReq = null;
+    a.site = siteById(s, gate.site) ? gate.site : null; a.task = gate.task;
+  }
 }
 
 /**

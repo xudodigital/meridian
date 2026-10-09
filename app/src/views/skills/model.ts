@@ -1,7 +1,7 @@
 /* Models and skills: everything the page shows that is worked out from the store, kept free of React so it can be
    tested as plain functions. Nothing here changes the store. */
 import { PROV, PROVIDER_IDS, RATE, RUNNER_AGENTS } from '@/store/constants';
-import { agentPlanned, codexLocal, runtimeModel, priceOf, provOK, provOf, tierOf, usd } from '@/store/rules';
+import { agentPlanned, engineName, localRuntime, runtimeModel, priceOf, provOK, provOf, tierOf, usd } from '@/store/rules';
 import { readKey, writeKey } from '@/store/storage';
 import type { Agent, AppState, Skill } from '@/store/types';
 
@@ -54,7 +54,7 @@ export function facts(s: Pick<AppState, 'agents' | 'skills' | 'ints' | 'live' | 
   return {
     agents: s.agents.length, active: s.agents.length - planned, planned,
     skills: s.skills.length, assigned: s.skills.filter(k => used.has(k.id)).length,
-    providers: PROVIDER_IDS.length, connected: PROVIDER_IDS.filter(k => provOK(s, k)).map(k => PROV[k].name),
+    providers: localRuntime(s) ? 1 : PROVIDER_IDS.length, connected: localRuntime(s) ? s.live.engine?.ready ? [engineName(s.live.engine.mode)] : [] : PROVIDER_IDS.filter(k => provOK(s, k)).map(k => PROV[k].name),
   };
 }
 
@@ -150,7 +150,7 @@ export function executionModel(s: Pick<AppState, 'sample' | 'live'>, a: Pick<Age
   if (!MODEL_AGENTS.has(a.id)) return RUNNER_AGENTS.has(a.id)
     ? { label: 'Built-in code', detail: 'This agent does not call an AI model.', fallback: false }
     : { label: 'Not implemented', detail: 'This configuration is saved for a future runner.', fallback: false };
-  if (codexLocal(s)) return { label: `Codex local · ${runtimeModel(s, a.model)}`, detail: s.live.engine?.ready ? 'Uses the local runtime model and ChatGPT usage limits. API model settings do not apply.' : s.live.engine?.reason || 'Sign in to Codex on this computer.', fallback: false };
+  if (localRuntime(s)) return { label: `${engineName(s.live.engine?.mode)} · ${runtimeModel(s, a.model)}`, detail: s.live.engine?.ready ? 'Uses the selected runtime model. API model settings do not apply.' : s.live.engine?.reason || 'Check the selected engine in Integrations.', fallback: false };
   const ready = s.live.engine?.mode === 'openai-api' && s.live.engine.ready;
   return { label: ready ? `OpenAI · ${a.model}` : 'OpenAI unavailable',
     detail: ready ? 'The next job calls this configured model through the Responses API.' : 'Connect the OpenAI API key in Integrations to run this model.', fallback: false };

@@ -225,7 +225,7 @@ describe('keyword volumes', () => {
     assert.equal(first.steps.at(-1)!.text, 'Saved 2 keywords, without volume data');
     assert.equal(first.notes, 'No volumes.');
     const r = await editor.post(`/api/requests/${first.id}/volumes`);
-    assert.deepEqual([r.status, r.data.error], [409, 'Connect DataForSEO in Integrations to see search volume.']);
+    assert.deepEqual([r.status, r.data.error], [409, 'Connect Google Ads or DataForSEO in Integrations to see search volume.']);
     assert.equal(dfs.tasks.length, 0);
   });
 

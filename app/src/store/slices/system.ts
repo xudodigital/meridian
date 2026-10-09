@@ -283,7 +283,7 @@ export const systemSlice: Slice<SystemState, SystemActions> = {
     connectOAuth: id => {
       if (!get().guard()) return;
       if (!get().sample) {
-        if (id !== 'gsc' && id !== 'ga4') return;
+        if (id !== 'gsc' && id !== 'ga4' && id !== 'ads') return;
         servicesApi.googleStart(id).then(r => { window.location.assign(r.url); }, (e: unknown) => get().snack(message(e), 'error'));
         return;
       }

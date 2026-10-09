@@ -1,9 +1,12 @@
 // "Test connection" for each service: a real call with the stored values, and what it means in words.
 // A test never changes anything at the service, except Slack, Telegram and email, whose test is a short message.
+import { gemmaStatus } from './gemma-local.ts';
 import { ServiceError, base, call, errorText, short } from './net.ts';
 import { sendMail, smtpConfig, SmtpError } from './smtp.ts';
+import { testGoogleAds } from './google-ads.ts';
 import { googleTest } from './google.ts';
 import type { Status } from './integrations.ts';
+import { testSerpApi } from './serpapi.ts';
 
 export type TestResult = { status: Status; msg: string; tail?: string };
 export type TestCtx = { by: string; email: string };
@@ -112,8 +115,10 @@ async function email(v: Record<string, string>, ctx: TestCtx): Promise<TestResul
 }
 
 const TESTS: Record<string, (v: Record<string, string>, ctx: TestCtx) => Promise<TestResult>> = {
-  openai, dfs: dataforseo, cf: cloudflare, probe: globalping, slack, tg: telegram, email,
-  google: async () => ({ status: 'ok', msg: 'Saved. Connect Search Console or Analytics to check it with Google.' }),
+  gemma: async v => { const s = await gemmaStatus(v); return { status:s.ready ? 'ok' : 'bad', msg:s.ready ? s.model + ' is installed. ' + s.version + '.' : s.reason }; },
+  openai, dfs: dataforseo, serpapi: testSerpApi, cf: cloudflare, probe: globalping, slack, tg: telegram, email,
+  google: async () => ({ status: 'ok', msg: 'Saved. Connect Google Ads, Search Console or Analytics to check it with Google.' }),
+  ads: v => testGoogleAds(v),
   gsc: v => googleTest('gsc', v), ga4: v => googleTest('ga4', v),
 };
 

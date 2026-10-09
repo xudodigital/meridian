@@ -22,23 +22,23 @@ function ServiceForm({ w, onClose }: { w: IntegrationWire; onClose: () => void }
   const redirectUri = useStore(s => s.live.redirectUri);
   const snack = useStore(s => s.snack);
   const stored = !!w.updatedAt;
-  const [values, setValues] = useState<Record<string, string>>(() => Object.fromEntries(w.fields.map(f => [f.k, f.secret ? '' : w.config[f.k] ?? ''])));
+  const [values, setValues] = useState<Record<string, string>>(() => Object.fromEntries(w.fields.map(f => [f.k, f.secret ? '' : w.config[f.k] ?? (w.id === 'gemma' ? ({endpoint:'http://127.0.0.1:11434',model:'gemma4:31b',context:'32768'} as Record<string,string>)[f.k] || '' : '')])));
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setBusy(true); setMsg('');
     /* Only what was typed is sent; an unchanged non-secret value is sent as it is, which the server accepts. */
-    const err = await saveService(w.id, Object.fromEntries(Object.entries(values).filter(([, v]) => v.trim())));
+    const err = await saveService(w.id, Object.fromEntries(Object.entries(values).filter(([, v]) => w.id === 'ads' || v.trim())));
     setBusy(false);
     if (err) { setMsg(err); return; }
-    if (w.id === 'openai') {
-      const saved = useStore.getState().live.ints.openai;
-      if (saved?.status === 'bad') { setMsg(saved.msg || 'The API key was saved, but the connection failed. Check the key and try again.'); return; }
+    if (w.id === 'openai' || w.id === 'gemma') {
+      const saved = useStore.getState().live.ints[w.id];
+      if (saved?.status === 'bad') { setMsg(saved.msg || 'The connection test failed. Check the settings and try again.'); return; }
       setBusy(true);
       const engine = await refreshEngine();
       setBusy(false);
-      if (engine?.mode !== 'codex-local' && engine?.mode !== 'openai-api') { setMsg(engine?.reason || 'The key was saved, but OpenAI is not ready yet. Check the connection and try again.'); return; }
+      if (w.id !== 'gemma' && engine?.mode !== 'codex-local' && engine?.mode !== 'gemma-local' && engine?.mode !== 'openai-api') { setMsg(engine?.reason || 'The key was saved, but OpenAI is not ready yet. Check the connection and try again.'); return; }
     }
     onClose();
   };
@@ -46,6 +46,7 @@ function ServiceForm({ w, onClose }: { w: IntegrationWire; onClose: () => void }
   return (
     <form onSubmit={submit}>
       {w.id === 'openai' ? <p className="note">Create a key in your <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">OpenAI API account</a> and paste it below. API usage is billed separately from ChatGPT. Saving tests the connection; it does not start an AI job.</p> : null}
+      {w.id === 'ads' ? <p className="note">Use the customer account for keyword metrics. The optional manager ID is only needed for delegated access. Google’s consent scope covers Ads access; Meridian only reads account details and metrics.</p> : null}
       {w.id === 'google' ? (
         <div className="callout info" style={{ marginBottom: 12 }}>
           <span><b>Authorized redirect URI</b><br /><code>{redirectUri || 'http://localhost:4310/api/oauth/google/callback'}</code></span>
@@ -70,11 +71,11 @@ function ServiceForm({ w, onClose }: { w: IntegrationWire; onClose: () => void }
         ))}
       </Fields>
       {w.worksWithout ? <p className="note">{w.worksWithout}</p> : null}
-      <p className="note">Saved encrypted on this computer's Meridian server. Only the last few characters are ever shown again.</p>
+      <p className="note">{w.id === 'gemma' ? 'No API key needed. Choose Gemma localhost above to use this model.' : 'Secrets are stored encrypted on this computer.'}</p>
       <p className="err" hidden={!msg}>{msg}</p>
       <SheetActions>
         <Button variant="text" onClick={onClose}>Cancel</Button>
-        <Button variant="filled" type="submit" disabled={busy}>{busy ? 'Saving and testing…' : 'Save and test'}</Button>
+        <Button variant="filled" type="submit" disabled={busy}>{busy ? 'Saving and testing…' : w.id === 'ads' ? 'Save account' : 'Save and test'}</Button>
       </SheetActions>
     </form>
   );

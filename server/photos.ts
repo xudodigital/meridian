@@ -42,7 +42,7 @@ export type Photo = {
 };
 /** The latest photo job of an article: the same shape as PhotoJobWire in app/src/store/types.ts. '' never ran. */
 export type PhotoJob = {
-  engine?: 'openai-api' | 'codex-local' | ''; status: '' | 'queued' | 'work' | 'done' | 'failed'; step: string; error: string;
+  engine?: 'openai-api' | 'codex-local' | 'gemma-local' | ''; status: '' | 'queued' | 'work' | 'done' | 'failed'; step: string; error: string;
   queuedAt: number | null; startedAt: number | null; finishedAt: number | null; tokens: number; costUsd: number;
 };
 

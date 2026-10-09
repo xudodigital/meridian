@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { SEO_TASKS, type SeoTaskKind, type SeoTaskWire } from '../../../../shared/seo-tasks';
 import { Button, Callout, Empty, Field, Fields, Info, Pill, Select } from '@/components';
-import { codexLocal, runtimeModel } from '@/store/rules';
+import { runtimeModel, runtimeUsage, engineName, showCosts } from '@/store/rules';
 import { apiGet, apiSend } from '@/store/serverApi';
 import { useStore } from '@/store/store';
 import { go } from '@/nav';
+import { usableInt } from '@/store/serverFacts';
+import { SERP_PROVIDERS, type SerpProvider } from '../../../../shared/serp';
 import './seo-tasks.css';
 
 const placeholders: Record<SeoTaskKind, string> = {
@@ -22,6 +24,10 @@ export function SeoTasks({ initialKind = 'strategy' }: { initialKind?: SeoTaskKi
   const sites = useStore(s => s.sites), filter = useStore(s => s.siteFilter);
   const live = useStore(s => s.live), sample = useStore(s => s.sample);
   const [chosen, setChosen] = useState('');
+  const [serpProvider, setSerpProvider] = useState<SerpProvider | 'auto'>('auto');
+  const autoProvider = usableInt({ live }, 'serpapi') ? 'serpapi' : usableInt({ live }, 'dfs') ? 'dfs' : null;
+  const activeProvider = serpProvider === 'auto' ? autoProvider : serpProvider;
+  const serpConnected = !!activeProvider && usableInt({ live }, activeProvider);
   const [kind, setKind] = useState<SeoTaskKind>(initialKind), [brief, setBrief] = useState('');
   const [liveAudit, setLiveAudit] = useState(false), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const [page, setPage] = useState(0);
@@ -33,14 +39,13 @@ export function SeoTasks({ initialKind = 'strategy' }: { initialKind?: SeoTaskKi
   const writable = useStore(s => s.session?.role === 'admin' || s.session?.role === 'editor');
   const needs = SEO_TASKS[kind].needsArticles;
   const hasArticles = Object.values(live.arts).some(a => a.siteId === siteId && a.domain === selected?.domain && (a.status === 'review' || a.status === 'approved'));
-  const local = codexLocal({live});
   const ready = live.on && live.engine?.ready && !sample;
   const duplicate = tasks.some(t => t.kind === kind && (t.status === 'queued' || t.status === 'work'));
   const receive = (task: SeoTaskWire) => useStore.setState(d => { d.live.seoTasks ??= {}; d.live.seoTasks[task.id] = task; });
   const run = async () => {
     if (!useStore.getState().guard()) return;
     setBusy(true); setError('');
-    try { receive((await apiSend<{ task: SeoTaskWire }>('/api/seo-tasks', { siteId, kind, brief, liveAudit, model: selectedAgent?.model })).task); setBrief(''); setPage(0); }
+    try { receive((await apiSend<{ task: SeoTaskWire }>('/api/seo-tasks', { siteId, kind, brief, liveAudit, ...(kind === 'serp' ? { serpProvider } : {}), model: selectedAgent?.model })).task); setBrief(''); setPage(0); }
     catch (e) { setError((e as Error).message); } finally { setBusy(false); }
   };
   const review = async (id: number) => {
@@ -57,13 +62,16 @@ export function SeoTasks({ initialKind = 'strategy' }: { initialKind?: SeoTaskKi
         <Field label="1. Choose a site"><Select label="Task site" value={siteId} onChange={v => { setChosen(v); setPage(0); }} options={sites.map(s => ({ value: s.id, label: s.domain }))} /></Field>
         <Field label="2. Choose what you need"><Select label="SEO task" value={kind} onChange={v => { setKind(v as SeoTaskKind); setBrief(''); setError(''); }} options={Object.entries(SEO_TASKS).map(([value, s]) => ({ value, label: s.title }))} /></Field>
         <Field label="3. Describe your goal" wide><textarea aria-label="Task brief" rows={4} maxLength={kind === 'serp' ? 150 : 3000} value={brief} onChange={e => setBrief(e.target.value)} placeholder={placeholders[kind]} /></Field>
+        {kind === 'serp' ? <Field label="Search results provider"><Select label="SERP provider" value={serpProvider} onChange={v => setSerpProvider(v as SerpProvider | 'auto')} options={[{ value: 'auto', label: `Automatic${autoProvider ? ' · ' + SERP_PROVIDERS[autoProvider] : ''}` }, ...Object.entries(SERP_PROVIDERS).map(([value, label]) => ({ value, label }))]} /></Field> : null}
       </Fields>
-      <p className="note">{selectedAgent?.name ?? SEO_TASKS[kind].agent} · {runtimeModel({live}, selectedAgent?.model || 'not configured')} · {selected?.country} · {selected?.lang}. {local ? 'Uses ChatGPT usage limits.' : 'Uses the site budget.'}{kind === 'serp' ? ' Also uses DataForSEO credits.' : ''}</p>
+      <p className="note">{selectedAgent?.name ?? SEO_TASKS[kind].agent} · {runtimeModel({live}, selectedAgent?.model || 'not configured')} · {selected?.country} · {selected?.lang}. {runtimeUsage({live})}{kind === 'serp' && serpConnected ? ` ${SERP_PROVIDERS[activeProvider!]} search quota applies.` : ''}</p>
+      {kind === 'serp' ? <p className="note">Keyword volume is separate and uses Google Ads or DataForSEO.</p> : null}
+      {kind === 'serp' && !serpConnected ? <Callout icon="key" info>Connect {activeProvider ? SERP_PROVIDERS[activeProvider] : 'SerpApi or DataForSEO'} in Integrations to research search results. <Button variant="text" onClick={() => go('integrations')}>Open Integrations</Button></Callout> : null}
       {kind === 'audit' ? <label className="seo-live-choice"><input type="checkbox" checked={liveAudit} onChange={e => setLiveAudit(e.target.checked)} /> Also inspect public pages, robots.txt and sitemap.xml (up to 10 URLs)</label> : null}
       {needs && !hasArticles ? <Callout icon="article" info>This task needs an article in review or approved. <Button variant="text" onClick={() => go('review')}>Open article review</Button></Callout> : null}
-      {!ready ? <Callout icon="key" info>{local ? live.engine?.reason || 'Sign in to Codex on this computer to run a task.' : 'Connect and test OpenAI in Integrations to run a task.'} <Button variant="text" onClick={() => go('integrations')}>Open Integrations</Button></Callout> : null}
+      {!ready ? <Callout icon="key" info>{live.engine?.reason || 'Configure the selected engine in Integrations.'} <Button variant="text" onClick={() => go('integrations')}>Open Integrations</Button></Callout> : null}
       {error ? <p className="seo-error" role="alert">{error}</p> : null}
-      <Button variant="filled" icon="play_arrow" disabled={!writable || !ready || busy || !brief.trim() || duplicate || (needs && !hasArticles)} onClick={() => void run()}>{busy ? 'Working…' : duplicate ? 'This task is already queued' : 'Run this task'}</Button>
+      <Button variant="filled" icon="play_arrow" disabled={!writable || !ready || busy || !brief.trim() || duplicate || (kind === 'serp' && !serpConnected) || (needs && !hasArticles)} onClick={() => void run()}>{busy ? 'Working…' : duplicate ? 'This task is already queued' : 'Run this task'}</Button>
       <Info label="Review and next steps"><p>Marking a result reviewed does not apply article edits or send outreach. A reviewed strategy guides later articles. Apply other proposals in the article or category editor, then review and rebuild.</p></Info>
     </>}
     <h3>Results for {selected?.domain ?? 'your site'}</h3>
@@ -72,6 +80,7 @@ export function SeoTasks({ initialKind = 'strategy' }: { initialKind?: SeoTaskKi
   </section>;
 }
 function TaskResult({ task: t, onReview, disabled }: { task: SeoTaskWire; onReview: () => void; disabled: boolean }) {
+  const costs = useStore(showCosts);
   const r = t.result;
   const [evidence, setEvidence] = useState(''), [evidenceError, setEvidenceError] = useState('');
   const loadEvidence = async () => { try { setEvidence((await apiGet<{ task: SeoTaskWire }>(`/api/seo-tasks/${t.id}`)).task.context); } catch (e) { setEvidenceError((e as Error).message); } };
@@ -86,7 +95,7 @@ function TaskResult({ task: t, onReview, disabled }: { task: SeoTaskWire; onRevi
       <h4>Limitations and claims to verify</h4><ul>{r.limitations.map((x, i) => <li key={i}>{x}</li>)}</ul>
       {r.sources.length ? <><h4>Sources to check</h4><ul>{r.sources.map((s, i) => <li key={i}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></li>)}</ul></> : null}
       <details><summary>Saved evidence and data coverage</summary><Button variant="text" onClick={() => void loadEvidence()}>Load saved evidence</Button>{evidenceError ? <p role="alert">{evidenceError}</p> : null}{evidence ? <pre className="seo-context">{evidence}</pre> : null}</details>
-      <p className="note">{t.tokens.toLocaleString()} tokens · {t.engine === 'codex-local' ? 'Codex local · API cost not estimated' : `OpenAI estimate $${t.costUsd.toFixed(4)}`} · DataForSEO ${t.serviceCostUsd.toFixed(4)}</p>
+      <p className="note">{t.tokens.toLocaleString()} tokens · {engineName(t.engine)}{t.kind === 'serp' ? ` · ${SERP_PROVIDERS[t.serpProvider ?? 'dfs']}` : ''}{costs ? ` · API estimate $${t.costUsd.toFixed(4)}${t.kind === 'serp' && t.serpProvider !== 'serpapi' ? ' · DataForSEO $' + t.serviceCostUsd.toFixed(4) : ''}` : ''}</p>
       {t.reviewedAt ? <p>Reviewed by {t.reviewedBy}. Article changes still need their own review and build.</p> : <Button variant="tonal" disabled={disabled} onClick={onReview}>I have reviewed this draft</Button>}
     </div> : <p role="status">{t.status === 'queued' ? 'Waiting in the shared job queue.' : t.status === 'work' ? 'The agent is preparing a result. You can leave this page.' : 'No result saved. Create a new task with a revised brief.'}</p>}
   </details>;

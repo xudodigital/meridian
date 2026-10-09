@@ -138,7 +138,7 @@ async function api(req: IncomingMessage, res: ServerResponse, path: string): Pro
     /* The site's daily budget is a hard stop (ledger.ts). */
     const stop = budgetStop(siteId);
     if (stop) return json(res, 409, { error: stop });
-    if (!(await engineReady())) return json(res, 503, { error: ENGINE_MISSING });
+    if (!(await engineReady())) return json(res, 503, { error: (await engineStatus()).reason || ENGINE_MISSING });
     const full = queueFull(siteId);
     if (full) return json(res, 429, { error: full });
     const model = text(b.model, 60) || defaultModel('kw');
@@ -154,7 +154,7 @@ async function api(req: IncomingMessage, res: ServerResponse, path: string): Pro
   const m = path.match(/^\/api\/requests\/(\d+)\/retry$/);
   if (method === 'POST' && m) {
     const no = mayWrite(u); if (no) return json(res, no.status, { error: no.error });
-    if (!(await engineReady())) return json(res, 503, { error: ENGINE_MISSING });
+    if (!(await engineReady())) return json(res, 503, { error: (await engineStatus()).reason || ENGINE_MISSING });
     const full = queueFull();
     if (full) return json(res, 429, { error: full });
     const again = q.getRequest.get(Number(m[1])) as RequestRow | undefined, stop = again ? budgetStop(again.site_id) : null;
@@ -326,7 +326,7 @@ server.listen(PORT, HOST, async () => {
   void flushAlerts();
   setInterval(sweepSessions, 10 * 60_000).unref();
   const e = await engineStatus(true);
-  console.log(`Engine: ${e.ready ? `${e.mode === 'codex-local' ? 'Codex Local' : 'OpenAI'} ${e.apiVersion}` : `not available. ${e.reason} Add the OpenAI key in Integrations to run agent jobs.`}`);
+  console.log(`Engine: ${e.ready ? `${e.mode === 'gemma-local' ? 'Gemma localhost' : e.mode === 'codex-local' ? 'Codex Local' : 'OpenAI'} ${e.apiVersion}` : `not available. ${e.reason} Check the selected engine in Integrations.`}`);
   console.log(`Meridian is running at http://localhost:${PORT}`);
   recover();
   /* Workflow runs follow their jobs from here on, and the schedules are looked at every minute (workflows.ts). */

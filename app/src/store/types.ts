@@ -300,18 +300,23 @@ export interface JobRun {
 
 export type RequestStatus = 'queued' | 'work' | 'done' | 'failed';
 /** `none`: OpenAI API was not found or is not connected, so no agent job can run. */
-export type EngineMode = 'openai-api' | 'codex-local' | 'none';
+export type EngineMode = 'openai-api' | 'codex-local' | 'gemma-local' | 'none';
 /** One step of a server job's latest run, with the time it began. */
 export interface JobStep { at: number; text: string }
 export interface KeywordOut {
   keyword: string; meaning: string; intent: string; cluster: string; basis: string;
   /** The keyword's id on the server, for marking it "Track". Missing from an older server. */
   id?: number;
-  /** Monthly searches from DataForSEO; null when it has no figure. `volumeAt` is when it was asked: null or missing means never. */
+  /** Monthly searches from Google Ads or DataForSEO; null when it has no figure. `volumeAt` is when it was asked: null or missing means never. */
   volume?: number | null;
   /** LOW, MEDIUM or HIGH among advertisers (Google Ads data), or ''. */
   competition?: string;
   volumeAt?: number | null;
+  volumeProvider?: string;
+  volumeCountry?: string;
+  volumeLanguage?: string;
+  /** Shared Google close-variant metric, never sum duplicates in the same group. */
+  volumeGroup?: string;
   /** A person asked to track its position in Rank. */
   track?: boolean;
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Card, Icon, Info, Pill, Tag } from '@/components';
 import { PROV } from '@/store/constants';
 import { refreshEngine } from '@/store/live';
-import { liveOn, priceNote, provOf } from '@/store/rules';
+import { engineName, localRuntime, showCosts, liveOn, priceNote, provOf } from '@/store/rules';
 import { dayTime } from '@/store/rules';
 import { statusLabel, usableInt } from '@/store/serverFacts';
 import { useStore } from '@/store/store';
@@ -16,9 +16,10 @@ const isProvider = (id: string): id is ProviderId => Object.hasOwn(PROV, id);
  * In live mode the OpenAI card shows whether the server connection is ready.
  */
 export function IntCard({ n, onReplace, onSetup }: { n: Integration; onReplace: (id: string) => void; onSetup: (id: string) => void }) {
-  const using = useStore(s => n.ai && s.live.engine?.mode !== 'codex-local' ? s.agents.filter(a => a.id !== 'orc' && a.id !== 'dep' && provOf(a.model) === n.id).length : 0);
+  const using = useStore(s => n.ai && !localRuntime(s) ? s.agents.filter(a => a.id !== 'orc' && a.id !== 'dep' && provOf(a.model) === n.id).length : 0);
   const engine = useStore(s => n.id === 'openai' && liveOn(s) ? s.live.engine : null);
   const sample = useStore(s => s.sample);
+  const costs = useStore(showCosts);
   const w = useStore(s => s.sample ? undefined : s.live.ints[n.id]);
   const prov = n.ai && isProvider(n.id) ? PROV[n.id] : null;
   const serverReady = engine?.mode === 'openai-api' && engine.ready === true;
@@ -34,7 +35,7 @@ export function IntCard({ n, onReplace, onSetup }: { n: Integration; onReplace: 
           {w.connected || !serverReady ? <Pill kind={!w.connected ? 'mut' : w.status === 'ok' || (w.worksWithout && !w.updatedAt) ? 'ok' : w.status === 'bad' ? 'bad' : w.status === 'warn' ? 'warn' : 'info'}>{w.connected && serverReady && n.id === 'openai' ? 'API key: ' + statusLabel(w).toLowerCase() : statusLabel(w)}</Pill> : null}
           {n.ai ? <Pill kind={using ? 'info' : 'mut'}>{using + ' agent' + (using === 1 ? '' : 's')}</Pill> : null}
         </div>
-        {prov ? <Info label="Models and prices"><div className="tags">{prov.models.map(m => <Tag key={m} icon="memory">{m + priceNote(m)}</Tag>)}</div></Info> : null}
+        {prov && costs ? <Info label="Models and prices"><div className="tags">{prov.models.map(m => <Tag key={m} icon="memory">{m + priceNote(m)}</Tag>)}</div></Info> : null}
         {engine ? <OpenAIEngine engine={engine} /> : null}
         <ServiceBody w={w} using={using} onSetup={onSetup} keyOnly={serverReady} />
       </Card>
@@ -52,7 +53,7 @@ export function IntCard({ n, onReplace, onSetup }: { n: Integration; onReplace: 
           {serverReady ? <Pill kind="ok">OpenAI ready</Pill> : <Pill kind="mut">Not connected</Pill>}
           {n.ai ? <Pill kind={using ? 'info' : 'mut'}>{using + ' agent' + (using === 1 ? '' : 's')}</Pill> : null}
         </div>
-        {prov ? <Info label="Models and prices"><div className="tags">{prov.models.map(m => <Tag key={m} icon="memory">{m + priceNote(m)}</Tag>)}</div></Info> : null}
+        {prov && costs ? <Info label="Models and prices"><div className="tags">{prov.models.map(m => <Tag key={m} icon="memory">{m + priceNote(m)}</Tag>)}</div></Info> : null}
         {engine ? <OpenAIEngine engine={engine} /> : null}
         <p className="note">Loading from the Meridian server…</p>
       </Card>
@@ -69,7 +70,7 @@ export function IntCard({ n, onReplace, onSetup }: { n: Integration; onReplace: 
         {n.tail ? <Pill kind={n.st || 'ok'}>{n.msg || 'Connected'}</Pill> : serverReady ? null : <Pill kind="mut">Not connected</Pill>}
         {n.ai ? <Pill kind={using ? 'info' : 'mut'}>{using + ' agent' + (using === 1 ? '' : 's')}</Pill> : null}
       </div>
-      {prov ? <Info label="Models and prices"><div className="tags">{prov.models.map(m => <Tag key={m} icon="memory">{m + priceNote(m)}</Tag>)}</div></Info> : null}
+      {prov && costs ? <Info label="Models and prices"><div className="tags">{prov.models.map(m => <Tag key={m} icon="memory">{m + priceNote(m)}</Tag>)}</div></Info> : null}
       {engine ? <OpenAIEngine engine={engine} /> : null}
       {n.type === 'oauth' ? <OAuthBody n={n} /> : n.tail ? <KeyBody n={n} using={using} onReplace={onReplace} /> : serverReady ? null : <KeyForm n={n} />}
     </Card>
@@ -78,7 +79,7 @@ export function IntCard({ n, onReplace, onSetup }: { n: Integration; onReplace: 
 
 /** OpenAI connection status and its recovery action. */
 function OpenAIEngine({ engine }: { engine: EngineStatus }) {
-  if (engine.mode === 'codex-local') return <p className="note">Optional API connection. Agent jobs currently use Codex local.</p>;
+  if (['codex-local','gemma-local'].includes(engine.mode)) return <p className="note">Optional connection. Jobs currently use {engineName(engine.mode)}.</p>;
   return <p className="note">{engine.ready ? 'Ready for agent jobs.' : 'Connect OpenAI to run agents.'} <button type="button" className="linkbtn" onClick={() => void refreshEngine()}>Check again</button></p>;
 }
 
@@ -124,10 +125,21 @@ function ServiceBody({ w, using, onSetup, keyOnly }: { w: IntegrationWire; using
   const [busy, setBusy] = useState(false);
   const test = async () => { setBusy(true); await testService(w.id); setBusy(false); };
   const remove = () => { if (w.fields.length && using) openConfirm(`key:${w.id}`); else void removeService(w.id); };
-  const masked = w.tail && !w.oauth && ['openai', 'cf', 'slack'].includes(w.id) || (w.id === 'probe' && !!w.updatedAt);
+  const masked = w.tail && !w.oauth && ['openai', 'cf', 'slack', 'serpapi'].includes(w.id) || (w.id === 'probe' && !!w.updatedAt);
   const stored = !!w.updatedAt;
   const result = w.msg ? <p className="note">{w.msg}{w.testedAt ? <> · <span className="nw">tested {dayTime(w.testedAt)}</span></> : null}</p> : null;
 
+  if (w.id === 'ads') return <>
+    {w.config.customerId ? <p className="key">Customer {w.config.customerId}</p> : null}
+    {result ? <Info label="Connection details">{result}</Info> : null}
+    <footer>
+      <Button size="sm" variant="tonal" onClick={() => { if (guard()) onSetup('ads'); }}>{stored ? 'Change account' : 'Set up account'}</Button>
+      <Button size="sm" variant="text" disabled={!googleReady || !w.config.customerId} onClick={() => { if (guard()) connectOAuth('ads'); }}>{w.connected ? 'Reconnect with Google' : 'Connect with Google'}</Button>
+      {w.connected ? <Button size="sm" variant="text" disabled={busy} onClick={test}>{busy ? 'Testing…' : 'Test connection'}</Button> : null}
+      {stored ? <Button size="sm" variant="danger" onClick={() => { if (guard()) void removeService('ads'); }}>Disconnect</Button> : null}
+    </footer>
+    {!googleReady ? <p className="note">Set up Google sign-in first. <button className="linkbtn" onClick={() => onSetup('google')}>Set up</button></p> : null}
+  </>;
   if (w.oauth) {
     if (!stored) {
       return (

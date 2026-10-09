@@ -47,7 +47,7 @@ export type BuildRow = {
   decided_by: string; decided_at: number | null; deploy_queued_at: number | null; deployed_at: number | null;
   engine?: string; updated_at: number; tokens: number; cost_usd: number;
 };
-type ApprovedRow = { id: number; content: string; images?: string; category?: string; first_approved: number | null; last_approved: number | null; finished_at: number | null; created_at: number };
+type ApprovedRow = { id: number; content: string; images?: string; category?: string; lang_review_by: string; lang_review_at: number | null; first_approved: number | null; last_approved: number | null; finished_at: number | null; created_at: number };
 
 const qb = {
   insert: db.prepare(`INSERT INTO site_builds (site_id, domain, version, by, created_at, queued_at, updated_at)
@@ -270,7 +270,8 @@ function approvedArticles(b: BuildRow): SiteArticle[] {
     if (!content?.title || !Array.isArray(content.blocks)) continue;
     const published = r.first_approved ?? r.finished_at ?? r.created_at;
     const updated = r.last_approved && r.last_approved > published ? r.last_approved : null;
-    out.push({ id: r.id, content, images: parse<SitePhoto[]>(r.images, []), category: r.category ?? '', published, updated });
+    out.push({ id: r.id, content, images: parse<SitePhoto[]>(r.images, []), category: r.category ?? '', published, updated,
+      languageReviewedAt: r.lang_review_by && r.lang_review_at ? r.lang_review_at : undefined });
   }
   return out.sort((x, y) => y.published - x.published || y.id - x.id);
 }

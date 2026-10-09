@@ -316,10 +316,12 @@ describe('categories and links on the built site', () => {
     assert.equal(ENGLISH_LABELS.related, undefined);
   });
 
-  it('puts categories in the navigation and on the home page only from two categories on', () => {
+  it('keeps category navigation but combines home cards into one chronological grid', () => {
     const f = build(SITE()), home = page(f, 'index.html');
     assert.match(home, /<nav class="nav cats" aria-label="Semua artikel"><ul class="wrap"><li><a href="biji-kopi\/">Biji kopi<\/a><\/li><li><a href="teknik-seduh\/">Teknik seduh<\/a><\/li><\/ul><\/nav>/);
-    assert.match(home, /<h2 id="c1"><a href="biji-kopi\/">Biji kopi<\/a><\/h2><span class="count">2<\/span>/);
+    assert.equal((home.match(/<ul class="grid">/g) ?? []).length, 1);
+    assert.doesNotMatch(home, /<h2 id="c\d"/);
+    assert.match(home, /<p class="card__category">Biji kopi<\/p>/);
     assert.match(home, /<h2 id="all">Semua artikel<\/h2>/);
     /* Every article is linked from the home page or from a category page the home page links to. */
     for (const slug of ['cold-brew', 'rasio-kopi', 'arabika', 'sangrai', 'sejarah']) assert.ok(home.includes(`href="${slug}/"`), slug);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Info, SearchField, Tabs } from '@/components';
-import { codexLocal } from '@/store/rules';
+import { localRuntime } from '@/store/rules';
 import { useStore } from '@/store/store';
 import { AgentGrid } from './skills/AgentGrid';
 import { Matrix } from './skills/Matrix';
@@ -15,7 +15,7 @@ import './system/skills.css';
  * (model picker and skill chips), by skill (grouped cards, search) and as a coverage matrix. Slice: system.
  */
 export function Skills() {
-  const local = useStore(codexLocal);
+  const local = useStore(localRuntime);
   const guard = useStore(s => s.guard);
   const sample = useStore(s => s.sample);
   const [view, setView] = useState<SkillsView>(readSkillsView);
@@ -28,7 +28,7 @@ export function Skills() {
         <p className="lede">Choose agent models and skills.{sample ? " Changes apply to each agent's next job." : ''}</p>
         {sample ? null : (
           <Info label="What changes a job today">
-            {local ? 'AI agents use the model configured in Codex local. The API model choices are kept for API mode. ChatGPT usage limits apply. ' : 'Agent jobs call OpenAI Responses API with the selected OpenAI model. GPT-6 Luna handles simple tasks; GPT-6.1 Sol is the balanced default for articles and site identity; GPT-6 Astra is available for demanding tasks when you select it. '}Assigned built-in skills apply to the next AI call. Required task guidelines always remain active. Added catalog entries do not load instructions. Site Builder uses Material 3 tokens in its HTML/CSS template; it asks AI for identity and photos. Agents marked Planned do not run.
+            {local ? 'AI agents use the selected runtime model. API model choices are kept for API mode. ' : 'Agent jobs call OpenAI Responses API with the selected OpenAI model. GPT-6 Luna handles simple tasks; GPT-6.1 Sol is the balanced default for articles and site identity; GPT-6 Astra is available for demanding tasks when you select it. '}Assigned built-in skills apply to the next AI call. Required task guidelines always remain active. Added catalog entries do not load instructions. Site Builder uses Material 3 tokens in its HTML/CSS template; it asks AI for identity and photos. Agents marked Planned do not run.
           </Info>
         )}
       </div>

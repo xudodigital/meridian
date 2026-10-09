@@ -14,6 +14,22 @@ Lalu buka http://localhost:4310. Skrip itu memasang paket dan membangun aplikasi
 
 Untuk pilot pribadi tanpa API key, masuk ke Codex CLI resmi menggunakan ChatGPT, lalu jalankan **`./start-codex.sh`**. Meridian memakai login CLI yang sudah ada; tidak membaca atau menyalin berkas autentikasi. Mode ini memakai batas penggunaan ChatGPT/Codex. Jangan menjalankan dua server pada folder data yang sama.
 
+### Gemma 4 di localhost (Ollama)
+
+Meridian mendukung **Gemma localhost**, **Codex local**, dan **OpenAI API** sebagai pilihan eksplisit di **Integrations > Agent engine**. Codex Local tetap tersedia; pilihan model OpenAI setiap Agent disimpan untuk dipakai kembali saat mode API dipilih. Pilihan dari dashboard tersimpan setelah restart dan mengungguli `MERIDIAN_ENGINE` sebagai nilai awal. Pergantian mesin/model ditolak selama pekerjaan masih berjalan atau mengantre. Tidak ada fallback otomatis.
+
+1. Pasang Ollama dan Gemma pada **PC yang sama dengan server Meridian**. Pada PC tersebut, jalankan `ollama pull gemma4:31b`, lalu pastikan Ollama berjalan. Perintah ini **mengunduh model besar**; Meridian tidak menjalankannya otomatis. Panduan resmi: [Gemma 4 di Ollama](https://ollama.com/library/gemma4).
+2. Jalankan Meridian seperti biasa. Buka **Integrations > Gemma localhost > Connect**, isi URL `http://127.0.0.1:11434`, model `gemma4:31b`, dan context size (bawaan 32768), lalu **Save and test**. Tes hanya memeriksa model yang terpasang dan versi runtime.
+3. Pilih **Gemma localhost (Ollama)** pada **Agent engine**. Status siap membutuhkan model dengan kemampuan teks. Pekerjaan yang membutuhkan gambar atau tools juga memeriksa kemampuan tersebut sebelum dijalankan. Endpoint hanya menerima loopback HTTP; tag/model cloud ditolak.
+4. Konfigurasi awal alternatif: `MERIDIAN_ENGINE=gemma-local`, `MERIDIAN_OLLAMA_URL=http://127.0.0.1:11434`, `MERIDIAN_GEMMA_MODEL=gemma4:31b`, dan `MERIDIAN_GEMMA_CONTEXT=32768`. Nilai yang disimpan melalui UI diutamakan. Tetap jalankan **satu server per folder data**.
+
+Adaptor menggunakan [API chat Ollama](https://docs.ollama.com/api/chat), JSON, input gambar yang sudah diperiksa, skill yang sama, timeout dan pembatalan. Token berasal dari `prompt_eval_count` dan `eval_count`; biaya inferensi lokal tidak diberi tarif API. Metrik biaya/API dan model berharga disembunyikan pada dashboard ketika Gemma atau Codex lokal dipilih. Catatan historis tetap ada. Anggaran tetap berlaku pada mode API atau ketika DataForSEO terhubung; tanpa layanan tersebut, biaya API historis tidak menahan pekerjaan lokal.
+
+**Sumber dan batasan:** Gemma tidak mendapat pencarian web bawaan. Pekerjaan yang memerlukan sumber dapat memakai tool baca halaman HTTPS publik (maksimal 8 panggilan); alamat privat, kredensial URL dan scraping pencarian ditolak. Sumber harus benar-benar terbaca dan kutipannya harus sesuai URL yang dibaca, tetapi kebenaran klaim tetap perlu diperiksa manusia. JavaScript, PDF, halaman login/paywall tidak didukung tool ini. Cantumkan URL sumber pada permintaan atau pilih Codex Local untuk pencarian web. Riset SERP membutuhkan SerpApi atau DataForSEO; volume keyword memakai Google Ads langsung atau DataForSEO; GSC/GA4 tetap diperlukan untuk metrik situs. Pemilihan gambar tetap melalui Wikimedia Commons, bukan gambar yang dikarang model.
+
+Context size, kecepatan, RAM/VRAM dan kualitas bahasa harus diuji pada hardware serta kuantisasi yang dipakai. Context yang hampir penuh atau jawaban terpotong dihentikan; ini bukan jaminan seluruh model/kuantisasi mempunyai perilaku identik. Review manusia, approval build, serta deployment Cloudflare tetap memakai alur yang sama. Pengujian otomatis adapter memakai server Ollama tiruan yang terisolasi; kelulusannya bukan bukti benchmark atau demonstrasi nyata Gemma 31B.
+
+
 ## Akun
 
 Saat pertama dibuka (belum ada akun), Meridian menampilkan **Create the owner account**: nama, email, kata sandi (minimal 12 karakter) dan konfirmasinya. Akun pertama ini adalah admin. Setelah itu akun baru hanya lewat undangan.
@@ -86,7 +102,7 @@ Site Builder meminta AI memilih identitas dan foto. Layout dirender oleh `server
 | Antarmuka (`app/`) | React 19, TypeScript 7, Vite 8, Tailwind CSS 4, TanStack Router, TanStack Query, Zustand |
 | Server (`server/`) | Node.js 24, TypeScript dijalankan langsung oleh Node, tanpa paket npm |
 | Database | SQLite bawaan Node (`data/meridian.db`) |
-| Agen | OpenAI Responses API atau Codex CLI lokal yang dipilih secara eksplisit |
+| Agen | OpenAI Responses API, Codex CLI lokal, atau Gemma localhost/Ollama yang dipilih secara eksplisit |
 | Uji | Vitest (aturan, akun, sinkronisasi workspace, artikel, dan setiap layar) dan test runner bawaan Node untuk server (akun, sesi, 2-step, undangan, peran, workspace, job; dengan HTTP OpenAI tiruan) |
 
 Desain (Material Design 3 Expressive, tema terang dan gelap) dibawa dari prototipe; kodenya ditulis ulang.
@@ -110,7 +126,7 @@ Meridian mulai dalam keadaan kosong: tidak ada situs, artikel, deploy, angka ana
 | Analytics, tab Search Console | Setelah Search Console disambungkan lewat Google: total per situs, grafik klik harian, halaman dan kueri teratas 28 hari terakhir (diambil sekali sehari, disimpan 16 bulan) |
 | Analytics, tab GA4 | Setelah Google Analytics 4 disambungkan: properti dicocokkan ke situs lewat domain (atau dipilih sendiri di tab itu), lalu users, sessions, dan engaged sessions per hari dan per halaman |
 | Analytics, tab Rank | Posisi kata kunci yang dilacak (kata kunci artikel yang sudah di-approve, dan kata kunci riset yang ditandai Track) dari data Search Console: posisi sekarang, perubahan 7 dan 28 hari, halaman terbaik. Meridian tidak pernah mengirim kueri ke Google untuk mengecek peringkat |
-| Keywords: volume pencarian | Bila DataForSEO tersambung, setelah agen Keyword selesai server mengambil volume dan kompetisi (data Google Ads) dalam satu permintaan; biayanya masuk ke buku biaya situs. Tanpa DataForSEO kolom Volume tidak ditampilkan |
+| Keywords: volume pencarian | Setelah agen Keyword selesai, server mengambil volume melalui Google Ads jika tersambung, atau DataForSEO. Sumber, waktu, negara dan bahasa pengambilan disimpan. Tanpa keduanya kolom Volume tidak ditampilkan |
 | Article review: foto | Sungguhan. Site Builder memilih foto berlisensi terbuka dari Wikimedia Commons, lengkap dengan alt text, keterangan, dan kredit |
 | Build and deploy: website | Sungguhan. Artikel yang sudah di-approve dirakit menjadi situs statis, bisa di-preview dan diunduh sebagai ZIP, lalu di-approve dan dideploy ke Cloudflare Pages |
 | Workspace | Agen bergerak sesuai pekerjaan nyata: langkah yang sedang dikerjakan, dokumen yang berpindah antar-agen, dan tanda selesai |
@@ -124,7 +140,7 @@ Hanya tema dan tampilan Workspace (Cards/Office) yang disimpan di browser. Data 
 
 **Reset workspace** (Settings, khusus admin, ketik RESET untuk konfirmasi) mengembalikan situs, jadwal, pengaturan, perubahan agen, skill tambahan, dan audit log ke awal untuk semua orang. Akun, hasil riset, dan artikel tidak dihapus.
 
-Volume pencarian hanya berasal dari DataForSEO (lihat tabel di atas); keyword difficulty tidak ditampilkan karena tidak ada sumber datanya. Agen dilarang mengarang kedua angka itu. Tombol **Refresh volumes** di hasil riset mengambil ulang volumenya, dan kotak **Track** memasukkan kata kunci ke pelacakan peringkat. Di Build and deploy, setiap deploy mendapat "Rank" (rata-rata perubahan posisi kata kunci yang dilacak, 7 hari sesudah deploy dibanding 7 hari sebelumnya) begitu Search Console punya datanya.
+Volume pencarian berasal dari Google Ads langsung atau DataForSEO (lihat tabel di atas); keyword difficulty tidak ditampilkan karena tidak ada sumber datanya. Agen dilarang mengarang kedua angka itu. Tombol **Refresh volumes** di hasil riset mengambil ulang volumenya, dan kotak **Track** memasukkan kata kunci ke pelacakan peringkat. Di Build and deploy, setiap deploy mendapat "Rank" (rata-rata perubahan posisi kata kunci yang dilacak, 7 hari sesudah deploy dibanding 7 hari sebelumnya) begitu Search Console punya datanya.
 
 ## Tugas SEO spesialis
 
@@ -133,7 +149,7 @@ Di **Research and SEO > Research / SEO**, pilih situs, jenis tugas dan brief, la
 | Tugas | Agen | Prasyarat |
 |---|---|---|
 | Strategi editorial | Research | Profil situs dan OpenAI |
-| SERP satu kueri | Research | OpenAI dan DataForSEO; negara/bahasa situs dipakai eksplisit |
+| SERP satu kueri | Research | Engine yang dipilih (Codex Local, Gemma localhost atau OpenAI) dan SerpApi/DataForSEO; negara/bahasa situs dipakai eksplisit |
 | Arsitektur situs | Architect | Profil situs dan OpenAI |
 | Audit konten / refresh | SEO/GEO Optimizer | Artikel review atau approved |
 | Usulan internal link | Internal Linker | Artikel review atau approved; anchor berasal dari paragraf yang sudah ada |
@@ -194,12 +210,14 @@ Semua diisi di **Integrations** (khusus admin). Tombol **Save and test** menyimp
 |---|---|---|
 | OpenAI API | API key | Mendaftar model yang bisa dipakai kunci itu |
 | DataForSEO | API login dan API password | Menampilkan saldo |
+| SerpApi | API key | Account API membaca sisa kuota tanpa memakai kredit pencarian |
 | Cloudflare | API token (Account > Cloudflare Pages > Edit; tambahkan Zone > Zone > Read dan Zone > DNS > Edit bila Meridian yang harus membuat rekaman DNS domain), Account ID (wajib untuk deploy) | Memeriksa token, akses ke Pages, dan menghitung zone |
 | Multi-country probes (Globalping) | Token opsional. Tanpa token: 250 tes per jam | Menampilkan sisa kuota |
 | Slack | Incoming webhook URL | Mengirim pesan tes ke channel |
 | Telegram | Bot token dan chat ID | Mengirim pesan tes ke chat |
 | Email (SMTP) | Server, port (587 STARTTLS atau 465 TLS), user, password, alamat pengirim | Mengirim email tes ke Anda |
-| Google sign-in | OAuth client ID dan secret dari Google Cloud | Dipakai untuk Search Console dan GA4 |
+| Google sign-in | OAuth client ID dan secret dari Google Cloud | Dipakai untuk Google Ads, Search Console dan GA4 |
+| Google Ads | Customer ID, Manager Customer ID opsional, OAuth Google | Memverifikasi akses akun; tidak menjalankan pencarian keyword |
 | Google Search Console, Google Analytics 4 | Connect with Google (hanya baca) | Menghitung properti yang bisa dibaca |
 
 **Google:** di Google Cloud Console aktifkan Search Console API, Google Analytics Admin API, dan Google Analytics Data API. Lalu buat OAuth client jenis "Web application" dengan Authorized redirect URI `http://localhost:4310/api/oauth/google/callback`.
@@ -305,14 +323,14 @@ archive/                     prototipe lama, sumber skill beserta bukti, hasil u
 
 ## Batas mode lokal
 
-- Agen memakai Responses API atau Codex lokal sesuai mode startup. API tetap memerlukan API key; mode Codex memerlukan login ChatGPT, akses model dan kuota yang tersedia. Lihat `docs/VALIDATION.md` untuk membedakan uji otomatis dan bukti pilot nyata.
+- Agen memakai Responses API, Codex lokal atau Gemma localhost sesuai pilihan Integrations (atau mode startup sebelum pilihan disimpan). API tetap memerlukan API key; mode Codex memerlukan login ChatGPT, akses model dan kuota yang tersedia. Lihat `docs/VALIDATION.md` untuk membedakan uji otomatis dan bukti pilot nyata.
 - Laporan terjadwal dan cek akses otomatis hanya berjalan selama Meridian hidup. Laporan yang terlambat lebih dari 12 jam dilewati.
 - Deploy ke Cloudflare Pages sudah diuji dengan tiruan Cloudflare yang memeriksa hash setiap berkas, tetapi belum dengan akun Cloudflare sungguhan. Uji coba pertama sebaiknya dengan domain percobaan. Hal yang sama berlaku untuk pemasangan domain sendiri (custom domain, zone, dan rekaman DNS): bentuk API-nya mengikuti dokumentasi Cloudflare, tetapi baru diuji dengan tiruan.
 - Folder build disimpan maksimal 10 versi per situs. Versi yang lebih lama tetap tercatat, tetapi preview dan ZIP-nya tidak tersedia lagi.
-- Memakai kuota API atau ChatGPT/Codex sesuai runtime; layanan data lain tetap dapat memiliki biaya sendiri.
+- Memakai kuota API, ChatGPT/Codex atau hardware Gemma lokal sesuai runtime; layanan data lain tetap dapat memiliki biaya sendiri.
 - Hanya berjalan selama `./start.sh` hidup, dan hanya bisa dibuka dari komputer ini (http://localhost, tanpa HTTPS).
 - Agen Keyword menerima teks skill dari server. Ia tidak boleh menjalankan perintah, menulis berkas, atau membuka web.
-- Agen Content Writer menerima teks skill dan boleh mencari serta membuka halaman web melalui alat web search OpenAI. Isi web diperlakukan sebagai data, bukan perintah. Ia tidak boleh menjalankan perintah, menulis berkas, atau menjalankan agen lain.
+- Agen Content Writer menerima teks skill. OpenAI dan Codex dapat memakai pencarian web; Gemma dapat membaca URL sumber HTTPS publik melalui tool terbatas, tanpa pencarian web. Isi web diperlakukan sebagai data, bukan perintah. Ia tidak boleh menjalankan perintah, menulis berkas, atau menjalankan agen lain.
 
 ## Variabel lingkungan
 
@@ -320,7 +338,10 @@ archive/                     prototipe lama, sumber skill beserta bukti, hasil u
 |---|---|
 | `PORT` | Port server (bawaan 4310) |
 | `OPENAI_API_KEY` | Kunci OpenAI API untuk server, bila tidak disimpan di Integrations |
-| `MERIDIAN_ENGINE` | `codex-local` untuk CLI pribadi; selain itu memakai API |
+| `MERIDIAN_ENGINE` | `openai-api` (bawaan), `codex-local`, atau `gemma-local`; pilihan UI yang tersimpan diutamakan |
+| `MERIDIAN_OLLAMA_URL` | Endpoint Gemma HTTP loopback, bawaan `http://127.0.0.1:11434` |
+| `MERIDIAN_GEMMA_MODEL` | Tag Gemma lokal, bawaan `gemma4:31b` |
+| `MERIDIAN_GEMMA_CONTEXT` | Context size Gemma, bawaan 32768 token |
 | `MERIDIAN_CODEX_BIN` | Path CLI resmi bila tidak ditemukan pada bundel aplikasi Mac atau PATH |
 | `MERIDIAN_CODEX_MODEL` | Model runtime Codex lokal, bawaan `gpt-6.1-sol` |
 | `MERIDIAN_DATA` | Folder data lain (bawaan `data/`) |
@@ -331,3 +352,25 @@ archive/                     prototipe lama, sumber skill beserta bukti, hasil u
 ### Konsistensi Office antartab
 
 Office di Workspace dan `/office` memakai komponen yang sama dan mengikuti data server. Muat ulang semua tab setelah memperbarui aplikasi agar mode demo lama di memori ikut dibersihkan.
+
+### SerpApi untuk riset SERP
+
+Di **Integrations → SerpApi → Connect**, simpan API key dari akun SerpApi. Key disimpan terenkripsi dan tidak dikembalikan ke browser. **Save and test** memakai Account API; tidak menjalankan pencarian Google. Di **Research and SEO**, pilih **SERP research** lalu provider. **Automatic** memilih SerpApi bila tersambung, lalu DataForSEO bila hanya layanan itu yang tersedia. Pilihan ditetapkan saat masuk antrean; galat/kuota habis tidak memicu pencarian ulang lewat provider lain.
+
+SerpApi mengambil satu halaman hasil Google dengan negara, bahasa, dan perangkat desktop yang eksplisit. Snapshot menyimpan maksimal 10 hasil organik serta fitur terkait yang didukung, bukan seluruh SERP atau isi lengkap halaman kompetitor. Posisi SerpApi adalah urutan organik, bukan posisi absolut semua fitur. Bukti, provider dan langkah kerja tersedia di hasil riset/Activity; snapshot yang sudah disimpan digunakan kembali saat pekerjaan dipulihkan setelah restart. SerpApi tidak memberi volume keyword atau biaya dolar per permintaan; Meridian tidak mengarang nilainya. Volume memakai Google Ads langsung atau DataForSEO. Koneksi dan pencarian nyata memerlukan key dengan kuota tersedia; tes otomatis memakai layanan tiruan terisolasi.
+
+
+### Google Ads untuk volume keyword
+
+1. Pada Google Cloud project pemilik OAuth client, aktifkan **Google Ads API** dan ajukan akses produksi serta penggunaan **keyword planning** yang sesuai melalui [Google Ads API Overview](https://console.cloud.google.com/apis/api/googleads.googleapis.com/overview). Akun uji atau akses Test tidak memberikan metrik keyword produksi. Ikuti persyaratan akun/proyek Google; Meridian tidak membuat kampanye atau mengubah anggaran iklan.
+2. Buat OAuth client bertipe **Web application**. Daftarkan redirect URI yang ditampilkan pada **Integrations → Google sign-in** (bawaan `http://localhost:4310/api/oauth/google/callback`), lalu simpan client ID dan secret. Secret dan token OAuth tetap terenkripsi di server.
+3. Pada **Integrations → Google Ads → Set up account**, simpan Customer ID akun klien. Isi Manager Customer ID hanya untuk akses melalui akun pengelola; kedua ID boleh memakai tanda hubung. Klik **Connect with Google** dan beri izin akun yang memiliki akses. Scope OAuth Google Ads mencakup akses Ads; implementasi Meridian hanya membaca akun, konstanta target dan metrik, tanpa endpoint mutasi kampanye. **Disconnect** menghapus konfigurasi dan token lokal Meridian; pencabutan izin Google global dikelola di akun Google.
+4. Riset Keyword baru mengambil volume otomatis melalui Google Ads bila konektornya siap; DataForSEO dipakai bila hanya layanan itu yang siap. Hasil riset memiliki pilihan **Keyword volume source** dan **Refresh volumes**. Pilihan eksplisit tidak berpindah provider ketika ada galat atau kuota habis.
+
+Adapter memakai REST **v25**, `GenerateKeywordHistoricalMetrics`, batch maksimum 1.000 keyword, network `GOOGLE_SEARCH`, serta konstanta negara/bahasa yang dicari dari Google. Target yang tidak dapat dikenali ditolak, tanpa fallback global/English. Uji koneksi memverifikasi akun klien produksi yang aktif; izin keyword-planning diuji saat volume diminta, sehingga status Connected bukan bukti bahwa semua metode API telah berhasil.
+
+Angka adalah estimasi rata-rata pencarian bulanan (periode bawaan Google: 12 bulan), bukan traffic atau keyword difficulty. Competition adalah kompetisi pengiklan. Keyword dengan `closeVariants` memiliki metrik kelompok yang sama, ditandai **shared group**; jangan menjumlahkannya sebagai permintaan terpisah. Data yang tidak diberikan Google tetap kosong, bukan nol; galat refresh mempertahankan angka dan waktu pengambilan sebelumnya.
+
+Google [menghentikan developer token pada 9 September 2026](https://developers.google.com/google-ads/api/docs/api-policy/developer-token); akses mengikuti Cloud project pemilik OAuth client. Konektor ini tidak meminta atau mengirim developer token lama. Dokumentasi lama tentang API Center dapat berbeda dari persyaratan terbaru tersebut.
+
+Tes konektor: `node --test server/google-ads.test.ts` dan tes UI terkait. Tes otomatis memakai server serta provider terisolasi, bukan akun Google Ads nyata. Tanpa OAuth dan Customer ID milik pengguna, koneksi produksi dan ketersediaan volume nyata belum terverifikasi.

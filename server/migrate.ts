@@ -55,6 +55,10 @@ const KEYWORD_COLUMNS: [string, string][] = [
   ['volume', 'INTEGER DEFAULT NULL'],
   ['competition', `TEXT NOT NULL DEFAULT ''`],
   ['volume_at', 'INTEGER DEFAULT NULL'],
+  ['volume_provider', `TEXT NOT NULL DEFAULT ''`],
+  ['volume_country', `TEXT NOT NULL DEFAULT ''`],
+  ['volume_lang', `TEXT NOT NULL DEFAULT ''`],
+  ['volume_group', `TEXT NOT NULL DEFAULT ''`],
   ['track', 'INTEGER NOT NULL DEFAULT 0'],
 ];
 

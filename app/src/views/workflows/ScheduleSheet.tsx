@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from 'react';
 import { Button, Field, Fields, Select, Sheet, SheetActions } from '@/components';
 import { N_DEFAULT, N_MAX, N_MIN, WEEKDAYS, cadenceText, hourText, realSchedule } from '@/store/liveWorkflows';
-import { siteById } from '@/store/rules';
+import { siteById, showBudget } from '@/store/rules';
 import { useStore, useStoreShallow } from '@/store/store';
 import type { Schedule, ScheduleEvery } from '@/store/types';
 
@@ -27,6 +27,7 @@ export function ScheduleSheet({ edit, onClose }: { edit: Schedule | 'new' | null
 function ScheduleForm({ edit, onClose }: { edit: Schedule | null; onClose: () => void }) {
   const [sites, siteFilter] = useStoreShallow(s => [s.sites, s.siteFilter] as const);
   const saveSchedule = useStore(s => s.saveSchedule);
+  const costs = useStore(showBudget);
   const real = edit && realSchedule(edit) ? edit : null;
   const [site, setSite] = useState(edit?.site ?? (siteById({ sites }, siteFilter)?.id ?? sites[0]?.id ?? ''));
   const [every, setEvery] = useState<ScheduleEvery>(real?.every ?? 'week');
@@ -65,7 +66,7 @@ function ScheduleForm({ edit, onClose }: { edit: Schedule | null; onClose: () =>
           <input id="wfSchTopic" type="text" maxLength={80} autoComplete="off" placeholder={at?.topic ? `The site's topic: ${at.topic}` : 'The site has no topic yet: enter one'} value={topic} onChange={e => setTopic(e.target.value)} />
         </Field>
       </Fields>
-      <p className="note" id="wfSchWhen">{cadenceText({ every, weekday, hour })}{at ? `, on the clock of ${at.country}` : ''}. Each run is paid agent work and keeps to the site's daily budget.</p>
+      <p className="note" id="wfSchWhen">{cadenceText({ every, weekday, hour })}{at ? `, on the clock of ${at.country}` : ''}. {costs ? "Each run is paid agent work and keeps to the site's daily budget." : 'Each run uses the selected engine. Publication still needs review and approval.'}</p>
       <p className="err" hidden={!msg}>{msg}</p>
       <SheetActions>
         <Button variant="text" onClick={onClose}>Cancel</Button>

@@ -57,7 +57,7 @@ function Facts({ h }: { h: SystemHealth }) {
       <Fact label="Running for"><b>{fmtUptime(h.uptimeSec)}</b><small>Since {dayTime(h.startedAt)}</small></Fact>
       <Fact label="Engine">
         {ready ? <Pill kind="ok">Ready</Pill> : <Pill kind="bad">Not available</Pill>}
-        <small>{ready ? h.engine.mode === 'codex-local' ? 'Codex local · ChatGPT usage limits' : 'OpenAI Responses API' : h.engine.reason || 'OpenAI is not connected.'}</small>
+        <small>{ready ? h.engine.mode === 'gemma-local' ? 'Gemma localhost · Ollama' : h.engine.mode === 'codex-local' ? 'Codex local · ChatGPT usage limits' : 'OpenAI Responses API' : h.engine.reason || 'OpenAI is not connected.'}</small>
       </Fact>
       <Fact label="Job queue"><b>{q.now}</b><small>{q.sub}</small></Fact>
       <Fact label="Database">

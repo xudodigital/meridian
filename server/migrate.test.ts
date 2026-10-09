@@ -62,7 +62,7 @@ describe('initSchema on a database from before accounts', () => {
       copyFileSync(original, copy);
 
       const db = new DatabaseSync(copy);
-      assert.deepEqual(initSchema(db), ['images', 'photos_status', 'photos_step', 'photos_error', 'photos_queued_at', 'photos_started_at', 'photos_finished_at', 'photos_tokens', 'photos_cost', 'photos_engine', 'archived_at', 'category'].map(c => 'articles.' + c).concat(['volume', 'competition', 'volume_at', 'track'].map(c => 'keywords.' + c)).concat(['site_builds.engine', 'job_runs.engine']), 'only the photo columns and the archive mark are new');
+      assert.deepEqual(initSchema(db), ['images', 'photos_status', 'photos_step', 'photos_error', 'photos_queued_at', 'photos_started_at', 'photos_finished_at', 'photos_tokens', 'photos_cost', 'photos_engine', 'archived_at', 'category'].map(c => 'articles.' + c).concat(['volume', 'competition', 'volume_at', 'volume_provider', 'volume_country', 'volume_lang', 'volume_group', 'track'].map(c => 'keywords.' + c)).concat(['site_builds.engine', 'job_runs.engine']), 'only the photo columns and the archive mark are new');
       /* The article written before photos existed has none, and no photo job. */
       assert.deepEqual({ ...(db.prepare('SELECT keyword, images, photos_status, photos_queued_at, photos_tokens FROM articles').get() as object) }, { keyword: 'kopi', images: '[]', photos_status: '', photos_queued_at: null, photos_tokens: 0 });
       assert.equal((db.prepare('SELECT archived_at FROM articles').get() as { archived_at: number | null }).archived_at, null, 'and it is not archived');

@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Button, Callout, Checkbox, Info, Pill, Sheet, SheetActions, Table, Tag } from '@/components';
+import { Button, Callout, Checkbox, Field, Select, Info, Pill, Sheet, SheetActions, Table, Tag } from '@/components';
 import { insightsApi } from '@/store/insightsApi';
 import { retryRequest } from '@/store/live';
 import { volumeText } from '@/store/liveApply';
 import { usableInt } from '@/store/serverFacts';
-import { REQ_ST, articleQueued, fmt, fmtDur, siteById } from '@/store/rules';
+import { REQ_ST, articleQueued, fmt, fmtDur, dayTime, siteById } from '@/store/rules';
 import { useStore } from '@/store/store';
 import type { KwRequest } from '@/store/types';
+import { VOLUME_PROVIDERS } from '../../../../shared/volumes';
 import { WriteArticleSheet, type ArticleTarget } from './WriteArticleSheet';
 import '../content/review.css';
 
@@ -49,14 +50,17 @@ function KwResult({ r, onClose }: { r: KwRequest; onClose: () => void }) {
   /* Search volume (DataForSEO): the columns show once any keyword of this result was asked for; "Refresh volumes"
      shows when the service is connected. Competition is among advertisers, as Google Ads reports it. */
   const dfs = useStore(s => usableInt(s, 'dfs'));
+  const ads = useStore(s => usableInt(s, 'ads'));
+  const [volumeProvider, setVolumeProvider] = useState<'ads' | 'dfs'>(ads ? 'ads' : 'dfs');
+  const selectedProvider = volumeProvider === 'ads' && ads ? 'ads' : volumeProvider === 'dfs' && dfs ? 'dfs' : ads ? 'ads' : 'dfs';
   const withVolume = keywords.some(k => !!k.volumeAt);
   const [volBusy, setVolBusy] = useState(false);
   const refreshVolumes = async () => {
     if (r.rid == null || !useStore.getState().guard()) return;
     setVolBusy(true);
     try {
-      const d = await insightsApi.volumes(r.rid);
-      useStore.getState().snack(d.found ? `Search volume refreshed: ${d.found} of ${d.sent} keywords have a figure.` : 'DataForSEO has no search volume for these keywords.', 'query_stats');
+      const d = await insightsApi.volumes(r.rid, selectedProvider);
+      useStore.getState().snack(d.found ? `Search volume refreshed: ${d.found} of ${d.sent} keywords have a figure.` : 'No search volume is available for these keywords.', 'query_stats');
     } catch (e) { useStore.getState().snack((e as Error).message, 'error'); }
     finally { setVolBusy(false); }
   };
@@ -78,7 +82,7 @@ function KwResult({ r, onClose }: { r: KwRequest; onClose: () => void }) {
       <div className="tags" style={{ marginTop: 12 }}>
         {site || r.domain ? <Tag icon="language">{site ? site.domain : r.domain}</Tag> : null}
         {r.by ? <Tag icon="person">Asked by {r.by}</Tag> : null}
-        {r.engine === 'codex-local' ? <Tag icon="smart_toy">Codex local</Tag> : r.engine === 'openai-api' ? <Tag icon="smart_toy">OpenAI</Tag> : null}
+        {r.engine === 'gemma-local' ? <Tag icon="smart_toy">Gemma localhost</Tag> : r.engine === 'codex-local' ? <Tag icon="smart_toy">Codex local</Tag> : r.engine === 'openai-api' ? <Tag icon="smart_toy">OpenAI</Tag> : null}
         {r.dur ? <Tag icon="timer">{fmtDur(r.dur)}</Tag> : null}
         {r.tokens ? <Tag icon="toll">{fmt(r.tokens)} tokens</Tag> : null}
         <Pill kind={kind}>{label}</Pill>
@@ -96,7 +100,7 @@ function KwResult({ r, onClose }: { r: KwRequest; onClose: () => void }) {
                 ? <span key="c" className="ck" title="An article for this keyword is already queued, being written or waiting for review."><input type="checkbox" disabled aria-label={'Already on its way: ' + k.keyword} /></span>
                 : <Checkbox key="c" label={'Select: ' + k.keyword} checked={picked.includes(k.keyword)} onChange={() => toggle(k.keyword)} />] : []),
               <b key="k">{k.keyword}</b>, k.meaning,
-              ...(withVolume ? [volumeText(k), COMPETITION[k.competition ?? ''] ?? '—'] : []),
+              ...(withVolume ? [<span key="v">{volumeText(k)}{k.volumeGroup ? <small className="note"> · shared group: {k.volumeGroup}</small> : null}</span>, COMPETITION[k.competition ?? ''] ?? '—'] : []),
               k.intent, k.cluster, k.basis,
               ...(canTrack ? [k.id != null ? <Checkbox key="t" label={'Track the position of: ' + k.keyword} checked={!!k.track} onChange={() => void track(k.id!, !k.track)} /> : null] : []),
               busy(k.keyword) ? <Pill key="w" kind="info">Article on its way</Pill>
@@ -114,13 +118,14 @@ function KwResult({ r, onClose }: { r: KwRequest; onClose: () => void }) {
               <Button variant="tonal" size="sm" icon="edit_note" disabled={!chosen.length || chosen.length > BULK_MAX} onClick={() => write(chosen)}>Write selected ({chosen.length})</Button>
             </div>
           ) : null}
-          {withVolume ? <p className="note">Volume is approximate monthly searches in {r.country || 'the site\'s country'} from Google Ads data (DataForSEO). Competition is among advertisers, not how hard it is to rank. A dash means there is no figure.</p> : null}
+          {withVolume ? <p className="note">Volume is approximate monthly searches in {keywords.find(k => k.volumeAt)?.volumeCountry || r.country || 'the site\'s country'} ({keywords.find(k => k.volumeAt)?.volumeLanguage || r.lang}) from {keywords.some(k => k.volumeProvider === 'ads') ? 'Google Ads directly' : 'Google Ads via DataForSEO'}. Competition is among advertisers, not ranking difficulty. Shared groups must not be added together; a dash means unknown. Last fetched: {keywords.find(k => k.volumeAt)?.volumeAt ? dayTime(keywords.find(k => k.volumeAt)!.volumeAt!) : '—'}.</p> : null}
           {r.notes ? <Info label="Research notes and limitations"><p className="note">{r.notes}</p></Info> : null}
         </>
       )}
+      {r.st === 'done' && (dfs || ads) && mayWrite && keywords.length ? <Field label="Keyword volume source"><Select label="Keyword volume source" value={selectedProvider} onChange={v => setVolumeProvider(v as 'ads' | 'dfs')} disabled={volBusy} options={Object.entries(VOLUME_PROVIDERS).filter(([id]) => id === 'ads' ? ads : dfs).map(([value, label]) => ({value, label}))} /></Field> : null}
       <SheetActions>
         <Button variant="text" icon="refresh" onClick={again}>Run again</Button>
-        {r.st === 'done' && dfs && mayWrite && keywords.length ? <Button variant="text" icon="query_stats" disabled={volBusy} onClick={refreshVolumes}>{volBusy ? 'Refreshing…' : 'Refresh volumes'}</Button> : null}
+        {r.st === 'done' && (dfs || ads) && mayWrite && keywords.length ? <Button variant="text" icon="query_stats" disabled={volBusy} onClick={refreshVolumes}>{volBusy ? 'Refreshing…' : 'Refresh volumes'}</Button> : null}
         <Button variant="filled" onClick={onClose}>Close</Button>
       </SheetActions>
       <WriteArticleSheet target={target} onClose={() => { setTarget(null); setPicked([]); }} />

@@ -14,7 +14,7 @@ import {
   approveBuild, approvedCount, buildAt, buildDir, buildRow, deployBuild, filesKept, identityOf, listBuilds, rejectBuild, requestBuild,
   zipPath, type BuildRow, type BuildView, type Outcome,
 } from './builds.ts';
-import { ENGINE_MISSING, engineReady } from './engine.ts';
+import { ENGINE_MISSING, engineStatus, engineReady } from './engine.ts';
 import { bus } from './events.ts';
 import { body, json, note } from './http.ts';
 import { kick } from './jobs.ts';
@@ -132,7 +132,7 @@ export async function buildApi(req: IncomingMessage, res: ServerResponse, path: 
     const site = siteInfo(ask[1]!);
     if (!site) { json(res, 404, { error: 'That site is not saved yet. Wait a moment and try again.' }); return true; }
     /* The first build asks the Site Builder for the site's name and colours: that needs OpenAI API. */
-    if (approvedCount(site.id, site.domain) && !identityOf(site.id) && !(await engineReady())) { json(res, 503, { error: ENGINE_MISSING }); return true; }
+    if (approvedCount(site.id, site.domain) && !identityOf(site.id) && !(await engineReady())) { json(res, 503, { error: (await engineStatus()).reason || ENGINE_MISSING }); return true; }
     const o = requestBuild(site, u.name);
     if (o.ok) { audit(`Asked for a website build of ${site.domain}`, site.id); kick(); }
     return answer(o, 202);

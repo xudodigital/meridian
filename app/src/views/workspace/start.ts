@@ -1,4 +1,4 @@
-import { codexLocal, engineReady } from '@/store/rules';
+import { codexLocal, engineReady, engineName } from '@/store/rules';
 import type { AppState } from '@/store/types';
 
 export const START_STEPS = ['Connect OpenAI', 'Add a site', 'Find keywords', 'Write an article', 'Review the article', 'Preview the website'] as const;
@@ -34,7 +34,7 @@ export function nextStart(s: StartState): StartStep {
   const step = (n: number, title: string, body: string, action: StartAction, label: string, state: StartStep['state'] = 'next', requestId?: number): StartStep =>
     ({ step: n, title, body, action, label, state, requestId, siteId: site?.id });
   const local = codexLocal(s);
-  const connect = () => local ? step(0, 'Connect Codex on this computer', s.live.engine?.reason || 'Sign in to Codex on this computer, then check its status in Integrations.', 'connect', 'Check Codex local') : step(0, 'Connect OpenAI to power your agents', 'You need an OpenAI API key with API billing set up. Save and test it here; connecting a key does not start any AI work.', 'connect', 'Connect OpenAI');
+  const connect = () => s.live.engine?.mode === 'gemma-local' ? step(0,'Connect Gemma on this computer',s.live.engine.reason || 'Start Ollama, install Gemma 4 and configure it in Integrations.','connect','Configure Gemma localhost') : local ? step(0, 'Connect Codex on this computer', s.live.engine?.reason || 'Sign in to Codex on this computer, then check its status in Integrations.', 'connect', 'Check Codex local') : step(0, 'Connect OpenAI to power your agents', 'You need an OpenAI API key with API billing set up. Save and test it here; connecting a key does not start any AI work.', 'connect', 'Connect OpenAI');
   if (!site) return !engineReady(s) ? connect() : step(1, 'Add the site you want to work on', 'Enter its domain, target country, content language and topic. Meridian saves this profile for every request. Adding a site does not publish it.', 'site', 'Add your first site');
   const own = (x: { siteId: string; domain: string }) => x.siteId === site.id && x.domain === site.domain;
   const builds = Object.values(s.live.builds).filter(own).sort((a, b) => b.createdAt - a.createdAt);
@@ -50,7 +50,7 @@ export function nextStart(s: StartState): StartStep {
   if (review) return step(4, 'Read and review your first article', 'Check the writing, sources and images in Article review. You can request changes. A build can include it only after the required reviews and your approval.', 'review', 'Review article');
   const writing = arts.find(a => ['queued', 'work', 'revision'].includes(a.status));
   if (writing) return step(3, 'Your article is on its way', writing.step || 'The Content Writer is preparing your draft. It will appear in Article review. You do not need to send it again.', 'review', 'View article progress', 'working');
-  if (arts.some(a => a.status === 'approved')) return !engineReady(s) ? connect() : step(5, 'Turn your approved article into a website', `Open Build and deploy and choose Build website for this site. The first build uses ${local ? 'Codex local' : 'OpenAI'} and produces pages you can preview.`, 'build', 'Prepare website build');
+  if (arts.some(a => a.status === 'approved')) return !engineReady(s) ? connect() : step(5, 'Turn your approved article into a website', `Open Build and deploy and choose Build website for this site. The first build uses ${engineName(s.live.engine?.mode)} and produces pages you can preview.`, 'build', 'Prepare website build');
   const research = reqs.find(r => r.status === 'queued' || r.status === 'work');
   if (research) return step(2, 'Your keyword research is on its way', research.step || 'The Keyword agent is finding ideas for your site. Requests run one at a time. You can follow this request while you wait.', 'result', 'View research progress', 'working', research.id);
   const failedArticle = arts.find(a => a.status === 'failed');
@@ -63,5 +63,5 @@ export function nextStart(s: StartState): StartStep {
   if (!keyword || keyword.status === 'off') return step(2, 'The Keyword agent needs to be enabled', 'The Keyword agent is paused or has been removed. Open Team and roles to enable or restore it before sending a research request.', 'team', 'Open Team and roles');
   const failed = reqs.find(r => r.status === 'failed');
   if (failed) return step(2, 'The research request needs attention', failed.error || 'Open the request to see why it stopped and try again.', 'result', 'View research issue', 'failed', failed.id);
-  return step(2, 'Give Meridian one topic to research', (local ? 'Codex uses your ChatGPT usage limits. ' : '') + 'Start with a subject your site covers, such as “cold brew coffee at home”. You will receive keyword ideas, then choose one for an article.' + (local ? '' : ' Sending the request uses your OpenAI API balance.'), 'research', 'Start your first research');
+  return step(2, 'Give Meridian one topic to research', (s.live.engine?.mode === 'gemma-local' ? 'Gemma runs on this computer. ' : local ? 'Codex uses your ChatGPT usage limits. ' : '') + 'Start with a subject your site covers, such as “cold brew coffee at home”. You will receive keyword ideas, then choose one for an article.' + (local || s.live.engine?.mode === 'gemma-local' ? '' : ' Sending the request uses your OpenAI API balance.'), 'research', 'Start your first research');
 }

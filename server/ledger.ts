@@ -7,6 +7,8 @@
 // site are refused (budgetStop) and the ones already waiting are held in the queue (budgetHeld): they start again
 // after local midnight or when the budget is raised.
 import { AsyncLocalStorage } from 'node:async_hooks';
+import { runtimeMode } from './runtime-config.ts';
+import { rowOf } from './integrations.ts';
 import { db } from './db.ts';
 import { onModelRun, type ModelRun } from './engine.ts';
 import { bus } from './events.ts';
@@ -16,7 +18,7 @@ import { settingsDoc, siteInfo } from './workspace.ts';
 export type RunKind = 'seo-task' | 'request' | 'article' | 'photos' | 'build';
 /** Which job a API call belongs to. */
 export type RunMeta = { kind: RunKind; jobId: number; siteId: string; agent: string };
-export type RunRow = RunMeta & { engine?: 'openai-api' | 'codex-local' | ''; model: string; startedAt: number; endedAt: number; tokens: number; costUsd: number; outcome: ModelRun['outcome'] };
+export type RunRow = RunMeta & { engine?: 'openai-api' | 'codex-local' | 'gemma-local' | ''; model: string; startedAt: number; endedAt: number; tokens: number; costUsd: number; outcome: ModelRun['outcome'] };
 
 const ql = {
   insert: db.prepare(`INSERT INTO job_runs (kind, job_id, site_id, agent, model, started_at, ended_at, tokens, cost_usd, outcome, backfilled, engine)
@@ -164,9 +166,11 @@ export function announce(): void { try { bus.emit('spend', spendSnapshot()); } c
 
 const usd = (n: number): string => '$' + n.toFixed(2);
 /** The site's spend today has reached the daily budget: nothing new starts for it today. */
-export const budgetHeld = (siteId: string, now = Date.now()): boolean => siteSpendToday(siteId, now) >= budget();
+export const budgetApplies = (): boolean => runtimeMode() === 'openai-api' || !!rowOf('dfs');
+export const budgetHeld = (siteId: string, now = Date.now()): boolean => budgetApplies() && siteSpendToday(siteId, now) >= budget();
 /** The ids of the sites whose budget is used up today. */
 export function heldSites(now = Date.now()): Set<string> {
+  if (!budgetApplies()) return new Set();
   const b = budget();
   return new Set([...spendSince(dayStart(now))].filter(([, spent]) => spent >= b).map(([id]) => id));
 }

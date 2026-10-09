@@ -38,6 +38,25 @@ const check = (at: number, over: Partial<AccessWire> = {}): AccessWire => ({
 });
 
 describe('the agents real jobs drive', () => {
+  it('keeps actual human approvals visible after reload, then releases them on decision', () => {
+    const s = load({ arts: [serverArticle(5)], builds: [build(3, { status: 'ready', review: 'waiting' })] }, T + 500_000);
+    expect(agent(s, 'wr')).toMatchObject({ status: 'wait', approvalWait: true, live: false, progress: 0 });
+    expect(roomOf(agent(s, 'wr'))).toBe('meet');
+    expect(agent(s, 'dep')).toMatchObject({ status: 'wait', approvalWait: true, task: 'Website awaiting your approval: kopi.example v2' });
+    put(s, { arts: [serverArticle(5, { status: 'approved' })], builds: [build(3, { status: 'ready', review: 'approved' })] }, T + 501_000);
+    expect(agent(s, 'wr')).toMatchObject({ status: 'idle', approvalWait: false });
+    expect(agent(s, 'dep')).toMatchObject({ status: 'idle', approvalWait: false });
+  });
+
+  it('prioritizes a real writing job and preserves a pause over waiting articles', () => {
+    const s = load({ arts: [serverArticle(5), serverArticle(6, { status: 'work', finishedAt: null })] }, T + 500_000);
+    expect(agent(s, 'wr').status).toBe('work');
+    agent(s, 'wr').status = 'off';
+    put(s, { arts: [serverArticle(6, { status: 'review' })] }, T + 600_000);
+    expect(agent(s, 'wr').status).toBe('off');
+    expect(agent(s, 'wr').approvalWait).not.toBe(true);
+  });
+
   it('shows research, writing, photos, builds, deploys and access checks on their agents, with the server\'s step', () => {
     const working = serverArticle(5, { status: 'work', step: 'Reading the skills', content: null, finishedAt: null });
     const s = load({ reqs: [req(1)], arts: [working, withPhotos(serverArticle(6, { keyword: 'phin filter' }), photoJob())] }, T + 100_000);

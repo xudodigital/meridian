@@ -1,6 +1,9 @@
 // The routes for connected services and what runs on them: integrations (store, test, remove, Google sign-in),
 // access checks, DNS verification of a domain, the weekly report, Search Console figures and delivered alerts.
 import type { IncomingMessage, ServerResponse } from 'node:http';
+import { ENGINE_MODES, runtimeMode, selectRuntime, type RuntimeMode } from './runtime-config.ts';
+import { engineStatus } from './engine.ts';
+import { queueSnapshot } from './jobs.ts';
 import { actorOf, mayAdmin, mayWrite, seesSite, type Ctx } from './access.ts';
 import { testService } from './connectors.ts';
 import { bus } from './events.ts';
@@ -42,6 +45,7 @@ async function runTest(id: string, ctx: Ctx) {
   if (rowOf(id)) setResult(id, r.status, r.msg, r.tail ?? '');
   else if (def.worksWithout && r.status !== 'ok') { /* Nothing stored: the result is only returned. */ }
   changed();
+  if (id === 'gemma') bus.emit('engine', await engineStatus(true));
   return r;
 }
 
@@ -69,6 +73,17 @@ export async function oauthOpenApi(req: IncomingMessage, res: ServerResponse, pa
 export async function opsApi(req: IncomingMessage, res: ServerResponse, path: string, ctx: Ctx): Promise<boolean> {
   const m = req.method || 'GET', u = ctx.user;
 
+  if (path === '/api/engine/select' && m === 'POST') {
+    if (deny(res, mayAdmin(u))) return true;
+    const b = await body(req);
+    if (!(ENGINE_MODES as readonly unknown[]).includes(b.mode)) { json(res,400,{error:'Choose Gemma localhost, Codex local or OpenAI API.'}); return true; }
+    const q = queueSnapshot();
+    if (q.running || q.total) { json(res,409,{error:'Finish or cancel queued jobs before changing the engine.'}); return true; }
+    selectRuntime(b.mode as RuntimeMode,u.name);
+    const engine = await engineStatus(true); bus.emit('engine',engine);
+    audit(ctx,'Selected agent engine: ' + b.mode);
+    json(res,200,{engine}); return true;
+  }
   /* ---------- Integrations ---------- */
   if (m === 'GET' && path === '/api/integrations') {
     json(res, 200, { integrations: listViews(u.role === 'admin'), redirectUri: redirectUri() });
@@ -79,6 +94,7 @@ export async function opsApi(req: IncomingMessage, res: ServerResponse, path: st
     const id = im[1]!, def = defOf(id);
     if (!def) { json(res, 404, { error: 'Not found.' }); return true; }
     if (deny(res, mayAdmin(u))) return true;
+    if (id === 'gemma' && runtimeMode() === 'gemma-local' && ['PUT','DELETE'].includes(m)) { const q = queueSnapshot(); if (q.running || q.total) { json(res,409,{error:'Finish or cancel queued jobs before changing the local model.'}); return true; } }
     if (m === 'POST' && im[2]) {
       if (!rowOf(id) && !def.worksWithout) { json(res, 409, { error: 'Nothing is stored for ' + def.name + ' yet.' }); return true; }
       const r = await runTest(id, ctx);
@@ -101,6 +117,7 @@ export async function opsApi(req: IncomingMessage, res: ServerResponse, path: st
     if (m === 'DELETE' && !im[2]) {
       if (!removeValues(id)) { json(res, 404, { error: 'Nothing is stored for ' + def.name + '.' }); return true; }
       if (id === 'gsc') forgetMetrics();
+      if (id === 'gemma') bus.emit('engine', await engineStatus(true));
       audit(ctx, `Removed ${def.name}`);
       changed();
       json(res, 200, { integration: viewById(id, true) });
@@ -112,8 +129,8 @@ export async function opsApi(req: IncomingMessage, res: ServerResponse, path: st
   if (m === 'POST' && path === '/api/oauth/google/start') {
     if (deny(res, mayAdmin(u))) return true;
     const b = await body(req);
-    const kind = b.kind === 'gsc' || b.kind === 'ga4' ? b.kind as GoogleKind : null;
-    if (!kind) { json(res, 400, { error: 'Choose Search Console or Analytics.' }); return true; }
+    const kind = b.kind === 'gsc' || b.kind === 'ga4' || b.kind === 'ads' ? b.kind as GoogleKind : null;
+    if (!kind) { json(res, 400, { error: 'Choose Google Ads, Search Console or Analytics.' }); return true; }
     const r = startUrl(kind, u.name);
     if ('error' in r) { json(res, 409, { error: r.error }); return true; }
     json(res, 200, r);

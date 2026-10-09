@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Pill, Sheet, SheetActions, Tag } from '@/components';
-import { siteById, codexLocal, runtimeModel } from '@/store/rules';
+import { siteById, localRuntime, runtimeModel, runtimeUsage } from '@/store/rules';
 import type { SendResult } from '@/store/slices/content';
 import { useStore } from '@/store/store';
 import type { KwRequest } from '@/store/types';
@@ -22,7 +22,7 @@ export function WriteArticleSheet({ target, onClose }: { target: ArticleTarget |
 }
 
 function WriteArticle({ t, onClose }: { t: ArticleTarget; onClose: () => void }) {
-  const local = useStore(codexLocal);
+  const local = useStore(localRuntime);
   const live = useStore(s => s.live);
   const site = useStore(s => siteById(s, t.r.site));
   const writer = useStore(s => s.agents.find(a => a.id === 'wr'));
@@ -75,7 +75,7 @@ function WriteArticle({ t, onClose }: { t: ArticleTarget; onClose: () => void })
         {keywords.map(k => <Tag key={k} icon="key">{k}</Tag>)}
         <Tag icon="memory">{writer ? 'Content Writer: ' + runtimeModel({live}, writer.model) : 'Content Writer removed'}</Tag>
       </div>
-      <p className="note">{local ? `Writing uses your ChatGPT usage limits. ${n} article${n === 1 ? '' : 's'} = ${n} job${n === 1 ? '' : 's'}.` : n === 1 ? 'Writing takes several minutes and uses your OpenAI API quota.' : `Each article takes several minutes and uses your OpenAI API quota: ${n} articles are ${n} jobs.`}</p>
+      <p className="note">{local ? `${runtimeUsage({live})} ${n} article${n === 1 ? '' : 's'} = ${n} job${n === 1 ? '' : 's'}.` : n === 1 ? 'Writing takes several minutes and uses your OpenAI API quota.' : `Each article takes several minutes and uses your OpenAI API quota: ${n} articles are ${n} jobs.`}</p>
       <p className="err" id="waMsg" hidden={!msg}>{msg}</p>
       <SheetActions>
         <Button variant="text" onClick={onClose}>Cancel</Button>

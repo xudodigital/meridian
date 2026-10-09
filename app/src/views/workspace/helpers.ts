@@ -1,6 +1,6 @@
 /* Pure helpers of the Workspace view: how an agent looks, rooms of the Office view and the content pipeline counts.
    Prototype: TEAM, ROOMS, roomOf (lines 1307-1309) and STAGES, pipeData (lines 1325-1332). */
-import { agentPlanned, artOpen, artVisible, codexLocal, engineReady, inSite, siteById, ST, waitingBuildsN } from '@/store/rules';
+import { agentPlanned, artOpen, artVisible, engineName, engineReady, inSite, siteById, ST, waitingBuildsN } from '@/store/rules';
 import type { Agent, AgentStatus, AliasId, AppState, LogEntry, PillKind, ViewId } from '@/store/types';
 
 /** "VN · domain-a.example", or nothing when the agent has no site (no "—" filler). */
@@ -50,7 +50,7 @@ export function heroCopy(s: Pick<AppState, 'sample' | 'agents' | 'sites' | 'live
   const gate = 'Nothing publishes or deploys without your approval.';
   const countries = new Set(s.sites.map(x => x.country)).size;
   if (s.sample) return { eyebrow: 'Live simulation', title: 'Your agents are on shift.', sub: `${s.agents.length} AI agents are working across ${s.sites.length} sites in ${countries} countries. ${gate}` };
-  const eyebrow = engineReady(s) ? codexLocal(s) ? 'Connected to Codex local' : 'Connected to OpenAI' : s.live.on ? codexLocal(s) ? 'Codex local needs attention' : 'OpenAI is not connected' : 'Not connected to the Meridian server';
+  const eyebrow = engineReady(s) ? 'Connected to ' + engineName(s.live.engine?.mode) : s.live.on ? engineName(s.live.engine?.mode) + ' needs attention' : 'Not connected to the Meridian server';
   const agents = count(s.agents.filter(a => !agentPlanned(s, a)).length, 'agent', 'agents');
   if (!s.sites.length) return { eyebrow, title: 'Start with your first site.', sub: `${agents} ready. Add a site to begin.` };
   return { eyebrow, title: 'Your agents are ready.', sub: `${agents} · ${count(s.sites.length, 'site', 'sites')} · ${count(countries, 'country', 'countries')}. Articles need your review.` };
@@ -58,9 +58,10 @@ export function heroCopy(s: Pick<AppState, 'sample' | 'agents' | 'sites' | 'live
 
 /* ---------- Live activity ---------- */
 
-/** The newest `n` audit-log entries inside the site filter (entries without a site always show). */
-export const feedRows = (s: Pick<AppState, 'log' | 'siteFilter'>, n: number): LogEntry[] =>
-  s.log.filter(l => !l.site || inSite(s, l.site)).slice(0, n);
+/** Confirmed server activity inside the site filter. Client notes can precede a refused save;
+ * they remain in the audit log, but must not be presented as completed work in live Office feeds. */
+export const feedRows = (s: Pick<AppState, 'log' | 'siteFilter'> & Partial<Pick<AppState, 'sample'>>, n: number): LogEntry[] =>
+  s.log.filter(l => (s.sample || (!l.note && !l.cid)) && (!l.site || inSite(s, l.site))).slice(0, n);
 
 /* ---------- The Office page ---------- */
 

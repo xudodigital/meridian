@@ -1,4 +1,4 @@
-import { codexLocal, runtimeModel } from '@/store/rules';
+import { engineName, localRuntime, runtimeModel } from '@/store/rules';
 import { useStore } from '@/store/store';
 import { facts, MODEL_AGENTS, mixText, modelMix, TIER_NAME } from './model';
 
@@ -10,7 +10,7 @@ export function Summary() {
   const live = useStore(s => s.live);
   const sample = useStore(s => s.sample);
 
-  const local = !sample && codexLocal({live});
+  const local = !sample && localRuntime({live});
   const mix = modelMix(local ? agents.map(a => ({...a,model: MODEL_AGENTS.has(a.id) ? runtimeModel({live}, a.model) : 'Built-in code'})) : agents);
   const f = facts({ agents, skills, ints, live, sample });
   const unused = f.skills - f.assigned;
@@ -33,11 +33,11 @@ export function Summary() {
                   <li key={p.model} data-model={p.model}>
                     <i className={'sx-tdot t' + p.tier} aria-hidden="true" />
                     <span className="sx-lg-name"><b>{p.short}</b><span className="sx-lg-n">{p.n} {p.n === 1 ? 'agent' : 'agents'}</span></span>
-                    <span className="sx-cap">{local ? p.model === 'Built-in code' ? 'No AI call' : 'ChatGPT usage limits' : TIER_NAME[p.tier]}{!local && p.price ? ' · ' + p.price : ''}</span>
+                    <span className="sx-cap">{local ? p.model === 'Built-in code' ? 'No AI call' : engineName(live.engine?.mode) : TIER_NAME[p.tier]}{!local && p.price ? ' · ' + p.price : ''}</span>
                   </li>
                 ))}
               </ul>
-              <p className="sx-cap sx-foot">{local ? 'Local runtime model · ChatGPT usage limits. API costs are not estimated.' : 'USD per 1M tokens · input / output.'}</p>
+              <p className="sx-cap sx-foot">{local ? 'Local runtime model for AI jobs.' : 'USD per 1M tokens · input / output.'}</p>
             </>
           ) : <p className="sx-cap">No agents yet.</p>}
         </div>
@@ -52,7 +52,7 @@ export function Summary() {
           </div>
           <div data-fact="providers">
             <dt>Providers</dt>
-            <dd><b>{f.connected.length}<small> of {f.providers}</small></b><span>{f.connected.length ? local ? 'Codex local connected' : f.connected.join(', ') + ' connected' : 'None connected yet'}</span></dd>
+            <dd><b>{f.connected.length}<small> of {f.providers}</small></b><span>{f.connected.length ? local ? engineName(live.engine?.mode) + ' connected' : f.connected.join(', ') + ' connected' : 'None connected yet'}</span></dd>
           </div>
         </dl>
       </div>
